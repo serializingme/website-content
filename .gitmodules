@@ -1,0 +1,3 @@
+[submodule "themes/serializingme"]
+	path = themes/serializingme
+	url = https://github.com/serializingme/website-theme.git

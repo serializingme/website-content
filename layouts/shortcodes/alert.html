@@ -1,0 +1,12 @@
+{{- if eq (.Get "class") "success" -}}
+<div class="alert alert-success"><span><i class="fa fa-check-circle"></i>&nbsp;</span>{{ .Inner }}</div>
+{{- end -}}
+{{- if eq (.Get "class") "info" -}}
+<div class="alert alert-info"><span><i class="fa fa-info-circle"></i>&nbsp;</span>{{ .Inner }}</div>
+{{- end -}}
+{{- if eq (.Get "class") "warning" -}}
+<div class="alert alert-warning"><span><i class="fa fa-exclamation-triangle"></i>&nbsp;</span>{{ .Inner }}</div>
+{{- end -}}
+{{- if eq (.Get "class") "danger" -}}
+<div class="alert alert-danger"><span><i class="fa fa-minus-circle"></i>&nbsp;</span>{{ .Inner }}</div>
+{{- end -}}

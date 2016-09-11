@@ -1,0 +1,89 @@
+baseurl = "https://www.serializing.me"
+languageCode = "en-gb"
+title = "SerializingMe"
+theme = "serializingme"
+removePathAccents = true
+
+[permalinks]
+post = "/:year/:month/:day/:slug/"
+page = "/:slug/"
+
+[taxonomies]
+tag = "tags"
+category = "categories"
+
+[params]
+description = "Yet another blog about personal projects and research, thoughts and ideas."
+#analytics = ""
+#adsense = ""
+
+[params.author]
+name = "Duarte Silva"
+twitter = "@serializingme"
+
+[[params.author.social]]
+name = "Twitter Account"
+icon = "fa-bird"
+url = "https://twitter.com/serializingme"
+
+[[params.author.social]]
+name = "YouTube"
+icon = "fa-tube"
+url = "https://www.youtube.com/channel/UC0e2kvivu_M0wSM5E1aY0HQ"
+
+[[params.author.social]]
+name = "GitHub"
+icon = "fa-github"
+url = "https://github.com/serializingme"
+
+[[params.author.social]]
+name = "Bugcrowd"
+icon = "fa-bug"
+url = "https://bugcrowd.com/serializingme"
+
+[[params.author.social]]
+name = "RSS"
+icon = "fa-feed"
+url = "/feeds/"
+
+# To other pages.
+[[params.page]]
+name = "Licensing"
+icon = "fa-copyright"
+url = "/licensing/"
+
+[[params.page]]
+name = "Privacy"
+icon = "fa-eye"
+url = "/privacy/"
+
+[[params.page]]
+name = "Security"
+icon = "fa-shield"
+url = "/security/"
+
+[[params.page]]
+name = "Contacts"
+icon = "fa-envelope"
+url = "/contacts/"
+
+# Main menu links.
+[[menu.main]]
+name = "Blog"
+url = "/post/"
+weight = 1
+
+[[menu.main]]
+name = "Projects"
+url = "/project/"
+weight = 2
+
+[[menu.main]]
+name = "Contributions"
+url = "/contributions/"
+weight = 3
+
+[[menu.main]]
+name = "About"
+url = "/about/"
+weight = 4

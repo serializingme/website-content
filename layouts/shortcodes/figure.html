@@ -1,0 +1,12 @@
+<figure>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <a href="{{ .Get "image" | absURL }}" {{- if .Get "caption" -}}title="{{ .Get "caption" }}"{{- end -}}><img class="img-responsive center-block" {{ if .Get "alternative" }}alt="{{ .Get "alternative" }}"{{ end }} src="{{- if .Get "thumbnail" -}}{{ .Get "thumbnail" | absURL }}{{- else -}}{{ .Get "image" | absURL }}{{- end -}}" /></a>
+    </div>
+{{- with .Get "caption" -}}
+    <div class="panel-footer">
+      <figcaption class="text-center">{{ . }}</figcaption>
+    </div>
+{{- end -}}
+  </div>
+</figure>
