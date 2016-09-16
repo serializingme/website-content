@@ -1,10 +1,10 @@
 +++
 banner = "/uploads/2015/05/pafish-virtualbox.png"
-date = "2015-05-28T22:24:56+00:00"
 categories = [ "Malware", "Virtualization", "Windows" ]
+date = "2015-05-28T22:24:56+00:00"
 excerpt = "Adding a full featured IDPS solution, is a good step in protecting not only that \"all too many times vulnerable\" WordPress installation..."
 format = "post"
-tags = [ "Cuckoo Sandbox", "Emotional Fishes", "FireEye", "Paranoid Fish", "QEMU", "VirtualBox" ]
+tags = [ "Cuckoo Sandbox", "Emofishes", "FireEye", "Paranoid Fish", "QEMU", "VirtualBox" ]
 title = "A Paranoid Fish and Silver Bullets"
 
 +++

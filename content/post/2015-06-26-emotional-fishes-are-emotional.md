@@ -1,7 +1,7 @@
 +++
 banner = "/uploads/2015/06/emofishes-row.png"
-date = "2015-06-26T10:44:13+00:00"
 categories = [ "Malware", "Virtualization", "Windows" ]
+date = "2015-06-26T10:44:13+00:00"
 excerpt = "Emofishes is a collection of proof of concepts that help improve, bypass or detect virtualized malware analysis environments..."
 format = "post"
 tags = [ "Curious Fish", "Emofishes", "Paranoid Fish" ]

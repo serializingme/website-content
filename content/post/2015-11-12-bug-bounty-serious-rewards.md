@@ -1,7 +1,7 @@
 +++
 banner = "/uploads/2015/11/serious-program.png"
-date = "2015-11-12T17:47:33+00:00"
 categories = [ "Bug Bounty" ]
+date = "2015-11-12T17:47:33+00:00"
 excerpt = "My first Bugcrowd private bug bounty program that involves serious rewards..."
 format = "status"
 tags = [ "Bugcrowd" ]

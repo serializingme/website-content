@@ -1,7 +1,7 @@
 +++
 banner = "/uploads/2015/05/arubaos-login-page.png"
-date = "2015-06-02T20:09:29+00:00"
 categories = [ "Bug Bounty", "Linux", "Reverse Engineering" ]
+date = "2015-06-02T20:09:29+00:00"
 excerpt = "How to extract all the files recreating an ArubaOS appliance running file system..."
 format = "post"
 tags = [ "Aruba Networks", "Bugcrowd", "QEMU" ]

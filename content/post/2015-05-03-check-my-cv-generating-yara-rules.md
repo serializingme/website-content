@@ -1,7 +1,7 @@
 +++
 banner = "/uploads/2015/05/malicious-email.png"
-date = "2015-05-03T12:19:48+00:00"
 categories = [ "Incident Response", "Malware", "Memory Forensics", "Windows" ]
+date = "2015-05-03T12:19:48+00:00"
 excerpt = "Generating YARA rules using Volatility and VirtualBox to confirm future infections..."
 format = "post"
 tags = [ "VirtualBox", "Volatility", "YARA" ]

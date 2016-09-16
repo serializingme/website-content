@@ -1,7 +1,7 @@
 +++
 banner = "/uploads/2015/04/helga.png"
-date = "2015-04-25T11:14:03+00:00"
 categories = [ "Education" ]
+date = "2015-04-25T11:14:03+00:00"
 excerpt = "The man of modern industrial society thinks, repeatedly, that he can replace the loss of intimacy through external mechanisms..."
 format = "quote"
 tags = [ "Emotions", "Intimacy", "Sexuality" ]

@@ -1,7 +1,7 @@
 +++
 banner = "/uploads/2015/05/suricata-config.png"
-date = "2015-05-12T20:59:57+00:00"
 categories = [ "IDPS", "LEMP", "Linux" ]
+date = "2015-05-12T20:59:57+00:00"
 excerpt = "Adding a full featured IDPS solution, is a good step in protecting not only that \"all too many times vulnerable\" WordPress installation..."
 format = "post"
 tags = [ "Configuration", "Enterprise Linux", "Network", "Suricata", "WordPress" ]

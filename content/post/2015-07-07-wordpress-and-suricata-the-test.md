@@ -1,7 +1,7 @@
 +++
 banner = "/uploads/2015/07/acunetix-scan.png"
-date = "2015-07-07T19:00:51+00:00"
 categories = [ "Case Study", "IDPS", "Linux" ]
+date = "2015-07-07T19:00:51+00:00"
 excerpt = "Adding a full featured IDPS solution like Suricata is a good step in protecting WordPress, but how well will it fare when under attack..."
 format = "post"
 tags = [ "Acunetix WVS", "Enterprise Linux", "Network", "Suricata", "WordPress" ]
