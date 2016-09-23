@@ -29,7 +29,7 @@ url = "https://twitter.com/serializingme"
 [[params.author.social]]
 name = "YouTube"
 icon = "fa-tube"
-url = "https://www.youtube.com/channel/UC0e2kvivu_M0wSM5E1aY0HQ"
+url = "https://www.youtube.com/c/serializingme"
 
 [[params.author.social]]
 name = "GitHub"

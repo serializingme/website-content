@@ -27,7 +27,7 @@ Over time, I have contributed to some Open Source projects. What follows a list 
 1. Fix the segmentation fault while logging the host on the custom HTTP logger ([#734][11]).
 1. Simple code fixes ([#1105][12]).
 1. Added X-Forwarded-For support to JSON logging ([#1254][13]).
-1. Added support for SHA1 and SHA256 ([#2109][14]).
+1. Added support for SHA1 and SHA256 ([#2252][14]).
 
 ## AisLib
 
@@ -63,7 +63,7 @@ Change log can be found [here][17].
 [11]: https://github.com/inliniac/suricata/pull/734 "GitHub Pull Request"
 [12]: https://github.com/inliniac/suricata/pull/1105 "GitHub Pull Request"
 [13]: https://github.com/inliniac/suricata/pull/1254 "GitHub Pull Request"
-[14]: https://github.com/inliniac/suricata/pull/2109 "GitHub Pull Request"
+[14]: https://github.com/inliniac/suricata/pull/2252 "GitHub Pull Request"
 [15]: https://github.com/dma-ais/AisLib/pull/1 "GitHub Pull Request"
 [16]: https://github.com/tony19/logback-android/pull/34 "GitHub Pull Request"
 [17]: http://nmap.org/changelog.html "Change Log"
