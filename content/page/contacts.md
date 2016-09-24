@@ -5,7 +5,7 @@ title = "Contacts"
 
 +++
 
-Follow me on [Twitter][1] and subscribe my [YouTube][2] channel, or check out [GitHub][3] and [Bugcrowd][4] to know what I have been up to. You can also drop me a line at my <a href="mailto:duartepontosilvaarrobaserializingpontome">e-Mail</a>. If you want to keep any communications content private, feel free to use GPG/PGP to do so.
+Follow me on [Twitter][1] or [Google+][5] and subscribe to my [YouTube][2] channel, or check me out [GitHub][3] and [Bugcrowd][4]. You can also drop me a line at my <a href="mailto:duartepontosilvaarrobaserializingpontome">e-Mail</a>. If you want to keep any communications content private, feel free to use GPG/PGP to do so.
 
 <pre>-----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: GnuPG v2
@@ -41,3 +41,4 @@ nlhXXw7NV3shLdDc1HjVIWg5+Jt4fhT5r0vm0D7ZUX4uCb53V0JO66+nxhfAz0s4
 [2]: https://www.youtube.com/channel/UC0e2kvivu_M0wSM5E1aY0HQ "YouTube Channel"
 [3]: https://github.com/serializingme "GitHub Profile"
 [4]: https://bugcrowd.com/serializingme "Bugcrowd Profile"
+[5]: https://plus.google.com/+SerializingMe "Google+ Profile"
