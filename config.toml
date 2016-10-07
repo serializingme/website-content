@@ -22,7 +22,7 @@ name = "Duarte Silva"
 twitter = "@serializingme"
 
 [[params.author.social]]
-name = "Twitter Account"
+name = "Twitter"
 icon = "fa-bird"
 url = "https://twitter.com/serializingme"
 
@@ -32,7 +32,7 @@ icon = "fa-tube"
 url = "https://www.youtube.com/c/serializingme"
 
 [[params.author.social]]
-name = "Google+ Account"
+name = "Google+"
 icon = "fa-google-plus"
 url = "https://plus.google.com/+SerializingMe"
 
