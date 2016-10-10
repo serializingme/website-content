@@ -46,6 +46,6 @@ Another thing that is very important, especially when looking for ways to escala
 If social engineering is a vector that is allowed in the rules of engagment of the penetration test, the `Dump-UsersPhotos` cmdlet will dump the users photographs stored on Active Directory. Sometimes it help in researching the targets and possible ways to social engineer them.
 
 
-The scripts can be found in my [repository][1]. Cheers ;)
+The scripts can be found in the [project page][1]. Cheers ;)
 
-[1]: https://github.com/serializingme/powascripts "PowaScripts Repository"
+[1]: /project/powascripts/ "Project Page"
