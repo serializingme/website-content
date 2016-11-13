@@ -1,10 +1,10 @@
 +++
 banner = "/uploads/2016/10/powershell-dump-computers.png"
-categories = [ "Reconnaissance", "Windows" ]
+categories = [ "Configuration", "Reconnaissance", "Windows" ]
 date = "2016-10-07T18:05:00+00:00"
 excerpt = "PowerShell scripts that I have created in order to dump information from Active Directory..."
 format = "post"
-tags = [ "Active Directory", "LDAP", "PowerShell", "PowaScripts" ]
+tags = [ "Active Directory", "PowerShell", "PowaScripts" ]
 title = "Active Directory Dump"
 
 +++

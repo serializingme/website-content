@@ -19,7 +19,7 @@ After looking at the HPQPswd import table, it was clear that it was leveraging t
 
 {{< gist serializingme c091d63170c0fe80b82379c66f5c7ff8 "api-monitor-trace.txt" >}}
 
-Using the API Monitor memory editor on address `0x064f0918` (more information at [CryptImportKey][2] documentation) it was possible to obtain the byte array that contains the `PUBLICKEYSTRUC` blob header followed by the encryption key (in this case the key is in plaintext, bu even if it wasn't, it could be used as is).
+Using the API Monitor memory editor on address `0x064f0918` (more information at [CryptImportKey][2] documentation) it was possible to obtain the byte array that contains the `PUBLICKEYSTRUC` blob header followed by the encryption key (in this case the key is in plaintext, but even if it wasn't, it could be used as is).
 
 {{< gist serializingme c091d63170c0fe80b82379c66f5c7ff8 "publickeystruct-dump.txt" >}}
 

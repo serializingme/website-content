@@ -1,10 +1,10 @@
 +++
 banner = "/uploads/2015/11/powershell-applocker-dump.png"
-categories = [ "Incident Response", "Windows" ]
+categories = [ "Configuration", "Incident Response", "Windows" ]
 date = "2015-11-01T15:16:50+00:00"
 excerpt = "While doing incident response, if AppLocker is being used sometimes is useful to know exactly what policy is applied..."
 format = "post"
-tags = [ "AppLocker", "Configuration", "PowerShell" ]
+tags = [ "AppLocker", "PowerShell" ]
 title = "Inspecting AppLocker Policy"
 
 +++

@@ -1,10 +1,10 @@
 +++
 banner = "/uploads/2016/09/wordpress-to-hugo.png"
-categories = [ "LEMP" ]
+categories = [ "Linux" ]
 date = "2016-09-14T19:14:28+02:00"
 excerpt = "Finally finished migrating from WordPress to Hugo..."
 format = "post"
-tags = [ "WordPress", "Hugo" ]
+tags = [ "LEMP", "Hugo", "WordPress" ]
 title = "Migrated From WordPress to Hugo"
 
 +++

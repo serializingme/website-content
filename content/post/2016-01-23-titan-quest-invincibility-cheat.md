@@ -1,10 +1,10 @@
 +++
 banner = "/uploads/2016/01/titan-quest.png"
-categories = [ "Reverse Engineering" ]
+categories = [ "Reverse Engineering", "Windows", "Game" ]
 date = "2016-01-23T22:19:09+00:00"
 excerpt = "In the last level of Titan Quest, every player will have to face the titan Typhon, Bane of the Gods. A task that is very far from easy..."
 format = "post"
-tags = [ "Cheat", "Game", "Titan Quest", "TQ-Invincible" ]
+tags = [ "Cheat", "Titan Quest", "TQ-Invincible" ]
 title = "Titan Quest Invincibility Cheat"
 
 +++

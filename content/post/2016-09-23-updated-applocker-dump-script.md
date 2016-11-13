@@ -1,10 +1,10 @@
 +++
 banner = "/uploads/2016/09/powershell-dump-applocker.png"
-categories = [ "Incident Response", "Windows" ]
+categories = [ "Configuration", "Incident Response", "Windows" ]
 date = "2016-09-23T20:33:00+00:00"
 excerpt = "Updated the PowerShell script that dumps the current AppLocker policy..."
 format = "post"
-tags = [ "AppLocker", "Configuration", "PowerShell", "PowaScripts" ]
+tags = [ "AppLocker", "PowerShell", "PowaScripts" ]
 title = "Updated AppLocker Dump Script"
 
 +++

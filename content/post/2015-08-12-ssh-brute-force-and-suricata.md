@@ -1,6 +1,6 @@
 +++
 banner = "/uploads/2015/08/suricata-ssh-attacks.png"
-categories = [ "IDPS", "Linux" ]
+categories = [ "IDPS", "Linux", "Network" ]
 date = "2015-08-12T18:24:28+00:00"
 excerpt = "Just a simple set of Suricata rules to stop the majority of SSH brute force attacks..."
 format = "post"
