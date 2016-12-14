@@ -7,7 +7,7 @@ repository = "https://github.com/serializingme/tq-invincible"
 
 +++
 
-Library that makes the player character invulnerable to attach in THQ 2006 role playing game, Titan Quest.
+Library that makes the player character invulnerable to attack in THQ 2006 role playing game, Titan Quest.
 
 <!--more-->
 
