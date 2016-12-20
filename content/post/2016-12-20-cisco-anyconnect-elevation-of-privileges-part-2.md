@@ -2,7 +2,7 @@
 banner = "/uploads/2016/12/cisco-anyconnect.png"
 categories = [ "Exploit", "Network", "Reverse Engineering", "Windows", "CVE" ]
 date = "2016-12-20T18:28:00+00:00"
-excerpt = "How I discovered a Cisco AnyConnect elevation of privileges part vulnerability two..."
+excerpt = "How I discovered a Cisco AnyConnect elevation of privileges vulnerability part two..."
 format = "post"
 tags = [ "Cisco AnyConnect", "VPN", "TLS" ]
 title = "AnyConnect Elevation of Privileges, Part 2"
