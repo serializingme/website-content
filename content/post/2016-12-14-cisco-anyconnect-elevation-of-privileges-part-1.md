@@ -52,4 +52,4 @@ In the next [part][5] of this article, I will focus on the packets being sent ov
 
 [3]: https://bugs.chromium.org/p/project-zero/issues/detail?id=460 "Cisco AnyConnect Secure Mobility Client v3.1.08009 Elevation of Privilege"
 [4]: https://www.rohitab.com/apimonitor "API Monitor"
-[5]: /2016/12/17/anyconnect-elevation-of-privileges-part-2/ "AnyConnect Elevation of Privileges, Part 2"
+[5]: /2016/12/20/anyconnect-elevation-of-privileges-part-2/ "AnyConnect Elevation of Privileges, Part 2"
