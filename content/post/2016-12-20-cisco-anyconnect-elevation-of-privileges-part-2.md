@@ -11,8 +11,6 @@ title = "AnyConnect Elevation of Privileges, Part 2"
 
 In the [previous][1] part of this multi-part article, I explained how I reversed engineered one of the binaries of the Cisco AnyConnect (CAC) Secure Mobility Client. This allowed me to understand the header format of the network packets used in the Inter-Process Communication (IPC) mechanism. In this part, I will focus on doing a more dynamic analysis in order to understand what goes in the packet body.
 
-[1]: /2016/12/14/anyconnect-elevation-of-privileges-part-1/ "AnyConnect Elevation of Privileges, Part 1"
-
 <!--more-->
 
 To understand the packet body content (i.e. the data returned by the `getDataBuffer` function in the `CIpcMessage` class), instead of continuing with the reverse engineering effort (by focusing on the `CLaunchClientAppTlv` class), I decided to do a dynamic analysis.
@@ -80,6 +78,7 @@ Since this directory is world writable, and the `vpndownloader.exe` application 
 
 The Cisco advisory can be found [here][6] and I have hosted the proof of concept source code based on this research in this [repository][7]. Cheers x)
 
+[1]: /2016/12/14/anyconnect-elevation-of-privileges-part-1/ "AnyConnect Elevation of Privileges, Part 1"
 [2]: https://bugs.chromium.org/p/project-zero/issues/detail?id=460 "Cisco AnyConnect Secure Mobility Client v3.1.08009 Elevation of Privilege"
 [3]: https://www.rohitab.com/apimonitor "API Monitor"
 [4]: https://tools.cisco.com/security/center/viewAlert.x?alertId=39466 "CVE-2015-4211"

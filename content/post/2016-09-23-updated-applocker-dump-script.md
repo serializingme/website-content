@@ -11,8 +11,6 @@ title = "Updated AppLocker Dump Script"
 
 I have created a new version of [this][1] script so that it is better aligned with the conventions I use for other PowerShell scripts.
 
-[1]: /2015/11/01/inspecting-applocker-policy/ "Older Version"
-
 <!--more-->
 
 I have also created the [PowaScripts][2] project were I will publish PowerShell scripts that I use and that might be of public interest. Follows an example on how to invoke the cmdlet.
@@ -25,4 +23,5 @@ As with the previous version, the resulting XML file will contain all the rules 
 
 Hope it is useful :)
 
+[1]: /2015/11/01/inspecting-applocker-policy/ "Older Version"
 [2]: /project/powascripts/ "Project Page"

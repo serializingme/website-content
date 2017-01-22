@@ -11,9 +11,6 @@ title = "AnyConnect Elevation of Privileges, Part 1"
 
 The Cisco AnyConnect (CAC) Secure Mobility Client doesn't have the brightest security track record. [CVE-2015-4211][1] and [CVE-2015-6305][2] are only two out of the fourteen CVEs that have been assigned to it just in 2015. This spiked my curiosity and prompted me to confirm if Cisco had properly fixed the underlying issue of these vulnerabilities.
 
-[1]: https://tools.cisco.com/security/center/viewAlert.x?alertId=39466 "CVE-2015-4211"
-[2]: https://tools.cisco.com/security/center/viewAlert.x?alertId=41136 "CVE-2015-6305"
-
 <!--more-->
 
 In this multi-part article, I will explain how I reverse engineered CAC (one of its binaries and a network protocol used by it) to understand how the vulnerable functionality worked and how it could be further exploited. From Google Project Zero [advisory][3] and respective proof of concept (POC) code, I learned that:
@@ -50,6 +47,8 @@ Taking the network packet created by the Google POC into consideration, it was c
 
 In the next [part][5] of this article, I will focus on the packets being sent over the socket. Hope it was an interesting read :)
 
+[1]: https://tools.cisco.com/security/center/viewAlert.x?alertId=39466 "CVE-2015-4211"
+[2]: https://tools.cisco.com/security/center/viewAlert.x?alertId=41136 "CVE-2015-6305"
 [3]: https://bugs.chromium.org/p/project-zero/issues/detail?id=460 "Cisco AnyConnect Secure Mobility Client v3.1.08009 Elevation of Privilege"
 [4]: https://www.rohitab.com/apimonitor "API Monitor"
 [5]: /2016/12/20/anyconnect-elevation-of-privileges-part-2/ "AnyConnect Elevation of Privileges, Part 2"

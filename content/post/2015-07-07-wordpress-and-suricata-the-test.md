@@ -11,8 +11,6 @@ title = "WordPress and Suricata, The Test"
 
 Adding a full featured IDPS solution like Suricata is a good step in protecting any Web based application like [WordPress][1], but how well will it fare when under attack?
 
-[1]: /2015/05/12/protecting-wordpress-with-suricata/ "Protecting WordPress with Suricata"
-
 <!--more-->
 
 To answer this question, one has to account for the quality of both the rules and the vulnerability scanner used. For the rules, two sets were used, the Emerging Threats Pro and the Emerging Threats Open ruleset. Acunetix Web Vulnerability Scanner (WVS) was used to perform the vulnerability scan, even though it is not one of the best scanners in the market, it does fair quite well. The test were executed under the following scenarios:
@@ -55,3 +53,5 @@ All of them would have been mitigated by Suricata (independently of the rule set
 In conclusion, Suricata faired extremely well in terms of performance and security/protection alerting to attacks that ranged from SQL injection to known vulnerabilities in WordPress plugins.
 
 One thing to notice though, was that the second and third test runs were executed with Suricata in IDS mode, otherwise the scan would take too long. A scan of the target took on average one hour and an half without Suricata or with Suricata in IDS mode, if Suricata is configured in IPS mode, the scan would take more than six hours and by that time, it wouldn't even be close to half way done (timeout was set to 5 seconds). An added reason for running Suricata, it will frustrate the more impatient attackers :D
+
+[1]: /2015/05/12/protecting-wordpress-with-suricata/ "Protecting WordPress with Suricata"
