@@ -61,7 +61,7 @@ YWzoR4W+lcMEjw==
 -----END PGP PUBLIC KEY BLOCK-----</pre>
 
 [1]: https://twitter.com/serializingme "Twitter Profile"
-[2]: https://www.youtube.com/channel/UC0e2kvivu_M0wSM5E1aY0HQ "YouTube Channel"
+[2]: https://www.youtube.com/c/serializingme "YouTube Channel"
 [3]: https://github.com/serializingme "GitHub Profile"
 [4]: https://bugcrowd.com/serializingme "Bugcrowd Profile"
 [5]: https://plus.google.com/+SerializingMe "Google+ Profile"
