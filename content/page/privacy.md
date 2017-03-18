@@ -1,4 +1,5 @@
 +++
+banner="/images/privacy.png"
 date = "2016-09-01T23:05:00+00:00"
 excerpt = "This website privacy policy..."
 title = "Privacy Policy"

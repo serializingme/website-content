@@ -1,4 +1,5 @@
 +++
+banner="/images/security.png"
 date = "2016-09-08T19:54:00+00:00"
 excerpt = "Responsible security vulnerabilities disclosure..."
 title = "Security"

@@ -1,4 +1,5 @@
 +++
+banner="/images/feeds.png"
 date = "2016-08-15T16:11:16+00:00"
 excerpt = "List of RSS feeds that can be subscribed..."
 title = "Feeds"
