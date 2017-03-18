@@ -11,7 +11,7 @@ Collection of proof of concepts that help improve, bypass or detect virtualized 
 
 <!--more-->
 
-This proof of concepts include a static link library for the common code, Cufish (Curious Fish), and Nofish (Nosey Fish).
+The proof of concepts include a static link library for the common code, Cufish (Curious Fish), and Nofish (Nosey Fish).
 
 ## Cufish
 
