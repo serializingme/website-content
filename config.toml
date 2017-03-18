@@ -51,23 +51,27 @@ name = "RSS"
 icon = "fa-feed"
 url = "/feeds/"
 
+[params.page]
+post = "/post/"
+project = "/project/"
+
 # To other pages.
-[[params.page]]
+[[params.page.footer]]
 name = "Licensing"
 icon = "fa-copyright"
 url = "/licensing/"
 
-[[params.page]]
+[[params.page.footer]]
 name = "Privacy"
 icon = "fa-eye"
 url = "/privacy/"
 
-[[params.page]]
+[[params.page.footer]]
 name = "Security"
 icon = "fa-shield"
 url = "/security/"
 
-[[params.page]]
+[[params.page.footer]]
 name = "Contacts"
 icon = "fa-envelope"
 url = "/contacts/"
