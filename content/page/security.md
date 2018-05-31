@@ -35,7 +35,7 @@ Vulnerabilities report __will__ be accepted as long as:
 
 ### Scope
 
-Any system that can be reached through a `serializing.me` domain and subdomains (with the exception of `www.serializing.me` that is hosted by [GitHub][3]), taking into account that the following vulnerabilities types are specifically __excluded__:
+Any system that can be reached through a `serializing.me` (sub-)domain, with the notable exception of `www.serializing.me` that is hosted by [GitHub][3], are in scope. However, take into account that the following vulnerabilities types are specifically __excluded__:
 
 * Descriptive error messages (e.g. Stack Traces, application or server errors).
 * HTTP 404 codes/pages or other HTTP non-200 codes/pages.
