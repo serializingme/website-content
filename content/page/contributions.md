@@ -7,6 +7,10 @@ title = "Contributions"
 
 Over time, I have contributed to some Open Source projects. What follows a list of such contributions. The list of contributions is grouped by project and sorted in chronological order.
 
+## stoQ Framework
+
+1. Integration between stoQ Framework and LIEF (Library to Instrument Executable Formats, ([#22][18]).
+
 ## Pafish
 
 1. Fix the compilation under Linux with MinGW cross-compiler ([#29][1]).
@@ -67,3 +71,4 @@ Change log can be found [here][17].
 [15]: https://github.com/dma-ais/AisLib/pull/1 "GitHub Pull Request"
 [16]: https://github.com/tony19/logback-android/pull/34 "GitHub Pull Request"
 [17]: http://nmap.org/changelog.html "Change Log"
+[18]: https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/22 "GitHub Request"
