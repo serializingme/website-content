@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/serializingme/website-content.svg?branch=master)](https://travis-ci.org/serializingme/website-content)
+
 # SerializingMe Website Content
 
 My website content.
