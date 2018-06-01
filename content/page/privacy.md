@@ -1,5 +1,4 @@
 +++
-banner="/images/privacy.png"
 date = "2016-09-01T23:05:00+00:00"
 excerpt = "This website privacy policy..."
 title = "Privacy Policy"
@@ -31,7 +30,7 @@ Other cookies may be stored to your computers hard drive by external vendors whe
 
 Our Website may contain links to other websites that are not under this website control, and hence, have their own policies regarding privacy. We have no control of or responsibility for linked websites and provide these links solely for the convenience and information of our visitors. You access such linked Websites at your own risk and you should adopt a policy of caution before clicking any external web links mentioned throughout this website. This website and its owners cannot be held liable for any damages or implications caused by visiting any external links mentioned.
 
-You should check the privacy policies, if any, of those individual websites to see how the operators of those third-party websites will utilize your personal information. In addition, these websites may contain a link to Websites of our affiliates. The websites of our affiliates are not subject to this Privacy Policy, and you should check their individual privacy policies to see how the operators of such websites will utilize your personal information. 
+You should check the privacy policies, if any, of those individual websites to see how the operators of those third-party websites will utilize your personal information. In addition, these websites may contain a link to Websites of our affiliates. The websites of our affiliates are not subject to this Privacy Policy, and you should check their individual privacy policies to see how the operators of such websites will utilize your personal information.
 
 ### Advertisements
 

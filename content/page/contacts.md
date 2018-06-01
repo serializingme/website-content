@@ -1,5 +1,4 @@
 +++
-banner="/images/contacts.png"
 date = "2015-05-03T11:24:58+00:00"
 excerpt = "How to get a hold of me..."
 title = "Contacts"

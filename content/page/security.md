@@ -1,5 +1,4 @@
 +++
-banner="/images/security.png"
 date = "2016-09-08T19:54:00+00:00"
 excerpt = "Responsible security vulnerabilities disclosure..."
 title = "Security"
@@ -47,7 +46,6 @@ Any system that can be reached through a `serializing.me` (sub-)domain, with the
 * OPTIONS HTTP method enabled.
 * Missing HTTP security headers (e.g. Strict-Transport-Security, X-Frame-Options, etc.)
 * TLS issues and attacks (e.g. BEAST, BREACH, forward secrecy not enabled, etc.)
-
 
 ## How to Report
 
