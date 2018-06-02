@@ -9,7 +9,7 @@ Over time, I have contributed to some Open Source projects. What follows a list 
 
 ## stoQ Framework
 
-1. Integration between stoQ Framework and LIEF (Library to Instrument Executable Formats, ([#22][18]).
+1. Integration between stoQ Framework and LIEF ([#22][18]).
 
 ## Pafish
 
