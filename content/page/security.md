@@ -9,7 +9,7 @@ I appreciate the efforts of fellow security researchers and provide secure means
 
 ## Scope and Rules
 
-A positive outcome of the validation of a submited vulnerability can only be achieved if the following rules and scope are respected by the researcher.
+A positive outcome of the validation of a submitted vulnerability can only be achieved if the following rules and scope are respected by the researcher.
 
 ### Rules
 

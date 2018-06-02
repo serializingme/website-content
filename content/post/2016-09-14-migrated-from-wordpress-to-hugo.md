@@ -13,7 +13,7 @@ I have been using WordPress since I started blogging, but since then, the bloggi
 
 <!--more-->
 
-WordPress is a very good Content Management System (CMS), but with it comes maintenance. There is a lot of time spent applying updates (most of them security related) and ensuring that all the required middleware (i.e. PHP, MariaDB, etc.) is running in tip top condition. With the WordPress updates, I also had to update the customizations I created for the theme everytime there was a new version in order to ensure everything was working properly. Mostly due to the parent/child theme architecture of WordPress.
+WordPress is a very good Content Management System (CMS), but with it comes maintenance. There is a lot of time spent applying updates (most of them security related) and ensuring that all the required middleware (i.e. PHP, MariaDB, etc.) is running in tip top condition. With the WordPress updates, I also had to update the customizations I created for the theme every time there was a new version in order to ensure everything was working properly. Mostly due to the parent/child theme architecture of WordPress.
 
 There is also something that irritated me a little, the page generation process. I'm not talking about the speed, but rather the output of the generation. It is very hard if not impossible to generate a clean page that doesn't have CSS or JavaScript all over the place.
 

@@ -12,7 +12,7 @@ This Privacy Policy governs the privacy of this website, located at [https://www
 
 __Cookies__ are small files saved to the user's computers hard drive that track, save and store information about the user's interactions and usage of the website.
 
-__Personal Information__ is non-public information that can be used to indentify a user. Personal information may include information such as your name, email address, and other related information that you provide to us or that we obtain about you.
+__Personal Information__ is non-public information that can be used to identify a user. Personal information may include information such as your name, email address, and other related information that you provide to us or that we obtain about you.
 
 ## User Privacy
 

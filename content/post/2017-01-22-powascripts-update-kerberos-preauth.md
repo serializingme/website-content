@@ -5,17 +5,17 @@ date = "2017-01-22T09:55:00+00:00"
 excerpt = "Updated the PowerShell script to dump user information from Active Directory..."
 format = "post"
 tags = [ "Active Directory", "PowerShell", "PowaScripts" ]
-title = "PowaScripts Update: Kerberos Preauthentication"
+title = "PowaScripts Update: Kerberos Pre-authentication"
 
 +++
 
-After reading [harmj0y][1] blog post about ["Roasting AS-REPs"][2], I have decided to update the `Dump-User.ps1` script in order for it to report on users that don't have Kerberos preauthenticaton enabled. Running the updated version against a "in the wild" target yelded interesting results to say the least.
+After reading [harmj0y][1] blog post about ["Roasting AS-REPs"][2], I have decided to update the `Dump-User.ps1` script in order for it to report on users that don't have Kerberos pre-authentication enabled. Running the updated version against a "in the wild" target yielded interesting results to say the least.
 
 <!--more-->
 
-While I can't post the results from the "in the wild" domain, I can say that one domain administrator account was vulnerable and it was possible to successfuly retrieve the hash for cracking using [harmj0y][3] script.
+While I can't post the results from the "in the wild" domain, I can say that one domain administrator account was vulnerable and it was possible to successfully retrieve the hash for cracking using [harmj0y][3] script.
 
-In any case, follows an example result file from my test environment where I have disabled the Kerberos preauthenticaton for the domain administrator.
+In any case, follows an example result file from my test environment where I have disabled the Kerberos pre-authentication for the domain administrator.
 
 {{< gist serializingme 646765360b36093af7350b4a547a0f56 "dump-users-example.xml" >}}
 
