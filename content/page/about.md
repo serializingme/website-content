@@ -27,9 +27,10 @@ Later on, I started branching into other areas of CIS security. After finishing 
 <div class="row">
   <div class="col-md-9">
   <p>Even though some of the content I create may relate to something I have been dealing or have dealt in the past in my work environment, my views are my own and not of my current or past employer. There is no support (i.e. financial or otherwise) from them, the development of this site and the creation of content that is published on it, is done on my own time.</p>
-  <p>While I take a completely independent approach at any subject, I do accept donations. As such, if you have read something you like and want to help out supporting me, don’t be afraid to donate using <a href="bitcoin:184DunUmssEBeXPmRP4hrza2hMEwNc7vXS?label=Donations&message=Thanks%20you%20very%20much%21" alt="Bitcoin Address">Bitcoin</a> :)</p>
   </div>
   <div class="col-md-3">
 {{< figure image="/images/domations-qr-code.png" alternative="Bitcoin Address QR Code" >}}
   </div>
 </div>
+
+<p>While I take a completely independent approach at any subject, I do accept donations. As such, if you have read something you like and want to help out supporting me, don’t be afraid to donate using <a href="bitcoin:184DunUmssEBeXPmRP4hrza2hMEwNc7vXS?label=Donations&message=Thanks%20you%20very%20much%21">Bitcoin</a> :)</p>
