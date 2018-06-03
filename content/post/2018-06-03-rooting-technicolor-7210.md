@@ -68,7 +68,7 @@ Breaking down the commands in that string we have:
 * At least the first `%s` must be replaced by a password.
 * This password is then echoed to the output.
 * That output is then piped to the `smbpasswd` command.
-* The `smbpasswd`comand changes the Samba `admin` user password with the one supplied.
+* The `smbpasswd` comand changes the Samba `admin` user password with the one supplied.
 
 If no filtering is involved, replacing `%s` with a user supplied password (very high probability of this happening) makes this functionality vulnerable to command injection by using the `$(<insert command to run>)` vector. To test if this was true, I navigated to the web page that allows a user to change the Samba administrator user password and submitted in both password fields the `$(/usr/sbin/telnetd &)` string.
 
