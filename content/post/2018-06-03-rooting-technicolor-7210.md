@@ -27,7 +27,7 @@ If that isn't the case and the commands executed are under the context of an unp
     <p>After checking both diagnostic pages and failing miserably, I decided to go back to basics by looking for known vulnerabilities in the software stack of the router.</p>
   </div>
   <div class="col-md-5 col-sm-6">
-  {{< figure image="/uploads/2016/11/tc7210-ping-functionality.png" alternative="Ping diagnostic page" caption="The router ping diagnostic page." thumbnail="/uploads/2016/11/tc7210-ping-functionality.png" >}}
+  {{< figure image="/uploads/2018/06/tc7210-ping-functionality.png" alternative="Ping diagnostic page" caption="The router ping diagnostic page." thumbnail="/uploads/2018/06/tc7210-ping-functionality.png" >}}
   </div>
 </div>
 
@@ -72,7 +72,7 @@ Breaking down the commands in that string we have:
 
 If no filtering is involved, replacing `%s` with a user supplied password (very high probability of this happening) makes this functionality vulnerable to command injection by using the `$(<insert command to run>)` vector. To test if this was true, I navigated to the web page that allows a user to change the Samba administrator user password and submitted in both password fields the `$(/usr/sbin/telnetd &)` string.
 
-{{< figure image="/uploads/2016/11/tc7210-smb-passwd-functionality.png" alternative="Changing administrator password" caption="Changing the file share administrator password." >}}
+{{< figure image="/uploads/2018/06/tc7210-smb-passwd-functionality.png" alternative="Changing administrator password" caption="Changing the file share administrator password." >}}
 
 After submiting the form, I was able to confirm that the functionality is indeed vulnerable to RCE as the connection using a Telnet client was successful and the credentials found before (i.e. user `root` and password `broadcom`) were valid.
 
