@@ -23,32 +23,32 @@ twitter = "@serializingme"
 
 [[params.author.social]]
 name = "Twitter"
-icon = "fa-bird"
+icon = "fab fa-twitter"
 url = "https://twitter.com/serializingme"
 
 [[params.author.social]]
 name = "YouTube"
-icon = "fa-tube"
+icon = "fab fa-youtube"
 url = "https://www.youtube.com/c/serializingme"
 
 [[params.author.social]]
 name = "Google+"
-icon = "fa-google-plus"
+icon = "fab fa-google-plus"
 url = "https://plus.google.com/+SerializingMe"
 
 [[params.author.social]]
 name = "GitHub"
-icon = "fa-github"
+icon = "fab fa-github"
 url = "https://github.com/serializingme"
 
 [[params.author.social]]
 name = "Bugcrowd"
-icon = "fa-bug"
+icon = "fas fa-bug"
 url = "https://bugcrowd.com/serializingme"
 
 [[params.author.social]]
 name = "RSS"
-icon = "fa-feed"
+icon = "fas fa-rss"
 url = "/feeds/"
 
 [params.page]
@@ -58,22 +58,22 @@ project = "/project/"
 # To other pages.
 [[params.page.footer]]
 name = "Licensing"
-icon = "fa-copyright"
+icon = "fas fa-copyright"
 url = "/licensing/"
 
 [[params.page.footer]]
 name = "Privacy"
-icon = "fa-eye"
+icon = "fas fa-eye"
 url = "/privacy/"
 
 [[params.page.footer]]
 name = "Security"
-icon = "fa-shield"
+icon = "fas fa-shield-alt"
 url = "/security/"
 
 [[params.page.footer]]
 name = "Contacts"
-icon = "fa-envelope"
+icon = "fas fa-envelope"
 url = "/contacts/"
 
 # Main menu links.

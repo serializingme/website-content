@@ -10,24 +10,16 @@ List of RSS feeds of this site that can be subscribed.
 
 ## Combined
 
-An aggregated feed of all the content which includes, pages, posts and projects.
-
-{{< iconlink url="/index.xml" title="Combined Feed" icon="feed" >}}
+{{< iconlink url="/index.xml" title="Combined Feed" icon="rss" >}} An aggregated feed of all the content which includes, pages, posts and projects.
 
 ## Pages
 
-Pages only feed. Will contain any newly created page.
-
-{{< iconlink url="/page/index.xml" title="Pages Feed" icon="feed" >}}
+{{< iconlink url="/page/index.xml" title="Pages Feed" icon="rss" >}} Pages only feed. Will contain any newly created page.
 
 ## Posts
 
-Subscribe to receive the latest created posts.
-
-{{< iconlink url="/post/index.xml" title="Blog Feed" icon="feed" >}}
+{{< iconlink url="/post/index.xml" title="Blog Feed" icon="rss" >}} Subscribe to receive the latest created posts.
 
 ## Projects
 
-Subscribe to receive the latest created projects.
-
-{{< iconlink url="/project/index.xml" title="Projects Feed" icon="feed" >}}
+{{< iconlink url="/project/index.xml" title="Projects Feed" icon="rss" >}} Subscribe to receive the latest created projects.
