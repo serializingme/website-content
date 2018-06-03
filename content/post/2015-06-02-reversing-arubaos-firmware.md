@@ -9,11 +9,11 @@ title = "Reversing ArubaOS Firmware"
 
 +++
 
-{{< alert class="info" >}}This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba's Bugcrowd bug bounty. There is not enough praise that can be given to Aruba Networks for their open approach to security researchers work.{{< /alert >}}
-
 Some time ago, I had the chance to get my hands on a ArubaOS firmware, what follows is the full process to extract all the files recreating the appliance running file system. This had the objective of fuzzing the extracted binaries in QEMU (ArubaOS management console is CGI based).
 
 <!--more-->
+
+{{< alert class="info" >}}This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba's Bugcrowd bug bounty. There is not enough praise that can be given to Aruba Networks for their open approach to security researchers work.{{< /alert >}}
 
 One of the best tools to start the reversing process is `binwalk`.
 

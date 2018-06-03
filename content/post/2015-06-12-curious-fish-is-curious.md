@@ -9,11 +9,11 @@ title = "Curious Fish is Curious"
 
 +++
 
-{{< alert class="info" >}}See <a href="https://www.serializing.me/2015/06/26/emotional-fishes-are-emotional/" title="Emotional Fishes are Emotional">Emotional Fishes are Emotional</a> for an update on Cufish source code repository and project.{{< /alert >}}
-
 Testing virtualized malware sandboxes with Paranoid Fish wasn't enough, there might be other things that could be improved to avoid malware detection. Enter Curious Fish, a tool to help fingerprinting sandboxes.
 
 <!--more-->
+
+{{< alert class="info" >}}See <a href="https://www.serializing.me/2015/06/26/emotional-fishes-are-emotional/" title="Emotional Fishes are Emotional">Emotional Fishes are Emotional</a> for an update on Cufish source code repository and project.{{< /alert >}}
 
 These types of environments need to be stealth, being able to avoid detection by malware is a must because it will spare the researcher or incident responder precious time in the analysis of the incident. Marking a fingerprinting behaviour as malicious is useful, but prone to some false positives and in the end, when you have hundreds (to thousands) of incidents to deal with, you'll want a system that is able to run the samples to the full of their functionality so that you don't have to. Curious Fish (Cufish) aims to help with that, providing information about the execution environment that could be used to pre-emptively improve the sandbox and avoid detection by malware. Cufish leverage Windows Management Instrumentation (WMI) to obtain information about:
 
@@ -92,7 +92,7 @@ After executing Cufish in various systems, follows a summary of some common tell
     </tr>
   </tbody>
 </table>
-    
+
 {{< alert class="info" >}}The row "references to virtualization" means that in that specific entity, at least one field describing it contains a reference to the word "virtual" or the name of the virtualization technology itself.{{< /alert >}}
 {{< alert class="warning" >}}Checking the running services is necessary to ensure that a specific driver is in use.{{< /alert >}}
 {{< alert class="warning" >}}CPU/Chipset miss match don't always occur, it will depend on the hardware selected for the virtual machine.{{< /alert >}}

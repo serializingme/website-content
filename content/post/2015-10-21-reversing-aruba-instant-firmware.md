@@ -9,13 +9,13 @@ title = "Reversing Aruba Instant Firmware"
 
 +++
 
-{{< alert class="info" >}}This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba's Bugcrowd bug bounty. Once <a href="https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/">again</a>, thanks to Aruba Networks for their open approach to security researchers work.{{< /alert >}}
-
 Aruba produces two different software loads for their Access Point hardware. The first is called ArubaOS and the second is called Aruba Instant. With ArubaOS, the AP requires a Mobility Controller (hardware) to be installed in the network. With the Aruba Instant it is possible to run AP's independently (standalone mode) or in a cluster, with no Mobility Controller in the network.
 
 What follows is the full process to extract all the files recreating the Aruba Instant firmware file system.
 
 <!--more-->
+
+{{< alert class="info" >}}This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba's Bugcrowd bug bounty. Once <a href="https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/">again</a>, thanks to Aruba Networks for their open approach to security researchers work.{{< /alert >}}
 
 As usual, the initial step is to check what the firmware image contains, `binwalk` was used for that.
 
