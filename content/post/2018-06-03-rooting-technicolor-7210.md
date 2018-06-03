@@ -95,15 +95,15 @@ Hope this has been interesting and insightful!
 * December 2<sup>nd</sup>, 2016: first reported issues to Ziggo's security team
 * December 9<sup>th</sup>: asked for an update
 * December 12<sup>th</sup>: received reply confirming the bugs, and that the first and third bug were already fixed in next modem firmware. I confirmed the dates for coordinated disclosure, and agreed to test the beta of the new firmware
-* December 16<sup>th</sup>: received the information that the beta firmware was ready
+* December 16<sup>th</sup>: received information that the beta firmware was ready
 * December 17<sup>th</sup>: installed the beta firmware but the modem malfunctioned
-* December 19<sup>th</sup>: the malfunction was fixed and confirmed that the third bug (RCE) had been fixed while the two first bugs hadn't
+* December 19<sup>th</sup>: the malfunction was fixed and I was able to confirm that the third bug (RCE) had been fixed while the two first bugs hadn't
 * January 31<sup>st</sup>, 2017: asked for an update on the issues
 * February 1<sup>st</sup>: Received update "(...) issues are logged by Technicolor and will be further investigated and will be resolved in the final release. (...) A broad indication will be Q1 2017. As soon as we have news we come back to you, you hear nothing remember us please"
 * February 7<sup>th</sup>: requested the router to be reverted to the latest stable version
 * February 8<sup>th</sup>: modem reverted back to the original firmware
 * August 8<sup>th</sup>: asked for an update on  and explained that the details were going to be released as more than six months had passed, got no reply
-* June 3<sup>rd</sup>: released details through this blog post
+* June 3<sup>rd</sup>, 2018: released details through this blog post
 
 [1]: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0926 "CVE-2010-0926"
 [2]: https://github.com/tch-opensrc/ "Technicolor open source repository for TC7210/TC7230 models"
