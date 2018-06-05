@@ -104,6 +104,8 @@ Hope this has been interesting and insightful!
 * February 8<sup>th</sup>: modem reverted back to the original firmware
 * August 8<sup>th</sup>: asked for an update on  and explained that the details were going to be released as more than six months had passed, got no reply
 * June 3<sup>rd</sup>, 2018: released details through this blog post
+* June 4<sup>th</sup>: Technicolor contacted me requesting further assurance that the bugs had been properly fixed and to contact them as well for future bugs I might find
+* June 4<sup>th</sup>: Ziggo contacted me requesting further assurance that the bugs had been properly fixed and apologized for not responding
 
 [1]: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0926 "CVE-2010-0926"
 [2]: https://github.com/tch-opensrc/ "Technicolor open source repository for TC7210/TC7230 models"
