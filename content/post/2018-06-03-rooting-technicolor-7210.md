@@ -27,7 +27,7 @@ If that isn't the case and the commands executed are under the context of an unp
     <p>After checking both diagnostic pages and failing miserably, I decided to go back to basics by looking for known vulnerabilities in the software stack of the router.</p>
   </div>
   <div class="col-md-5 col-sm-6">
-  {{< figure image="/uploads/2018/06/tc7210-ping-functionality.png" alternative="Ping diagnostic page" caption="The router ping diagnostic page." thumbnail="/uploads/2018/06/tc7210-ping-functionality.png" >}}
+  {{< figure image="/uploads/2018/06/tc7210-ping-functionality.png" alternative="Ping diagnostic page" caption="The router ping diagnostic page." thumbnail="/uploads/2018/06/tc7210-ping-functionality-300x175.png" >}}
   </div>
 </div>
 
