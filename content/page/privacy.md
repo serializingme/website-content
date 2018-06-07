@@ -47,5 +47,5 @@ Communication, engagement and actions taken through external social media platfo
 This website and its owners through their social media platform accounts may share web links to relevant web pages. By default some social media platforms shorten lengthy links. Users are advised to take caution and good judgement before clicking any shortened links published on social media platforms by this website and its owners. Despite the best efforts to ensure only genuine links are published many social media platforms are prone to spam and hacking and therefore this website and its owners cannot be held liable for any damages or implications caused by visiting any shortened links.
 
 [1]: https://www.serializing.me "This website"
-[2]: https://www.google.com/privacy.html "Google's Privacy Policy"
+[2]: https://policies.google.com/privacy "Google's Privacy Policy"
 [3]: /contact/ "Contact Page"
