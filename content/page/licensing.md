@@ -27,5 +27,5 @@ This website makes use of the following third party software:
 [5]: https://www.youtube.com "YouTube"
 [6]: https://jquery.org/license/ "jQuery Licensing"
 [7]: http://fontawesome.io/license/ "FontAwesome Licensing"
-[8]: https://getbootstrap.com/getting-started/#license-faqs "Bootstraap Licensing"
+[8]: https://getbootstrap.com/docs/4.0/about/license/ "Bootstraap Licensing"
 [9]: /about/ "About Page"
