@@ -1,6 +1,6 @@
 +++
 date = "2015-04-20T16:16:28+00:00"
-excerpt = "Licenses under which the content of this site as been published..."
+excerpt = "Licenses under which the content of this website as been published and of third party software used."
 title = "Licensing"
 
 +++

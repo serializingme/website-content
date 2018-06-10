@@ -1,6 +1,6 @@
 +++
 date = "2016-09-01T23:05:00+00:00"
-excerpt = "This website privacy policy..."
+excerpt = "This website privacy policy in relation to its visitors covering definitions, tracking, and usage of collected data."
 title = "Privacy Policy"
 url = "/privacy/"
 

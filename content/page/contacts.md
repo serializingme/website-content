@@ -1,6 +1,6 @@
 +++
 date = "2015-05-03T11:24:58+00:00"
-excerpt = "How to get a hold of me..."
+excerpt = "How to get a hold on me via social networks and email."
 title = "Contacts"
 
 +++

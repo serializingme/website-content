@@ -1,6 +1,6 @@
 +++
 date = "2016-09-08T19:54:00+00:00"
-excerpt = "Responsible security vulnerabilities disclosure..."
+excerpt = "SerializingMe responsible security vulnerabilities disclosure (bug bounty) program rules, scope and how to report."
 title = "Security"
 
 +++
@@ -34,7 +34,7 @@ Vulnerabilities report __will__ be accepted as long as:
 
 ### Scope
 
-Any system that can be reached through a `serializing.me` (sub-)domain, with the notable exception of `www.serializing.me` that is hosted by [GitHub][3], are in scope. However, take into account that the following vulnerabilities types are specifically __excluded__:
+Any system that can be reached through a `serializing.me` (sub-)domain, with the notable exception of `www.serializing.me` that is hosted by [GitHub][3], are in scope. Also take into account that the following vulnerabilities types are specifically __excluded__:
 
 * Descriptive error messages (e.g. Stack Traces, application or server errors).
 * HTTP 404 codes/pages or other HTTP non-200 codes/pages.
@@ -49,7 +49,7 @@ Any system that can be reached through a `serializing.me` (sub-)domain, with the
 
 ## How to Report
 
-Please contact me using the GPG/PGP key as shown in the [contact][1] page.
+Please contact me2 using the GPG/PGP key as shown in the [contact][1] page.
 
 [1]: /contacts/ "Contact Page"
 [2]: /security/hall-of-fame/ "Hall of Fame"

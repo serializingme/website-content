@@ -1,6 +1,6 @@
 +++
 date = "2016-09-08T20:45:00+00:00"
-excerpt = "Security researchers that have reported valid security vulnerabilities..."
+excerpt = "Hall of fame listing security researchers that have reported valid security vulnerabilities under the scope of the bug bounty program."
 title = "Hall of Fame"
 url = "/security/hall-of-fame/"
 

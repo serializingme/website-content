@@ -1,6 +1,6 @@
 +++
 date = "2015-04-20T16:18:20+00:00"
-excerpt = "List of my contributions to various open source projects..."
+excerpt = "Chronologically ordered list of contributions to various open source projects."
 title = "Contributions"
 
 +++

@@ -1,6 +1,6 @@
 +++
 date = "2015-04-16T14:45:52+00:00"
-excerpt = "Why you might be interested in checking out my stuff..."
+excerpt = "How I started in security and why you might be interested in checking out this website."
 title = "About"
 
 +++
