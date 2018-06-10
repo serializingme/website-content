@@ -1,7 +1,7 @@
 +++
 banner = "/uploads/2016/01/titan-quest.png"
 date = "2016-01-24T00:43:08+00:00"
-excerpt = "Titan Quest invincibility cheat..."
+excerpt = "Small Dynamic Link Library that when injected will make the player invincible in Titan Quest."
 title = "TQ-Invincible"
 repository = "https://github.com/serializingme/tq-invincible"
 

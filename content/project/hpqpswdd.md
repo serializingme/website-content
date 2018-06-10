@@ -1,7 +1,7 @@
 +++
 banner = "/uploads/2016/10/hpqpswd-decrypt.png"
 date = "2016-10-15T19:00:00+00:00"
-excerpt = "HPQPswd encrypted passwords decryption..."
+excerpt = "Small C# application that decrypts HPQPswd encrypted passwords."
 title = "HPQPswdD"
 repository = "https://github.com/serializingme/hpqpswdd"
 

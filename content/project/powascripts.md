@@ -1,7 +1,7 @@
 +++
 banner = "/uploads/2016/09/need-more-powa.png"
 date = "2016-09-23T20:16:00+00:00"
-excerpt = "Collection of PowerShell scripts..."
+excerpt = "A collection of PowerShell scripts that I use to perform incident response, reconnaissance, etc."
 title = "PowaScripts"
 repository = "https://github.com/serializingme/powascripts"
 
