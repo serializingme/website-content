@@ -7,11 +7,11 @@ title = "Contributions"
 
 Over time, I have contributed to some Open Source projects. What follows a list of such contributions. The list of contributions is grouped by project and sorted in chronological order.
 
-## stoQ Framework
+### stoQ Framework
 
 1. Integration between stoQ Framework and LIEF ([#22][18]).
 
-## Pafish
+### Pafish
 
 1. Fix the compilation under Linux with MinGW cross-compiler ([#29][1]).
 1. Added extra checks for VMWare and Wine ([#31][2], as reported in [#15][3]).
@@ -20,11 +20,11 @@ Over time, I have contributed to some Open Source projects. What follows a list 
 1. Fixed some compilation warnings ([#37][6]).
 1. Added HackingTeam VM detection methods ([#39][7]).
 
-## Evilarc
+### Evilarc
 
 1. Added support to prepending a path to a transversal ([#3][8]).
 
-## Suricata
+### Suricata
 
 1. Cleaned up repeated code ([#482][9]).
 1. Unified2 alert output X-Forwarded-For support rewrite and improvement ([#544][10]).
@@ -33,15 +33,15 @@ Over time, I have contributed to some Open Source projects. What follows a list 
 1. Added X-Forwarded-For support to JSON logging ([#1254][13]).
 1. Added support for SHA1 and SHA256 ([#2252][14]).
 
-## AisLib
+### AisLib
 
 1. Added missing AIS message types ([#1][15]).
 
-## Logback
+### Logback
 
 1. Fixed an issue where exception stack traces were being included ([#34][16]).
 
-## Nmap
+### Nmap
 
 Change log can be found [here][17].
 

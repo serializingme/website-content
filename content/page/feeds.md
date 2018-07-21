@@ -7,18 +7,18 @@ title = "Feeds"
 
 List of RSS feeds of this site that can be subscribed.
 
-## Combined
+### Combined
 
 {{< iconlink url="/index.xml" title="Combined Feed" icon="rss" >}} An aggregated feed of all the content which includes, pages, posts and projects.
 
-## Pages
+### Pages
 
 {{< iconlink url="/page/index.xml" title="Pages Feed" icon="rss" >}} Pages only feed. Will contain any newly created page.
 
-## Posts
+### Posts
 
 {{< iconlink url="/post/index.xml" title="Blog Feed" icon="rss" >}} Subscribe to receive the latest created posts.
 
-## Projects
+### Projects
 
 {{< iconlink url="/project/index.xml" title="Projects Feed" icon="rss" >}} Subscribe to receive the latest created projects.

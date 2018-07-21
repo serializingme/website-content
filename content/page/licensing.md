@@ -12,7 +12,7 @@ Content (e.g. research, documentation, images, etc.) on this website that is of 
 
 This includes content hosted by third parties (e.g. [GitHub][4] and [YouTube][5]).
 
-## Third Parties
+### Third Parties
 
 This website makes use of the following third party software:
 

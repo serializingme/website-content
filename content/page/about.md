@@ -7,7 +7,7 @@ title = "About"
 
 Yet another blog about personal projects and research, thoughts and ideas. Just about anything that I'm tinkering at the moment but focusing on one of my passions, Communications and Information Systems (CIS) security.
 
-## Author
+### Author
 
 <div class="row">
   <div class="col-md-9">
@@ -22,7 +22,7 @@ Granted that at the time, the Unreal Engine was already somewhat documented (com
 
 Later on, I started branching into other areas of CIS security. After finishing my degree, I was focusing on web based applications security when I took duties up as a software developer at a small consulting company. The company was small and diverse in activities, I was doing software development, middleware installation and support, and after my employers noticed my interest and skill in discovering security vulnerabilities in Web applications, I performed my first professional security assessment. After that, I got to do more security assessments and had the possibility to grow professionally in a area that I have always only been able to dedicate my free time.
 
-## Disclaimer and Support
+### Disclaimer and Support
 
 <div class="row">
   <div class="col-md-9">

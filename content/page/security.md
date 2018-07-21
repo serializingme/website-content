@@ -5,13 +5,13 @@ title = "Security"
 
 +++
 
-I appreciate the efforts of fellow security researchers and provide secure means for disclosing security vulnerabilities responsibly. As a reward, I will feature in the [hall of fame][2] the name, handle (e.g. Twitter) and/or website of the reporter of any valid vulnerability. Additional rewards are at my discretion.
+I appreciate the efforts of fellow security researchers and provide secure means for disclosing security vulnerabilities responsibly. As a reward, I will feature in the hall of fame the name, handle (e.g. Twitter) and/or website of the reporter of any valid vulnerability. Additional rewards are at my discretion.
 
-## Scope and Rules
+### Rules and Scope
 
 A positive outcome of the validation of a submitted vulnerability can only be achieved if the following rules and scope are respected by the researcher.
 
-### Rules
+#### Rules
 
 The researcher __shall not__:
 
@@ -32,7 +32,7 @@ Vulnerabilities report __will__ be accepted as long as:
 * The risk represented by the vulnerability isn't considered acceptable.
 * The affected systems are in scope as defined bellow.
 
-### Scope
+#### Scope
 
 Any system that can be reached through a `serializing.me` (sub-)domain, with the notable exception of `www.serializing.me` that is hosted by [GitHub][3], are in scope. Also take into account that the following vulnerabilities types are specifically __excluded__:
 
@@ -47,10 +47,17 @@ Any system that can be reached through a `serializing.me` (sub-)domain, with the
 * Missing HTTP security headers (e.g. Strict-Transport-Security, X-Frame-Options, etc.)
 * TLS issues and attacks (e.g. BEAST, BREACH, forward secrecy not enabled, etc.)
 
-## How to Report
+### How to Report
 
-Please contact me2 using the GPG/PGP key as shown in the [contact][1] page.
+Please contact me using the GPG/PGP key as shown in the [contact][1] page.
+
+### Hall of Fame
+
+Below is a list of security researchers, white hat hackers, and bug bounty hunters who have contributed to the security of my digital estate. This page is to provide recognition, to say thank you!
+
+* _Jayesh Patel_ reported a HTTP Host Header Injection ([Bugcrowd][4])
 
 [1]: /contacts/ "Contact Page"
 [2]: /security/hall-of-fame/ "Hall of Fame"
 [3]: https://www.github.com/ "GitHub"
+[4]: https://bugcrowd.com/jayeshpatel "Bugcrowd Profile"
