@@ -53,9 +53,7 @@ Following the flow of execution (i.e., single stepping through the code), I foun
 
 To make things easier, I have created a [library][1], that when injected into Titan Quest process, will set the invincibility flag. There is a caveat though, the user must be in-game world, otherwise it won&#8217;t work as there is no player character to set the invincible flag to true. Follows a demonstration of the results.
 
-<div class="thumbnail">
-{{< youtube tluOw6sOkl4 >}}
-</div>
+{{< youtube class="embed-responsive embed-responsive-16by9 mb-3" id="tluOw6sOkl4" >}}
 
 The library can be injected multiple times, as it will return the unsuccessful load status, leading Windows to unload it from the process memory (this will only happen if the library is injected using the `LoadLibrary/CreateRemoteThread` method).
 
