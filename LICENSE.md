@@ -2,15 +2,15 @@
 
 ## General
 
-Content (e.g. research, documentation, images, etc.) on this website that is of my authorship is by default (i.e. when not otherwise stated) published under the terms of the [Creative Commons Attribution-NonCommercial 4.0 International License][1].
+Content (e.g. research, documentation, images, etc.) on this website that is of my authorship is by default (i.e. when not otherwise stated) published under the terms of the [Creative Commons Attribution-NonCommercial 4.0 International License][1]. A notable exception to this rule is any content related with the SerializingMe branding.
 
 ## Source Code
 
-Source code which is published under [GNU General Public License 3][2].
+Source code is published, when not otherwise stated, under [GNU General Public License 3][2].
 
 ## Videos
 
-Videos are published under [Creative Commons Attribution 3.0 Unported License][3].
+Videos are published, when not otherwise stated, under [Creative Commons Attribution 3.0 Unported License][3].
 
 # Third Parties
 
