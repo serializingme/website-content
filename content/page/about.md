@@ -3,6 +3,9 @@ date = "2015-04-16T14:45:52+00:00"
 excerpt = "How I started in security and why you might be interested in checking out this website."
 title = "About"
 
+[menu.main]
+name = "About"
+weight = 4
 +++
 
 Yet another blog about personal projects and research, thoughts and ideas. Just about anything that I'm tinkering at the moment but focusing on one of my passions, Communications and Information Systems (CIS) security.

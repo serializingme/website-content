@@ -3,6 +3,9 @@ date = "2015-04-20T16:18:20+00:00"
 excerpt = "Chronologically ordered list of contributions to various open source projects."
 title = "Contributions"
 
+[menu.main]
+name = "Contributions"
+weight = 3
 +++
 
 Over time, I have contributed to some Open Source projects. What follows a list of such contributions. The list of contributions is grouped by project and sorted in chronological order.
