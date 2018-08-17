@@ -4,6 +4,11 @@ excerpt = "This website privacy policy in relation to its visitors covering defi
 title = "Privacy Policy"
 url = "/privacy/"
 
+[menu.footer]
+name = "Privacy"
+pre = "fas fa-eye"
+url = "/privacy/"
+weight = 2
 +++
 
 This Privacy Policy governs the privacy of this website, located at [https://www.serializing.me][1]. The policy sets out the different areas where user privacy is concerned and outlines the obligations and requirements of the users, the website and website owners. Furthermore the way this website processes, stores and protects user data and information will also be detailed within this policy.

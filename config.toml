@@ -55,27 +55,6 @@ url = "/feeds/"
 post = "/post/"
 project = "/project/"
 
-# To other pages.
-[[params.page.footer]]
-name = "Licensing"
-icon = "fas fa-copyright"
-url = "/licensing/"
-
-[[params.page.footer]]
-name = "Privacy"
-icon = "fas fa-eye"
-url = "/privacy/"
-
-[[params.page.footer]]
-name = "Security"
-icon = "fas fa-shield-alt"
-url = "/security/"
-
-[[params.page.footer]]
-name = "Contacts"
-icon = "fas fa-envelope"
-url = "/contacts/"
-
 # Main menu links.
 [[menu.main]]
 name = "Blog"

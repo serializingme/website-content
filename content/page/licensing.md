@@ -3,6 +3,11 @@ date = "2015-04-20T16:16:28+00:00"
 excerpt = "Licenses under which the content of this website as been published and of third party software used."
 title = "Licensing"
 
+[menu.footer]
+name = "Licensing"
+pre = "fas fa-copyright"
+url = "/licensing/"
+weight = 1
 +++
 
 Content (e.g. research, documentation, images, etc.) on this website that is of my authorship (see the [about][9] page) is by default (i.e. when not otherwise stated) published under the terms of the [Creative Commons Attribution-NonCommercial 4.0 International License][1]. There are some notable exceptions to this rule:

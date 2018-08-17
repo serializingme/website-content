@@ -3,6 +3,11 @@ date = "2016-09-08T19:54:00+00:00"
 excerpt = "SerializingMe responsible security vulnerabilities disclosure (bug bounty) program rules, scope and how to report."
 title = "Security"
 
+[menu.footer]
+name = "Security"
+pre = "fas fa-shield-alt"
+url = "/security/"
+weight = 3
 +++
 
 I appreciate the efforts of fellow security researchers and provide secure means for disclosing security vulnerabilities responsibly. As a reward, I will feature in the hall of fame the name, handle (e.g. Twitter) and/or website of the reporter of any valid vulnerability. Additional rewards are at my discretion.

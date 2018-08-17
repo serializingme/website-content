@@ -3,6 +3,11 @@ date = "2015-05-03T11:24:58+00:00"
 excerpt = "How to get a hold on me via social networks and email."
 title = "Contacts"
 
+[menu.footer]
+name = "Contacts"
+pre = "fas fa-envelope"
+url = "/contacts/"
+weight = 4
 +++
 
 Follow me on [Twitter][1] or [Google+][5] and subscribe to my [YouTube][2] channel, or check my profile at [GitHub][3] and [Bugcrowd][4]. You can also drop me a line at my <a href="mailto:duartepontosilvaarrobaserializingpontome">E-mail</a>. If you want to keep any communications content private, feel free to use GPG/PGP to do so.
