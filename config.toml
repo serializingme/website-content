@@ -27,6 +27,11 @@ icon = "fab fa-twitter"
 url = "https://twitter.com/serializingme"
 
 [[params.author.social]]
+name = "Twitch"
+icon = "fab fa-twitch"
+url = "https://www.twitch.tv/serializingme"
+
+[[params.author.social]]
 name = "YouTube"
 icon = "fab fa-youtube"
 url = "https://www.youtube.com/c/serializingme"
