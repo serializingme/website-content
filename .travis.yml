@@ -1,10 +1,11 @@
 language: go
 
 go:
-  - "1.10.2"
+  - "1.11"
 
 install:
   - go get github.com/spf13/hugo
+  - hugo version
 
 script:
   - if [ -z ${ANALYTICS_TOKEN} ]; then echo "No analytics token set"; else sed -ri "s/^#analytics = \"\"\$/analytics = \"$ANALYTICS_TOKEN\"/g" config.toml; fi
