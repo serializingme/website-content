@@ -6,15 +6,16 @@ go:
 addons:
   apt:
     packages:
-      hugo
+      snapd
 
 install:
-  - hugo version
+  - sudo snap install hugo
+  - snap run hugo version
 
 script:
   - if [ -z ${ANALYTICS_TOKEN} ]; then echo "No analytics token set"; else sed -ri "s/^#analytics = \"\"\$/analytics = \"$ANALYTICS_TOKEN\"/g" config.toml; fi
   - if [ -z ${ADSENSE_TOKEN} ]; then echo "No AdSense token set"; else sed -ri "s/^#adsense = \"\"\$/adsense = \"$ADSENSE_TOKEN\"/g" config.toml; fi
-  - hugo
+  - snap run hugo
 
 deploy:
   local_dir: public
