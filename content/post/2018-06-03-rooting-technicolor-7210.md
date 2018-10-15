@@ -7,6 +7,110 @@ format = "post"
 tags = [ "Technicolor", "Passwords", "SOHO" ]
 title = "Rooting the Technicolor 7210"
 
+[[timeline]]
+id = "F"
+title = "30 days"
+start = "2016-12-02"
+end = "2017-01-02"
+type = "background"
+className = "bg-first text-dark"
+
+[[timeline]]
+id = "S"
+title = "60 days"
+start = "2017-01-02"
+end = "2017-02-02"
+type = "background"
+className = "bg-second text-dark"
+
+[[timeline]]
+id = "T"
+title = "90 days"
+start = "2017-02-02"
+end = "2017-03-02"
+type = "background"
+className = "bg-third text-dark"
+
+[[timeline]]
+id = 1
+title = "First reported issues to Ziggo"
+start = "2016-12-02"
+
+[[timeline]]
+id = 2
+title = "Asked for an update"
+start = "2016-12-09"
+
+[[timeline]]
+id = 3
+title = "Ziggo confirmed issues"
+content = "Received reply confirming the bugs, and that the first and third bug were already fixed in next modem firmware. I confirmed the dates for coordinated disclosure, and agreed to test the beta of the new firmware"
+start = "2016-12-12"
+
+[[timeline]]
+id = 4
+title = "Beta firmware ready"
+content = "Received information that the beta firmware was ready"
+start = "2016-12-16"
+
+[[timeline]]
+id = 5
+title = "Firmware malfunction"
+content = "Installed the beta firmware but the modem malfunctioned"
+start = "2016-12-17"
+
+[[timeline]]
+id = 6
+title = "Malfunction fixed"
+content = "The malfunction was fixed and I was able to confirm that the third bug (RCE) had been fixed while the two first bugs hadn't."
+start = "2016-12-19"
+
+[[timeline]]
+id = 7
+title = "Asked for an update"
+start = "2017-01-17"
+
+[[timeline]]
+id = 8
+title = "Received update"
+content = "Received update \"(...) issues are logged by Technicolor and will be further investigated and will be resolved in the final release. (...) A broad indication  will be Q1 2017. As soon as we have news we come back to you, you hear nothing remember us please\""
+start = "2017-02-01"
+
+[[timeline]]
+id = 9
+title = "Requested firmware to be reverted"
+content = "Requested the router to be reverted to the latest stable version"
+start = "2017-02-07"
+
+[[timeline]]
+id = 10
+title = "Firmware was reverted"
+content = "Modem reverted back to the original firmware"
+start = "2017-02-08"
+
+[[timeline]]
+id = 11
+title = "Asked for an update"
+content = "Asked for an update on  and explained that the details were going to be released as more than six months had passed, got no reply"
+start = "2017-08-08"
+
+[[timeline]]
+id = 12
+title = "Public release"
+content = "Released details through this blog post"
+start = "2018-06-03"
+
+[[timeline]]
+id = 13
+title = "Technicolor reached out"
+content = "Technicolor contacted me requesting further assurance that the bugs had been properly fixed and to contact them as well for future bugs I might find."
+start = "2018-06-04"
+
+[[timeline]]
+id = 14
+title = "Ziggo reached out"
+content = "Ziggo contacted me requesting further assurance that the bugs had been properly fixed and apologized for not responding"
+start = "2018-06-04"
 +++
 
 The Technicolor 7210 home router is a powerful little device. It provides 1Gbps Ethernet, dual-band wireless for speeds ranging from 300Mbps to 1300Mbps, and Network Attached Storage (NAS) for file sharing and media streaming.
@@ -89,23 +193,6 @@ After searching the Internet for answers, I found out that the TC7210 is a dual 
 I was quite suprised at the specifications of the NAS part of the router. With the CPU it boasts amount of available memory and storage, there is the possibility to run some more software on it (e.g. VPN, Torrent, etc.) If one is wiling to [cross-compile][2] them.
 
 Hope this has been interesting and insightful!
-
-### Disclosure Timeline
-
-* December 2<sup>nd</sup>, 2016: first reported issues to Ziggo's security team
-* December 9<sup>th</sup>: asked for an update
-* December 12<sup>th</sup>: received reply confirming the bugs, and that the first and third bug were already fixed in next modem firmware. I confirmed the dates for coordinated disclosure, and agreed to test the beta of the new firmware
-* December 16<sup>th</sup>: received information that the beta firmware was ready
-* December 17<sup>th</sup>: installed the beta firmware but the modem malfunctioned
-* December 19<sup>th</sup>: the malfunction was fixed and I was able to confirm that the third bug (RCE) had been fixed while the two first bugs hadn't
-* January 31<sup>st</sup>, 2017: asked for an update on the issues
-* February 1<sup>st</sup>: Received update "(...) issues are logged by Technicolor and will be further investigated and will be resolved in the final release. (...) A broad indication will be Q1 2017. As soon as we have news we come back to you, you hear nothing remember us please"
-* February 7<sup>th</sup>: requested the router to be reverted to the latest stable version
-* February 8<sup>th</sup>: modem reverted back to the original firmware
-* August 8<sup>th</sup>: asked for an update on  and explained that the details were going to be released as more than six months had passed, got no reply
-* June 3<sup>rd</sup>, 2018: released details through this blog post
-* June 4<sup>th</sup>: Technicolor contacted me requesting further assurance that the bugs had been properly fixed and to contact them as well for future bugs I might find
-* June 4<sup>th</sup>: Ziggo contacted me requesting further assurance that the bugs had been properly fixed and apologized for not responding
 
 [1]: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0926 "CVE-2010-0926"
 [2]: https://github.com/tch-opensrc/ "Technicolor open source repository for TC7210/TC7230 models"
