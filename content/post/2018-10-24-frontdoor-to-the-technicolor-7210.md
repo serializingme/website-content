@@ -39,7 +39,7 @@ start = "2018-06-24"
 [[timeline]]
 id = 2
 title = "Report acknowledged"
-content = "Technicolor’s security team acknowledged receipt of report"
+content = "Technicolor’s security team acknowledged receipt of the report"
 start = "2018-06-24"
 
 [[timeline]]
@@ -54,7 +54,7 @@ start = "2018-09-06"
 
 [[timeline]]
 id = 5
-title = "Report acknowledged"
+title = "Vulnerability acknowledged"
 content = "Technicolor’s security theme acknowledged the vulnerability and let me know that they’re in the process of fixing it"
 start = "2018-09-07"
 
@@ -89,7 +89,7 @@ In a previous [article][1], I explained how to get `root` on the embedded Linux 
 
 The TC7210 has two operative systems (OS), the eCos real-time OS, and a Linux based embedded OS. The eCos OS is responsible for managing all network functionalities as well as the Network Attached Storage (NAS) functionalities provided by the Linux OS.
 
-For that to happen, the eCos OS needs to be able to communicate with the Linux OS. As discussed in the previous article, the `smbapp` is the application responsible for managing the NAS functionality. A good indicator of how the application is receiving commands from the eCos OS is the fact that the it listens on port `49182` (UDP).
+For that to happen, the eCos OS needs to be able to communicate with the Linux OS. As discussed in the previous article, the `smbapp` is the application responsible for managing the NAS functionality. A good indicator of how the application is receiving commands from the eCos OS is the fact that it listens on port `49182` (UDP).
 
 {{< gist serializingme 2be71fadd346db82e6ba4ea4ed54fb3c "netstat.sh" >}}
 
