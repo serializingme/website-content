@@ -8,7 +8,11 @@ name = "Contributions"
 weight = 3
 +++
 
-Over time, I have contributed to some Open Source projects. What follows a list of such contributions. The list of contributions is grouped by project and sorted in chronological order.
+Over time, I have contributed to some Open Source Software projects. What follows a list of such contributions. The list of contributions is grouped by project and sorted in chronological order.
+
+### IVRE
+
+1. Minor fixes to IVRE's web interface ([#601][19]).
 
 ### stoQ Framework
 
@@ -74,4 +78,5 @@ Change log can be found [here][17].
 [15]: https://github.com/dma-ais/AisLib/pull/1 "GitHub Pull Request"
 [16]: https://github.com/tony19/logback-android/pull/34 "GitHub Pull Request"
 [17]: http://nmap.org/changelog.html "Change Log"
-[18]: https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/22 "GitHub Request"
+[18]: https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/22 "GitHub Pull Request"
+[19]: https://github.com/cea-sec/ivre/pull/601 "GitHub Pull Request"
