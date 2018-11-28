@@ -4,7 +4,7 @@ categories = [ "Malware", "Virtualization", "Windows" ]
 date = "2015-06-12T11:02:16+00:00"
 excerpt = "There might be things that could be improved proactively to avoid malware detection, enter Curious Fish, a tool to help fingerprinting sandboxes..."
 format = "post"
-tags = [ "Cuckoo Sandbox", "Curious Fish", "Emofishes", "FireEye", "Paranoid Fish", "QEMU", "VirtualBox" ]
+tags = [ "Cuckoo Sandbox", "Emofishes", "FireEye", "Paranoid Fish", "QEMU", "VirtualBox" ]
 title = "Curious Fish is Curious"
 
 +++
