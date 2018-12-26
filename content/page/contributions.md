@@ -13,7 +13,9 @@ Over time, I have contributed to some Open Source Software projects. What follow
 ### IVRE
 
 1. Minor fixes to IVRE's web interface ([#601][19]).
-2. NSE script `sslv2-drown` causes import error ([#631][20]).
+1. NSE script `sslv2-drown` causes import error ([#631][20]).
+1. Added the `display:vulnerabilities` search filter directive ([#634][21]).
+1. Fixed an issue with the calculation of the top CPEs ([#635][22]).
 
 ### stoQ Framework
 
@@ -82,3 +84,5 @@ Change log can be found [here][17].
 [18]: https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/22 "GitHub Pull Request"
 [19]: https://github.com/cea-sec/ivre/pull/601 "GitHub Pull Request"
 [20]: https://github.com/cea-sec/ivre/pull/631 "GitHub Pull Request"
+[21]: https://github.com/cea-sec/ivre/pull/634 "GitHub Pull Request"
+[22]: https://github.com/cea-sec/ivre/pull/635 "GitHub Pull Request"
