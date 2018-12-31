@@ -14,7 +14,7 @@ Over time, I have contributed to some Open Source Software projects. What follow
 
 1. Minor fixes to IVRE's web interface ([#601][19]).
 1. NSE script `sslv2-drown` causes import error ([#631][20]).
-1. Added the `display:vulnerabilities` search filter directive ([#634][21]).
+1. Added the `display:vulnerability` search filter directive ([#634][21]).
 1. Fixed an issue with the calculation of the top CPEs ([#635][22]).
 
 ### stoQ Framework
