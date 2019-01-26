@@ -20,6 +20,7 @@ Over time, I have contributed to some Open Source Software projects. What follow
 ### stoQ Framework
 
 1. Integration between stoQ Framework and LIEF ([#22][18]).
+1. Updated integration between stoQ Framework and LIEF to the latest API ([#44][23]).
 
 ### Pafish
 
@@ -86,3 +87,4 @@ Change log can be found [here][17].
 [20]: https://github.com/cea-sec/ivre/pull/631 "GitHub Pull Request"
 [21]: https://github.com/cea-sec/ivre/pull/634 "GitHub Pull Request"
 [22]: https://github.com/cea-sec/ivre/pull/635 "GitHub Pull Request"
+[23]: https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/44 "GitHub Pull Request"
