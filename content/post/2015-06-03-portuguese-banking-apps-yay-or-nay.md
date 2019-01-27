@@ -15,7 +15,7 @@ I have been using my bank mobile application for a while, but never had a look a
 
 I have focused my research in one of the most important aspects of any type of banking applications, how secure are the communications with the bank systems (API endpoints). In simple terms, how hard would it be for a threat actor to intercept and subsequently decrypt the mobile application communications in order to impersonate the user.
 
-{{% alert class="info" %}}This research targeted only the *Android* version of the applications and any communications of the applications with services other than the API endpoints, was ignored.{{% /alert %}}
+{{< alert >}}This research targeted only the *Android* version of the applications and any communications of the applications with services other than the API endpoints, was ignored.{{< /alert >}}
 
 * ActivoBank and Millennium (same base application and endpoint)
 * Banco Popular
@@ -27,7 +27,7 @@ I have focused my research in one of the most important aspects of any type of b
 
 What follows is the grade of resilience against attack by both the endpoint, and the application of each bank. The higher the grade (being A+ the best, and F the worst), the harder is for a threat actor to successfully attack the communications.
 
-{{% alert class="info" %}}The _higher_ the points, the easier it is to attack the communications (values range from 1 to 6).{{% /alert %}}
+{{< alert >}}The _higher_ the points, the easier it is to attack the communications (values range from 1 to 6).{{< /alert >}}
 
 {{< alert class="warning" >}}The application tests were limited to how the endpoint certificate is validated. TLS/SSL support (protocols, cipher suites, etc.) wasn't tested, since the Android platform varies widely in versions, and by consequence, so will the TLS/SSL implementation/features.{{< /alert >}}
 

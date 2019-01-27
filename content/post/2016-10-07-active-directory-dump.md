@@ -13,7 +13,7 @@ During many penetration tests (or red versus blue team exercises), I have found 
 
 <!--more-->
 
-{{< alert class="info" >}}Note that these cmdlets, when paired with a code versioning system like Git, are also very useful when performing periodic Active Directory change audits.{{< /alert >}}
+{{< alert >}}Note that these cmdlets, when paired with a code versioning system like Git, are also very useful when performing periodic Active Directory change audits.{{< /alert >}}
 
 The first thing I usually do when I get access to a computer registered in a Windows domain of the target network, is to see if there is any other domains available. The `Dump-Domains` cmdlet will dump all domains and all trust relationships that can be found. To run the cmdlet just provide the file to where the information is to be dumped as exemplified bellow.
 
@@ -21,7 +21,7 @@ The first thing I usually do when I get access to a computer registered in a Win
 
 Follows an example result file.
 
-{{< alert class="info" >}}Just because there is a trust relationship between the domain of the current computer or user and another domain, it doesn't necessarily mean that the computer or user account will have access to that trusted domain.{{< /alert >}}
+{{< alert >}}Just because there is a trust relationship between the domain of the current computer or user and another domain, it doesn't necessarily mean that the computer or user account will have access to that trusted domain.{{< /alert >}}
 
 {{< gist serializingme 02d92704bc81d6787725b3ed8c808616 "dump-domains-example.xml" >}}
 

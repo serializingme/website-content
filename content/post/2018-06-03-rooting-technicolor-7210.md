@@ -117,7 +117,7 @@ The Technicolor 7210 home router is a powerful little device. It provides 1Gbps 
 
 <!--more-->
 
-{{< alert class="info" >}}I was able to confirm that two of the bugs (path transversal and remote code execution) highlighted in this blog post have been fixed by Technicolor. The other bug (weak credentials) I'm unable to validate as it depends on the remote code execution. Disclosure timeline can be found at the end of the blog post.{{< /alert >}}
+{{< alert >}}I was able to confirm that two of the bugs (path transversal and remote code execution) highlighted in this blog post have been fixed by Technicolor. The other bug (weak credentials) I'm unable to validate as it depends on the remote code execution. Disclosure timeline can be found at the end of the blog post.{{< /alert >}}
 
 ### The Basic Principle
 

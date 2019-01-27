@@ -30,7 +30,7 @@ The first step is to replace the location section of the server block that liste
 
 {{< gist serializingme 53526694f2876948d1af "reverse-proxy.conf" >}}
 
-{{% alert class="danger" %}}Do not use the `$host` variable in the header `X-Forwarded-Host` since its client/attacker controlled, possibly making your WordPress installation susceptible to host header poisoning. Use the `$server_name` variable instead.{{% /alert %}}
+{{< alert class="danger" >}}Do not use the `$host` variable in the header `X-Forwarded-Host` since its client/attacker controlled, possibly making your WordPress installation susceptible to host header poisoning. Use the `$server_name` variable instead.{{< /alert >}}
 
 Next we need to configure Nginx to listen locally for the decrypted traffic and to pass it to PHP.
 
@@ -45,17 +45,17 @@ After checking that the configuration is correct, restart Nginx. From this point
 
 The next step is to configure Netfilter using Nftables, in order for it to send traffic to Suricata. To do that, create a file with the `rules` extension under `/etc/nftables/` directory.
 
-{{< alert class="info" >}}If Nftables is already configured in the system, edit the existing rules by adding the IPS related chains with a priority lower than the ones used for the firewall (the higher the number the lower the priority).{{< /alert >}}
+{{< alert >}}If Nftables is already configured in the system, edit the existing rules by adding the IPS related chains with a priority lower than the ones used for the firewall (the higher the number the lower the priority).{{< /alert >}}
 
 {{< alert class="warning" >}}The following configuration only takes into account IPv4, for IPv6 extra configurations will be needed.{{< /alert >}}
 
 {{< gist serializingme 53526694f2876948d1af "nftables.rules" >}}
 
-{{% alert class="warning" %}}Make sure `firewalld` is disabled.{{% /alert %}}
+{{< alert class="warning" >}}Make sure `firewalld` is disabled.{{< /alert >}}
 
 After starting the Nftables service, the next step is to configure Suricata. First edit the main Suricata configuration file (`/etc/suricata/suricata.yaml`).
 
-{{< alert class="info" >}}The Netfilter queue fail open setting may have performance impacts, be sure to read Suricata documentation on it.{{< /alert >}}
+{{< alert >}}The Netfilter queue fail open setting may have performance impacts, be sure to read Suricata documentation on it.{{< /alert >}}
 {{< alert class="warning" >}}The Suricata configurations, are for a host with two CPU's, as such, affinity settings and the number of queues that Suricata listens to may need to be adjusted.{{< /alert >}}
 
 {{< gist serializingme 53526694f2876948d1af "suricata.yaml" >}}
@@ -70,7 +70,7 @@ After starting Suricata, check that everything worked out without errors and tha
 
 If everything worked as planned, Suricata should have created an entry in the EVE log (`/var/log/suricata/eve.json`) reporting the attack.
 
-{{% alert class="info" %}}Configuring the ETOpen rule set can be easily done using *Oinkmaster*.{{% /alert %}}
+{{< alert >}}Configuring the ETOpen rule set can be easily done using *Oinkmaster*.{{< /alert >}}
 
 The next step is to configure the rules to disable false positives:
 

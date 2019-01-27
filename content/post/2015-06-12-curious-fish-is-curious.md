@@ -13,7 +13,7 @@ Testing virtualized malware sandboxes with Paranoid Fish wasn't enough, there mi
 
 <!--more-->
 
-{{< alert class="info" >}}See <a href="https://www.serializing.me/2015/06/26/emotional-fishes-are-emotional/" title="Emotional Fishes are Emotional">Emotional Fishes are Emotional</a> for an update on Cufish source code repository and project.{{< /alert >}}
+{{< alert >}}See <a href="https://www.serializing.me/2015/06/26/emotional-fishes-are-emotional/" title="Emotional Fishes are Emotional">Emotional Fishes are Emotional</a> for an update on Cufish source code repository and project.{{< /alert >}}
 
 These types of environments need to be stealth, being able to avoid detection by malware is a must because it will spare the researcher or incident responder precious time in the analysis of the incident. Marking a fingerprinting behaviour as malicious is useful, but prone to some false positives and in the end, when you have hundreds (to thousands) of incidents to deal with, you'll want a system that is able to run the samples to the full of their functionality so that you don't have to. Curious Fish (Cufish) aims to help with that, providing information about the execution environment that could be used to pre-emptively improve the sandbox and avoid detection by malware. Cufish leverage Windows Management Instrumentation (WMI) to obtain information about:
 
@@ -93,7 +93,7 @@ After executing Cufish in various systems, follows a summary of some common tell
   </tbody>
 </table>
 
-{{< alert class="info" >}}The row "references to virtualization" means that in that specific entity, at least one field describing it contains a reference to the word "virtual" or the name of the virtualization technology itself.{{< /alert >}}
+{{< alert >}}The row "references to virtualization" means that in that specific entity, at least one field describing it contains a reference to the word "virtual" or the name of the virtualization technology itself.{{< /alert >}}
 {{< alert class="warning" >}}Checking the running services is necessary to ensure that a specific driver is in use.{{< /alert >}}
 {{< alert class="warning" >}}CPU/Chipset miss match don't always occur, it will depend on the hardware selected for the virtual machine.{{< /alert >}}
 {{< alert class="warning" >}}The physical host and all machines are running Windows 7 SP1 (32 and 64 bits).{{< /alert >}}
@@ -102,8 +102,8 @@ There is still a lot of information (specially on the hardware/drivers side like
 
 The code can be found in [this][1] pull request or in [this][2] branch.
 
-{{< alert class="info" >}}FireEye does a very good job at randomizing an awful amount of information (dates, serial numbers, organization, etc.) but it doesn't randomize the system host name and the first three octets of the MAC address. It's better to randomize those before the "bad guys" figure what values they should look for :D{{< /alert >}}
-{{< alert class="info" >}}Hyper-V was also tested but wasn't included in the conclusions since there are too many signs that a sample can look for and it isn't used that much for malware analysis.{{< /alert >}}
+{{< alert >}}FireEye does a very good job at randomizing an awful amount of information (dates, serial numbers, organization, etc.) but it doesn't randomize the system host name and the first three octets of the MAC address. It's better to randomize those before the "bad guys" figure what values they should look for :D{{< /alert >}}
+{{< alert >}}Hyper-V was also tested but wasn't included in the conclusions since there are too many signs that a sample can look for and it isn't used that much for malware analysis.{{< /alert >}}
 
 [1]: https://github.com/a0rtega/pafish/pull/36 "GitHub Pull Request"
 [2]: https://github.com/serializingme/pafish/tree/dev-cufish-v2 "GitHub Branch"

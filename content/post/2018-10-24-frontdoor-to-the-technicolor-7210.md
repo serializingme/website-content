@@ -83,7 +83,7 @@ In a previous [article][1], I explained how to get `root` on the embedded Linux 
 
 {{< youtube class="embed-responsive embed-responsive-16by9 mb-3" id="zPmzcbA--A8" >}}
 
-{{< alert class="info" >}}This blog post was originally written in June 23<sup>rd</sup>, 2018. The vulnerability disclosed in this blog post, as far as I know is yet to be fixed. I haven't requested a CVE, neither am I aware if Technicolor did so. Disclosure timeline can be found at the end of the blog post.{{< /alert >}}
+{{< alert >}}This blog post was originally written in June 23<sup>rd</sup>, 2018. The vulnerability disclosed in this blog post, as far as I know is yet to be fixed. I haven't requested a CVE, neither am I aware if Technicolor did so. Disclosure timeline can be found at the end of the blog post.{{< /alert >}}
 
 ### Control Mechanism
 
@@ -115,7 +115,7 @@ With this information, the next step was to hack up a script that would send the
 
 {{< gist serializingme 2be71fadd346db82e6ba4ea4ed54fb3c "exploit.py" >}}
 
-{{< alert class="info" >}}The script needs to be executed with Python 3.{{< /alert >}}
+{{< alert >}}The script needs to be executed with Python 3.{{< /alert >}}
 
 Using the script against the NAS functionality of the router, we get an awesome Telnet prompt. Further to the above, it is also possible to control an HTTP server (that exposes some CGI scripts), and whether the Linux OS responds to pings.
 

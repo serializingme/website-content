@@ -13,7 +13,7 @@ Some time ago, I had the chance to get my hands on a ArubaOS firmware, what foll
 
 <!--more-->
 
-{{< alert class="info" >}}This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba's Bugcrowd bug bounty. There is not enough praise that can be given to Aruba Networks for their open approach to security researchers work.{{< /alert >}}
+{{< alert >}}This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba's Bugcrowd bug bounty. There is not enough praise that can be given to Aruba Networks for their open approach to security researchers work.{{< /alert >}}
 
 One of the best tools to start the reversing process is `binwalk`.
 
@@ -43,6 +43,6 @@ Next is the root file system.
 
 Now is time to assemble everything in order to mimic the appliance running file system layout.
 
-{{% alert class="info" %}}There will be some errors reproducing the `/dev`, `/proc` and `/sys` directories but those can be ignored.{{% /alert %}}
+{{< alert >}}There will be some errors reproducing the `/dev`, `/proc` and `/sys` directories but those can be ignored.{{< /alert >}}
 
 And that's it. The firmware that I was investigating had binaries compiled for the NetLogic XLP processor, which is currently unsupported by QEMU. I had a look at QEMU in order to try and implement the missing instructions and, unfortunately, realized that I was out of my depth :D

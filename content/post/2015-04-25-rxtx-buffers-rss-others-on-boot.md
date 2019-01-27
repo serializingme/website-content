@@ -34,7 +34,7 @@ Follows the contents of the script that I use.
 
 After a reboot, to verify if the configurations have been applied correctly (the system used in this example as 8 CPU's) issue the following commands.
 
-{{% alert class="warning" %}}The network interface used in the commands bellow is **eth1**, change accordingly.{{% /alert %}}
+{{< alert class="warning" >}}The network interface used in the commands bellow is **eth1**, change accordingly.{{< /alert >}}
 
 {{< gist serializingme 26fb76f39b475465398f "verify-results.sh" >}}
 

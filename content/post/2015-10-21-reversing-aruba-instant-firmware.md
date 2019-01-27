@@ -15,7 +15,7 @@ What follows is the full process to extract all the files recreating the Aruba I
 
 <!--more-->
 
-{{< alert class="info" >}}This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba's Bugcrowd bug bounty. Once <a href="https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/">again</a>, thanks to Aruba Networks for their open approach to security researchers work.{{< /alert >}}
+{{< alert >}}This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba's Bugcrowd bug bounty. Once <a href="https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/">again</a>, thanks to Aruba Networks for their open approach to security researchers work.{{< /alert >}}
 
 As usual, the initial step is to check what the firmware image contains, `binwalk` was used for that.
 
@@ -49,6 +49,6 @@ The last step, is to assemble everything in order to mimic the appliance running
 
 {{< gist serializingme 050cc30b187d6bf05afd "recreate-rootfs.sh" >}}
 
-{{% alert class="info" %}}There will be some errors reproducing the `/dev`, `/proc` and `/sys` directories but those can be ignored.{{< /alert >}}
+{{< alert >}}There will be some errors reproducing the `/dev`, `/proc` and `/sys` directories but those can be ignored.{{< /alert >}}
 
 And that's it, the running access point file system is ready to go under the microscope :)
