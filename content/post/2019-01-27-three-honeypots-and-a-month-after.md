@@ -29,7 +29,7 @@ In total, over a one month period, the three honeypots where accessed from 2967 
   </div>
 </div>
 
-Of these, 630 (315 already present in blacklists for SPAM) didn't appear to have any ports open. Most of them seem to be hosted from residential ISP's as illustrated in the figure bellow.
+Of these, 630 (315 already present in blacklists for spam) didn't appear to have any ports open. Most of them seem to be hosted from residential ISP's as illustrated in the figure bellow.
 
 <div class="row justify-content-center">
   <div class="col-md-8 col-sm-6">
