@@ -4,7 +4,7 @@ categories = [ "Configuration", "IDPS", "Linux", "Network" ]
 date = "2015-04-25T16:00:30+00:00"
 excerpt = "After installing Suricata, some fine tuning of the network interface(s) used in the traffic capture is required to ensure the best performance of the new IDPS installation..."
 format = "post"
-tags = [ "Enterprise Linux", "Suricata" ]
+tags = [ "Suricata" ]
 title = "RX/TX Buffers, Flow Hash and Others on Boot"
 url = "/2015/04/25/rxtx-buffers-rss-others-on-boot/"
 
