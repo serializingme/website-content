@@ -33,6 +33,10 @@ All the information collected is sent through a UDP socket, pointing to a local 
 
 Nosey Fish lists all directories and files of all the drives in a system. This as the objective of making it easier to inspect the file system contents of the virtual machines used to perform behavioural analysis. The directory and file listing collected are sent through a UDP socket as in Cufish.
 
+## Exfish
+
+Extrovert Fish exfiltrates over the network the FireEye file system monitoring driver (`firemon.sys`) from the FireEye's own Malware Protection System (MPS). The driver is chunked, Base64 encoded and sent over UDP socket.
+
 ## Building
 
 All code is written in C and can be built with MinGW. For the source code and more information on compiling check the links bellow for the related posts and repository.
