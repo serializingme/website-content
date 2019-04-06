@@ -37,11 +37,6 @@ icon = "fab fa-youtube"
 url = "https://www.youtube.com/c/serializingme"
 
 [[params.author.social]]
-name = "Google+"
-icon = "fab fa-google-plus"
-url = "https://plus.google.com/+SerializingMe"
-
-[[params.author.social]]
 name = "GitHub"
 icon = "fab fa-github"
 url = "https://github.com/serializingme"
