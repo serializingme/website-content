@@ -38,10 +38,10 @@ Over time, I have contributed to some Open Source Software projects. What follow
 ### Suricata
 
 1. Cleaned up repeated code ([#482][9]).
-1. Unified2 alert output X-Forwarded-For support rewrite and improvement ([#544][10]).
+1. Unified2 alert output `X-Forwarded-For` support rewrite and improvement ([#544][10]).
 1. Fix the segmentation fault while logging the host on the custom HTTP logger ([#734][11]).
 1. Simple code fixes ([#1105][12]).
-1. Added X-Forwarded-For support to JSON logging ([#1254][13]).
+1. Added `X-Forwarded-For` support to JSON logging ([#1254][13]).
 1. Added support for SHA1 and SHA256 ([#2252][14]).
 
 ### AisLib
@@ -56,14 +56,15 @@ Over time, I have contributed to some Open Source Software projects. What follow
 
 Change log can be found [here][17].
 
-1. Improvements to smtp-open-relay script;
-1. Created the smtp-enum-users script, which attempts to find user account names over SMTP by brute force testing using RCPT, VRFY, and EXPN tests.
-1. Created the http-vuln-cve2011-3192 script that detects a denial of service vulnerability in the way the Apache web server handles requests for multiple overlapping/simple ranges of a page.
-1. Made http-wordpress-enum script able to get names of users who have no posts.
-1. Added path argument to the http-auth script and update the script to use stdnse.format_output.
-1. Added new fingerprints to http-enum for Subversion, CVS and Apache Archiva.
-1. Applied patch to snmp-brute that solves problems with handling errors that occur during community list file parsing.
+1. Improvements to `smtp-open-relay.nse`;
+1. Created the `smtp-enum-users.nse`, which attempts to find user account names over SMTP by brute force testing using RCPT, VRFY, and EXPN tests.
+1. Created the `http-vuln-cve2011-3192.nse` that detects a denial of service vulnerability in the way the Apache web server handles requests for multiple overlapping/simple ranges of a page.
+1. Made `http-wordpress-enum.nse` able to get names of users who have no posts.
+1. Added path argument to the `http-auth.nse` script and update the script to use stdnse.format_output.
+1. Added new fingerprints to `http-enum.nse` for Subversion, CVS and Apache Archiva.
+1. Applied patch to `snmp-brute.nse` that solves problems with handling errors that occur during community list file parsing.
 1. Added new services and the ATTACK category to the dnsbl script.
+1. Fixed a bug in `http-wordpress-users.nse` that could cause extraneous output to be captured as part of a username.
 
 [1]: https://github.com/a0rtega/pafish/pull/29 "GitHub Pull Request"
 [2]: https://github.com/a0rtega/pafish/pull/31 "GitHub Pull Request"
