@@ -27,16 +27,6 @@ Later on, I started branching into other areas of CIS security. After finishing 
 
 ### Disclaimer and Support
 
-<div class="row">
-  <div class="col-md-6">
-  <p>Even though some of the content I create may relate to something I have been dealing or have dealt in the past in my work environment, my views are my own and not of my current or past employer. There is no support (i.e. financial or otherwise) from them, the development of this site and the creation of content that is published on it, is done on my own time.</p>
-  </div>
-  <div class="col-md-3">
-{{< figure image="/images/bitcoin-domations-qr-code.png" alternative="Bitcoin Address QR Code" caption="Bitcoin Donation" >}}
-  </div>
-  <div class="col-md-3">
-{{< figure image="/images/monero-domations-qr-code.png" alternative="Monero Address QR Code" caption="Monero Donation" >}}
-  </div>
-</div>
+Even though some of the content I create may relate to something I have been dealing or have dealt in the past in my work environment, my views are my own and not of my current or past employer. There is no support (i.e. financial or otherwise) from them, the development of this site and the creation of content that is published on it and in other platforms (e.g., YouTube, Twitch, etc.), is done on my own time. While I take a completely independent approach at any subject, I do accept donations. As such, if you have read something you like and want to help out supporting me, don’t be afraid to donate by [contacting me][1] :)
 
-While I take a completely independent approach at any subject, I do accept donations. As such, if you have read something you like and want to help out supporting me, don’t be afraid to donate using <a href="bitcoin:184DunUmssEBeXPmRP4hrza2hMEwNc7vXS?label=Donations&message=Thanks%20you%20very%20much%21">Bitcoin</a> or <a href=monero:4Ab61ZGR48VC1LLn8CsHVSJ23kLBwqaQmdx5LHHCEHDdis7hZ3UUdFZ7r7Q2RFMrJsLsiD6unyjy3HQ1Rqmay7MsLGEqmLv?label=Donations&message=Thanks%20you%20very%20much%21">Monero</a> :)
+[1]: /contacts/ "Contact Page"

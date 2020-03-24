@@ -10,9 +10,10 @@ url = "/contacts/"
 weight = 4
 +++
 
-Follow me on [Twitter][1] or [Google+][5] and subscribe to my [YouTube][2] channel, or check my profile at [GitHub][3] and [Bugcrowd][4]. You can also drop me a line at my <a href="mailto:duartepontosilvaarrobaserializingpontome">E-mail</a>. If you want to keep any communications content private, feel free to use GPG/PGP to do so.
+Follow me on [Twitter][1] and subscribe to my [YouTube][2] and [Twitch][5] channel, or check my profile at [GitHub][3] and [Bugcrowd][4]. You can also drop me a line at my [E-mail][6]. If you want to keep any communications content private, feel free to use GPG/PGP to do so.
 
-<pre>-----BEGIN PGP PUBLIC KEY BLOCK-----
+```
+-----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: GnuPG v2
 
 mQINBFf1LooBEADP1fkhn83zAZQg+jj6OP8zBR+cWKYcHiUBJDa7PP+yHz+3dG01
@@ -63,10 +64,12 @@ KcfTR7xlBGMw4fsv1vBMfjCdcksJUfC9nYAFThnJbO8v/VHjsX7ZOROsJjFV6+1z
 +0nH8N+4DNxRuB4eDpCHksdfSv06wC3wfJnlIiAWcGdW5tkrSuqqVtd+iitmhAd5
 YWzoR4W+lcMEjw==
 =jV7M
------END PGP PUBLIC KEY BLOCK-----</pre>
+-----END PGP PUBLIC KEY BLOCK-----
+```
 
 [1]: https://twitter.com/serializingme "Twitter Profile"
 [2]: https://www.youtube.com/c/serializingme "YouTube Channel"
 [3]: https://github.com/serializingme "GitHub Profile"
 [4]: https://bugcrowd.com/serializingme "Bugcrowd Profile"
-[5]: https://plus.google.com/+SerializingMe "Google+ Profile"
+[5]: https://twitch.com/serializingme "Twitch Channel"
+[6]: mailto:duartepontosilvaarrobaserializingpontome "Email Address"

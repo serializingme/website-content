@@ -9,7 +9,7 @@ title = "Three Honeypots and a Month After"
 
 +++
 
-I deployed three web honeypots, one in Singapore, another in Australia and another one in France. I then leveraged [IVRE](1) and [Suricata](2) to investigate the visitors, and respective traffic they generated.
+I deployed three web honeypots, one in Singapore, another in Australia and another one in France. I then leveraged [IVRE][1] and [Suricata][2] to investigate the visitors, and respective traffic they generated.
 
 <!--more-->
 
@@ -48,7 +48,7 @@ The other 1230 attackers, with some exceptions (e.g., Ubuntu / Debian servers), 
   </div>
 </div>
 
-Analysing the captured packets with Suricata ([ET Open](3) ruleset) it was possible to get an insight to the malicious visitors intentions. Follows a sorted list by number of occurrences of the signatures triggered by the captured traffic.
+Analysing the captured packets with Suricata ([ET Open][3] ruleset) it was possible to get an insight to the malicious visitors intentions. Follows a sorted list by number of occurrences of the signatures triggered by the captured traffic.
 
 1. ZmEu scanner User-Agent Inbound
 1. ThinkPHP RCE exploitation Attempt

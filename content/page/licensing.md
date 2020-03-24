@@ -16,7 +16,7 @@ Content (e.g. research, documentation, images, etc.) on this website that is of 
 * Source code which is published under [GNU General Public License 3][2], and
 * Videos which are published under [Creative Commons Attribution 3.0 Unported License][3].
 
-This includes content hosted by third parties (e.g. [GitHub][4] and [YouTube][5]).
+This includes content hosted by third parties (e.g., [GitHub][4], [YouTube][5], etc.)
 
 ### Third Parties
 

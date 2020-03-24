@@ -4,6 +4,9 @@ title = "SerializingMe"
 theme = "serializingme"
 removePathAccents = true
 
+[markup.goldmark.renderer]
+unsafe = true
+
 [permalinks]
 post = "/:year/:month/:day/:slug/"
 page = "/:slug/"
