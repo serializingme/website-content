@@ -125,6 +125,7 @@ To get `root` in any network appliance, the first step is to get remote code exe
 
 If that isn't the case and the commands executed are under the context of an unprivileged user, the next step after obtaining RCE is to find a way to escalate privileges. Usually that can be done by leveraging badly configured permissions, kernel exploits, etc.
 
+{{< html >}}
 <div class="row">
   <div class="col-md-7 col-sm-6">
     <p>One of the first place to start looking for RCE, is in the diagnostic functionalities of the appliance. Network appliances usually offer (at least) <code>ping</code> based diagnostic functionality. In the case of the TC7210, it offers <code>ping</code> and <code>ftp</code>. As such, that was where I focused my initial efforts.</p>
@@ -134,6 +135,7 @@ If that isn't the case and the commands executed are under the context of an unp
   {{< figure image="/uploads/2018/06/tc7210-ping-functionality.png" alternative="Ping diagnostic page" caption="The router ping diagnostic page." thumbnail="/uploads/2018/06/tc7210-ping-functionality-300x175.png" >}}
   </div>
 </div>
+{{< /html >}}
 
 ### What To Try Next
 

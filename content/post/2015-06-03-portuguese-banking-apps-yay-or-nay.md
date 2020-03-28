@@ -31,6 +31,7 @@ What follows is the grade of resilience against attack by both the endpoint, and
 
 {{< alert class="warning" >}}The application tests were limited to how the endpoint certificate is validated. TLS/SSL support (protocols, cipher suites, etc.) wasn't tested, since the Android platform varies widely in versions, and by consequence, so will the TLS/SSL implementation/features.{{< /alert >}}
 
+{{< html >}}
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -91,7 +92,9 @@ What follows is the grade of resilience against attack by both the endpoint, and
     </tr>
   </tbody>
 </table>
+{{< /html >}}
 
+{{< html >}}
 <div class="row">
   <div class="col-md-7 col-sm-6">
     <p>Starting from the top, the Barclays endpoint could improve in three points, uses a weak signature algorithm, still supports weak cipher suites and doesn't support forward secrecy. The application on the other hand, couldn't do it any better, since it is pinning the certificate that the server should present. That renders man-in-the-middle (MiTM) attacks impossible.</p>
@@ -140,5 +143,6 @@ What follows is the grade of resilience against attack by both the endpoint, and
   {{< figure image="/uploads/2015/06/bpopular-warning-002.png" alternative="Banco Popular warning" caption="Credentials being submitted since the user choose to continue." thumbnail="/uploads/2015/06/bpopular-warning-002-169x300.png" >}}
   </div>
 </div>
+{{< /html >}}
 
 There is still a lot of room for improvement, but overall, it was a nice surprise to verify that almost all the applications fared quite well on the tests.

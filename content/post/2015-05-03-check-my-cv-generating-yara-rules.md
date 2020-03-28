@@ -29,6 +29,7 @@ After submitting the file to [Mawlr][1], I was surprised that the executable cam
 
 {{< gist serializingme 16465f042c0d287542e4 "prepare-analysis.sh" >}}
 
+{{< html >}}
 <div class="row">
   <div class="col-md-6">
   <p>One thing that wasn't reported by the Malwr sandbox (among others), was that the malware created and executed a file in the <code>%temp%</code> folder to delete the dropped malware. The file deleted the malware, but failed to delete itself (as seen in the image). The failure from the Malwr sandbox to detect this behaviour, leads me to believe that the malware employs anti-virtualization techniques. Interestingly enough, it didn't seem to have detected my environment as such, maybe it is using specific checks for the Malwr sandbox.</p>
@@ -37,6 +38,7 @@ After submitting the file to [Mawlr][1], I was surprised that the executable cam
   {{< figure image="/uploads/2015/05/malware-self-delete.png" alternative="Malware self delete" caption="Batch file to delete the dropped malware." thumbnail="/uploads/2015/05/malware-self-delete-300x225.png" >}}
   </div>
 </div>
+{{< /html >}}
 
 After the execution had finished, I dumped the virtual machine memory (Virtual Box) into a directory mounted in RAM to make the Volatility analysis run a little faster.
 

@@ -27,7 +27,7 @@ Then, I attached to the `vpnagent.exe` process and by using the `vpnui.exe` clie
 
 From the "Monitored Processes" list, it is clear that at some point in the connection process, the `vpndownloader.exe` executable is launched (also referenced in the Google Project Zero [advisory][2]). Searching in the capture for `CLaunchClientAppTlv` revealed a nice sequence of function calls that are clearly related with that launch.
 
-
+{{< html >}}
 <div class="row">
   <div class="col-md-6 col-sm-6">
   {{< figure image="/uploads/2016/12/cac-apimonitor-capture-detail-1.png" alternative="API Monitor capture detail" caption="Details of the packet header received." thumbnail="/uploads/2016/12/cac-apimonitor-capture-detail-1-600x292.png">}}
@@ -36,7 +36,7 @@ From the "Monitored Processes" list, it is clear that at some point in the conne
   {{< figure image="/uploads/2016/12/cac-apimonitor-capture-detail-2.png" alternative="API Monitor capture detail" caption="Details of the packet body received." thumbnail="/uploads/2016/12/cac-apimonitor-capture-detail-2-600x292.png" >}}
   </div>
 </div>
-
+{{< /html >}}
 
 Since the calling thread is the same, it is clear that these functions are executed sequentially. This is what happened:
 

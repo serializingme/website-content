@@ -15,6 +15,7 @@ I deployed three web honeypots, one in Singapore, another in Australia and anoth
 
 In total, over a one month period, the three honeypots where accessed from 2967 different IP addresses. At the end of that period, only 1860 of those addresses responded to probes. The following images illustrate the geographic distribution of the (still live) visitors.
 
+{{< html >}}
 <div class="row">
   <div class="col-md-12 col-sm-12">
   {{< figure image="/static/uploads/2019/01/geolocation.svg" alternative="Visitors IP based location." caption="Visitors IP based location.">}}
@@ -28,17 +29,21 @@ In total, over a one month period, the three honeypots where accessed from 2967 
   {{< figure image="/static/uploads/2019/01/top-city.svg" alternative="Top originating cities." caption="Top 15 originating cities.">}}
   </div>
 </div>
+{{< /html >}}
 
 Of these, 630 (315 already present in blacklists for spam) didn't appear to have any ports open. Most of them seem to be hosted from residential ISP's as illustrated in the figure bellow.
 
+{{< html >}}
 <div class="row justify-content-center">
   <div class="col-md-8 col-sm-6">
   {{< figure image="/static/uploads/2019/01/closed-ports-as.svg" alternative="Top 15 AS of attackers without open ports." caption="Top 15 AS of attackers without open ports.">}}
   </div>
 </div>
+{{< /html >}}
 
 The other 1230 attackers, with some exceptions (e.g., Ubuntu / Debian servers), are mostly compromised routers (e.g., MikroTik, Linksys), or IP cameras as indicated by the open ports and respective services.
 
+{{< html >}}
 <div class="row">
   <div class="col-md-6 col-sm-12">
   {{< figure image="/static/uploads/2019/01/top-open-ports.svg" alternative="Top 15 open ports." caption="Top 15 open ports.">}}
@@ -47,6 +52,7 @@ The other 1230 attackers, with some exceptions (e.g., Ubuntu / Debian servers), 
   {{< figure image="/static/uploads/2019/01/top-products.svg" alternative="Top 15 products." caption="Top 15 products.">}}
   </div>
 </div>
+{{< /html >}}
 
 Analysing the captured packets with Suricata ([ET Open][3] ruleset) it was possible to get an insight to the malicious visitors intentions. Follows a sorted list by number of occurrences of the signatures triggered by the captured traffic.
 
