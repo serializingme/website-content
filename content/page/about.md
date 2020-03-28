@@ -12,6 +12,7 @@ Yet another blog about personal projects and research, thoughts and ideas. Just 
 
 ### Author
 
+{{< html >}}
 <div class="row">
   <div class="col-md-9">
   <p>I was always fond of understanding how things worked, breaking them down and getting them back together. In high school I started moving away from hardware to software. I decided to follow an CIS specific course for the three years that preceded college. I was also an avid online gamer and when in college I decided to apply my basic reverse engineering skills (previously used against basic executable packers and the likes) with the online First Person Shooter (FPS) game Unreal Tournament.</p>
@@ -20,6 +21,7 @@ Yet another blog about personal projects and research, thoughts and ideas. Just 
 {{< figure image="/images/profile.png" alternative="My Profile Picture" >}}
   </div>
 </div>
+{{< /html >}}
 
 Granted that at the time, the Unreal Engine was already somewhat documented (community effort), but on the other-hand, the anti-cheats systems were not. This was my first one hundred percent dedicated effort into the realm of CIS security. Experience was gained into Windows internals and development, assembly and the tools of the trade.
 
@@ -27,6 +29,25 @@ Later on, I started branching into other areas of CIS security. After finishing 
 
 ### Disclaimer and Support
 
-Even though some of the content I create may relate to something I have been dealing or have dealt in the past in my work environment, my views are my own and not of my current or past employer. There is no support (i.e. financial or otherwise) from them, the development of this site and the creation of content that is published on it and in other platforms (e.g., YouTube, Twitch, etc.), is done on my own time. While I take a completely independent approach at any subject, I do accept donations. As such, if you have read something you like and want to help out supporting me, don’t be afraid to donate by [contacting me][1] :)
+Even though some of the content I create may relate to something I have been dealing or have dealt in the past in my work environment, my views are my own and not of my current or past employer. There is no support (i.e. financial or otherwise) from them, the development of this site and the creation of content that is published on it and in other platforms (e.g., YouTube, Twitch, etc.), is done on my own time. While I take a completely independent approach at any subject, I do accept donations. As such, if you want to help supporting the creation of new content, don’t be afraid to donate by [contacting me][1], drop a [tip][2] (if done while I'm streaming your donation will be highlighted and tanked for), or if you prefer cryptocurrencies use the QR-codes bellow :)
+
+{{< html >}}
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+  {{< figure image="/images/bitcoin.png" alternative="38VZd5rg4DziZ2S2rkKyExtXs338UypfGJ" caption="Bitcoin Address">}}
+  </div>
+  <div class="col-md-6 col-sm-12">
+  {{< figure image="/images/bitcoin.png" alternative="LcsxdEkmByfeNYBechiiKZXhyCfobkwwfw" caption="Litecoin Address">}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+  {{< figure image="/images/bitcoin.png" alternative="4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CW8VM8nR6La96Fdr1xf" caption="Monero Address">}}
+  </div>
+</div>
+{{< /html >}}
+
+{{< alert class="warning" >}}Note that when donating, you are certifying that you own the funds and acknowledge that all donations are non-refundable.{{< /alert >}}
 
 [1]: /contacts/ "Contact Page"
+[2]: https://streamlabs.com/serializingme/tip "StreamLabs Donation Page"
