@@ -27,13 +27,13 @@ GPOs are disseminated to devices through AD's Lightweight Directory Access Proto
 
 The Windows Registry hive keys and values, with the exception of those with badly configured access control lists, are only changeable by a user with administrative privileges. This enables the enforcement of configurations. However, if the application is running under the context of the user one  can potentially change what the application reads from the Registry hives.
 
-With this in mind, I choose a simple scenario: enabling the installation of Firefox add-ons when it is disabled by GPO. To do this, I developed a proof-of-concept that changes the values read from the Registry by Firefox. The proof-of-concept is divided in two components:
+With this in mind, I choose a simple scenario: enabling the installation of Firefox add-ons when it is disabled by GPO. To do this, I developed a proof of concept that changes the values read from the Registry by Firefox. The proof of concept is divided in two components:
 - Injector, responsible for injecting the library into Firefox.
 - Library, responsible for spoofing the Registry values Firefox reads.
 
-The proof-of-concept execution sequence is illustrated below.
+The proof of concept execution sequence is illustrated below.
 
-{{< figure image="/uploads/2020/03/proof-of-concept-sequence.png" alternative="Group Policy Management" caption="Proof-of-concept execution sequence." >}}
+{{< figure image="/uploads/2020/03/proof-of-concept-sequence.png" alternative="Group Policy Management" caption="Proof of concept execution sequence." >}}
 
 The library is injected using the `CreateRemoteThread` mechanism on a newly created Firefox process. Upon being injected the library detours three functions using Import Address Table (IAT) hooks: `CreateProcess`, injects the library into Firefox child processes; `RegOpenKeyExW`, tracks which registry keys Firefox is trying to open; and `RegQueryValueExW`, spoofs the Registry values Firefox is trying to read. The spoofed Registry keys / values are as follows:
 - In key `HKLM\SOFTWARE\Policies\Mozilla\Firefox`
