@@ -17,7 +17,7 @@ The proof of concept include a static link library for the common code, a execut
 
 Executable responsible for injecting the library into a newly created target process.
 
-## Nofish
+## Library
 
 Dynamic Link Library responsible for spoofing the Windows Registry APIs results.
 
