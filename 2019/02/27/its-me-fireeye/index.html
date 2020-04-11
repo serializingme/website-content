@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#" class="bg-dark">
+  <head>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#ffffff" />
+
+
+<meta property="title" content="It&#39;s Me, FireEye! - SerializingMe" />
+
+
+  
+<meta name="description" content="While researching malware execution sandboxes, I found a way to detect FireEye own Malware Protection System..." />
+  
+  
+    
+    
+<meta name="keywords" content="FireEye, Emofishes" />
+    
+  
+
+
+<meta name="author" content="Duarte Silva" />
+
+
+
+<meta itemprop="title" content="It&#39;s Me, FireEye! - SerializingMe" />
+
+
+  
+<meta itemprop="description" content="While researching malware execution sandboxes, I found a way to detect FireEye own Malware Protection System..." />
+  
+  
+<meta itemprop="image" content="https://www.serializing.me/uploads/2019/02/fireeye-knock-knock.png" />
+  
+  
+    
+    
+<meta itemprop="keywords" content="FireEye, Emofishes" />
+    
+  
+  
+<meta itemprop="wordCount" content="476" />
+  
+
+
+
+<meta property="og:title" content="It&#39;s Me, FireEye! - SerializingMe" />
+
+
+  
+<meta property="og:type" content="article" />
+  
+  
+<meta property="og:description" content="While researching malware execution sandboxes, I found a way to detect FireEye own Malware Protection System..." />
+  
+  
+<meta property="og:image" content="https://www.serializing.me/uploads/2019/02/fireeye-knock-knock.png" />
+  
+
+
+<meta property="og:url" content="https://www.serializing.me/2019/02/27/its-me-fireeye/" />
+
+
+<meta property="og:site_name" content="SerializingMe" />
+
+
+
+  
+<meta name="twitter:card" content="summary_large_image" />
+  
+
+
+<meta name="twitter:site" content="@serializingme" />
+<meta name="twitter:creator" content="@serializingme" />
+
+
+<meta name="twitter:title" content="It&#39;s Me, FireEye! - SerializingMe" />
+
+
+<meta name="twitter:url" content="https://www.serializing.me/2019/02/27/its-me-fireeye/" />
+
+
+  
+<meta name="twitter:description" content="While researching malware execution sandboxes, I found a way to detect FireEye own Malware Protection System..." />
+  
+  
+<meta name="twitter:image" content="https://www.serializing.me/uploads/2019/02/fireeye-knock-knock.png" />
+  
+
+
+<title>It&#39;s Me, FireEye! - SerializingMe</title>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="https://www.serializing.me/manifest.json">
+<link rel="mask-icon" href="https://www.serializing.me/safari-pinned-tab.svg" color="#5bbad5">
+
+<link href="https://www.serializing.me/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Combined Feed" />
+<link href="https://www.serializing.me/page/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Pages Feed" />
+<link href="https://www.serializing.me/post/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Posts Feed" />
+<link href="https://www.serializing.me/project/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Projects Feed" />
+
+<link href="https://www.serializing.me/css/bootstrap-reboot.min.css" rel="stylesheet" />
+<link href="https://www.serializing.me/css/bootstrap.min.css" rel="stylesheet" /><link href="https://www.serializing.me/css/vis-timeline-graph2d.min.css" rel="stylesheet" /><link href="https://www.serializing.me/css/serializingme.min.css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <header>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="https://www.serializing.me/">
+      <img src="/brand.png" width="30" height="30" class="d-inline-block align-top" /> SerializingMe
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto">
+
+
+        <li class="nav-item "><a class="nav-link" title="Blog" href="https://www.serializing.me/post/">Blog</a></li>
+
+        <li class="nav-item "><a class="nav-link" title="Projects" href="https://www.serializing.me/project/">Projects</a></li>
+
+        <li class="nav-item "><a class="nav-link" title="Contributions" href="https://www.serializing.me/contributions/">Contributions</a></li>
+
+        <li class="nav-item "><a class="nav-link" title="About" href="https://www.serializing.me/about/">About</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<noscript>
+  <div class="container mt-2 mb-0">
+    <div class="alert alert-danger">JavaScript is disabled, this site will not work properly without it.</div>
+  </div>
+</noscript>
+
+    </header>
+    <section class="container">
+
+
+  <div class="row">
+  
+  <div class="col-lg-8">
+    
+    <div class="card mb-4 my-4"><img class="card-img-top" src="/uploads/2019/02/fireeye-knock-knock.png" alt="It&#39;s Me, FireEye!" /><div class="card-body">
+        <h2 class="card-title">
+It&#39;s Me, FireEye!
+        </h2>
+        <div class="text-justify">
+<p>A little over three years ago, while researching malware execution <a href="/project/emofishes/" title="Emofishes Project">sandboxes</a>, I found a stealth way to detect FireEye&rsquo;s Malware Analysis System (MAS). In this blog post I will release the details.</p>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>This blog post was originally written in November 24<sup>th</sup>, 2018. The issue reported in this blog post, as been fixed by FireEye. I'm not able to validate the purported fix since I no longer have access to any FireEye sandbox.</div>
+<p>While investigation various Open Source and commercial malware execution sandboxes I developed a tool called <a href="/2015/06/12/curious-fish-is-curious/" title="Curious Fish Is Curious Post">Curious Fish</a> (Cufish for short). This tool focused on extracting as much environmental information as possible in order to facilitate the process of fingerprinting these sandboxes.</p>
+<p>One such sandbox is FireEye own Malware Protection System (MPS) in its multiple iterations (e.g., Web MPS, Email MPS, etc.) While going through the output of the Cufish tool I found that it made use of a driver called <code>firemon</code>.</p>
+<div class="text-center"><figure class="figure">
+    <a href="https://www.serializing.me/uploads/2019/02/cufish-dump.png" title="Cufish dump showing the existence of the driver.">
+      <img class="figure-img img-fluid rounded" alt="Cufish Dump" src="https://www.serializing.me/uploads/2019/02/cufish-dump-500x313.png" />
+    </a><figcaption class="figure-caption text-center">Cufish dump showing the existence of the driver.</figcaption></figure></div>
+
+<p>This looked very interesting and since the details provided by Cufish were quite scarce I used <a href="/2015/06/26/emotional-fishes-are-emotional/" title="Emotional Fishes Are Emotional Post">Nosey Fish</a> (Nofish for short, and previously called Infish) to see if I could locate the driver in the file system.</p>
+<div class="text-center"><figure class="figure">
+    <a href="https://www.serializing.me/uploads/2019/02/nofish-dump.png" title="Nofish dump showing the path of the interesting driver.">
+      <img class="figure-img img-fluid rounded" alt="Cufish Dump" src="https://www.serializing.me/uploads/2019/02/nofish-dump-500x313.png" />
+    </a><figcaption class="figure-caption text-center">Nofish dump showing the path of the interesting driver.</figcaption></figure></div>
+
+<p>While the sandbox, at the time, didn&rsquo;t allow users to download random files / artefacts from the environment, I developed a small utility (<a href="/project/emofishes/" title="Emofishes Project">Extrovert Fish</a>, Exfish for short) to send the driver file over the network. Chunks of the file are encoded in Base64 and  sent over a UDP socket. The only thing left to do was to download the network packet capture from the sandbox and extract the driver from it.</p>
+<div class="text-center"><figure class="figure">
+    <a href="https://www.serializing.me/uploads/2019/02/exfish-dump.png" title="Dump showing part of the base64 driver.">
+      <img class="figure-img img-fluid rounded" alt="Exfish Dump" src="https://www.serializing.me/uploads/2019/02/exfish-dump-500x313.png" />
+    </a><figcaption class="figure-caption text-center">Dump showing part of the base64 driver.</figcaption></figure></div>
+
+<p>With the driver outside the sandbox, I was able to conclude two things. The first was that accessing (opening and reading) the <code>firemon.sys</code> triggered a malicious activity alert related with sandbox evasion / detection.</p>
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>If I remember correctly, not fully certain anymore, it wasn't just the YARA rule that detected Exfish tool reading the monitoring driver file.</div>
+<div class="text-center"><figure class="figure">
+    <a href="https://www.serializing.me/uploads/2019/02/mps-report.png" title="FireEye MPS report.">
+      <img class="figure-img img-fluid rounded" alt="Cufish Dump" src="https://www.serializing.me/uploads/2019/02/mps-report.png" />
+    </a><figcaption class="figure-caption text-center">FireEye MPS report.</figcaption></figure></div>
+
+<p>The second was that the driver was indeed responsible for monitoring the system for activity (e.g., opening files, deleting files, etc.) as it implements a file system filter driver and injects a DLL in all processes (with some exceptions) using the APC method.</p>
+<p>That got me thinking, how could I check if the file existed without triggering such alerts? After some experimentation I decided to give the <code>FindFirstFile</code> Windows API a try. If it didn&rsquo;t make use of system calls, it would most likely be stealth in such a way the sandbox won&rsquo;t tag it as malicious.</p>
+<script type="application/javascript" src="https://gist.github.com/serializingme/add1c6e6e24cb775785800c22b8f14d9.js?file=fetest.c"></script>
+
+<p>With this idea in mind, I developed another small utility that did just that. Suffice to say it was successful! The driver could be detected and not a single alert was triggered :D</p><h3 id="disclosure-timeline">Disclosure Timeline</h3>
+          <ul><li>
+      2018-11-23:&nbsp;Reported to FireEye</li><li>
+      2018-11-26:&nbsp;FireEye acknowledged the report and deployed a content update to fix it. I asked if it was ok to publish the post.</li><li>
+      2018-11-27:&nbsp;FireEye's research and engineering team took a closer look into the reported issue and asked for a 90 days grace period to implement additional protections. I extended the grace period 4 days, giving FireEye exactly 90 days starting from November 27<sup>th</sup>, instead of the date of first reporting the issue (November 23<sup>rd</sup>).</li><li>
+      2019-01-27:&nbsp;Reminded FireEye that the grace period would be over in a month.</li><li>
+      2019-01-30:&nbsp;FireEye will release a version with additional protections for this type of evasion on February, 20<sup>th</sup> and they're ok with the public release after this date. I will follow the original public release schedule giving extra time for FireEye's customers to update.</li><li>
+      2019-02-26:&nbsp;FireEye contacted me letting me know that the customer adoption of the new version has been good so far.</li><li>
+      2019-02-27:&nbsp;Released details through this blog post (94 days after reporting it)</li></ul>
+          <div id="disclosure-vis"></div></div>
+      </div>
+      <div class="card-footer">
+<span><i class="fas fa-calendar-alt"></i>&nbsp;</span>February 27, 2019&nbsp;&nbsp;<br/>
+<span><i class="fas fa-folder-open"></i>&nbsp;</span><a href="https://www.serializing.me/categories/malware/">Malware</a>,&nbsp;<a href="https://www.serializing.me/categories/virtualization/">Virtualization</a>,&nbsp;<a href="https://www.serializing.me/categories/windows/">Windows</a>,&nbsp;<a href="https://www.serializing.me/categories/reverse-engineering/">Reverse Engineering</a>&nbsp;&nbsp;<br/>
+<span><i class="fas fa-tag"></i>&nbsp;</span><a href="https://www.serializing.me/tags/fireeye/">FireEye</a>,&nbsp;<a href="https://www.serializing.me/tags/emofishes/">Emofishes</a>
+      </div>
+    </div>
+    <ul class="pagination justify-content-center mb-4"><li class="page-item">
+        <a href="https://www.serializing.me/2019/04/29/simulating-apts-for-fun/" title="Simulating APTs For Fun" class="page-link"><span><i class="fas fa-chevron-left"></i>&nbsp;</span>Newer</a>
+      </li><li class="page-item">
+    <a href="https://www.serializing.me/2019/01/27/three-honeypots-and-a-month-after/" title="Three Honeypots and a Month After" class="page-link">Older<span>&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;</span></a>
+  </li></ul>
+  </div>
+  
+  <div class="col-md-4">
+    
+    <div class="card my-4">
+      <h5 class="card-header">Categories</h5>
+      <div class="card-body">
+        <div class="cloud">
+<a style="font-size: 1.1538461538461537em" href="https://www.serializing.me/categories/bug-bounty/" title="3 posts">bug-bounty</a>
+<a style="font-size: 1.2307692307692308em" href="https://www.serializing.me/categories/case-study/" title="4 posts">case-study</a>
+<a style="font-size: 1.4615384615384617em" href="https://www.serializing.me/categories/configuration/" title="7 posts">configuration</a>
+<a style="font-size: 1.0769230769230769em" href="https://www.serializing.me/categories/cve/" title="2 posts">cve</a>
+<a style="font-size: 1.1538461538461537em" href="https://www.serializing.me/categories/education/" title="3 posts">education</a>
+<a style="font-size: 1em" href="https://www.serializing.me/categories/encryption/" title="1 posts">encryption</a>
+<a style="font-size: 1.3076923076923077em" href="https://www.serializing.me/categories/exploit/" title="5 posts">exploit</a>
+<a style="font-size: 1em" href="https://www.serializing.me/categories/game/" title="1 posts">game</a>
+<a style="font-size: 1.2307692307692308em" href="https://www.serializing.me/categories/idps/" title="4 posts">idps</a>
+<a style="font-size: 1.1538461538461537em" href="https://www.serializing.me/categories/incident-response/" title="3 posts">incident-response</a>
+<a style="font-size: 1.7692307692307692em" href="https://www.serializing.me/categories/linux/" title="11 posts">linux</a>
+<a style="font-size: 1.3076923076923077em" href="https://www.serializing.me/categories/malware/" title="5 posts">malware</a>
+<a style="font-size: 1em" href="https://www.serializing.me/categories/memory-forensics/" title="1 posts">memory-forensics</a>
+<a style="font-size: 1.6923076923076923em" href="https://www.serializing.me/categories/network/" title="10 posts">network</a>
+<a style="font-size: 1.1538461538461537em" href="https://www.serializing.me/categories/reconnaissance/" title="3 posts">reconnaissance</a>
+<a style="font-size: 1em" href="https://www.serializing.me/categories/red-team/" title="1 posts">red-team</a>
+<a style="font-size: 1.8461538461538463em" href="https://www.serializing.me/categories/reverse-engineering/" title="12 posts">reverse-engineering</a>
+<a style="font-size: 1.2307692307692308em" href="https://www.serializing.me/categories/virtualization/" title="4 posts">virtualization</a>
+<a style="font-size: 2em" href="https://www.serializing.me/categories/windows/" title="14 posts">windows</a>
+
+
+        </div>
+      </div>
+    </div>
+    
+    <div class="card my-4">
+      <h5 class="card-header">Tags</h5>
+      <div class="card-body">
+        <div class="cloud">
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/active-directory/" title="3 posts">active-directory</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/activobank/" title="1 posts">activobank</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/acunetix-wvs/" title="1 posts">acunetix-wvs</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/android/" title="1 posts">android</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/applocker/" title="2 posts">applocker</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/aruba-networks/" title="2 posts">aruba-networks</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/attck/" title="1 posts">attck</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/banco-popular/" title="1 posts">banco-popular</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/banco-portugues-de-investimento/" title="1 posts">banco-portugues-de-investimento</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/banking/" title="1 posts">banking</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/barclays/" title="1 posts">barclays</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/bios/" title="1 posts">bios</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/brute-force/" title="1 posts">brute-force</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/bugcrowd/" title="3 posts">bugcrowd</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/caixa-geral-de-depositos/" title="1 posts">caixa-geral-de-depositos</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/caixadirecta/" title="1 posts">caixadirecta</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/cheat/" title="1 posts">cheat</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/cisco-anyconnect/" title="2 posts">cisco-anyconnect</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/code-injection/" title="1 posts">code-injection</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/critical-thinking/" title="1 posts">critical-thinking</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/csharp/" title="1 posts">csharp</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/cuckoo-sandbox/" title="2 posts">cuckoo-sandbox</a>
+<a style="font-size: 1.75em" href="https://www.serializing.me/tags/emofishes/" title="4 posts">emofishes</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/emotions/" title="2 posts">emotions</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/fireeye/" title="3 posts">fireeye</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/gpo-bypass/" title="1 posts">gpo-bypass</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/group-policy-objects/" title="1 posts">group-policy-objects</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/honeypot/" title="1 posts">honeypot</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/hook-functions/" title="1 posts">hook-functions</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/hp/" title="1 posts">hp</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/hpqpswdd/" title="1 posts">hpqpswdd</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/hugo/" title="1 posts">hugo</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/intimacy/" title="1 posts">intimacy</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/ivre/" title="1 posts">ivre</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/lemp/" title="2 posts">lemp</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/metasploit/" title="1 posts">metasploit</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/millennium/" title="1 posts">millennium</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/novo-banco/" title="1 posts">novo-banco</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/paranoid-fish/" title="3 posts">paranoid-fish</a>
+<a style="font-size: 1.75em" href="https://www.serializing.me/tags/passwords/" title="4 posts">passwords</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/portuguese/" title="1 posts">portuguese</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/portugueses/" title="1 posts">portugueses</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/powascripts/" title="3 posts">powascripts</a>
+<a style="font-size: 1.75em" href="https://www.serializing.me/tags/powershell/" title="4 posts">powershell</a>
+<a style="font-size: 2em" href="https://www.serializing.me/tags/qemu/" title="5 posts">qemu</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/senhas/" title="1 posts">senhas</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/sexuality/" title="1 posts">sexuality</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/soho/" title="3 posts">soho</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/ssh/" title="1 posts">ssh</a>
+<a style="font-size: 2em" href="https://www.serializing.me/tags/suricata/" title="5 posts">suricata</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/technicolor/" title="3 posts">technicolor</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/titan-quest/" title="1 posts">titan-quest</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/tls/" title="3 posts">tls</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/tq-invincible/" title="1 posts">tq-invincible</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/virtualbox/" title="3 posts">virtualbox</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/volatility/" title="1 posts">volatility</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/vpn/" title="2 posts">vpn</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/wordpress/" title="3 posts">wordpress</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/yara/" title="1 posts">yara</a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    </section>
+    <footer class="mt-4 bg-dark">
+<div class="container">
+  <div class="row text-center">
+  <div class="col-12 col-md my-4">
+    <ul class="list-inline">
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://twitter.com/serializingme" title="Twitter">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-twitter fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://www.twitch.tv/serializingme" title="Twitch">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-twitch fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://discord.gg/NS5qHT4" title="Discord">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-discord fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://www.youtube.com/c/serializingme" title="YouTube">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-youtube fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://github.com/serializingme" title="GitHub">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-github fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://bugcrowd.com/serializingme" title="Bugcrowd">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fas fa-bug fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="/feeds/" title="RSS">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fas fa-rss fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+    </ul>
+      <ul class="list-inline">
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-copyright"></i>&nbsp;</span><a class="footer-link text-light" href="/licensing/" title="Licensing">Licensing</a>
+    </li>
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-eye"></i>&nbsp;</span><a class="footer-link text-light" href="/privacy/" title="Privacy">Privacy</a>
+    </li>
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-shield-alt"></i>&nbsp;</span><a class="footer-link text-light" href="/security/" title="Security">Security</a>
+    </li>
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-envelope"></i>&nbsp;</span><a class="footer-link text-light" href="/contacts/" title="Contacts">Contacts</a>
+    </li>
+
+  </ul>
+  <small class="d-block mb-3 text-muted">&copy;&nbsp;2020&nbsp;Duarte Silva</small>
+  </div>
+</div>
+</div>
+
+    </footer>
+<script src="https://www.serializing.me/js/jquery.min.js"></script>
+<script src="https://www.serializing.me/js/bootstrap.min.js"></script>
+<script src="https://www.serializing.me/js/fontawesome-solid.min.js"></script>
+<script src="https://www.serializing.me/js/fontawesome-brands.min.js"></script>
+<script src="https://www.serializing.me/js/fontawesome.min.js"></script><script src="https://www.serializing.me/js/moment.min.js"></script>
+<script src="https://www.serializing.me/js/vis-data.min.js"></script><script src="https://www.serializing.me/js/vis-timeline-graph2d.min.js"></script>
+<script>
+  $(function() {
+    var items = new vis.DataSet([{id: 'F', start: '2018-11-23', end: '2018-12-23', content: '30 days', type: 'background', className: 'bg-first text-dark'},{id: 'S', start: '2018-12-23', end: '2019-01-23', content: '60 days', type: 'background', className: 'bg-second text-dark'},{id: 'T', start: '2019-01-23', end: '2019-02-23', content: '90 days', type: 'background', className: 'bg-third text-dark'},{id: 'E', start: '2019-02-23', end: '2019-02-27', content: '\x2b4 days', type: 'background', className: 'bg-forth text-dark'},{ id: '1', start: '2018-11-23', content: 'Reported to FireEye' },{ id: '2', start: '2018-11-26', content: 'FireEye acknowledged report' },{ id: '3', start: '2018-11-27', content: 'Grace period extension' },{ id: '4', start: '2019-01-27', content: 'Reminded FireEye' },{ id: '5', start: '2019-01-30', content: 'FireEye on schedule' },{ id: '6', start: '2019-02-26', content: 'Customer adoption' },{ id: '7', start: '2019-02-27', content: 'Public release' },]);
+
+    var container = document.getElementById('disclosure-vis');
+    var options = {
+      editable: false
+    };
+
+    var timeline = new vis.Timeline(container, items, options);
+  });
+</script><script src="https://www.serializing.me/js/serializingme.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-37334123-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-37334123-2');
+</script>
+  </body>
+</html>

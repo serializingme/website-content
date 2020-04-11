@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reverse Engineering on SerializingMe</title>
+    <link>https://www.serializing.me/categories/reverse-engineering/</link>
+    <description>Recent content in Reverse Engineering on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 29 Mar 2020 14:50:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/categories/reverse-engineering/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bypass All The GPOs</title>
+      <link>https://www.serializing.me/2020/03/29/bypass-all-the-gpos/</link>
+      <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2020/03/29/bypass-all-the-gpos/</guid>
+      <description>&lt;p&gt;During a red team engagement, one has landed on a machine with the need to make an application &amp;ldquo;ignore&amp;rdquo; Group Policies enforced configurations. This application runs on the context of the user but the settings are only changeable with administrative privileges and without access to a highly privileged account how can one make the application ignore these settings?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>It&#39;s Me, FireEye!</title>
+      <link>https://www.serializing.me/2019/02/27/its-me-fireeye/</link>
+      <pubDate>Wed, 27 Feb 2019 12:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2019/02/27/its-me-fireeye/</guid>
+      <description>&lt;p&gt;A little over three years ago, while researching malware execution &lt;a href=&#34;https://www.serializing.me/project/emofishes/&#34; title=&#34;Emofishes Project&#34;&gt;sandboxes&lt;/a&gt;, I found a stealth way to detect FireEye&amp;rsquo;s Malware Analysis System (MAS). In this blog post I will release the details.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Frontdoor to the Technicolor 7210</title>
+      <link>https://www.serializing.me/2018/10/23/frontdoor-to-the-technicolor-7210/</link>
+      <pubDate>Tue, 23 Oct 2018 00:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/10/23/frontdoor-to-the-technicolor-7210/</guid>
+      <description>&lt;p&gt;In a previous &lt;a href=&#34;https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/&#34; title=&#34;Rooting the Technicolor 7210&#34;&gt;article&lt;/a&gt;, I explained how to get &lt;code&gt;root&lt;/code&gt; on the embedded Linux part of the Technicolor 7210 router by leveraging a remote code execution (RCE). This article on the other hand, will explain how one can leverage a &amp;ldquo;frontdoor&amp;rdquo; to gain the same level of access.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reversing the TC7210 Embedded Linux Firmware</title>
+      <link>https://www.serializing.me/2018/09/30/reversing-the-tc7210-embedded-linux-firmware/</link>
+      <pubDate>Sun, 30 Sep 2018 15:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/09/30/reversing-the-tc7210-embedded-linux-firmware/</guid>
+      <description>&lt;p&gt;In this article I will explain how to reverse the firmware of the embedded Linux part of the Technicolor (TC) 7210 router by leveraging the usual tools of the trade.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rooting the Technicolor 7210</title>
+      <link>https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/</link>
+      <pubDate>Sun, 03 Jun 2018 11:20:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/</guid>
+      <description>&lt;p&gt;The Technicolor 7210 home router is a powerful little device. It provides 1Gbps Ethernet, dual-band wireless for speeds ranging from 300Mbps to 1300Mbps, and Network Attached Storage (NAS) for file sharing and media streaming.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AnyConnect Elevation of Privileges, Part 2</title>
+      <link>https://www.serializing.me/2016/12/20/anyconnect-elevation-of-privileges-part-2/</link>
+      <pubDate>Tue, 20 Dec 2016 18:28:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/12/20/anyconnect-elevation-of-privileges-part-2/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;https://www.serializing.me/2016/12/14/anyconnect-elevation-of-privileges-part-1/&#34; title=&#34;AnyConnect Elevation of Privileges, Part 1&#34;&gt;previous&lt;/a&gt; part of this multi-part article, I explained how I reversed engineered one of the binaries of the Cisco AnyConnect (CAC) Secure Mobility Client. This allowed me to understand the header format of the network packets used in the Inter-Process Communication (IPC) mechanism. In this part, I will focus on doing a more dynamic analysis in order to understand what goes in the packet body.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AnyConnect Elevation of Privileges, Part 1</title>
+      <link>https://www.serializing.me/2016/12/14/anyconnect-elevation-of-privileges-part-1/</link>
+      <pubDate>Wed, 14 Dec 2016 18:56:17 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/12/14/anyconnect-elevation-of-privileges-part-1/</guid>
+      <description>&lt;p&gt;The Cisco AnyConnect (CAC) Secure Mobility Client doesn&amp;rsquo;t have the brightest security track record. &lt;a href=&#34;https://tools.cisco.com/security/center/viewAlert.x?alertId=39466&#34; title=&#34;CVE-2015-4211&#34;&gt;CVE-2015-4211&lt;/a&gt; and &lt;a href=&#34;https://tools.cisco.com/security/center/viewAlert.x?alertId=41136&#34; title=&#34;CVE-2015-6305&#34;&gt;CVE-2015-6305&lt;/a&gt; are only two out of the fourteen CVEs that have been assigned to it just in 2015. This spiked my curiosity and prompted me to confirm if Cisco had properly fixed the underlying issue of these vulnerabilities.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HPQPswd Encrypted Passwords Decryption</title>
+      <link>https://www.serializing.me/2016/10/15/hpqpswd-encrypted-passwords-decryption/</link>
+      <pubDate>Sat, 15 Oct 2016 19:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/10/15/hpqpswd-encrypted-passwords-decryption/</guid>
+      <description>&lt;p&gt;Ever wondered how to decrypt HPQPswd encrypted passwords? So did I when, for the first time, I came across a strange file called &lt;code&gt;password.bin&lt;/code&gt; with a magic value of &lt;code&gt;_HPPW12_&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Titan Quest Invincibility Cheat</title>
+      <link>https://www.serializing.me/2016/01/23/titan-quest-invincibility-cheat/</link>
+      <pubDate>Sat, 23 Jan 2016 22:19:09 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/01/23/titan-quest-invincibility-cheat/</guid>
+      <description>&lt;p&gt;In the last level of Titan Quest, every player will have to face the titan Typhon, Bane of the Gods. A task that is very far from easy&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reversing Aruba Instant Firmware</title>
+      <link>https://www.serializing.me/2015/10/21/reversing-aruba-instant-firmware/</link>
+      <pubDate>Wed, 21 Oct 2015 19:54:28 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/10/21/reversing-aruba-instant-firmware/</guid>
+      <description>&lt;p&gt;Aruba produces two different software loads for their Access Point hardware. The first is called ArubaOS and the second is called Aruba Instant. With ArubaOS, the AP requires a Mobility Controller (hardware) to be installed in the network. With the Aruba Instant it is possible to run AP&amp;rsquo;s independently (standalone mode) or in a cluster, with no Mobility Controller in the network.&lt;/p&gt;
+&lt;p&gt;What follows is the full process to extract all the files recreating the Aruba Instant firmware file system.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Portuguese Banking Apps, Yay or Nay?</title>
+      <link>https://www.serializing.me/2015/06/03/portuguese-banking-apps-yay-or-nay/</link>
+      <pubDate>Wed, 03 Jun 2015 20:46:43 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/06/03/portuguese-banking-apps-yay-or-nay/</guid>
+      <description>&lt;p&gt;I have been using my bank mobile application for a while, but never had a look at its security. This is an account of my findings, not only on that specific application, but on eight of the offerings available in the Portuguese market.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reversing ArubaOS Firmware</title>
+      <link>https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/</link>
+      <pubDate>Tue, 02 Jun 2015 20:09:29 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/</guid>
+      <description>&lt;p&gt;Some time ago, I had the chance to get my hands on a ArubaOS firmware, what follows is the full process to extract all the files recreating the appliance running file system. This had the objective of fuzzing the extracted binaries in QEMU (ArubaOS management console is CGI based).&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

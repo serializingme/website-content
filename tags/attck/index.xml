@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ATT&amp;CK on SerializingMe</title>
+    <link>https://www.serializing.me/tags/attck/</link>
+    <description>Recent content in ATT&amp;CK on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Mon, 29 Apr 2019 20:30:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/attck/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Simulating APTs For Fun</title>
+      <link>https://www.serializing.me/2019/04/29/simulating-apts-for-fun/</link>
+      <pubDate>Mon, 29 Apr 2019 20:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2019/04/29/simulating-apts-for-fun/</guid>
+      <description>&lt;p&gt;In the post I will explain how one could simulate an Advanced Persistent Threat (APT) using Praetorian&amp;rsquo;s Purple Team Attack Automation and MITRE&amp;rsquo;s ATT&amp;amp;CK framework.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

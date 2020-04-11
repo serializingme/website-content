@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Incident Response on SerializingMe</title>
+    <link>https://www.serializing.me/categories/incident-response/</link>
+    <description>Recent content in Incident Response on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Fri, 23 Sep 2016 20:33:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/categories/incident-response/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Updated AppLocker Dump Script</title>
+      <link>https://www.serializing.me/2016/09/23/updated-applocker-dump-script/</link>
+      <pubDate>Fri, 23 Sep 2016 20:33:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/09/23/updated-applocker-dump-script/</guid>
+      <description>&lt;p&gt;I have created a new version of &lt;a href=&#34;https://www.serializing.me/2015/11/01/inspecting-applocker-policy/&#34; title=&#34;Older Version&#34;&gt;this&lt;/a&gt; script so that it is better aligned with the conventions I use for other PowerShell scripts.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Inspecting AppLocker Policy</title>
+      <link>https://www.serializing.me/2015/11/01/inspecting-applocker-policy/</link>
+      <pubDate>Sun, 01 Nov 2015 15:16:50 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/11/01/inspecting-applocker-policy/</guid>
+      <description>&lt;p&gt;While doing incident response, if AppLocker is being used but the computer still got infected by a malicious executable, it is useful to know exactly what AppLocker policy is currently applied.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>&#34;Check my CV&#34;, Generating YARA Rules</title>
+      <link>https://www.serializing.me/2015/05/03/check-my-cv-generating-yara-rules/</link>
+      <pubDate>Sun, 03 May 2015 12:19:48 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/05/03/check-my-cv-generating-yara-rules/</guid>
+      <description>&lt;p&gt;Recently, one e-Mail that was sent to one of my colleagues caught my attention. The message was quite believable but there were some little subtleties that gave it away. First step was to get the attachment out of the message and do an initial analysis.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

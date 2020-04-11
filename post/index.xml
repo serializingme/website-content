@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on SerializingMe</title>
+    <link>https://www.serializing.me/post/</link>
+    <description>Recent content in Posts on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 29 Mar 2020 14:50:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bypass All The GPOs</title>
+      <link>https://www.serializing.me/2020/03/29/bypass-all-the-gpos/</link>
+      <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2020/03/29/bypass-all-the-gpos/</guid>
+      <description>&lt;p&gt;During a red team engagement, one has landed on a machine with the need to make an application &amp;ldquo;ignore&amp;rdquo; Group Policies enforced configurations. This application runs on the context of the user but the settings are only changeable with administrative privileges and without access to a highly privileged account how can one make the application ignore these settings?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Simulating APTs For Fun</title>
+      <link>https://www.serializing.me/2019/04/29/simulating-apts-for-fun/</link>
+      <pubDate>Mon, 29 Apr 2019 20:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2019/04/29/simulating-apts-for-fun/</guid>
+      <description>&lt;p&gt;In the post I will explain how one could simulate an Advanced Persistent Threat (APT) using Praetorian&amp;rsquo;s Purple Team Attack Automation and MITRE&amp;rsquo;s ATT&amp;amp;CK framework.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>It&#39;s Me, FireEye!</title>
+      <link>https://www.serializing.me/2019/02/27/its-me-fireeye/</link>
+      <pubDate>Wed, 27 Feb 2019 12:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2019/02/27/its-me-fireeye/</guid>
+      <description>&lt;p&gt;A little over three years ago, while researching malware execution &lt;a href=&#34;https://www.serializing.me/project/emofishes/&#34; title=&#34;Emofishes Project&#34;&gt;sandboxes&lt;/a&gt;, I found a stealth way to detect FireEye&amp;rsquo;s Malware Analysis System (MAS). In this blog post I will release the details.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Three Honeypots and a Month After</title>
+      <link>https://www.serializing.me/2019/01/27/three-honeypots-and-a-month-after/</link>
+      <pubDate>Sun, 27 Jan 2019 11:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2019/01/27/three-honeypots-and-a-month-after/</guid>
+      <description>&lt;p&gt;I deployed three web honeypots, one in Singapore, another in Australia and another one in France. I then leveraged &lt;a href=&#34;https://github.com/cea-sec/ivre&#34; title=&#34;IVRE GitHub Project&#34;&gt;IVRE&lt;/a&gt; and &lt;a href=&#34;https://github.com/OISF/suricata&#34; title=&#34;Suricata GitHub Project&#34;&gt;Suricata&lt;/a&gt; to investigate the visitors, and respective traffic they generated.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Frontdoor to the Technicolor 7210</title>
+      <link>https://www.serializing.me/2018/10/23/frontdoor-to-the-technicolor-7210/</link>
+      <pubDate>Tue, 23 Oct 2018 00:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/10/23/frontdoor-to-the-technicolor-7210/</guid>
+      <description>&lt;p&gt;In a previous &lt;a href=&#34;https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/&#34; title=&#34;Rooting the Technicolor 7210&#34;&gt;article&lt;/a&gt;, I explained how to get &lt;code&gt;root&lt;/code&gt; on the embedded Linux part of the Technicolor 7210 router by leveraging a remote code execution (RCE). This article on the other hand, will explain how one can leverage a &amp;ldquo;frontdoor&amp;rdquo; to gain the same level of access.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reversing the TC7210 Embedded Linux Firmware</title>
+      <link>https://www.serializing.me/2018/09/30/reversing-the-tc7210-embedded-linux-firmware/</link>
+      <pubDate>Sun, 30 Sep 2018 15:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/09/30/reversing-the-tc7210-embedded-linux-firmware/</guid>
+      <description>&lt;p&gt;In this article I will explain how to reverse the firmware of the embedded Linux part of the Technicolor (TC) 7210 router by leveraging the usual tools of the trade.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Facts and Alternative Realities</title>
+      <link>https://www.serializing.me/2018/07/21/facts-and-alternative-realities/</link>
+      <pubDate>Sat, 21 Jul 2018 08:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/07/21/facts-and-alternative-realities/</guid>
+      <description>(...) simply insisted we prove that the Queen didn’t do it — that is, demanding a refutation of wild speculation to prove fact, rather than seeking out the evidence first. This proof-by-negation is akin to fastidiously believing in the tooth fairy simply because no one has seen proof that the tooth fairy doesn’t exist. That is noxious thinking — and, (...), it’s exactly the kind of aggressive, close-minded speculation that fuels fake news, Trumpian rhetoric, and political divisions.</description>
+    </item>
+    
+    <item>
+      <title>Rooting the Technicolor 7210</title>
+      <link>https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/</link>
+      <pubDate>Sun, 03 Jun 2018 11:20:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/</guid>
+      <description>&lt;p&gt;The Technicolor 7210 home router is a powerful little device. It provides 1Gbps Ethernet, dual-band wireless for speeds ranging from 300Mbps to 1300Mbps, and Network Attached Storage (NAS) for file sharing and media streaming.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PowaScripts Update: Kerberos Pre-authentication</title>
+      <link>https://www.serializing.me/2017/01/22/powascripts-update-kerberos-pre-authentication/</link>
+      <pubDate>Sun, 22 Jan 2017 09:55:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2017/01/22/powascripts-update-kerberos-pre-authentication/</guid>
+      <description>&lt;p&gt;After reading &lt;a href=&#34;https://twitter.com/harmj0y&#34; title=&#34;harmj0y Twiter Profile&#34;&gt;harmj0y&lt;/a&gt; blog post about &lt;a href=&#34;http://www.harmj0y.net/blog/activedirectory/roasting-as-reps/&#34; title=&#34;harmj0y Blog Post&#34;&gt;&amp;ldquo;Roasting AS-REPs&amp;rdquo;&lt;/a&gt;, I have decided to update the &lt;code&gt;Dump-User.ps1&lt;/code&gt; script in order for it to report on users that don&amp;rsquo;t have Kerberos pre-authentication enabled. Running the updated version against a &amp;ldquo;in the wild&amp;rdquo; target yielded interesting results to say the least.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AnyConnect Elevation of Privileges, Part 2</title>
+      <link>https://www.serializing.me/2016/12/20/anyconnect-elevation-of-privileges-part-2/</link>
+      <pubDate>Tue, 20 Dec 2016 18:28:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/12/20/anyconnect-elevation-of-privileges-part-2/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;https://www.serializing.me/2016/12/14/anyconnect-elevation-of-privileges-part-1/&#34; title=&#34;AnyConnect Elevation of Privileges, Part 1&#34;&gt;previous&lt;/a&gt; part of this multi-part article, I explained how I reversed engineered one of the binaries of the Cisco AnyConnect (CAC) Secure Mobility Client. This allowed me to understand the header format of the network packets used in the Inter-Process Communication (IPC) mechanism. In this part, I will focus on doing a more dynamic analysis in order to understand what goes in the packet body.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AnyConnect Elevation of Privileges, Part 1</title>
+      <link>https://www.serializing.me/2016/12/14/anyconnect-elevation-of-privileges-part-1/</link>
+      <pubDate>Wed, 14 Dec 2016 18:56:17 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/12/14/anyconnect-elevation-of-privileges-part-1/</guid>
+      <description>&lt;p&gt;The Cisco AnyConnect (CAC) Secure Mobility Client doesn&amp;rsquo;t have the brightest security track record. &lt;a href=&#34;https://tools.cisco.com/security/center/viewAlert.x?alertId=39466&#34; title=&#34;CVE-2015-4211&#34;&gt;CVE-2015-4211&lt;/a&gt; and &lt;a href=&#34;https://tools.cisco.com/security/center/viewAlert.x?alertId=41136&#34; title=&#34;CVE-2015-6305&#34;&gt;CVE-2015-6305&lt;/a&gt; are only two out of the fourteen CVEs that have been assigned to it just in 2015. This spiked my curiosity and prompted me to confirm if Cisco had properly fixed the underlying issue of these vulnerabilities.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HPQPswd Encrypted Passwords Decryption</title>
+      <link>https://www.serializing.me/2016/10/15/hpqpswd-encrypted-passwords-decryption/</link>
+      <pubDate>Sat, 15 Oct 2016 19:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/10/15/hpqpswd-encrypted-passwords-decryption/</guid>
+      <description>&lt;p&gt;Ever wondered how to decrypt HPQPswd encrypted passwords? So did I when, for the first time, I came across a strange file called &lt;code&gt;password.bin&lt;/code&gt; with a magic value of &lt;code&gt;_HPPW12_&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Active Directory Dump</title>
+      <link>https://www.serializing.me/2016/10/07/active-directory-dump/</link>
+      <pubDate>Fri, 07 Oct 2016 18:05:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/10/07/active-directory-dump/</guid>
+      <description>&lt;p&gt;During many penetration tests (or red versus blue team exercises), I have found myself with the need to investigate users, groups, computers and policies of a Windows domain. To do that, I have developed a series of PowerShell scripts that dump all that information from Active Directory into XML files.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Updated AppLocker Dump Script</title>
+      <link>https://www.serializing.me/2016/09/23/updated-applocker-dump-script/</link>
+      <pubDate>Fri, 23 Sep 2016 20:33:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/09/23/updated-applocker-dump-script/</guid>
+      <description>&lt;p&gt;I have created a new version of &lt;a href=&#34;https://www.serializing.me/2015/11/01/inspecting-applocker-policy/&#34; title=&#34;Older Version&#34;&gt;this&lt;/a&gt; script so that it is better aligned with the conventions I use for other PowerShell scripts.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Migrated From WordPress to Hugo</title>
+      <link>https://www.serializing.me/2016/09/14/migrated-from-wordpress-to-hugo/</link>
+      <pubDate>Wed, 14 Sep 2016 19:14:28 +0200</pubDate>
+      
+      <guid>https://www.serializing.me/2016/09/14/migrated-from-wordpress-to-hugo/</guid>
+      <description>&lt;p&gt;I have been using WordPress since I started blogging, but since then, the blogging landscape changed a lot. Welcome to the age of static site generators.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Portugueses e Senhas de Acesso, Um Caso de Estudo</title>
+      <link>https://www.serializing.me/2016/03/17/portugueses-e-senhas-de-acesso-um-caso-de-estudo/</link>
+      <pubDate>Thu, 17 Mar 2016 22:14:13 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/03/17/portugueses-e-senhas-de-acesso-um-caso-de-estudo/</guid>
+      <description>&lt;p&gt;Nos últimos anos tenho tido a oportunidade de coleccionar várias listas de senhas de acesso. O que se segue é um caso de estudo focado em três dessas listas. Sendo que estas, são de sítios portugueses.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Titan Quest Invincibility Cheat</title>
+      <link>https://www.serializing.me/2016/01/23/titan-quest-invincibility-cheat/</link>
+      <pubDate>Sat, 23 Jan 2016 22:19:09 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/01/23/titan-quest-invincibility-cheat/</guid>
+      <description>&lt;p&gt;In the last level of Titan Quest, every player will have to face the titan Typhon, Bane of the Gods. A task that is very far from easy&amp;hellip;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Bug Bounty, Serious Rewards</title>
+      <link>https://www.serializing.me/2015/11/12/bug-bounty-serious-rewards/</link>
+      <pubDate>Thu, 12 Nov 2015 17:47:33 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/11/12/bug-bounty-serious-rewards/</guid>
+      <description>My first Bugcrowd private bug bounty program that involves some serious rewards. One thing is for sure, they got my attention :D</description>
+    </item>
+    
+    <item>
+      <title>Inspecting AppLocker Policy</title>
+      <link>https://www.serializing.me/2015/11/01/inspecting-applocker-policy/</link>
+      <pubDate>Sun, 01 Nov 2015 15:16:50 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/11/01/inspecting-applocker-policy/</guid>
+      <description>&lt;p&gt;While doing incident response, if AppLocker is being used but the computer still got infected by a malicious executable, it is useful to know exactly what AppLocker policy is currently applied.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reversing Aruba Instant Firmware</title>
+      <link>https://www.serializing.me/2015/10/21/reversing-aruba-instant-firmware/</link>
+      <pubDate>Wed, 21 Oct 2015 19:54:28 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/10/21/reversing-aruba-instant-firmware/</guid>
+      <description>&lt;p&gt;Aruba produces two different software loads for their Access Point hardware. The first is called ArubaOS and the second is called Aruba Instant. With ArubaOS, the AP requires a Mobility Controller (hardware) to be installed in the network. With the Aruba Instant it is possible to run AP&amp;rsquo;s independently (standalone mode) or in a cluster, with no Mobility Controller in the network.&lt;/p&gt;
+&lt;p&gt;What follows is the full process to extract all the files recreating the Aruba Instant firmware file system.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SSH Brute Force and Suricata</title>
+      <link>https://www.serializing.me/2015/08/12/ssh-brute-force-and-suricata/</link>
+      <pubDate>Wed, 12 Aug 2015 18:24:28 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/08/12/ssh-brute-force-and-suricata/</guid>
+      <description>&lt;p&gt;Since SSH is one of the most pervasive ways to manage servers remotely, it is also one of the most plagued by brute force attacks. What follows is a simple set of Suricata rules to stop the majority of SSH brute force attacks. It will drop connections based on the reported SSH client version.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>WordPress and Suricata, The Test</title>
+      <link>https://www.serializing.me/2015/07/07/wordpress-and-suricata-the-test/</link>
+      <pubDate>Tue, 07 Jul 2015 19:00:51 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/07/07/wordpress-and-suricata-the-test/</guid>
+      <description>&lt;p&gt;Adding a full featured IDPS solution like Suricata is a good step in protecting any Web based application like &lt;a href=&#34;https://www.serializing.me/2015/05/12/protecting-wordpress-with-suricata/&#34; title=&#34;Protecting WordPress with Suricata&#34;&gt;WordPress&lt;/a&gt;, but how well will it fare when under attack?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Emotional Fishes are Emotional</title>
+      <link>https://www.serializing.me/2015/06/26/emotional-fishes-are-emotional/</link>
+      <pubDate>Fri, 26 Jun 2015 10:44:13 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/06/26/emotional-fishes-are-emotional/</guid>
+      <description>&lt;p&gt;Following my research with &lt;a href=&#34;https://www.serializing.me/2015/05/28/a-paranoid-fish-and-silver-bullets/&#34; title=&#34;Blog Post&#34;&gt;Pafish&lt;/a&gt; and subsequent development of &lt;a href=&#34;https://www.serializing.me/2015/06/12/curious-fish-is-curious/&#34; title=&#34;Blog Post&#34;&gt;Cufish&lt;/a&gt;, I decided to create the &lt;a href=&#34;https://www.serializing.me/project/emofishes/&#34; title=&#34;Project Page&#34;&gt;Emofishes&lt;/a&gt; (Emotional Fishes) project.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Curious Fish is Curious</title>
+      <link>https://www.serializing.me/2015/06/12/curious-fish-is-curious/</link>
+      <pubDate>Fri, 12 Jun 2015 11:02:16 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/06/12/curious-fish-is-curious/</guid>
+      <description>&lt;p&gt;Testing virtualized malware sandboxes with Paranoid Fish wasn&amp;rsquo;t enough, there might be other things that could be improved to avoid malware detection. Enter Curious Fish, a tool to help fingerprinting sandboxes.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Portuguese Banking Apps, Yay or Nay?</title>
+      <link>https://www.serializing.me/2015/06/03/portuguese-banking-apps-yay-or-nay/</link>
+      <pubDate>Wed, 03 Jun 2015 20:46:43 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/06/03/portuguese-banking-apps-yay-or-nay/</guid>
+      <description>&lt;p&gt;I have been using my bank mobile application for a while, but never had a look at its security. This is an account of my findings, not only on that specific application, but on eight of the offerings available in the Portuguese market.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reversing ArubaOS Firmware</title>
+      <link>https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/</link>
+      <pubDate>Tue, 02 Jun 2015 20:09:29 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/</guid>
+      <description>&lt;p&gt;Some time ago, I had the chance to get my hands on a ArubaOS firmware, what follows is the full process to extract all the files recreating the appliance running file system. This had the objective of fuzzing the extracted binaries in QEMU (ArubaOS management console is CGI based).&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A Paranoid Fish and Silver Bullets</title>
+      <link>https://www.serializing.me/2015/05/28/a-paranoid-fish-and-silver-bullets/</link>
+      <pubDate>Thu, 28 May 2015 22:24:56 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/05/28/a-paranoid-fish-and-silver-bullets/</guid>
+      <description>&lt;p&gt;I have been doing some research (and development) around virtualized malware sandboxes, being the question, &amp;ldquo;how easy is for malware to detect such an environment&amp;rdquo; the most important one, I turned to a tool called Pafish (Paranoid Fish).&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Protecting WordPress with Suricata</title>
+      <link>https://www.serializing.me/2015/05/12/protecting-wordpress-with-suricata/</link>
+      <pubDate>Tue, 12 May 2015 20:59:57 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/05/12/protecting-wordpress-with-suricata/</guid>
+      <description>&lt;p&gt;There aren&amp;rsquo;t any silver bullets that will protect a WordPress installation against every single attack, but adding a full featured IDPS solution like Suricata, is a good step in protecting not only that &amp;ldquo;all too many times vulnerable&amp;rdquo; WordPress installation but also other services like SSH.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>&#34;Check my CV&#34;, Generating YARA Rules</title>
+      <link>https://www.serializing.me/2015/05/03/check-my-cv-generating-yara-rules/</link>
+      <pubDate>Sun, 03 May 2015 12:19:48 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/05/03/check-my-cv-generating-yara-rules/</guid>
+      <description>&lt;p&gt;Recently, one e-Mail that was sent to one of my colleagues caught my attention. The message was quite believable but there were some little subtleties that gave it away. First step was to get the attachment out of the message and do an initial analysis.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>RX/TX Buffers, Flow Hash and Others on Boot</title>
+      <link>https://www.serializing.me/2015/04/25/rxtx-buffers-rss-others-on-boot/</link>
+      <pubDate>Sat, 25 Apr 2015 16:00:30 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/04/25/rxtx-buffers-rss-others-on-boot/</guid>
+      <description>&lt;p&gt;After installing Suricata, some fine tuning of the network interface(s) used in the traffic capture is required to ensure every ounce of performance is extracted from the new IDPS installation. Those configurations need to be persisted when the system is power cycled. To do that on a Enterprise Linux based OS (e.g. RedHat, CentOS, Fedora, etc.) one can leverage the &lt;code&gt;/sbin/ifup-local&lt;/code&gt; script.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hello World!</title>
+      <link>https://www.serializing.me/2015/04/25/hello-world/</link>
+      <pubDate>Sat, 25 Apr 2015 11:14:03 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/04/25/hello-world/</guid>
+      <description>The man of modern industrial society thinks, repeatedly, that he can replace the loss of intimacy through external mechanisms. This belief is reinforced by a series of activities that promise you hope and happiness, but that really only leaves you the insipid taste of an even greater disappointment.
+Bender, Erich. Helga. Wiesbaden (Germany): Falken-Verlang, 1968 In a world where many strive to find instant happiness and gratification in one nighters, through Facebook likes, Twitter retweets and the ramp for limelight that YouTube views are known for, this quote from Erich F.</description>
+    </item>
+    
+  </channel>
+</rss>

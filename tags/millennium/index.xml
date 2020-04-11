@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Millennium on SerializingMe</title>
+    <link>https://www.serializing.me/tags/millennium/</link>
+    <description>Recent content in Millennium on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Wed, 03 Jun 2015 20:46:43 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/millennium/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Portuguese Banking Apps, Yay or Nay?</title>
+      <link>https://www.serializing.me/2015/06/03/portuguese-banking-apps-yay-or-nay/</link>
+      <pubDate>Wed, 03 Jun 2015 20:46:43 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/06/03/portuguese-banking-apps-yay-or-nay/</guid>
+      <description>&lt;p&gt;I have been using my bank mobile application for a while, but never had a look at its security. This is an account of my findings, not only on that specific application, but on eight of the offerings available in the Portuguese market.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

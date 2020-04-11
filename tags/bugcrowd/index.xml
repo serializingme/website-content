@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bugcrowd on SerializingMe</title>
+    <link>https://www.serializing.me/tags/bugcrowd/</link>
+    <description>Recent content in Bugcrowd on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Thu, 12 Nov 2015 17:47:33 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/bugcrowd/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bug Bounty, Serious Rewards</title>
+      <link>https://www.serializing.me/2015/11/12/bug-bounty-serious-rewards/</link>
+      <pubDate>Thu, 12 Nov 2015 17:47:33 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/11/12/bug-bounty-serious-rewards/</guid>
+      <description>My first Bugcrowd private bug bounty program that involves some serious rewards. One thing is for sure, they got my attention :D</description>
+    </item>
+    
+    <item>
+      <title>Reversing Aruba Instant Firmware</title>
+      <link>https://www.serializing.me/2015/10/21/reversing-aruba-instant-firmware/</link>
+      <pubDate>Wed, 21 Oct 2015 19:54:28 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/10/21/reversing-aruba-instant-firmware/</guid>
+      <description>&lt;p&gt;Aruba produces two different software loads for their Access Point hardware. The first is called ArubaOS and the second is called Aruba Instant. With ArubaOS, the AP requires a Mobility Controller (hardware) to be installed in the network. With the Aruba Instant it is possible to run AP&amp;rsquo;s independently (standalone mode) or in a cluster, with no Mobility Controller in the network.&lt;/p&gt;
+&lt;p&gt;What follows is the full process to extract all the files recreating the Aruba Instant firmware file system.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reversing ArubaOS Firmware</title>
+      <link>https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/</link>
+      <pubDate>Tue, 02 Jun 2015 20:09:29 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/</guid>
+      <description>&lt;p&gt;Some time ago, I had the chance to get my hands on a ArubaOS firmware, what follows is the full process to extract all the files recreating the appliance running file system. This had the objective of fuzzing the extracted binaries in QEMU (ArubaOS management console is CGI based).&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

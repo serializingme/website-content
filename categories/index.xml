@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on SerializingMe</title>
+    <link>https://www.serializing.me/categories/</link>
+    <description>Recent content in Categories on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 29 Mar 2020 14:50:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Exploit</title>
+      <link>https://www.serializing.me/categories/exploit/</link>
+      <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/exploit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reverse Engineering</title>
+      <link>https://www.serializing.me/categories/reverse-engineering/</link>
+      <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/reverse-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>https://www.serializing.me/categories/windows/</link>
+      <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Configuration</title>
+      <link>https://www.serializing.me/categories/configuration/</link>
+      <pubDate>Mon, 29 Apr 2019 20:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/configuration/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://www.serializing.me/categories/linux/</link>
+      <pubDate>Mon, 29 Apr 2019 20:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Red Team</title>
+      <link>https://www.serializing.me/categories/red-team/</link>
+      <pubDate>Mon, 29 Apr 2019 20:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/red-team/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Malware</title>
+      <link>https://www.serializing.me/categories/malware/</link>
+      <pubDate>Wed, 27 Feb 2019 12:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/malware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Virtualization</title>
+      <link>https://www.serializing.me/categories/virtualization/</link>
+      <pubDate>Wed, 27 Feb 2019 12:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/virtualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Case Study</title>
+      <link>https://www.serializing.me/categories/case-study/</link>
+      <pubDate>Sun, 27 Jan 2019 11:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/case-study/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Network</title>
+      <link>https://www.serializing.me/categories/network/</link>
+      <pubDate>Sun, 27 Jan 2019 11:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/network/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Reconnaissance</title>
+      <link>https://www.serializing.me/categories/reconnaissance/</link>
+      <pubDate>Sun, 27 Jan 2019 11:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/reconnaissance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Education</title>
+      <link>https://www.serializing.me/categories/education/</link>
+      <pubDate>Sat, 21 Jul 2018 08:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/education/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CVE</title>
+      <link>https://www.serializing.me/categories/cve/</link>
+      <pubDate>Tue, 20 Dec 2016 18:28:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/cve/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Encryption</title>
+      <link>https://www.serializing.me/categories/encryption/</link>
+      <pubDate>Sat, 15 Oct 2016 19:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/encryption/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Incident Response</title>
+      <link>https://www.serializing.me/categories/incident-response/</link>
+      <pubDate>Fri, 23 Sep 2016 20:33:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/incident-response/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Game</title>
+      <link>https://www.serializing.me/categories/game/</link>
+      <pubDate>Sat, 23 Jan 2016 22:19:09 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/game/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bug Bounty</title>
+      <link>https://www.serializing.me/categories/bug-bounty/</link>
+      <pubDate>Thu, 12 Nov 2015 17:47:33 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/bug-bounty/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IDPS</title>
+      <link>https://www.serializing.me/categories/idps/</link>
+      <pubDate>Wed, 12 Aug 2015 18:24:28 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/idps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Memory Forensics</title>
+      <link>https://www.serializing.me/categories/memory-forensics/</link>
+      <pubDate>Sun, 03 May 2015 12:19:48 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/memory-forensics/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

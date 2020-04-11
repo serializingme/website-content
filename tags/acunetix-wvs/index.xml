@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Acunetix WVS on SerializingMe</title>
+    <link>https://www.serializing.me/tags/acunetix-wvs/</link>
+    <description>Recent content in Acunetix WVS on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Tue, 07 Jul 2015 19:00:51 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/acunetix-wvs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WordPress and Suricata, The Test</title>
+      <link>https://www.serializing.me/2015/07/07/wordpress-and-suricata-the-test/</link>
+      <pubDate>Tue, 07 Jul 2015 19:00:51 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/07/07/wordpress-and-suricata-the-test/</guid>
+      <description>&lt;p&gt;Adding a full featured IDPS solution like Suricata is a good step in protecting any Web based application like &lt;a href=&#34;https://www.serializing.me/2015/05/12/protecting-wordpress-with-suricata/&#34; title=&#34;Protecting WordPress with Suricata&#34;&gt;WordPress&lt;/a&gt;, but how well will it fare when under attack?&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

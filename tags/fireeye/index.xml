@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FireEye on SerializingMe</title>
+    <link>https://www.serializing.me/tags/fireeye/</link>
+    <description>Recent content in FireEye on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Wed, 27 Feb 2019 12:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/fireeye/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>It&#39;s Me, FireEye!</title>
+      <link>https://www.serializing.me/2019/02/27/its-me-fireeye/</link>
+      <pubDate>Wed, 27 Feb 2019 12:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2019/02/27/its-me-fireeye/</guid>
+      <description>&lt;p&gt;A little over three years ago, while researching malware execution &lt;a href=&#34;https://www.serializing.me/project/emofishes/&#34; title=&#34;Emofishes Project&#34;&gt;sandboxes&lt;/a&gt;, I found a stealth way to detect FireEye&amp;rsquo;s Malware Analysis System (MAS). In this blog post I will release the details.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Curious Fish is Curious</title>
+      <link>https://www.serializing.me/2015/06/12/curious-fish-is-curious/</link>
+      <pubDate>Fri, 12 Jun 2015 11:02:16 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/06/12/curious-fish-is-curious/</guid>
+      <description>&lt;p&gt;Testing virtualized malware sandboxes with Paranoid Fish wasn&amp;rsquo;t enough, there might be other things that could be improved to avoid malware detection. Enter Curious Fish, a tool to help fingerprinting sandboxes.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A Paranoid Fish and Silver Bullets</title>
+      <link>https://www.serializing.me/2015/05/28/a-paranoid-fish-and-silver-bullets/</link>
+      <pubDate>Thu, 28 May 2015 22:24:56 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/05/28/a-paranoid-fish-and-silver-bullets/</guid>
+      <description>&lt;p&gt;I have been doing some research (and development) around virtualized malware sandboxes, being the question, &amp;ldquo;how easy is for malware to detect such an environment&amp;rdquo; the most important one, I turned to a tool called Pafish (Paranoid Fish).&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

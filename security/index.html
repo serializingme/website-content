@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#" class="bg-dark">
+  <head>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#ffffff" />
+
+
+<meta property="title" content="Security - SerializingMe" />
+
+
+  
+<meta name="description" content="SerializingMe responsible security vulnerabilities disclosure (bug bounty) program rules, scope and how to report." />
+  
+  
+
+
+<meta name="author" content="Duarte Silva" />
+
+
+
+<meta itemprop="title" content="Security - SerializingMe" />
+
+
+  
+<meta itemprop="description" content="SerializingMe responsible security vulnerabilities disclosure (bug bounty) program rules, scope and how to report." />
+  
+  
+  
+  
+<meta itemprop="wordCount" content="395" />
+  
+
+
+
+<meta property="og:title" content="Security - SerializingMe" />
+
+
+  
+<meta property="og:type" content="website" />
+  
+  
+<meta property="og:description" content="SerializingMe responsible security vulnerabilities disclosure (bug bounty) program rules, scope and how to report." />
+  
+  
+
+
+<meta property="og:url" content="https://www.serializing.me/security/" />
+
+
+<meta property="og:site_name" content="SerializingMe" />
+
+
+
+  
+<meta name="twitter:card" content="summary" />
+  
+
+
+<meta name="twitter:site" content="@serializingme" />
+<meta name="twitter:creator" content="@serializingme" />
+
+
+<meta name="twitter:title" content="Security - SerializingMe" />
+
+
+<meta name="twitter:url" content="https://www.serializing.me/security/" />
+
+
+  
+<meta name="twitter:description" content="SerializingMe responsible security vulnerabilities disclosure (bug bounty) program rules, scope and how to report." />
+  
+  
+
+
+<title>Security - SerializingMe</title>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="https://www.serializing.me/manifest.json">
+<link rel="mask-icon" href="https://www.serializing.me/safari-pinned-tab.svg" color="#5bbad5">
+
+<link href="https://www.serializing.me/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Combined Feed" />
+<link href="https://www.serializing.me/page/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Pages Feed" />
+<link href="https://www.serializing.me/post/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Posts Feed" />
+<link href="https://www.serializing.me/project/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Projects Feed" />
+
+<link href="https://www.serializing.me/css/bootstrap-reboot.min.css" rel="stylesheet" />
+<link href="https://www.serializing.me/css/bootstrap.min.css" rel="stylesheet" /><link href="https://www.serializing.me/css/serializingme.min.css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <header>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="https://www.serializing.me/">
+      <img src="/brand.png" width="30" height="30" class="d-inline-block align-top" /> SerializingMe
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto">
+
+
+        <li class="nav-item "><a class="nav-link" title="Blog" href="https://www.serializing.me/post/">Blog</a></li>
+
+        <li class="nav-item "><a class="nav-link" title="Projects" href="https://www.serializing.me/project/">Projects</a></li>
+
+        <li class="nav-item "><a class="nav-link" title="Contributions" href="https://www.serializing.me/contributions/">Contributions</a></li>
+
+        <li class="nav-item "><a class="nav-link" title="About" href="https://www.serializing.me/about/">About</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<noscript>
+  <div class="container mt-2 mb-0">
+    <div class="alert alert-danger">JavaScript is disabled, this site will not work properly without it.</div>
+  </div>
+</noscript>
+
+    </header>
+    <section class="container">
+
+  <div class="row">
+  
+  <div class="col-md-8 offset-md-2">
+    
+    <div class="card my-4"><div class="card-body">
+        <h2 class="card-title">
+Security
+        </h2>
+        <div class="text-justify">
+<p>I appreciate the efforts of fellow security researchers and provide secure means for disclosing security vulnerabilities responsibly. As a reward, I will feature in the hall of fame the name, handle (e.g. Twitter) and/or website of the reporter of any valid vulnerability. Additional rewards are at my discretion.</p>
+<h3 id="rules-and-scope">Rules and Scope</h3>
+<p>A positive outcome of the validation of a submitted vulnerability can only be achieved if the following rules and scope are respected by the researcher.</p>
+<h4 id="rules">Rules</h4>
+<p>The researcher <strong>shall not</strong>:</p>
+<ul>
+<li>Use of automated tools to find vulnerabilities.</li>
+<li>Conduct non-technical attacks (e.g. social engineering, phishing, etc.).</li>
+<li>Perform any attack to systems that aren&rsquo;t listed under the scope section.</li>
+<li>Perform any attack that could harm the reliability or integrity of target systems (e.g. denial of service, spam, etc.).</li>
+</ul>
+<p>The researcher <strong>shall</strong>:</p>
+<ul>
+<li>Respect responsible disclosure principles independently of the time taken to validate the report.</li>
+<li>If it is noticeable any performance degradation of the target systems, all testing must be immediately suspended.</li>
+</ul>
+<p>Vulnerabilities report <strong>will</strong> be accepted as long as:</p>
+<ul>
+<li>Any materials related with the vulnerability aren&rsquo;t hosted on a public platform (e.g. YouTube) without prior consent.</li>
+<li>Hasn&rsquo;t already been submitted by another researcher, or it isn&rsquo;t already known.</li>
+<li>The risk represented by the vulnerability isn&rsquo;t considered acceptable.</li>
+<li>The affected systems are in scope as defined bellow.</li>
+</ul>
+<h4 id="scope">Scope</h4>
+<p>Any system that can be reached through a <code>serializing.me</code> (sub-)domain, with the notable exception of <code>www.serializing.me</code> that is hosted by <a href="https://www.github.com/" title="GitHub">GitHub</a>, are in scope. Also take into account that the following vulnerabilities types are specifically <strong>excluded</strong>:</p>
+<ul>
+<li>Descriptive error messages (e.g. Stack Traces, application or server errors).</li>
+<li>HTTP 404 codes/pages or other HTTP non-200 codes/pages.</li>
+<li>Fingerprinting or banner disclosure on common/public services.</li>
+<li>Disclosure of known public files or directories (e.g. robots.txt, etc.)</li>
+<li>Clickjacking and issues only exploitable through clickjacking.</li>
+<li>Lack of Secure/HTTPOnly flags on non-sensitive cookies.</li>
+<li>Lack of security speedbump when leaving the website.</li>
+<li>OPTIONS HTTP method enabled.</li>
+<li>Missing HTTP security headers (e.g. Strict-Transport-Security, X-Frame-Options, etc.)</li>
+<li>TLS issues and attacks (e.g. BEAST, BREACH, forward secrecy not enabled, etc.)</li>
+</ul>
+<h3 id="how-to-report">How to Report</h3>
+<p>Please contact me using the GPG/PGP key as shown in the <a href="/contacts/" title="Contact Page">contact</a> page.</p>
+<h3 id="hall-of-fame">Hall of Fame</h3>
+<p>Below is a list of security researchers, white hat hackers, and bug bounty hunters who have contributed to the security of my digital estate. This page is to provide recognition, to say thank you!</p>
+<ul>
+<li><em>Jayesh Patel</em> reported a HTTP Host Header Injection (<a href="https://bugcrowd.com/jayeshpatel" title="Bugcrowd Profile">Bugcrowd</a>)</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+    </section>
+    <footer class="mt-4 bg-dark">
+<div class="container">
+  <div class="row text-center">
+  <div class="col-12 col-md my-4">
+    <ul class="list-inline">
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://twitter.com/serializingme" title="Twitter">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-twitter fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://www.twitch.tv/serializingme" title="Twitch">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-twitch fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://discord.gg/NS5qHT4" title="Discord">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-discord fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://www.youtube.com/c/serializingme" title="YouTube">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-youtube fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://github.com/serializingme" title="GitHub">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-github fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://bugcrowd.com/serializingme" title="Bugcrowd">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fas fa-bug fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="/feeds/" title="RSS">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fas fa-rss fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+    </ul>
+      <ul class="list-inline">
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-copyright"></i>&nbsp;</span><a class="footer-link text-light" href="/licensing/" title="Licensing">Licensing</a>
+    </li>
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-eye"></i>&nbsp;</span><a class="footer-link text-light" href="/privacy/" title="Privacy">Privacy</a>
+    </li>
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-shield-alt"></i>&nbsp;</span><a class="footer-link text-light" href="/security/" title="Security">Security</a>
+    </li>
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-envelope"></i>&nbsp;</span><a class="footer-link text-light" href="/contacts/" title="Contacts">Contacts</a>
+    </li>
+
+  </ul>
+  <small class="d-block mb-3 text-muted">&copy;&nbsp;2020&nbsp;Duarte Silva</small>
+  </div>
+</div>
+</div>
+
+    </footer>
+<script src="https://www.serializing.me/js/jquery.min.js"></script>
+<script src="https://www.serializing.me/js/bootstrap.min.js"></script>
+<script src="https://www.serializing.me/js/fontawesome-solid.min.js"></script>
+<script src="https://www.serializing.me/js/fontawesome-brands.min.js"></script>
+<script src="https://www.serializing.me/js/fontawesome.min.js"></script><script src="https://www.serializing.me/js/serializingme.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-37334123-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-37334123-2');
+</script>
+  </body>
+</html>

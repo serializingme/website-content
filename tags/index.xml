@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on SerializingMe</title>
+    <link>https://www.serializing.me/tags/</link>
+    <description>Recent content in Tags on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 29 Mar 2020 14:50:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Active Directory</title>
+      <link>https://www.serializing.me/tags/active-directory/</link>
+      <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/active-directory/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Code Injection</title>
+      <link>https://www.serializing.me/tags/code-injection/</link>
+      <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/code-injection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GPO Bypass</title>
+      <link>https://www.serializing.me/tags/gpo-bypass/</link>
+      <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/gpo-bypass/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Group Policy Objects</title>
+      <link>https://www.serializing.me/tags/group-policy-objects/</link>
+      <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/group-policy-objects/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hook Functions</title>
+      <link>https://www.serializing.me/tags/hook-functions/</link>
+      <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/hook-functions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ATT&amp;CK</title>
+      <link>https://www.serializing.me/tags/attck/</link>
+      <pubDate>Mon, 29 Apr 2019 20:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/attck/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Metasploit</title>
+      <link>https://www.serializing.me/tags/metasploit/</link>
+      <pubDate>Mon, 29 Apr 2019 20:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/metasploit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Emofishes</title>
+      <link>https://www.serializing.me/tags/emofishes/</link>
+      <pubDate>Wed, 27 Feb 2019 12:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/emofishes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>FireEye</title>
+      <link>https://www.serializing.me/tags/fireeye/</link>
+      <pubDate>Wed, 27 Feb 2019 12:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/fireeye/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Honeypot</title>
+      <link>https://www.serializing.me/tags/honeypot/</link>
+      <pubDate>Sun, 27 Jan 2019 11:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/honeypot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>IVRE</title>
+      <link>https://www.serializing.me/tags/ivre/</link>
+      <pubDate>Sun, 27 Jan 2019 11:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/ivre/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Suricata</title>
+      <link>https://www.serializing.me/tags/suricata/</link>
+      <pubDate>Sun, 27 Jan 2019 11:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/suricata/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Passwords</title>
+      <link>https://www.serializing.me/tags/passwords/</link>
+      <pubDate>Tue, 23 Oct 2018 00:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/passwords/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>QEMU</title>
+      <link>https://www.serializing.me/tags/qemu/</link>
+      <pubDate>Tue, 23 Oct 2018 00:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/qemu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SOHO</title>
+      <link>https://www.serializing.me/tags/soho/</link>
+      <pubDate>Tue, 23 Oct 2018 00:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/soho/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Technicolor</title>
+      <link>https://www.serializing.me/tags/technicolor/</link>
+      <pubDate>Tue, 23 Oct 2018 00:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/technicolor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Critical Thinking</title>
+      <link>https://www.serializing.me/tags/critical-thinking/</link>
+      <pubDate>Sat, 21 Jul 2018 08:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/critical-thinking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Emotions</title>
+      <link>https://www.serializing.me/tags/emotions/</link>
+      <pubDate>Sat, 21 Jul 2018 08:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/emotions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PowaScripts</title>
+      <link>https://www.serializing.me/tags/powascripts/</link>
+      <pubDate>Sun, 22 Jan 2017 09:55:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/powascripts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PowerShell</title>
+      <link>https://www.serializing.me/tags/powershell/</link>
+      <pubDate>Sun, 22 Jan 2017 09:55:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/powershell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cisco AnyConnect</title>
+      <link>https://www.serializing.me/tags/cisco-anyconnect/</link>
+      <pubDate>Tue, 20 Dec 2016 18:28:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/cisco-anyconnect/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TLS</title>
+      <link>https://www.serializing.me/tags/tls/</link>
+      <pubDate>Tue, 20 Dec 2016 18:28:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/tls/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VPN</title>
+      <link>https://www.serializing.me/tags/vpn/</link>
+      <pubDate>Tue, 20 Dec 2016 18:28:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/vpn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>BIOS</title>
+      <link>https://www.serializing.me/tags/bios/</link>
+      <pubDate>Sat, 15 Oct 2016 19:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/bios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CSharp</title>
+      <link>https://www.serializing.me/tags/csharp/</link>
+      <pubDate>Sat, 15 Oct 2016 19:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/csharp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HP</title>
+      <link>https://www.serializing.me/tags/hp/</link>
+      <pubDate>Sat, 15 Oct 2016 19:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/hp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HPQPswdD</title>
+      <link>https://www.serializing.me/tags/hpqpswdd/</link>
+      <pubDate>Sat, 15 Oct 2016 19:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/hpqpswdd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>AppLocker</title>
+      <link>https://www.serializing.me/tags/applocker/</link>
+      <pubDate>Fri, 23 Sep 2016 20:33:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/applocker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://www.serializing.me/tags/hugo/</link>
+      <pubDate>Wed, 14 Sep 2016 19:14:28 +0200</pubDate>
+      
+      <guid>https://www.serializing.me/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LEMP</title>
+      <link>https://www.serializing.me/tags/lemp/</link>
+      <pubDate>Wed, 14 Sep 2016 19:14:28 +0200</pubDate>
+      
+      <guid>https://www.serializing.me/tags/lemp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>WordPress</title>
+      <link>https://www.serializing.me/tags/wordpress/</link>
+      <pubDate>Wed, 14 Sep 2016 19:14:28 +0200</pubDate>
+      
+      <guid>https://www.serializing.me/tags/wordpress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Portuguese</title>
+      <link>https://www.serializing.me/tags/portuguese/</link>
+      <pubDate>Thu, 17 Mar 2016 22:14:13 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/portuguese/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Portugueses</title>
+      <link>https://www.serializing.me/tags/portugueses/</link>
+      <pubDate>Thu, 17 Mar 2016 22:14:13 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/portugueses/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Senhas</title>
+      <link>https://www.serializing.me/tags/senhas/</link>
+      <pubDate>Thu, 17 Mar 2016 22:14:13 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/senhas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cheat</title>
+      <link>https://www.serializing.me/tags/cheat/</link>
+      <pubDate>Sat, 23 Jan 2016 22:19:09 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/cheat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Titan Quest</title>
+      <link>https://www.serializing.me/tags/titan-quest/</link>
+      <pubDate>Sat, 23 Jan 2016 22:19:09 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/titan-quest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TQ-Invincible</title>
+      <link>https://www.serializing.me/tags/tq-invincible/</link>
+      <pubDate>Sat, 23 Jan 2016 22:19:09 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/tq-invincible/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bugcrowd</title>
+      <link>https://www.serializing.me/tags/bugcrowd/</link>
+      <pubDate>Thu, 12 Nov 2015 17:47:33 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/bugcrowd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Aruba Networks</title>
+      <link>https://www.serializing.me/tags/aruba-networks/</link>
+      <pubDate>Wed, 21 Oct 2015 19:54:28 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/aruba-networks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Brute Force</title>
+      <link>https://www.serializing.me/tags/brute-force/</link>
+      <pubDate>Wed, 12 Aug 2015 18:24:28 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/brute-force/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SSH</title>
+      <link>https://www.serializing.me/tags/ssh/</link>
+      <pubDate>Wed, 12 Aug 2015 18:24:28 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Acunetix WVS</title>
+      <link>https://www.serializing.me/tags/acunetix-wvs/</link>
+      <pubDate>Tue, 07 Jul 2015 19:00:51 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/acunetix-wvs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Paranoid Fish</title>
+      <link>https://www.serializing.me/tags/paranoid-fish/</link>
+      <pubDate>Fri, 26 Jun 2015 10:44:13 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/paranoid-fish/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cuckoo Sandbox</title>
+      <link>https://www.serializing.me/tags/cuckoo-sandbox/</link>
+      <pubDate>Fri, 12 Jun 2015 11:02:16 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/cuckoo-sandbox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VirtualBox</title>
+      <link>https://www.serializing.me/tags/virtualbox/</link>
+      <pubDate>Fri, 12 Jun 2015 11:02:16 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/virtualbox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ActivoBank</title>
+      <link>https://www.serializing.me/tags/activobank/</link>
+      <pubDate>Wed, 03 Jun 2015 20:46:43 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/activobank/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Android</title>
+      <link>https://www.serializing.me/tags/android/</link>
+      <pubDate>Wed, 03 Jun 2015 20:46:43 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Banco Popular</title>
+      <link>https://www.serializing.me/tags/banco-popular/</link>
+      <pubDate>Wed, 03 Jun 2015 20:46:43 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/banco-popular/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Banco Português de Investimento</title>
+      <link>https://www.serializing.me/tags/banco-portugues-de-investimento/</link>
+      <pubDate>Wed, 03 Jun 2015 20:46:43 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/banco-portugues-de-investimento/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Banking</title>
+      <link>https://www.serializing.me/tags/banking/</link>
+      <pubDate>Wed, 03 Jun 2015 20:46:43 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/banking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Barclays</title>
+      <link>https://www.serializing.me/tags/barclays/</link>
+      <pubDate>Wed, 03 Jun 2015 20:46:43 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/barclays/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Caixa Geral de Depósitos</title>
+      <link>https://www.serializing.me/tags/caixa-geral-de-depositos/</link>
+      <pubDate>Wed, 03 Jun 2015 20:46:43 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/caixa-geral-de-depositos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Caixadirecta</title>
+      <link>https://www.serializing.me/tags/caixadirecta/</link>
+      <pubDate>Wed, 03 Jun 2015 20:46:43 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/caixadirecta/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Millennium</title>
+      <link>https://www.serializing.me/tags/millennium/</link>
+      <pubDate>Wed, 03 Jun 2015 20:46:43 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/millennium/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Novo Banco</title>
+      <link>https://www.serializing.me/tags/novo-banco/</link>
+      <pubDate>Wed, 03 Jun 2015 20:46:43 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/novo-banco/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Volatility</title>
+      <link>https://www.serializing.me/tags/volatility/</link>
+      <pubDate>Sun, 03 May 2015 12:19:48 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/volatility/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>YARA</title>
+      <link>https://www.serializing.me/tags/yara/</link>
+      <pubDate>Sun, 03 May 2015 12:19:48 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/yara/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Intimacy</title>
+      <link>https://www.serializing.me/tags/intimacy/</link>
+      <pubDate>Sat, 25 Apr 2015 11:14:03 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/intimacy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sexuality</title>
+      <link>https://www.serializing.me/tags/sexuality/</link>
+      <pubDate>Sat, 25 Apr 2015 11:14:03 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/tags/sexuality/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

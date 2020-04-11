@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Passwords on SerializingMe</title>
+    <link>https://www.serializing.me/tags/passwords/</link>
+    <description>Recent content in Passwords on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Tue, 23 Oct 2018 00:40:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/passwords/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Frontdoor to the Technicolor 7210</title>
+      <link>https://www.serializing.me/2018/10/23/frontdoor-to-the-technicolor-7210/</link>
+      <pubDate>Tue, 23 Oct 2018 00:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/10/23/frontdoor-to-the-technicolor-7210/</guid>
+      <description>&lt;p&gt;In a previous &lt;a href=&#34;https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/&#34; title=&#34;Rooting the Technicolor 7210&#34;&gt;article&lt;/a&gt;, I explained how to get &lt;code&gt;root&lt;/code&gt; on the embedded Linux part of the Technicolor 7210 router by leveraging a remote code execution (RCE). This article on the other hand, will explain how one can leverage a &amp;ldquo;frontdoor&amp;rdquo; to gain the same level of access.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rooting the Technicolor 7210</title>
+      <link>https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/</link>
+      <pubDate>Sun, 03 Jun 2018 11:20:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/</guid>
+      <description>&lt;p&gt;The Technicolor 7210 home router is a powerful little device. It provides 1Gbps Ethernet, dual-band wireless for speeds ranging from 300Mbps to 1300Mbps, and Network Attached Storage (NAS) for file sharing and media streaming.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HPQPswd Encrypted Passwords Decryption</title>
+      <link>https://www.serializing.me/2016/10/15/hpqpswd-encrypted-passwords-decryption/</link>
+      <pubDate>Sat, 15 Oct 2016 19:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/10/15/hpqpswd-encrypted-passwords-decryption/</guid>
+      <description>&lt;p&gt;Ever wondered how to decrypt HPQPswd encrypted passwords? So did I when, for the first time, I came across a strange file called &lt;code&gt;password.bin&lt;/code&gt; with a magic value of &lt;code&gt;_HPPW12_&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Portugueses e Senhas de Acesso, Um Caso de Estudo</title>
+      <link>https://www.serializing.me/2016/03/17/portugueses-e-senhas-de-acesso-um-caso-de-estudo/</link>
+      <pubDate>Thu, 17 Mar 2016 22:14:13 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/03/17/portugueses-e-senhas-de-acesso-um-caso-de-estudo/</guid>
+      <description>&lt;p&gt;Nos últimos anos tenho tido a oportunidade de coleccionar várias listas de senhas de acesso. O que se segue é um caso de estudo focado em três dessas listas. Sendo que estas, são de sítios portugueses.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

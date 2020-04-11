@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Network on SerializingMe</title>
+    <link>https://www.serializing.me/categories/network/</link>
+    <description>Recent content in Network on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 27 Jan 2019 11:30:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/categories/network/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Three Honeypots and a Month After</title>
+      <link>https://www.serializing.me/2019/01/27/three-honeypots-and-a-month-after/</link>
+      <pubDate>Sun, 27 Jan 2019 11:30:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2019/01/27/three-honeypots-and-a-month-after/</guid>
+      <description>&lt;p&gt;I deployed three web honeypots, one in Singapore, another in Australia and another one in France. I then leveraged &lt;a href=&#34;https://github.com/cea-sec/ivre&#34; title=&#34;IVRE GitHub Project&#34;&gt;IVRE&lt;/a&gt; and &lt;a href=&#34;https://github.com/OISF/suricata&#34; title=&#34;Suricata GitHub Project&#34;&gt;Suricata&lt;/a&gt; to investigate the visitors, and respective traffic they generated.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Frontdoor to the Technicolor 7210</title>
+      <link>https://www.serializing.me/2018/10/23/frontdoor-to-the-technicolor-7210/</link>
+      <pubDate>Tue, 23 Oct 2018 00:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/10/23/frontdoor-to-the-technicolor-7210/</guid>
+      <description>&lt;p&gt;In a previous &lt;a href=&#34;https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/&#34; title=&#34;Rooting the Technicolor 7210&#34;&gt;article&lt;/a&gt;, I explained how to get &lt;code&gt;root&lt;/code&gt; on the embedded Linux part of the Technicolor 7210 router by leveraging a remote code execution (RCE). This article on the other hand, will explain how one can leverage a &amp;ldquo;frontdoor&amp;rdquo; to gain the same level of access.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reversing the TC7210 Embedded Linux Firmware</title>
+      <link>https://www.serializing.me/2018/09/30/reversing-the-tc7210-embedded-linux-firmware/</link>
+      <pubDate>Sun, 30 Sep 2018 15:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/09/30/reversing-the-tc7210-embedded-linux-firmware/</guid>
+      <description>&lt;p&gt;In this article I will explain how to reverse the firmware of the embedded Linux part of the Technicolor (TC) 7210 router by leveraging the usual tools of the trade.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rooting the Technicolor 7210</title>
+      <link>https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/</link>
+      <pubDate>Sun, 03 Jun 2018 11:20:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/</guid>
+      <description>&lt;p&gt;The Technicolor 7210 home router is a powerful little device. It provides 1Gbps Ethernet, dual-band wireless for speeds ranging from 300Mbps to 1300Mbps, and Network Attached Storage (NAS) for file sharing and media streaming.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AnyConnect Elevation of Privileges, Part 2</title>
+      <link>https://www.serializing.me/2016/12/20/anyconnect-elevation-of-privileges-part-2/</link>
+      <pubDate>Tue, 20 Dec 2016 18:28:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/12/20/anyconnect-elevation-of-privileges-part-2/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;https://www.serializing.me/2016/12/14/anyconnect-elevation-of-privileges-part-1/&#34; title=&#34;AnyConnect Elevation of Privileges, Part 1&#34;&gt;previous&lt;/a&gt; part of this multi-part article, I explained how I reversed engineered one of the binaries of the Cisco AnyConnect (CAC) Secure Mobility Client. This allowed me to understand the header format of the network packets used in the Inter-Process Communication (IPC) mechanism. In this part, I will focus on doing a more dynamic analysis in order to understand what goes in the packet body.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>AnyConnect Elevation of Privileges, Part 1</title>
+      <link>https://www.serializing.me/2016/12/14/anyconnect-elevation-of-privileges-part-1/</link>
+      <pubDate>Wed, 14 Dec 2016 18:56:17 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/12/14/anyconnect-elevation-of-privileges-part-1/</guid>
+      <description>&lt;p&gt;The Cisco AnyConnect (CAC) Secure Mobility Client doesn&amp;rsquo;t have the brightest security track record. &lt;a href=&#34;https://tools.cisco.com/security/center/viewAlert.x?alertId=39466&#34; title=&#34;CVE-2015-4211&#34;&gt;CVE-2015-4211&lt;/a&gt; and &lt;a href=&#34;https://tools.cisco.com/security/center/viewAlert.x?alertId=41136&#34; title=&#34;CVE-2015-6305&#34;&gt;CVE-2015-6305&lt;/a&gt; are only two out of the fourteen CVEs that have been assigned to it just in 2015. This spiked my curiosity and prompted me to confirm if Cisco had properly fixed the underlying issue of these vulnerabilities.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SSH Brute Force and Suricata</title>
+      <link>https://www.serializing.me/2015/08/12/ssh-brute-force-and-suricata/</link>
+      <pubDate>Wed, 12 Aug 2015 18:24:28 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/08/12/ssh-brute-force-and-suricata/</guid>
+      <description>&lt;p&gt;Since SSH is one of the most pervasive ways to manage servers remotely, it is also one of the most plagued by brute force attacks. What follows is a simple set of Suricata rules to stop the majority of SSH brute force attacks. It will drop connections based on the reported SSH client version.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>WordPress and Suricata, The Test</title>
+      <link>https://www.serializing.me/2015/07/07/wordpress-and-suricata-the-test/</link>
+      <pubDate>Tue, 07 Jul 2015 19:00:51 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/07/07/wordpress-and-suricata-the-test/</guid>
+      <description>&lt;p&gt;Adding a full featured IDPS solution like Suricata is a good step in protecting any Web based application like &lt;a href=&#34;https://www.serializing.me/2015/05/12/protecting-wordpress-with-suricata/&#34; title=&#34;Protecting WordPress with Suricata&#34;&gt;WordPress&lt;/a&gt;, but how well will it fare when under attack?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Protecting WordPress with Suricata</title>
+      <link>https://www.serializing.me/2015/05/12/protecting-wordpress-with-suricata/</link>
+      <pubDate>Tue, 12 May 2015 20:59:57 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/05/12/protecting-wordpress-with-suricata/</guid>
+      <description>&lt;p&gt;There aren&amp;rsquo;t any silver bullets that will protect a WordPress installation against every single attack, but adding a full featured IDPS solution like Suricata, is a good step in protecting not only that &amp;ldquo;all too many times vulnerable&amp;rdquo; WordPress installation but also other services like SSH.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>RX/TX Buffers, Flow Hash and Others on Boot</title>
+      <link>https://www.serializing.me/2015/04/25/rxtx-buffers-rss-others-on-boot/</link>
+      <pubDate>Sat, 25 Apr 2015 16:00:30 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/04/25/rxtx-buffers-rss-others-on-boot/</guid>
+      <description>&lt;p&gt;After installing Suricata, some fine tuning of the network interface(s) used in the traffic capture is required to ensure every ounce of performance is extracted from the new IDPS installation. Those configurations need to be persisted when the system is power cycled. To do that on a Enterprise Linux based OS (e.g. RedHat, CentOS, Fedora, etc.) one can leverage the &lt;code&gt;/sbin/ifup-local&lt;/code&gt; script.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>QEMU on SerializingMe</title>
+    <link>https://www.serializing.me/tags/qemu/</link>
+    <description>Recent content in QEMU on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Tue, 23 Oct 2018 00:40:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/qemu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Frontdoor to the Technicolor 7210</title>
+      <link>https://www.serializing.me/2018/10/23/frontdoor-to-the-technicolor-7210/</link>
+      <pubDate>Tue, 23 Oct 2018 00:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/10/23/frontdoor-to-the-technicolor-7210/</guid>
+      <description>&lt;p&gt;In a previous &lt;a href=&#34;https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/&#34; title=&#34;Rooting the Technicolor 7210&#34;&gt;article&lt;/a&gt;, I explained how to get &lt;code&gt;root&lt;/code&gt; on the embedded Linux part of the Technicolor 7210 router by leveraging a remote code execution (RCE). This article on the other hand, will explain how one can leverage a &amp;ldquo;frontdoor&amp;rdquo; to gain the same level of access.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reversing the TC7210 Embedded Linux Firmware</title>
+      <link>https://www.serializing.me/2018/09/30/reversing-the-tc7210-embedded-linux-firmware/</link>
+      <pubDate>Sun, 30 Sep 2018 15:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/09/30/reversing-the-tc7210-embedded-linux-firmware/</guid>
+      <description>&lt;p&gt;In this article I will explain how to reverse the firmware of the embedded Linux part of the Technicolor (TC) 7210 router by leveraging the usual tools of the trade.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Curious Fish is Curious</title>
+      <link>https://www.serializing.me/2015/06/12/curious-fish-is-curious/</link>
+      <pubDate>Fri, 12 Jun 2015 11:02:16 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/06/12/curious-fish-is-curious/</guid>
+      <description>&lt;p&gt;Testing virtualized malware sandboxes with Paranoid Fish wasn&amp;rsquo;t enough, there might be other things that could be improved to avoid malware detection. Enter Curious Fish, a tool to help fingerprinting sandboxes.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reversing ArubaOS Firmware</title>
+      <link>https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/</link>
+      <pubDate>Tue, 02 Jun 2015 20:09:29 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/</guid>
+      <description>&lt;p&gt;Some time ago, I had the chance to get my hands on a ArubaOS firmware, what follows is the full process to extract all the files recreating the appliance running file system. This had the objective of fuzzing the extracted binaries in QEMU (ArubaOS management console is CGI based).&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A Paranoid Fish and Silver Bullets</title>
+      <link>https://www.serializing.me/2015/05/28/a-paranoid-fish-and-silver-bullets/</link>
+      <pubDate>Thu, 28 May 2015 22:24:56 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/05/28/a-paranoid-fish-and-silver-bullets/</guid>
+      <description>&lt;p&gt;I have been doing some research (and development) around virtualized malware sandboxes, being the question, &amp;ldquo;how easy is for malware to detect such an environment&amp;rdquo; the most important one, I turned to a tool called Pafish (Paranoid Fish).&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

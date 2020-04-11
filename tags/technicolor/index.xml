@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Technicolor on SerializingMe</title>
+    <link>https://www.serializing.me/tags/technicolor/</link>
+    <description>Recent content in Technicolor on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Tue, 23 Oct 2018 00:40:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/technicolor/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Frontdoor to the Technicolor 7210</title>
+      <link>https://www.serializing.me/2018/10/23/frontdoor-to-the-technicolor-7210/</link>
+      <pubDate>Tue, 23 Oct 2018 00:40:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/10/23/frontdoor-to-the-technicolor-7210/</guid>
+      <description>&lt;p&gt;In a previous &lt;a href=&#34;https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/&#34; title=&#34;Rooting the Technicolor 7210&#34;&gt;article&lt;/a&gt;, I explained how to get &lt;code&gt;root&lt;/code&gt; on the embedded Linux part of the Technicolor 7210 router by leveraging a remote code execution (RCE). This article on the other hand, will explain how one can leverage a &amp;ldquo;frontdoor&amp;rdquo; to gain the same level of access.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Reversing the TC7210 Embedded Linux Firmware</title>
+      <link>https://www.serializing.me/2018/09/30/reversing-the-tc7210-embedded-linux-firmware/</link>
+      <pubDate>Sun, 30 Sep 2018 15:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/09/30/reversing-the-tc7210-embedded-linux-firmware/</guid>
+      <description>&lt;p&gt;In this article I will explain how to reverse the firmware of the embedded Linux part of the Technicolor (TC) 7210 router by leveraging the usual tools of the trade.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Rooting the Technicolor 7210</title>
+      <link>https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/</link>
+      <pubDate>Sun, 03 Jun 2018 11:20:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/</guid>
+      <description>&lt;p&gt;The Technicolor 7210 home router is a powerful little device. It provides 1Gbps Ethernet, dual-band wireless for speeds ranging from 300Mbps to 1300Mbps, and Network Attached Storage (NAS) for file sharing and media streaming.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

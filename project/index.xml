@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on SerializingMe</title>
+    <link>https://www.serializing.me/project/</link>
+    <description>Recent content in Projects on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 29 Mar 2020 14:50:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/project/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GPO Bypass</title>
+      <link>https://www.serializing.me/project/gpo-bypass-tool/</link>
+      <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/project/gpo-bypass-tool/</guid>
+      <description>&lt;p&gt;This utility allows you to bypass Group Policy enforced controls on Firefox (as an example), especifically, it allows you to still install add-ons even if disabled through GPOs. This tool only supports 64 bit versions of Firefox.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Malware Classification</title>
+      <link>https://www.serializing.me/project/malware-classification/</link>
+      <pubDate>Fri, 01 Mar 2019 15:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/project/malware-classification/</guid>
+      <description>&lt;p&gt;Malware Classification is a workflow that makes use of Machine Learning to classify unknown Windows Portable Executable files.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HPQPswdD</title>
+      <link>https://www.serializing.me/project/hpqpswdd/</link>
+      <pubDate>Sat, 15 Oct 2016 19:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/project/hpqpswdd/</guid>
+      <description>&lt;p&gt;Small utility that can be used to decrypt HPQPswd encrypted passwords.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PowaScripts</title>
+      <link>https://www.serializing.me/project/powascripts/</link>
+      <pubDate>Fri, 23 Sep 2016 20:16:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/project/powascripts/</guid>
+      <description>&lt;p&gt;Collection of PowerShell scripts used for incident response, reconnaissance, etc.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TQ-Invincible</title>
+      <link>https://www.serializing.me/project/tq-invincible/</link>
+      <pubDate>Sun, 24 Jan 2016 00:43:08 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/project/tq-invincible/</guid>
+      <description>&lt;p&gt;Library that makes the player character invulnerable to attack in THQ 2006 role playing game, Titan Quest.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Emofishes</title>
+      <link>https://www.serializing.me/project/emofishes/</link>
+      <pubDate>Fri, 26 Jun 2015 09:48:54 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/project/emofishes/</guid>
+      <description>&lt;p&gt;Collection of proof of concepts that help improve, bypass or detect virtualized malware execution environments.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

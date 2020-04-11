@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hook Functions on SerializingMe</title>
+    <link>https://www.serializing.me/tags/hook-functions/</link>
+    <description>Recent content in Hook Functions on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 29 Mar 2020 14:50:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/hook-functions/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bypass All The GPOs</title>
+      <link>https://www.serializing.me/2020/03/29/bypass-all-the-gpos/</link>
+      <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2020/03/29/bypass-all-the-gpos/</guid>
+      <description>&lt;p&gt;During a red team engagement, one has landed on a machine with the need to make an application &amp;ldquo;ignore&amp;rdquo; Group Policies enforced configurations. This application runs on the context of the user but the settings are only changeable with administrative privileges and without access to a highly privileged account how can one make the application ignore these settings?&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

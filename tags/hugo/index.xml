@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo on SerializingMe</title>
+    <link>https://www.serializing.me/tags/hugo/</link>
+    <description>Recent content in Hugo on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Wed, 14 Sep 2016 19:14:28 +0200</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Migrated From WordPress to Hugo</title>
+      <link>https://www.serializing.me/2016/09/14/migrated-from-wordpress-to-hugo/</link>
+      <pubDate>Wed, 14 Sep 2016 19:14:28 +0200</pubDate>
+      
+      <guid>https://www.serializing.me/2016/09/14/migrated-from-wordpress-to-hugo/</guid>
+      <description>&lt;p&gt;I have been using WordPress since I started blogging, but since then, the blogging landscape changed a lot. Welcome to the age of static site generators.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Volatility on SerializingMe</title>
+    <link>https://www.serializing.me/tags/volatility/</link>
+    <description>Recent content in Volatility on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 03 May 2015 12:19:48 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/volatility/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>&#34;Check my CV&#34;, Generating YARA Rules</title>
+      <link>https://www.serializing.me/2015/05/03/check-my-cv-generating-yara-rules/</link>
+      <pubDate>Sun, 03 May 2015 12:19:48 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/05/03/check-my-cv-generating-yara-rules/</guid>
+      <description>&lt;p&gt;Recently, one e-Mail that was sent to one of my colleagues caught my attention. The message was quite believable but there were some little subtleties that gave it away. First step was to get the attachment out of the message and do an initial analysis.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

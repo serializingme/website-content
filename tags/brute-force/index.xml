@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Brute Force on SerializingMe</title>
+    <link>https://www.serializing.me/tags/brute-force/</link>
+    <description>Recent content in Brute Force on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Wed, 12 Aug 2015 18:24:28 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/brute-force/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SSH Brute Force and Suricata</title>
+      <link>https://www.serializing.me/2015/08/12/ssh-brute-force-and-suricata/</link>
+      <pubDate>Wed, 12 Aug 2015 18:24:28 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2015/08/12/ssh-brute-force-and-suricata/</guid>
+      <description>&lt;p&gt;Since SSH is one of the most pervasive ways to manage servers remotely, it is also one of the most plagued by brute force attacks. What follows is a simple set of Suricata rules to stop the majority of SSH brute force attacks. It will drop connections based on the reported SSH client version.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

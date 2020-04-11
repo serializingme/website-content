@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PowaScripts on SerializingMe</title>
+    <link>https://www.serializing.me/tags/powascripts/</link>
+    <description>Recent content in PowaScripts on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 22 Jan 2017 09:55:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/tags/powascripts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PowaScripts Update: Kerberos Pre-authentication</title>
+      <link>https://www.serializing.me/2017/01/22/powascripts-update-kerberos-pre-authentication/</link>
+      <pubDate>Sun, 22 Jan 2017 09:55:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2017/01/22/powascripts-update-kerberos-pre-authentication/</guid>
+      <description>&lt;p&gt;After reading &lt;a href=&#34;https://twitter.com/harmj0y&#34; title=&#34;harmj0y Twiter Profile&#34;&gt;harmj0y&lt;/a&gt; blog post about &lt;a href=&#34;http://www.harmj0y.net/blog/activedirectory/roasting-as-reps/&#34; title=&#34;harmj0y Blog Post&#34;&gt;&amp;ldquo;Roasting AS-REPs&amp;rdquo;&lt;/a&gt;, I have decided to update the &lt;code&gt;Dump-User.ps1&lt;/code&gt; script in order for it to report on users that don&amp;rsquo;t have Kerberos pre-authentication enabled. Running the updated version against a &amp;ldquo;in the wild&amp;rdquo; target yielded interesting results to say the least.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Active Directory Dump</title>
+      <link>https://www.serializing.me/2016/10/07/active-directory-dump/</link>
+      <pubDate>Fri, 07 Oct 2016 18:05:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/10/07/active-directory-dump/</guid>
+      <description>&lt;p&gt;During many penetration tests (or red versus blue team exercises), I have found myself with the need to investigate users, groups, computers and policies of a Windows domain. To do that, I have developed a series of PowerShell scripts that dump all that information from Active Directory into XML files.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Updated AppLocker Dump Script</title>
+      <link>https://www.serializing.me/2016/09/23/updated-applocker-dump-script/</link>
+      <pubDate>Fri, 23 Sep 2016 20:33:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/09/23/updated-applocker-dump-script/</guid>
+      <description>&lt;p&gt;I have created a new version of &lt;a href=&#34;https://www.serializing.me/2015/11/01/inspecting-applocker-policy/&#34; title=&#34;Older Version&#34;&gt;this&lt;/a&gt; script so that it is better aligned with the conventions I use for other PowerShell scripts.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Encryption on SerializingMe</title>
+    <link>https://www.serializing.me/categories/encryption/</link>
+    <description>Recent content in Encryption on SerializingMe</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-gb</language>
+    <lastBuildDate>Sat, 15 Oct 2016 19:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.serializing.me/categories/encryption/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>HPQPswd Encrypted Passwords Decryption</title>
+      <link>https://www.serializing.me/2016/10/15/hpqpswd-encrypted-passwords-decryption/</link>
+      <pubDate>Sat, 15 Oct 2016 19:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2016/10/15/hpqpswd-encrypted-passwords-decryption/</guid>
+      <description>&lt;p&gt;Ever wondered how to decrypt HPQPswd encrypted passwords? So did I when, for the first time, I came across a strange file called &lt;code&gt;password.bin&lt;/code&gt; with a magic value of &lt;code&gt;_HPPW12_&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
