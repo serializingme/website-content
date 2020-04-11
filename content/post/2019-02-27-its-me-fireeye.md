@@ -53,7 +53,7 @@ start = "2018-11-26"
 [[timeline]]
 id = 3
 title = "Grace period extension"
-content = "FireEye's research and engineering team took a closer look into the reported issue and asked for a 90 days grace period to implement additional protections. I extended the grace period 4 days, giving FireEye exaclty 90 days starting from November 27<sup>th</sup>, instead of the date of first reporting the issue (November 23<sup>rd</sup>)."
+content = "FireEye's research and engineering team took a closer look into the reported issue and asked for a 90 days grace period to implement additional protections. I extended the grace period 4 days, giving FireEye exactly 90 days starting from November 27<sup>th</sup>, instead of the date of first reporting the issue (November 23<sup>rd</sup>)."
 start = "2018-11-27"
 
 [[timeline]]
@@ -94,7 +94,7 @@ One such sandbox is FireEye own Malware Protection System (MPS) in its multiple 
 
 {{< figure image="/uploads/2019/02/cufish-dump.png" alternative="Cufish Dump" caption="Cufish dump showing the existence of the driver." thumbnail="/uploads/2019/02/cufish-dump-500x313.png" >}}
 
-This looked very interesting and since the details provided by Cufish where quite scarce I used [Nosey Fish][3] (Nofish for short, and previously called Infish) to see if I could locate the driver in the file system.
+This looked very interesting and since the details provided by Cufish were quite scarce I used [Nosey Fish][3] (Nofish for short, and previously called Infish) to see if I could locate the driver in the file system.
 
 {{< figure image="/uploads/2019/02/nofish-dump.png" alternative="Cufish Dump" caption="Nofish dump showing the path of the interesting driver." thumbnail="/uploads/2019/02/nofish-dump-500x313.png" >}}
 
