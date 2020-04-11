@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/serializingme/website-content/workflows/Main/badge.svg)](https://travis-ci.org/serializingme/website-content)
+![Build Status](https://github.com/serializingme/website-content/workflows/Main/badge.svg)
 
 # SerializingMe Website Content
 
