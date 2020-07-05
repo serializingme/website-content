@@ -8,6 +8,10 @@ tags = [ "Technicolor", "Passwords", "SOHO", "QEMU" ]
 title = "Frontdoor to the Technicolor 7210"
 
 [[timeline]]
+id = "disclosure"
+title = "Disclosure Timeline"
+
+[[disclosure]]
 id = "F"
 title = "30 days"
 start = "2018-06-24"
@@ -15,7 +19,7 @@ end = "2018-07-24"
 type = "background"
 className = "bg-first text-dark"
 
-[[timeline]]
+[[disclosure]]
 id = "S"
 title = "60 days"
 start = "2018-07-24"
@@ -23,7 +27,7 @@ end = "2018-08-24"
 type = "background"
 className = "bg-second text-dark"
 
-[[timeline]]
+[[disclosure]]
 id = "T"
 title = "90 days"
 start = "2018-08-24"
@@ -31,46 +35,46 @@ end = "2018-09-24"
 type = "background"
 className = "bg-third text-dark"
 
-[[timeline]]
+[[disclosure]]
 id = 1
 title = "First reported issues to Technicolor"
 start = "2018-06-24"
 
-[[timeline]]
+[[disclosure]]
 id = 2
 title = "Report acknowledged"
 content = "Technicolor’s security team acknowledged receipt of the report"
 start = "2018-06-24"
 
-[[timeline]]
+[[disclosure]]
 id = 3
 title = "Asked for an update"
 start = "2018-07-10"
 
-[[timeline]]
+[[disclosure]]
 id = 4
 title = "Asked for an update"
 start = "2018-09-06"
 
-[[timeline]]
+[[disclosure]]
 id = 5
 title = "Vulnerability acknowledged"
 content = "Technicolor’s security theme acknowledged the vulnerability and let me know that they’re in the process of fixing it"
 start = "2018-09-07"
 
-[[timeline]]
+[[disclosure]]
 id = 6
 title = "Continue to withhold disclosure"
 content = "Informed Technicolor’s security team that I will continue to withhold disclosure and suggested a possible fix for this flaw and for a newly discovered way to exploit a previously reported RCE"
 start = "2018-09-07"
 
-[[timeline]]
+[[disclosure]]
 id = 7
 title = "Asked for an update"
 content = "Let Technicolor team know I had published the post on how I reversed engineer the firmware, asked if a CVE had been assigned and reminded that the 90 [sic] day grace period will end on October 24th"
 start = "2018-10-08"
 
-[[timeline]]
+[[disclosure]]
 id = 8
 title = "Public release"
 content = "Released details through this blog post (120 days after reporting it)"

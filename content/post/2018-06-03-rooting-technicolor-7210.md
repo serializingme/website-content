@@ -8,6 +8,10 @@ tags = [ "Technicolor", "Passwords", "SOHO" ]
 title = "Rooting the Technicolor 7210"
 
 [[timeline]]
+id = "disclosure"
+title = "Disclosure Timeline"
+
+[[disclosure]]
 id = "F"
 title = "30 days"
 start = "2016-12-02"
@@ -15,7 +19,7 @@ end = "2017-01-02"
 type = "background"
 className = "bg-first text-dark"
 
-[[timeline]]
+[[disclosure]]
 id = "S"
 title = "60 days"
 start = "2017-01-02"
@@ -23,7 +27,7 @@ end = "2017-02-02"
 type = "background"
 className = "bg-second text-dark"
 
-[[timeline]]
+[[disclosure]]
 id = "T"
 title = "90 days"
 start = "2017-02-02"
@@ -31,82 +35,82 @@ end = "2017-03-02"
 type = "background"
 className = "bg-third text-dark"
 
-[[timeline]]
+[[disclosure]]
 id = 1
 title = "First reported issues to Ziggo"
 start = "2016-12-02"
 
-[[timeline]]
+[[disclosure]]
 id = 2
 title = "Asked for an update"
 start = "2016-12-09"
 
-[[timeline]]
+[[disclosure]]
 id = 3
 title = "Ziggo confirmed issues"
 content = "Received reply confirming the bugs, and that the first and third bug were already fixed in next modem firmware. I confirmed the dates for coordinated disclosure, and agreed to test the beta of the new firmware"
 start = "2016-12-12"
 
-[[timeline]]
+[[disclosure]]
 id = 4
 title = "Beta firmware ready"
 content = "Received information that the beta firmware was ready"
 start = "2016-12-16"
 
-[[timeline]]
+[[disclosure]]
 id = 5
 title = "Firmware malfunction"
 content = "Installed the beta firmware but the modem malfunctioned"
 start = "2016-12-17"
 
-[[timeline]]
+[[disclosure]]
 id = 6
 title = "Malfunction fixed"
 content = "The malfunction was fixed and I was able to confirm that the third bug (RCE) had been fixed while the two first bugs hadn't."
 start = "2016-12-19"
 
-[[timeline]]
+[[disclosure]]
 id = 7
 title = "Asked for an update"
 start = "2017-01-17"
 
-[[timeline]]
+[[disclosure]]
 id = 8
 title = "Received update"
 content = "Received update \"(...) issues are logged by Technicolor and will be further investigated and will be resolved in the final release. (...) A broad indication  will be Q1 2017. As soon as we have news we come back to you, you hear nothing remember us please\""
 start = "2017-02-01"
 
-[[timeline]]
+[[disclosure]]
 id = 9
 title = "Requested firmware to be reverted"
 content = "Requested the router to be reverted to the latest stable version"
 start = "2017-02-07"
 
-[[timeline]]
+[[disclosure]]
 id = 10
 title = "Firmware was reverted"
 content = "Modem reverted back to the original firmware"
 start = "2017-02-08"
 
-[[timeline]]
+[[disclosure]]
 id = 11
 title = "Asked for an update"
 content = "Asked for an update on  and explained that the details were going to be released as more than six months had passed, got no reply"
 start = "2017-08-08"
 
-[[timeline]]
+[[disclosure]]
 id = 12
 title = "Public release"
 content = "Released details through this blog post"
 start = "2018-06-03"
 
-[[timeline]]
+[[disclosure]]
 id = 13
 title = "Technicolor reached out"
 content = "Technicolor contacted me requesting further assurance that the bugs had been properly fixed and to contact them as well for future bugs I might find."
 start = "2018-06-04"
 
-[[timeline]]
+[[disclosure]]
 id = 14
 title = "Ziggo reached out"
 content = "Ziggo contacted me requesting further assurance that the bugs had been properly fixed and apologized for not responding"

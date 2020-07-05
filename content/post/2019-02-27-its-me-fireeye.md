@@ -8,6 +8,10 @@ tags = [ "FireEye", "Emofishes" ]
 title = "It's Me, FireEye!"
 
 [[timeline]]
+id = "disclosure"
+title = "Disclosure Timeline"
+
+[[disclosure]]
 id = "F"
 title = "30 days"
 start = "2018-11-23"
@@ -15,7 +19,7 @@ end = "2018-12-23"
 type = "background"
 className = "bg-first text-dark"
 
-[[timeline]]
+[[disclosure]]
 id = "S"
 title = "60 days"
 start = "2018-12-23"
@@ -23,7 +27,7 @@ end = "2019-01-23"
 type = "background"
 className = "bg-second text-dark"
 
-[[timeline]]
+[[disclosure]]
 id = "T"
 title = "90 days"
 start = "2019-01-23"
@@ -31,7 +35,7 @@ end = "2019-02-23"
 type = "background"
 className = "bg-third text-dark"
 
-[[timeline]]
+[[disclosure]]
 id = "E"
 title = "+4 days"
 start = "2019-02-23"
@@ -39,42 +43,42 @@ end = "2019-02-27"
 type = "background"
 className = "bg-forth text-dark"
 
-[[timeline]]
+[[disclosure]]
 id = 1
 title = "Reported to FireEye"
 start = "2018-11-23"
 
-[[timeline]]
+[[disclosure]]
 id = 2
 title = "FireEye acknowledged report"
 content = "FireEye acknowledged the report and deployed a content update to fix it. I asked if it was ok to publish the post."
 start = "2018-11-26"
 
-[[timeline]]
+[[disclosure]]
 id = 3
 title = "Grace period extension"
 content = "FireEye's research and engineering team took a closer look into the reported issue and asked for a 90 days grace period to implement additional protections. I extended the grace period 4 days, giving FireEye exactly 90 days starting from November 27<sup>th</sup>, instead of the date of first reporting the issue (November 23<sup>rd</sup>)."
 start = "2018-11-27"
 
-[[timeline]]
+[[disclosure]]
 id = 4
 title = "Reminded FireEye"
 content = "Reminded FireEye that the grace period would be over in a month."
 start = "2019-01-27"
 
-[[timeline]]
+[[disclosure]]
 id = 5
 title = "FireEye on schedule"
 content = "FireEye will release a version with additional protections for this type of evasion on February, 20<sup>th</sup> and they're ok with the public release after this date. I will follow the original public release schedule giving extra time for FireEye's customers to update."
 start = "2019-01-30"
 
-[[timeline]]
+[[disclosure]]
 id = 6
 title = "Customer adoption"
 content = "FireEye contacted me letting me know that the customer adoption of the new version has been good so far."
 start = "2019-02-26"
 
-[[timeline]]
+[[disclosure]]
 id = 7
 title = "Public release"
 content = "Released details through this blog post (94 days after reporting it)"
