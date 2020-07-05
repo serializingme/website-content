@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="636" />
+<meta itemprop="wordCount" content="637" />
   
 
 
@@ -183,7 +183,7 @@ Simulating APTs For Fun
 <script type="application/javascript" src="https://gist.github.com/serializingme/e7010a60207fe8003eea0dc584150901.js?file=clone.sh"></script>
 
 <h3 id="ruby-ruby-gems-and-a-database">Ruby, Ruby Gems and a Database</h3>
-<p>After the code has been downloaded, we need to create a file that can be used to setup the environment every time we want to make use of PTAA. The rbenv documentation instructs one to use the <!-- raw HTML omitted -->.bashrc<!-- raw HTML omitted --> file. This works well when you have a dedicated user to run the software you&rsquo;re installing, which is not the case. As such, I prefer to use a specific file that I use only when needed.</p>
+<p>After the code has been downloaded, we need to create a file that can be used to setup the environment every time we want to make use of PTAA. The rbenv documentation instructs one to use the <code>.bashrc</code> file. This works well when you have a dedicated user to run the software you&rsquo;re installing, which is not the case. As such, I prefer to use a specific file that I use only when needed.</p>
 <div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>Note that the environment file adds <code>/usr/lib/postgresql/11/bin</code> to the <code>PATH</code> variable as Metasploit <code>msfdb</code> utility makes use of <code>pg_ctl</code>.</div>
 <script type="application/javascript" src="https://gist.github.com/serializingme/e7010a60207fe8003eea0dc584150901.js?file=environment.sh"></script>
 
@@ -194,13 +194,13 @@ Simulating APTs For Fun
 <script type="application/javascript" src="https://gist.github.com/serializingme/e7010a60207fe8003eea0dc584150901.js?file=verify.sh"></script>
 
 <p>Finally install the Ruby gems needed by Metasploit using <a href="https://bundler.io/" title="Ruby Bundler Site">bundler</a> and setup the database.</p>
-<div class="alert alert-danger"><span><i class="fas fa-minus-circle"></i>&nbsp;</span>You'll probably want to skip the database initialization command if you already make use of Metasploit's database since you may end up deleting all the loot you have acquired and stored in the already existing database.</div>
+<div class="alert alert-danger"><span><i class="fas fa-minus-circle"></i>&nbsp;</span>You&rsquo;ll probably want to skip the database initialization command if you already make use of Metasploit&rsquo;s database since you may end up deleting all the loot you have acquired and stored in the already existing database.</div>
 <div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>Make sure the user you are using to execute the <code>msfdb</code> utility is in the <code>postgres</code> group, otherwise it will fail.</div>
 <script type="application/javascript" src="https://gist.github.com/serializingme/e7010a60207fe8003eea0dc584150901.js?file=metasploit-setup.sh"></script>
 
 <h3 id="first-run">First Run</h3>
 <p>Now that the environment and PTAA are ready, the next step is to generate the payload that will be used to &ldquo;infect&rdquo; a target machine.</p>
-<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>Note that the payload generation options below are just for testing. You won't be fooling anyone ;)</div>
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>Note that the payload generation options below are just for testing. You won&rsquo;t be fooling anyone ;)</div>
 <script type="application/javascript" src="https://gist.github.com/serializingme/e7010a60207fe8003eea0dc584150901.js?file=payload.sh"></script>
 
 <p>Then we can run Metasploit and start a handler to receive the connections from our Meterpreter payload.</p>

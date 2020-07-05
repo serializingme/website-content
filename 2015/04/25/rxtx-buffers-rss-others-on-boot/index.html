@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="264" />
+<meta itemprop="wordCount" content="255" />
   
 
 
@@ -177,12 +177,11 @@ RX/TX Buffers, Flow Hash and Others on Boot
 <script type="application/javascript" src="https://gist.github.com/serializingme/26fb76f39b475465398f.js?file=create-ifup-local.sh"></script>
 
 <p>Follows the contents of the script that I use.</p>
-<p><div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The name of the interrupts for the network card may vary, adjust accordingly.</div>
-<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The network card may support more or less offloading features, once again it needs to be adjusted accordingly.</div></p>
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The name of the interrupts for the network card may vary, and it may support more or less offloading features, adjust accordingly.</div>
 <script type="application/javascript" src="https://gist.github.com/serializingme/26fb76f39b475465398f.js?file=ifup-local"></script>
 
 <p>After a reboot, to verify if the configurations have been applied correctly (the system used in this example as 8 CPU&rsquo;s) issue the following commands.</p>
-<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The network interface used in the commands bellow is **eth1**, change accordingly.</div>
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The network interface used in the commands bellow is <strong>eth1</strong>, change accordingly.</div>
 <script type="application/javascript" src="https://gist.github.com/serializingme/26fb76f39b475465398f.js?file=verify-results.sh"></script>
 
 <p>Happy tuning!</p></div>

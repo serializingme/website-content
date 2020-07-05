@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="476" />
+<meta itemprop="wordCount" content="477" />
   
 
 
@@ -166,7 +166,7 @@ It&#39;s Me, FireEye!
         </h2>
         <div class="text-justify">
 <p>A little over three years ago, while researching malware execution <a href="/project/emofishes/" title="Emofishes Project">sandboxes</a>, I found a stealth way to detect FireEye&rsquo;s Malware Analysis System (MAS). In this blog post I will release the details.</p>
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>This blog post was originally written in November 24<sup>th</sup>, 2018. The issue reported in this blog post, as been fixed by FireEye. I'm not able to validate the purported fix since I no longer have access to any FireEye sandbox.</div>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>This blog post was originally written in 24 of November, 2018. The issue reported in this blog post, as been fixed by FireEye. I&rsquo;m not able to validate the purported fix since I no longer have access to any FireEye sandbox.</div>
 <p>While investigation various Open Source and commercial malware execution sandboxes I developed a tool called <a href="/2015/06/12/curious-fish-is-curious/" title="Curious Fish Is Curious Post">Curious Fish</a> (Cufish for short). This tool focused on extracting as much environmental information as possible in order to facilitate the process of fingerprinting these sandboxes.</p>
 <p>One such sandbox is FireEye own Malware Protection System (MPS) in its multiple iterations (e.g., Web MPS, Email MPS, etc.) While going through the output of the Cufish tool I found that it made use of a driver called <code>firemon</code>.</p>
 <div class="text-center"><figure class="figure">
@@ -187,7 +187,7 @@ It&#39;s Me, FireEye!
     </a><figcaption class="figure-caption text-center">Dump showing part of the base64 driver.</figcaption></figure></div>
 
 <p>With the driver outside the sandbox, I was able to conclude two things. The first was that accessing (opening and reading) the <code>firemon.sys</code> triggered a malicious activity alert related with sandbox evasion / detection.</p>
-<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>If I remember correctly, not fully certain anymore, it wasn't just the YARA rule that detected Exfish tool reading the monitoring driver file.</div>
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>If I remember correctly, not fully certain anymore, it wasn&rsquo;t just the YARA rule that detected Exfish tool reading the monitoring driver file.</div>
 <div class="text-center"><figure class="figure">
     <a href="https://www.serializing.me/uploads/2019/02/mps-report.png" title="FireEye MPS report.">
       <img class="figure-img img-fluid rounded" alt="Cufish Dump" src="https://www.serializing.me/uploads/2019/02/mps-report.png" />

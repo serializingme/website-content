@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="504" />
+<meta itemprop="wordCount" content="505" />
   
 
 
@@ -170,7 +170,7 @@ Frontdoor to the Technicolor 7210
   <iframe src="https://www.youtube.com/embed/zPmzcbA--A8" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>This blog post was originally written in June 23<sup>rd</sup>, 2018. The vulnerability disclosed in this blog post, as far as I know is yet to be fixed. I haven't requested a CVE, neither am I aware if Technicolor did so. Disclosure timeline can be found at the end of the blog post.</div>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>This blog post was originally written in 23 of June, 2018. The vulnerability disclosed in this blog post, as far as I know is yet to be fixed. I haven&rsquo;t requested a CVE, neither am I aware if Technicolor did so. Disclosure timeline can be found at the end of the blog post.</div>
 <h3 id="control-mechanism">Control Mechanism</h3>
 <p>The TC7210 has two operative systems (OS), the eCos real-time OS, and a Linux based embedded OS. The eCos OS is responsible for managing all network functionalities as well as the Network Attached Storage (NAS) functionalities provided by the Linux OS.</p>
 <p>For that to happen, the eCos OS needs to be able to communicate with the Linux OS. As discussed in the previous article, the <code>smbapp</code> is the application responsible for managing the NAS functionality. A good indicator of how the application is receiving commands from the eCos OS is the fact that it listens on port <code>49182</code> (UDP).</p>

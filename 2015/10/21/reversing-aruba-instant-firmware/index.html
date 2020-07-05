@@ -167,7 +167,7 @@ Reversing Aruba Instant Firmware
         <div class="text-justify">
 <p>Aruba produces two different software loads for their Access Point hardware. The first is called ArubaOS and the second is called Aruba Instant. With ArubaOS, the AP requires a Mobility Controller (hardware) to be installed in the network. With the Aruba Instant it is possible to run AP&rsquo;s independently (standalone mode) or in a cluster, with no Mobility Controller in the network.</p>
 <p>What follows is the full process to extract all the files recreating the Aruba Instant firmware file system.</p>
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba's Bugcrowd bug bounty. Once <a href="https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/">again</a>, thanks to Aruba Networks for their open approach to security researchers work.</div>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba&rsquo;s Bugcrowd bug bounty. Once <a href="https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/">again</a>, thanks to Aruba Networks for their open approach to security researchers work.</div>
 <p>As usual, the initial step is to check what the firmware image contains, <code>binwalk</code> was used for that.</p>
 <script type="application/javascript" src="https://gist.github.com/serializingme/050cc30b187d6bf05afd.js?file=initial-binwalk.sh"></script>
 
@@ -192,7 +192,7 @@ Reversing Aruba Instant Firmware
 <p>The last step, is to assemble everything in order to mimic the appliance running file system layout.</p>
 <script type="application/javascript" src="https://gist.github.com/serializingme/050cc30b187d6bf05afd.js?file=recreate-rootfs.sh"></script>
 
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>There will be some errors reproducing the `/dev`, `/proc` and `/sys` directories but those can be ignored.</div>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>There will be some errors reproducing the <code>/dev</code>, <code>/proc</code> and <code>/sys</code> directories but those can be ignored.</div>
 <p>And that&rsquo;s it, the running access point file system is ready to go under the microscope :)</p></div>
       </div>
       <div class="card-footer">

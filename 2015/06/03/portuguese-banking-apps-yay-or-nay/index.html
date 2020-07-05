@@ -167,7 +167,7 @@ Portuguese Banking Apps, Yay or Nay?
         <div class="text-justify">
 <p>I have been using my bank mobile application for a while, but never had a look at its security. This is an account of my findings, not only on that specific application, but on eight of the offerings available in the Portuguese market.</p>
 <p>I have focused my research in one of the most important aspects of any type of banking applications, how secure are the communications with the bank systems (API endpoints). In simple terms, how hard would it be for a threat actor to intercept and subsequently decrypt the mobile application communications in order to impersonate the user.</p>
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>This research targeted only the *Android* version of the applications and any communications of the applications with services other than the API endpoints, was ignored.</div>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>This research targeted only the <em>Android</em> version of the applications and any communications of the applications with services other than the API endpoints, was ignored.</div>
 <ul>
 <li>ActivoBank and Millennium (same base application and endpoint)</li>
 <li>Banco Popular</li>
@@ -178,8 +178,8 @@ Portuguese Banking Apps, Yay or Nay?
 <li>Santander Totta</li>
 </ul>
 <p>What follows is the grade of resilience against attack by both the endpoint, and the application of each bank. The higher the grade (being A+ the best, and F the worst), the harder is for a threat actor to successfully attack the communications.</p>
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>The _higher_ the points, the easier it is to attack the communications (values range from 1 to 6).</div>
-<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The application tests were limited to how the endpoint certificate is validated. TLS/SSL support (protocols, cipher suites, etc.) wasn't tested, since the Android platform varies widely in versions, and by consequence, so will the TLS/SSL implementation/features.</div>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>The <em>higher</em> the points, the easier it is to attack the communications (values range from 1 to 6).</div>
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The application tests were limited to how the endpoint certificate is validated. TLS/SSL support (protocols, cipher suites, etc.) wasn&rsquo;t tested, since the Android platform varies widely in versions, and by consequence, so will the TLS/SSL implementation/features.</div>
 
 <table class="table table-bordered">
   <thead>

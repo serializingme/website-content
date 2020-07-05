@@ -166,7 +166,7 @@ Reversing ArubaOS Firmware
         </h2>
         <div class="text-justify">
 <p>Some time ago, I had the chance to get my hands on a ArubaOS firmware, what follows is the full process to extract all the files recreating the appliance running file system. This had the objective of fuzzing the extracted binaries in QEMU (ArubaOS management console is CGI based).</p>
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba's Bugcrowd bug bounty. There is not enough praise that can be given to Aruba Networks for their open approach to security researchers work.</div>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba&rsquo;s Bugcrowd bug bounty. There is not enough praise that can be given to Aruba Networks for their open approach to security researchers work.</div>
 <p>One of the best tools to start the reversing process is <code>binwalk</code>.</p>
 <script type="application/javascript" src="https://gist.github.com/serializingme/faa288550922d0a2c9e1.js?file=initial-binwalk.sh"></script>
 
@@ -187,7 +187,7 @@ Reversing ArubaOS Firmware
 <script type="application/javascript" src="https://gist.github.com/serializingme/faa288550922d0a2c9e1.js?file=decompress-cpio.sh"></script>
 
 <p>Now is time to assemble everything in order to mimic the appliance running file system layout.</p>
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>There will be some errors reproducing the `/dev`, `/proc` and `/sys` directories but those can be ignored.</div>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>There will be some errors reproducing the <code>/dev</code>, <code>/proc</code> and <code>/sys</code> directories but those can be ignored.</div>
 <p>And that&rsquo;s it. The firmware that I was investigating had binaries compiled for the NetLogic XLP processor, which is currently unsupported by QEMU. I had a look at QEMU in order to try and implement the missing instructions and, unfortunately, realized that I was out of my depth :D</p></div>
       </div>
       <div class="card-footer">

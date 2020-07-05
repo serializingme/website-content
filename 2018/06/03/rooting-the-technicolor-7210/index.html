@@ -166,7 +166,7 @@ Rooting the Technicolor 7210
         </h2>
         <div class="text-justify">
 <p>The Technicolor 7210 home router is a powerful little device. It provides 1Gbps Ethernet, dual-band wireless for speeds ranging from 300Mbps to 1300Mbps, and Network Attached Storage (NAS) for file sharing and media streaming.</p>
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>I was able to confirm that two of the bugs (path transversal and remote code execution) highlighted in this blog post have been fixed by Technicolor. The other bug (weak credentials) I'm unable to validate as it depends on the remote code execution. Disclosure timeline can be found at the end of the blog post.</div>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>I was able to confirm that two of the bugs (path transversal and remote code execution) highlighted in this blog post have been fixed by Technicolor. The other bug (weak credentials) I&rsquo;m unable to validate as it depends on the remote code execution. Disclosure timeline can be found at the end of the blog post.</div>
 <h3 id="the-basic-principle">The Basic Principle</h3>
 <p>To get <code>root</code> in any network appliance, the first step is to get remote code execution (RCE). Getting RCE isn&rsquo;t the same as getting <code>root</code> access, but it does happen, since there is a tendency in network appliances to run everything in the context of the <code>root</code> user.</p>
 <p>If that isn&rsquo;t the case and the commands executed are under the context of an unprivileged user, the next step after obtaining RCE is to find a way to escalate privileges. Usually that can be done by leveraging badly configured permissions, kernel exploits, etc.</p>

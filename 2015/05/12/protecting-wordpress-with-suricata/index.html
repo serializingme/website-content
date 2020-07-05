@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="667" />
+<meta itemprop="wordCount" content="668" />
   
 
 
@@ -177,14 +177,13 @@ Protecting WordPress with Suricata
 <li>Everything is running in the same host</li>
 <li>The host is a dedicated server or a VPS</li>
 </ul>
-<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>There are some VPS's, mostly those based on OpenVZ, that will not allow for Kernel changes. Check with the current or future VPS provider before hand.</div>
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>There are some VPS&rsquo;s, mostly those based on OpenVZ, that will not allow for Kernel changes. Check with the current or future VPS provider before hand.</div>
 <p>The first step is to replace the location section of the server block that listens to HTTPS and passes the requests to PHP, in order to reverse proxy them instead.</p>
 <script type="application/javascript" src="https://gist.github.com/serializingme/53526694f2876948d1af.js?file=reverse-proxy.conf"></script>
 
-<div class="alert alert-danger"><span><i class="fas fa-minus-circle"></i>&nbsp;</span>Do not use the `$host` variable in the header `X-Forwarded-Host` since its client/attacker controlled, possibly making your WordPress installation susceptible to host header poisoning. Use the `$server_name` variable instead.</div>
+<div class="alert alert-danger"><span><i class="fas fa-minus-circle"></i>&nbsp;</span>Do not use the <code>$host</code> variable in the header <code>X-Forwarded-Host</code> since its client/attacker controlled, possibly making your WordPress installation susceptible to host header poisoning. Use the <code>$server_name</code> variable instead.</div>
 <p>Next we need to configure Nginx to listen locally for the decrypted traffic and to pass it to PHP.</p>
-<p><div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The WordPress installation will need to be configured for a reverse proxy environment.</div>
-<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>Paths may need to be adjusted depending on the reader specific WordPress installation.</div></p>
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The WordPress installation will need to be configured for a reverse proxy environment and paths may need to be adjusted depending on the reader specific WordPress installation.</div>
 <script type="application/javascript" src="https://gist.github.com/serializingme/53526694f2876948d1af.js?file=internal-server.conf"></script>
 
 <p>After checking that the configuration is correct, restart Nginx. From this point onwards, there should be plain text HTTP traffic flowing to the socket listening locally (generate some traffic if needed). You can confirm this, by using <code>tcpdump</code>.</p>
@@ -195,10 +194,10 @@ Protecting WordPress with Suricata
 <div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The following configuration only takes into account IPv4, for IPv6 extra configurations will be needed.</div>
 <script type="application/javascript" src="https://gist.github.com/serializingme/53526694f2876948d1af.js?file=nftables.rules"></script>
 
-<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>Make sure `firewalld` is disabled.</div>
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>Make sure <code>firewalld</code> is disabled.</div>
 <p>After starting the Nftables service, the next step is to configure Suricata. First edit the main Suricata configuration file (<code>/etc/suricata/suricata.yaml</code>).</p>
 <p><div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>The Netfilter queue fail open setting may have performance impacts, be sure to read Suricata documentation on it.</div>
-<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The Suricata configurations, are for a host with two CPU's, as such, affinity settings and the number of queues that Suricata listens to may need to be adjusted.</div></p>
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The Suricata configurations, are for a host with two CPU&rsquo;s, as such, affinity settings and the number of queues that Suricata listens to may need to be adjusted.</div></p>
 <script type="application/javascript" src="https://gist.github.com/serializingme/53526694f2876948d1af.js?file=suricata.yaml"></script>
 
 <p>Second, edit the system Suricata configuration file (<code>/etc/sysconfig/suricata</code>).</p>
@@ -208,7 +207,7 @@ Protecting WordPress with Suricata
 <script type="application/javascript" src="https://gist.github.com/serializingme/53526694f2876948d1af.js?file=sql-injection.txt"></script>
 
 <p>If everything worked as planned, Suricata should have created an entry in the EVE log (<code>/var/log/suricata/eve.json</code>) reporting the attack.</p>
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>Configuring the ETOpen rule set can be easily done using *Oinkmaster*.</div>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>Configuring the ETOpen rule set can be easily done using <em>Oinkmaster</em>.</div>
 <p>The next step is to configure the rules to disable false positives:</p>
 <ul>
 <li>2003508 - ET WEB_SPECIFIC_APPS WordPress wp-login.php redirect_to credentials stealing attempt</li>
