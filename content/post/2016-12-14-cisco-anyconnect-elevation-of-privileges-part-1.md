@@ -43,7 +43,7 @@ Reconstructing the class from the exported symbols undecorated name and by looki
 
 Taking the network packet created by the Google POC into consideration, it was clear that these fields map one-to-one with the data sent to the socket.
 
-{{< alert class="warning" >}}The Google POC uses a Global Unique Identifier (GUID) in place of the fields <code>ipcResponseCB</code>, <code>msgUserContext</code>, <code>requestMsgId</code>, and <code>returnIpcObject</code> which all combined have the same length as a GUID.{{< /alert >}}
+{{< alert class="warning" >}}The Google POC uses a Global Unique Identifier (GUID) in place of the fields `ipcResponseCB`, `msgUserContext`, `requestMsgId`, and `returnIpcObject` which all combined have the same length as a GUID.{{< /alert >}}
 
 In the next [part][5] of this article, I will focus on the packets being sent over the socket. Hope it was an interesting read :)
 

@@ -86,7 +86,7 @@ A little over three years ago, while researching malware execution [sandboxes][1
 
 <!--more-->
 
-{{< alert >}}This blog post was originally written in November 24<sup>th</sup>, 2018. The issue reported in this blog post, as been fixed by FireEye. I'm not able to validate the purported fix since I no longer have access to any FireEye sandbox.{{< /alert >}}
+{{< alert >}}This blog post was originally written in 24 of November, 2018. The issue reported in this blog post, as been fixed by FireEye. I'm not able to validate the purported fix since I no longer have access to any FireEye sandbox.{{< /alert >}}
 
 While investigation various Open Source and commercial malware execution sandboxes I developed a tool called [Curious Fish][2] (Cufish for short). This tool focused on extracting as much environmental information as possible in order to facilitate the process of fingerprinting these sandboxes.
 

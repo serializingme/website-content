@@ -27,8 +27,7 @@ The kernel network stack can also be tuned using the `/sbin/ifup-local` script, 
 
 Follows the contents of the script that I use.
 
-{{< alert class="warning" >}}The name of the interrupts for the network card may vary, adjust accordingly.{{< /alert >}}
-{{< alert class="warning" >}}The network card may support more or less offloading features, once again it needs to be adjusted accordingly.{{< /alert >}}
+{{< alert class="warning" >}}The name of the interrupts for the network card may vary, and it may support more or less offloading features, adjust accordingly.{{< /alert >}}
 
 {{< gist serializingme 26fb76f39b475465398f "ifup-local" >}}
 

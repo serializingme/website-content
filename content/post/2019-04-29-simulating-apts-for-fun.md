@@ -37,9 +37,9 @@ Then, clone the source code of [rbenv][2], [ruby-build][3] and of PTAA itself. W
 
 ### Ruby, Ruby Gems and a Database
 
-After the code has been downloaded, we need to create a file that can be used to setup the environment every time we want to make use of PTAA. The rbenv documentation instructs one to use the <code>.bashrc</code> file. This works well when you have a dedicated user to run the software you're installing, which is not the case. As such, I prefer to use a specific file that I use only when needed.
+After the code has been downloaded, we need to create a file that can be used to setup the environment every time we want to make use of PTAA. The rbenv documentation instructs one to use the `.bashrc` file. This works well when you have a dedicated user to run the software you're installing, which is not the case. As such, I prefer to use a specific file that I use only when needed.
 
-{{< alert class="warning" >}}Note that the environment file adds <code>/usr/lib/postgresql/11/bin</code> to the <code>PATH</code> variable as Metasploit <code>msfdb</code> utility makes use of <code>pg_ctl</code>.{{< /alert >}}
+{{< alert class="warning" >}}Note that the environment file adds `/usr/lib/postgresql/11/bin` to the `PATH` variable as Metasploit `msfdb` utility makes use of `pg_ctl`.{{< /alert >}}
 
 {{< gist serializingme e7010a60207fe8003eea0dc584150901 "environment.sh" >}}
 
@@ -55,7 +55,7 @@ Finally install the Ruby gems needed by Metasploit using [bundler][4] and setup 
 
 {{< alert class="danger" >}}You'll probably want to skip the database initialization command if you already make use of Metasploit's database since you may end up deleting all the loot you have acquired and stored in the already existing database.{{< /alert >}}
 
-{{< alert >}}Make sure the user you are using to execute the <code>msfdb</code> utility is in the <code>postgres</code> group, otherwise it will fail.{{< /alert >}}
+{{< alert >}}Make sure the user you are using to execute the `msfdb` utility is in the `postgres` group, otherwise it will fail.{{< /alert >}}
 
 {{< gist serializingme e7010a60207fe8003eea0dc584150901 "metasploit-setup.sh" >}}
 

@@ -34,8 +34,7 @@ The first step is to replace the location section of the server block that liste
 
 Next we need to configure Nginx to listen locally for the decrypted traffic and to pass it to PHP.
 
-{{< alert class="warning" >}}The WordPress installation will need to be configured for a reverse proxy environment.{{< /alert >}}
-{{< alert class="warning" >}}Paths may need to be adjusted depending on the reader specific WordPress installation.{{< /alert >}}
+{{< alert class="warning" >}}The WordPress installation will need to be configured for a reverse proxy environment and paths may need to be adjusted depending on the reader specific WordPress installation.{{< /alert >}}
 
 {{< gist serializingme 53526694f2876948d1af "internal-server.conf" >}}
 
