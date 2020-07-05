@@ -199,14 +199,14 @@ It&#39;s Me, FireEye!
 
 <p>With this idea in mind, I developed another small utility that did just that. Suffice to say it was successful! The driver could be detected and not a single alert was triggered :D</p><h3 id="disclosure-timeline">Disclosure Timeline</h3>
           <ul><li>
-      2018-11-23:&nbsp;Reported to FireEye</li><li>
-      2018-11-26:&nbsp;FireEye acknowledged the report and deployed a content update to fix it. I asked if it was ok to publish the post.</li><li>
-      2018-11-27:&nbsp;FireEye's research and engineering team took a closer look into the reported issue and asked for a 90 days grace period to implement additional protections. I extended the grace period 4 days, giving FireEye exactly 90 days starting from November 27<sup>th</sup>, instead of the date of first reporting the issue (November 23<sup>rd</sup>).</li><li>
-      2019-01-27:&nbsp;Reminded FireEye that the grace period would be over in a month.</li><li>
-      2019-01-30:&nbsp;FireEye will release a version with additional protections for this type of evasion on February, 20<sup>th</sup> and they're ok with the public release after this date. I will follow the original public release schedule giving extra time for FireEye's customers to update.</li><li>
-      2019-02-26:&nbsp;FireEye contacted me letting me know that the customer adoption of the new version has been good so far.</li><li>
-      2019-02-27:&nbsp;Released details through this blog post (94 days after reporting it)</li></ul>
-          <div id="disclosure-vis"></div></div>
+        2018-11-23:&nbsp;Reported to FireEye</li><li>
+        2018-11-26:&nbsp;FireEye acknowledged the report and deployed a content update to fix it. I asked if it was ok to publish the post.</li><li>
+        2018-11-27:&nbsp;FireEye's research and engineering team took a closer look into the reported issue and asked for a 90 days grace period to implement additional protections. I extended the grace period 4 days, giving FireEye exactly 90 days starting from November 27<sup>th</sup>, instead of the date of first reporting the issue (November 23<sup>rd</sup>).</li><li>
+        2019-01-27:&nbsp;Reminded FireEye that the grace period would be over in a month.</li><li>
+        2019-01-30:&nbsp;FireEye will release a version with additional protections for this type of evasion on February, 20<sup>th</sup> and they're ok with the public release after this date. I will follow the original public release schedule giving extra time for FireEye's customers to update.</li><li>
+        2019-02-26:&nbsp;FireEye contacted me letting me know that the customer adoption of the new version has been good so far.</li><li>
+        2019-02-27:&nbsp;Released details through this blog post (94 days after reporting it)</li></ul>
+          <div id="disclosure-vis" class="pb-4"></div></div>
       </div>
       <div class="card-footer">
 <span><i class="fas fa-calendar-alt"></i>&nbsp;</span>February 27, 2019&nbsp;&nbsp;<br/>
@@ -426,19 +426,21 @@ It&#39;s Me, FireEye!
 <script src="https://www.serializing.me/js/fontawesome-solid.min.js"></script>
 <script src="https://www.serializing.me/js/fontawesome-brands.min.js"></script>
 <script src="https://www.serializing.me/js/fontawesome.min.js"></script><script src="https://www.serializing.me/js/moment.min.js"></script>
-<script src="https://www.serializing.me/js/vis-data.min.js"></script><script src="https://www.serializing.me/js/vis-timeline-graph2d.min.js"></script>
+<script src="https://www.serializing.me/js/vis-data.min.js"></script>
+   
+<script src="https://www.serializing.me/js/vis-timeline-graph2d.min.js"></script>
 <script>
   $(function() {
-    var items = new vis.DataSet([{id: 'F', start: '2018-11-23', end: '2018-12-23', content: '30 days', type: 'background', className: 'bg-first text-dark'},{id: 'S', start: '2018-12-23', end: '2019-01-23', content: '60 days', type: 'background', className: 'bg-second text-dark'},{id: 'T', start: '2019-01-23', end: '2019-02-23', content: '90 days', type: 'background', className: 'bg-third text-dark'},{id: 'E', start: '2019-02-23', end: '2019-02-27', content: '\x2b4 days', type: 'background', className: 'bg-forth text-dark'},{ id: '1', start: '2018-11-23', content: 'Reported to FireEye' },{ id: '2', start: '2018-11-26', content: 'FireEye acknowledged report' },{ id: '3', start: '2018-11-27', content: 'Grace period extension' },{ id: '4', start: '2019-01-27', content: 'Reminded FireEye' },{ id: '5', start: '2019-01-30', content: 'FireEye on schedule' },{ id: '6', start: '2019-02-26', content: 'Customer adoption' },{ id: '7', start: '2019-02-27', content: 'Public release' },]);
-
-    var container = document.getElementById('disclosure-vis');
-    var options = {
+    
+    new vis.Timeline(document.getElementById('disclosure-vis'), new vis.DataSet([
+      {id: 'F', start: '2018-11-23', end: '2018-12-23', content: '30 days', type: 'background', className: 'bg-first text-dark'},{id: 'S', start: '2018-12-23', end: '2019-01-23', content: '60 days', type: 'background', className: 'bg-second text-dark'},{id: 'T', start: '2019-01-23', end: '2019-02-23', content: '90 days', type: 'background', className: 'bg-third text-dark'},{id: 'E', start: '2019-02-23', end: '2019-02-27', content: '\x2b4 days', type: 'background', className: 'bg-forth text-dark'},{ id: '1', start: '2018-11-23', content: 'Reported to FireEye' },{ id: '2', start: '2018-11-26', content: 'FireEye acknowledged report' },{ id: '3', start: '2018-11-27', content: 'Grace period extension' },{ id: '4', start: '2019-01-27', content: 'Reminded FireEye' },{ id: '5', start: '2019-01-30', content: 'FireEye on schedule' },{ id: '6', start: '2019-02-26', content: 'Customer adoption' },{ id: '7', start: '2019-02-27', content: 'Public release' },]), {
       editable: false
-    };
-
-    var timeline = new vis.Timeline(container, items, options);
+    });
+    
   });
-</script><script src="https://www.serializing.me/js/serializingme.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-37334123-2"></script>
+</script>
+  
+  <script src="https://www.serializing.me/js/serializingme.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-37334123-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}

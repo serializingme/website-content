@@ -209,15 +209,15 @@ Frontdoor to the Technicolor 7210
 
 <p>Hope this has been interesting and insightful!</p><h3 id="disclosure-timeline">Disclosure Timeline</h3>
           <ul><li>
-      2018-06-24:&nbsp;First reported issues to Technicolor</li><li>
-      2018-06-24:&nbsp;Technicolor’s security team acknowledged receipt of the report</li><li>
-      2018-07-10:&nbsp;Asked for an update</li><li>
-      2018-09-06:&nbsp;Asked for an update</li><li>
-      2018-09-07:&nbsp;Technicolor’s security theme acknowledged the vulnerability and let me know that they’re in the process of fixing it</li><li>
-      2018-09-07:&nbsp;Informed Technicolor’s security team that I will continue to withhold disclosure and suggested a possible fix for this flaw and for a newly discovered way to exploit a previously reported RCE</li><li>
-      2018-10-08:&nbsp;Let Technicolor team know I had published the post on how I reversed engineer the firmware, asked if a CVE had been assigned and reminded that the 90 [sic] day grace period will end on October 24th</li><li>
-      2018-10-24:&nbsp;Released details through this blog post (120 days after reporting it)</li></ul>
-          <div id="disclosure-vis"></div></div>
+        2018-06-24:&nbsp;First reported issues to Technicolor</li><li>
+        2018-06-24:&nbsp;Technicolor’s security team acknowledged receipt of the report</li><li>
+        2018-07-10:&nbsp;Asked for an update</li><li>
+        2018-09-06:&nbsp;Asked for an update</li><li>
+        2018-09-07:&nbsp;Technicolor’s security theme acknowledged the vulnerability and let me know that they’re in the process of fixing it</li><li>
+        2018-09-07:&nbsp;Informed Technicolor’s security team that I will continue to withhold disclosure and suggested a possible fix for this flaw and for a newly discovered way to exploit a previously reported RCE</li><li>
+        2018-10-08:&nbsp;Let Technicolor team know I had published the post on how I reversed engineer the firmware, asked if a CVE had been assigned and reminded that the 90 [sic] day grace period will end on October 24th</li><li>
+        2018-10-24:&nbsp;Released details through this blog post (120 days after reporting it)</li></ul>
+          <div id="disclosure-vis" class="pb-4"></div></div>
       </div>
       <div class="card-footer">
 <span><i class="fas fa-calendar-alt"></i>&nbsp;</span>October 23, 2018&nbsp;&nbsp;<br/>
@@ -437,19 +437,21 @@ Frontdoor to the Technicolor 7210
 <script src="https://www.serializing.me/js/fontawesome-solid.min.js"></script>
 <script src="https://www.serializing.me/js/fontawesome-brands.min.js"></script>
 <script src="https://www.serializing.me/js/fontawesome.min.js"></script><script src="https://www.serializing.me/js/moment.min.js"></script>
-<script src="https://www.serializing.me/js/vis-data.min.js"></script><script src="https://www.serializing.me/js/vis-timeline-graph2d.min.js"></script>
+<script src="https://www.serializing.me/js/vis-data.min.js"></script>
+   
+<script src="https://www.serializing.me/js/vis-timeline-graph2d.min.js"></script>
 <script>
   $(function() {
-    var items = new vis.DataSet([{id: 'F', start: '2018-06-24', end: '2018-07-24', content: '30 days', type: 'background', className: 'bg-first text-dark'},{id: 'S', start: '2018-07-24', end: '2018-08-24', content: '60 days', type: 'background', className: 'bg-second text-dark'},{id: 'T', start: '2018-08-24', end: '2018-09-24', content: '90 days', type: 'background', className: 'bg-third text-dark'},{ id: '1', start: '2018-06-24', content: 'First reported issues to Technicolor' },{ id: '2', start: '2018-06-24', content: 'Report acknowledged' },{ id: '3', start: '2018-07-10', content: 'Asked for an update' },{ id: '4', start: '2018-09-06', content: 'Asked for an update' },{ id: '5', start: '2018-09-07', content: 'Vulnerability acknowledged' },{ id: '6', start: '2018-09-07', content: 'Continue to withhold disclosure' },{ id: '7', start: '2018-10-08', content: 'Asked for an update' },{ id: '8', start: '2018-10-24', content: 'Public release' },]);
-
-    var container = document.getElementById('disclosure-vis');
-    var options = {
+    
+    new vis.Timeline(document.getElementById('disclosure-vis'), new vis.DataSet([
+      {id: 'F', start: '2018-06-24', end: '2018-07-24', content: '30 days', type: 'background', className: 'bg-first text-dark'},{id: 'S', start: '2018-07-24', end: '2018-08-24', content: '60 days', type: 'background', className: 'bg-second text-dark'},{id: 'T', start: '2018-08-24', end: '2018-09-24', content: '90 days', type: 'background', className: 'bg-third text-dark'},{ id: '1', start: '2018-06-24', content: 'First reported issues to Technicolor' },{ id: '2', start: '2018-06-24', content: 'Report acknowledged' },{ id: '3', start: '2018-07-10', content: 'Asked for an update' },{ id: '4', start: '2018-09-06', content: 'Asked for an update' },{ id: '5', start: '2018-09-07', content: 'Vulnerability acknowledged' },{ id: '6', start: '2018-09-07', content: 'Continue to withhold disclosure' },{ id: '7', start: '2018-10-08', content: 'Asked for an update' },{ id: '8', start: '2018-10-24', content: 'Public release' },]), {
       editable: false
-    };
-
-    var timeline = new vis.Timeline(container, items, options);
+    });
+    
   });
-</script><script src="https://www.serializing.me/js/serializingme.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-37334123-2"></script>
+</script>
+  
+  <script src="https://www.serializing.me/js/serializingme.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-37334123-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}

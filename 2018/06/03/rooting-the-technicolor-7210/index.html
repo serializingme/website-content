@@ -230,21 +230,21 @@ Rooting the Technicolor 7210
 <p>I was quite suprised at the specifications of the NAS part of the router. With the CPU it boasts amount of available memory and storage, there is the possibility to run some more software on it (e.g. VPN, Torrent, etc.) If one is wiling to <a href="https://github.com/tch-opensrc/" title="Technicolor open source repository for TC7210/TC7230 models">cross-compile</a> them.</p>
 <p>Hope this has been interesting and insightful!</p><h3 id="disclosure-timeline">Disclosure Timeline</h3>
           <ul><li>
-      2016-12-02:&nbsp;First reported issues to Ziggo</li><li>
-      2016-12-09:&nbsp;Asked for an update</li><li>
-      2016-12-12:&nbsp;Received reply confirming the bugs, and that the first and third bug were already fixed in next modem firmware. I confirmed the dates for coordinated disclosure, and agreed to test the beta of the new firmware</li><li>
-      2016-12-16:&nbsp;Received information that the beta firmware was ready</li><li>
-      2016-12-17:&nbsp;Installed the beta firmware but the modem malfunctioned</li><li>
-      2016-12-19:&nbsp;The malfunction was fixed and I was able to confirm that the third bug (RCE) had been fixed while the two first bugs hadn't.</li><li>
-      2017-01-17:&nbsp;Asked for an update</li><li>
-      2017-02-01:&nbsp;Received update "(...) issues are logged by Technicolor and will be further investigated and will be resolved in the final release. (...) A broad indication  will be Q1 2017. As soon as we have news we come back to you, you hear nothing remember us please"</li><li>
-      2017-02-07:&nbsp;Requested the router to be reverted to the latest stable version</li><li>
-      2017-02-08:&nbsp;Modem reverted back to the original firmware</li><li>
-      2017-08-08:&nbsp;Asked for an update on  and explained that the details were going to be released as more than six months had passed, got no reply</li><li>
-      2018-06-03:&nbsp;Released details through this blog post</li><li>
-      2018-06-04:&nbsp;Technicolor contacted me requesting further assurance that the bugs had been properly fixed and to contact them as well for future bugs I might find.</li><li>
-      2018-06-04:&nbsp;Ziggo contacted me requesting further assurance that the bugs had been properly fixed and apologized for not responding</li></ul>
-          <div id="disclosure-vis"></div></div>
+        2016-12-02:&nbsp;First reported issues to Ziggo</li><li>
+        2016-12-09:&nbsp;Asked for an update</li><li>
+        2016-12-12:&nbsp;Received reply confirming the bugs, and that the first and third bug were already fixed in next modem firmware. I confirmed the dates for coordinated disclosure, and agreed to test the beta of the new firmware</li><li>
+        2016-12-16:&nbsp;Received information that the beta firmware was ready</li><li>
+        2016-12-17:&nbsp;Installed the beta firmware but the modem malfunctioned</li><li>
+        2016-12-19:&nbsp;The malfunction was fixed and I was able to confirm that the third bug (RCE) had been fixed while the two first bugs hadn't.</li><li>
+        2017-01-17:&nbsp;Asked for an update</li><li>
+        2017-02-01:&nbsp;Received update "(...) issues are logged by Technicolor and will be further investigated and will be resolved in the final release. (...) A broad indication  will be Q1 2017. As soon as we have news we come back to you, you hear nothing remember us please"</li><li>
+        2017-02-07:&nbsp;Requested the router to be reverted to the latest stable version</li><li>
+        2017-02-08:&nbsp;Modem reverted back to the original firmware</li><li>
+        2017-08-08:&nbsp;Asked for an update on  and explained that the details were going to be released as more than six months had passed, got no reply</li><li>
+        2018-06-03:&nbsp;Released details through this blog post</li><li>
+        2018-06-04:&nbsp;Technicolor contacted me requesting further assurance that the bugs had been properly fixed and to contact them as well for future bugs I might find.</li><li>
+        2018-06-04:&nbsp;Ziggo contacted me requesting further assurance that the bugs had been properly fixed and apologized for not responding</li></ul>
+          <div id="disclosure-vis" class="pb-4"></div></div>
       </div>
       <div class="card-footer">
 <span><i class="fas fa-calendar-alt"></i>&nbsp;</span>June 3, 2018&nbsp;&nbsp;<br/>
@@ -464,19 +464,21 @@ Rooting the Technicolor 7210
 <script src="https://www.serializing.me/js/fontawesome-solid.min.js"></script>
 <script src="https://www.serializing.me/js/fontawesome-brands.min.js"></script>
 <script src="https://www.serializing.me/js/fontawesome.min.js"></script><script src="https://www.serializing.me/js/moment.min.js"></script>
-<script src="https://www.serializing.me/js/vis-data.min.js"></script><script src="https://www.serializing.me/js/vis-timeline-graph2d.min.js"></script>
+<script src="https://www.serializing.me/js/vis-data.min.js"></script>
+   
+<script src="https://www.serializing.me/js/vis-timeline-graph2d.min.js"></script>
 <script>
   $(function() {
-    var items = new vis.DataSet([{id: 'F', start: '2016-12-02', end: '2017-01-02', content: '30 days', type: 'background', className: 'bg-first text-dark'},{id: 'S', start: '2017-01-02', end: '2017-02-02', content: '60 days', type: 'background', className: 'bg-second text-dark'},{id: 'T', start: '2017-02-02', end: '2017-03-02', content: '90 days', type: 'background', className: 'bg-third text-dark'},{ id: '1', start: '2016-12-02', content: 'First reported issues to Ziggo' },{ id: '2', start: '2016-12-09', content: 'Asked for an update' },{ id: '3', start: '2016-12-12', content: 'Ziggo confirmed issues' },{ id: '4', start: '2016-12-16', content: 'Beta firmware ready' },{ id: '5', start: '2016-12-17', content: 'Firmware malfunction' },{ id: '6', start: '2016-12-19', content: 'Malfunction fixed' },{ id: '7', start: '2017-01-17', content: 'Asked for an update' },{ id: '8', start: '2017-02-01', content: 'Received update' },{ id: '9', start: '2017-02-07', content: 'Requested firmware to be reverted' },{ id: '10', start: '2017-02-08', content: 'Firmware was reverted' },{ id: '11', start: '2017-08-08', content: 'Asked for an update' },{ id: '12', start: '2018-06-03', content: 'Public release' },{ id: '13', start: '2018-06-04', content: 'Technicolor reached out' },{ id: '14', start: '2018-06-04', content: 'Ziggo reached out' },]);
-
-    var container = document.getElementById('disclosure-vis');
-    var options = {
+    
+    new vis.Timeline(document.getElementById('disclosure-vis'), new vis.DataSet([
+      {id: 'F', start: '2016-12-02', end: '2017-01-02', content: '30 days', type: 'background', className: 'bg-first text-dark'},{id: 'S', start: '2017-01-02', end: '2017-02-02', content: '60 days', type: 'background', className: 'bg-second text-dark'},{id: 'T', start: '2017-02-02', end: '2017-03-02', content: '90 days', type: 'background', className: 'bg-third text-dark'},{ id: '1', start: '2016-12-02', content: 'First reported issues to Ziggo' },{ id: '2', start: '2016-12-09', content: 'Asked for an update' },{ id: '3', start: '2016-12-12', content: 'Ziggo confirmed issues' },{ id: '4', start: '2016-12-16', content: 'Beta firmware ready' },{ id: '5', start: '2016-12-17', content: 'Firmware malfunction' },{ id: '6', start: '2016-12-19', content: 'Malfunction fixed' },{ id: '7', start: '2017-01-17', content: 'Asked for an update' },{ id: '8', start: '2017-02-01', content: 'Received update' },{ id: '9', start: '2017-02-07', content: 'Requested firmware to be reverted' },{ id: '10', start: '2017-02-08', content: 'Firmware was reverted' },{ id: '11', start: '2017-08-08', content: 'Asked for an update' },{ id: '12', start: '2018-06-03', content: 'Public release' },{ id: '13', start: '2018-06-04', content: 'Technicolor reached out' },{ id: '14', start: '2018-06-04', content: 'Ziggo reached out' },]), {
       editable: false
-    };
-
-    var timeline = new vis.Timeline(container, items, options);
+    });
+    
   });
-</script><script src="https://www.serializing.me/js/serializingme.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-37334123-2"></script>
+</script>
+  
+  <script src="https://www.serializing.me/js/serializingme.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-37334123-2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
