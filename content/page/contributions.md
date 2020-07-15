@@ -21,6 +21,7 @@ Over time, I have contributed to some Open Source Software projects. What follow
 
 1. Integration between stoQ Framework and LIEF ([#22][18]).
 1. Updated integration between stoQ Framework and LIEF to the latest API ([#44][23]).
+1. Fix LIEF plugin usage of stoQ's configuration API ([#107][24]).
 
 ### Pafish
 
@@ -60,7 +61,7 @@ Change log can be found [here][17].
 1. Created the `smtp-enum-users.nse`, which attempts to find user account names over SMTP by brute force testing using RCPT, VRFY, and EXPN tests.
 1. Created the `http-vuln-cve2011-3192.nse` that detects a denial of service vulnerability in the way the Apache web server handles requests for multiple overlapping/simple ranges of a page.
 1. Made `http-wordpress-enum.nse` able to get names of users who have no posts.
-1. Added path argument to the `http-auth.nse` script and update the script to use stdnse.format_output.
+1. Added path argument to the `http-auth.nse` script and update the script to use `stdnse.format_output`.
 1. Added new fingerprints to `http-enum.nse` for Subversion, CVS and Apache Archiva.
 1. Applied patch to `snmp-brute.nse` that solves problems with handling errors that occur during community list file parsing.
 1. Added new services and the ATTACK category to the dnsbl script.
@@ -89,3 +90,4 @@ Change log can be found [here][17].
 [21]: https://github.com/cea-sec/ivre/pull/634 "GitHub Pull Request"
 [22]: https://github.com/cea-sec/ivre/pull/635 "GitHub Pull Request"
 [23]: https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/44 "GitHub Pull Request"
+[24]: https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/107 "GitHub Pull Request"
