@@ -29,7 +29,7 @@
   
   
   
-<meta itemprop="wordCount" content="353" />
+<meta itemprop="wordCount" content="362" />
   
 
 
@@ -160,6 +160,7 @@ Contributions
 <ol>
 <li>Integration between stoQ Framework and LIEF (<a href="https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/22" title="GitHub Pull Request">#22</a>).</li>
 <li>Updated integration between stoQ Framework and LIEF to the latest API (<a href="https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/44" title="GitHub Pull Request">#44</a>).</li>
+<li>Fix LIEF plugin usage of stoQ&rsquo;s configuration API (<a href="https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/107" title="GitHub Pull Request">#107</a>).</li>
 </ol>
 <h3 id="pafish">Pafish</h3>
 <ol>
@@ -198,7 +199,7 @@ Contributions
 <li>Created the <code>smtp-enum-users.nse</code>, which attempts to find user account names over SMTP by brute force testing using RCPT, VRFY, and EXPN tests.</li>
 <li>Created the <code>http-vuln-cve2011-3192.nse</code> that detects a denial of service vulnerability in the way the Apache web server handles requests for multiple overlapping/simple ranges of a page.</li>
 <li>Made <code>http-wordpress-enum.nse</code> able to get names of users who have no posts.</li>
-<li>Added path argument to the <code>http-auth.nse</code> script and update the script to use stdnse.format_output.</li>
+<li>Added path argument to the <code>http-auth.nse</code> script and update the script to use <code>stdnse.format_output</code>.</li>
 <li>Added new fingerprints to <code>http-enum.nse</code> for Subversion, CVS and Apache Archiva.</li>
 <li>Applied patch to <code>snmp-brute.nse</code> that solves problems with handling errors that occur during community list file parsing.</li>
 <li>Added new services and the ATTACK category to the dnsbl script.</li>
