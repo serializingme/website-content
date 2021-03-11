@@ -57,15 +57,6 @@
     </item>
     
     <item>
-      <title>Red Team</title>
-      <link>https://www.serializing.me/categories/red-team/</link>
-      <pubDate>Mon, 29 Apr 2019 20:30:00 +0000</pubDate>
-      
-      <guid>https://www.serializing.me/categories/red-team/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Malware</title>
       <link>https://www.serializing.me/categories/malware/</link>
       <pubDate>Wed, 27 Feb 2019 12:00:00 +0000</pubDate>
@@ -147,29 +138,11 @@
     </item>
     
     <item>
-      <title>Game</title>
-      <link>https://www.serializing.me/categories/game/</link>
-      <pubDate>Sat, 23 Jan 2016 22:19:09 +0000</pubDate>
-      
-      <guid>https://www.serializing.me/categories/game/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Bug Bounty</title>
       <link>https://www.serializing.me/categories/bug-bounty/</link>
       <pubDate>Thu, 12 Nov 2015 17:47:33 +0000</pubDate>
       
       <guid>https://www.serializing.me/categories/bug-bounty/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>IDPS</title>
-      <link>https://www.serializing.me/categories/idps/</link>
-      <pubDate>Wed, 12 Aug 2015 18:24:28 +0000</pubDate>
-      
-      <guid>https://www.serializing.me/categories/idps/</guid>
       <description></description>
     </item>
     
