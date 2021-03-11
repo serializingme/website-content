@@ -36,6 +36,10 @@ Over time, I have contributed to some Open Source Software projects. What follow
 
 1. Added support to prepending a path to a transversal ([#3][8]).
 
+### bash-portscanner
+
+1. Some fixes and improvements ([#1][25])
+
 ### Suricata
 
 1. Cleaned up repeated code ([#482][9]).
@@ -91,3 +95,4 @@ Change log can be found [here][17].
 [22]: https://github.com/cea-sec/ivre/pull/635 "GitHub Pull Request"
 [23]: https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/44 "GitHub Pull Request"
 [24]: https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/107 "GitHub Pull Request"
+[25]: https://github.com/astryzia/bash-portscanner/pull/1 "GitHub Pull Request"
