@@ -1,10 +1,10 @@
 +++
 banner = "/uploads/2019/04/msfconsole.png"
-categories = [ "Red Team", "Linux", "Configuration" ]
+categories = [ "Linux", "Configuration" ]
 date = "2019-04-29T20:30:00+00:00"
 excerpt = "How to simulate Advanced Persistent Threats (APT) using Metasploit and MITRE's ATT&CK framework..."
 format = "post"
-tags = [ "Metasploit", "ATT&CK" ]
+tags = [ "Red Team", "Metasploit", "ATT&CK" ]
 title = "Simulating APTs For Fun"
 
 +++

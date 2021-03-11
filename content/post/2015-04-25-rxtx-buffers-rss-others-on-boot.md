@@ -1,6 +1,6 @@
 +++
 banner = "/uploads/2015/04/ifup-local.png"
-categories = [ "Configuration", "IDPS", "Linux", "Network" ]
+categories = [ "Configuration", "Linux", "Network" ]
 date = "2015-04-25T16:00:30+00:00"
 excerpt = "After installing Suricata, some fine tuning of the network interface(s) used in the traffic capture is required to ensure the best performance of the new IDPS installation..."
 format = "post"
