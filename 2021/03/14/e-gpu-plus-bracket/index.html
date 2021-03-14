@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#" class="bg-dark">
+  <head>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#ffffff" />
+
+
+<meta property="title" content="e-GPU Plus Bracket - SerializingMe" />
+
+
+  
+<meta name="description" content="How I went about adding a bracket and a PCI-e extender to a e-GPU..." />
+  
+  
+    
+    
+<meta name="keywords" content="Razer,e-GPU" />
+    
+  
+
+
+<meta name="author" content="Duarte Silva" />
+
+
+
+<meta itemprop="title" content="e-GPU Plus Bracket - SerializingMe" />
+
+
+  
+<meta itemprop="description" content="How I went about adding a bracket and a PCI-e extender to a e-GPU..." />
+  
+  
+<meta itemprop="image" content="https://www.serializing.me/uploads/2021/03/e-gpu-plus-bracket.png" />
+  
+  
+    
+    
+<meta itemprop="keywords" content="Razer,e-GPU" />
+    
+  
+  
+<meta itemprop="wordCount" content="1256" />
+  
+
+
+
+<meta property="og:title" content="e-GPU Plus Bracket - SerializingMe" />
+
+
+  
+<meta property="og:type" content="article" />
+  
+  
+<meta property="og:description" content="How I went about adding a bracket and a PCI-e extender to a e-GPU..." />
+  
+  
+<meta property="og:image" content="https://www.serializing.me/uploads/2021/03/e-gpu-plus-bracket.png" />
+  
+
+
+<meta property="og:url" content="https://www.serializing.me/2021/03/14/e-gpu-plus-bracket/" />
+
+
+<meta property="og:site_name" content="SerializingMe" />
+
+
+
+  
+<meta name="twitter:card" content="summary_large_image" />
+  
+
+
+<meta name="twitter:site" content="@serializingme" />
+<meta name="twitter:creator" content="@serializingme" />
+
+
+<meta name="twitter:title" content="e-GPU Plus Bracket - SerializingMe" />
+
+
+<meta name="twitter:url" content="https://www.serializing.me/2021/03/14/e-gpu-plus-bracket/" />
+
+
+  
+<meta name="twitter:description" content="How I went about adding a bracket and a PCI-e extender to a e-GPU..." />
+  
+  
+<meta name="twitter:image" content="https://www.serializing.me/uploads/2021/03/e-gpu-plus-bracket.png" />
+  
+
+
+<title>e-GPU Plus Bracket - SerializingMe</title>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="https://www.serializing.me/manifest.json">
+<link rel="mask-icon" href="https://www.serializing.me/safari-pinned-tab.svg" color="#5bbad5">
+
+<link href="https://www.serializing.me/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Combined Feed" />
+<link href="https://www.serializing.me/page/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Pages Feed" />
+<link href="https://www.serializing.me/post/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Posts Feed" />
+<link href="https://www.serializing.me/project/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Projects Feed" />
+
+<link href="https://www.serializing.me/css/bootstrap-reboot.min.css" rel="stylesheet" />
+<link href="https://www.serializing.me/css/bootstrap.min.css" rel="stylesheet" /><link href="https://www.serializing.me/css/serializingme.min.css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <header>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="https://www.serializing.me/">
+      <img src="/brand.png" width="30" height="30" class="d-inline-block align-top" /> SerializingMe
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto">
+
+
+        <li class="nav-item "><a class="nav-link" title="Blog" href="https://www.serializing.me/post/">Blog</a></li>
+
+        <li class="nav-item "><a class="nav-link" title="Projects" href="https://www.serializing.me/project/">Projects</a></li>
+
+        <li class="nav-item "><a class="nav-link" title="Contributions" href="https://www.serializing.me/contributions/">Contributions</a></li>
+
+        <li class="nav-item "><a class="nav-link" title="About" href="https://www.serializing.me/about/">About</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<noscript>
+  <div class="container mt-2 mb-0">
+    <div class="alert alert-danger">JavaScript is disabled, this site will not work properly without it.</div>
+  </div>
+</noscript>
+
+    </header>
+    <section class="container">
+
+
+  <div class="row">
+  
+  <div class="col-lg-8">
+    
+    <div class="card mb-4 my-4"><img class="card-img-top" src="/uploads/2021/03/e-gpu-plus-bracket.png" alt="e-GPU Plus Bracket" /><div class="card-body">
+        <h2 class="card-title">
+e-GPU Plus Bracket
+        </h2>
+        <div class="text-justify">
+<p>Razer Core X Chroma is an excellent device, but its functionalities didn&rsquo;t fully cover my use case. As such, I decided to add a bracket and a PCI-e extender to the mix.</p>
+<div class="embed-responsive embed-responsive-16by9 mb-3">
+  <iframe src="https://www.youtube.com/embed/vx_32s0up88" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>I started writing this blog post in late November 2020. Since then, I have found a cleaner (software only) way to fulfill my use case and as such, I no longer make use of this hack. It did do serve me well and without any performance issues while it was in place.</div>
+<div class="alert alert-danger"><span><i class="fas fa-minus-circle"></i>&nbsp;</span>I will not take any responsibility for any damage that may result from one performing the modifications as described in this blog post. One following these instructions will do so at their own risk.</div>
+<h3 id="introduction">Introduction</h3>
+<p>Long gone are the days where I had a desktop and a laptop computer. One for gamming and work, and the other for work alone while away from home. When time came to upgrade my setup, I decided I didn&rsquo;t want to have to keep syncing files (e.g., virtual machines) in between both devices.</p>
+<p>Yet, I also didn&rsquo;t want to lose the possibility to play games. After establishing requirements and budget, I decided to invest in a Dell XPS 15 (7590) laptop and a Razer Core X Chroma (e-GPU). While the Core X Chroma is a great device, it isn&rsquo;t without its flaws. One such flaws is the lack of properly working USB ports - which has been extensively documented in many forums and reviews - and the other (not as highlighted / known) the usage of an Asix based (Ethernet to USB) network adapter.</p>
+<p>To be fair, there is nothing wrong with the Ethernet adapter, the problem is that I do make extensive use of virtual machines while researching / developing. Virtual machines, that need to be in different segments of my network and the lack of multiple VLAN support by the Core X Chroma Ethernet adapter is a big problem for me.</p>
+<p>This is a problem specifically on Windows, which doesn&rsquo;t natively support multiple VLANs, and leaves it up to the drivers to implement this support which the Asix adapter driver does not. As such, with an Ethernet adapter that didn&rsquo;t cover my use case I needed to come up with a solution.</p>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>There are very few PCI-e and even less USB Ethernet adapters that provide Windows drivers with multiple VLAN support. Those are usually limited to adapters with either Intel or Realtek chipsets. I was able to identify that the Anker USB 3.1 Ethernet adapter makes use of a Realtek chipset that, through the use of a Realtek provided tool, allows one to create multiple interfaces in Windows for each VLAN needed.</div>
+<h3 id="razer-core-x-chroma">Razer Core X Chroma</h3>
+<p>The Razer Core X Chroma has a main board with two PCI-e slots. One is used for the GPU, and the other for the daughter board that provides the USB and Ethernet ports. Having two PCI-e slots is pretty good, the only problem being that the PCI-e slot for the daughter board was placed in a way that doesn&rsquo;t allow for slotting of standard following PCI-e cards.</p>
+<p>This means, that one cannot use that PCI-e slot to expand / change the e-GPU enclosure functionality by simply &ldquo;slapping&rdquo; an extra PCI-e card on. That got me thinking, what about those PCI-e extenders which are mostly used in crypto currencies mining? If that works one can simply place the PCI-e extender board somewhere and then connect the PCI-e device. And that is what I did.</p>
+<div class="text-center"><figure class="figure">
+    <a href="https://www.serializing.me/uploads/2021/03/riser-solo.png" title="PCI-e extender that I bought.">
+      <img class="figure-img img-fluid rounded" alt="PCI-e Extender" src="https://www.serializing.me/uploads/2021/03/riser-solo-500x375.png" />
+    </a><figcaption class="figure-caption text-center">PCI-e extender that I bought.</figcaption></figure></div>
+
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>By removing the daughter board, one will lose the ability to control the Chroma light effects as the controller seems to, either have a dependency on the daughter board to communicate with the host computer, or is all together located in the daughter board, not on the main board.</div>
+<h3 id="experimenting">Experimenting</h3>
+<p>Once the hardware arrived, both the PCI-e extender and PCI-e network card, the next obvious step was to experiment if this was actually going to work. I proceeded to open the e-GPU enclosure, remove both the GPU and the daughter board connect the extender, reconnect the GPU, and connect the new network card to the extender&rsquo;s board.</p>
+<div class="text-center"><figure class="figure">
+    <a href="https://www.serializing.me/uploads/2021/03/riser-connected.png" title="PCI-e extender connected to the daughter board slot.">
+      <img class="figure-img img-fluid rounded" alt="PCI-e Extender Connected" src="https://www.serializing.me/uploads/2021/03/riser-connected-500x375.png" />
+    </a><figcaption class="figure-caption text-center">PCI-e extender connected to the daughter board slot.</figcaption></figure></div>
+
+<p>After some reboots that did very little to make things (properly) work, I found that a BIOS reset to factory defaults was all that was needed. And henceforth, both the GPU and newly installed network card were detected! I was pretty happy with the results, and the only thing left to think about was how to do the final installation.</p>
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>I do not recommend using this hack to run multiple GPUs. The Thunderbolt 3 connection is already a bottleneck for one GPU let alone for two. I foresee that any performance gains from running two GPUs would be utterly negligible under these conditions. That being said, any PCI-e card that isn&rsquo;t so bandwidth intensive will probably work just fine.</div>
+<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>If one&rsquo;s GPU already makes use of the two PCI-e power connectors provided by the PSU, one will need a splitter in order to power the PCI-e extender as well.</div>
+<h3 id="the-bracket">The Bracket</h3>
+<p>After tinkering for a while on what would be the best way to &ldquo;permanently&rdquo; install the card I decided to make a bracket. The plan was to make use of the exhaust fan mounting holes to install the bracket. I have very little experience working with metal, so I chose aluminium as a base material for the bracket as it is generally cheap and easy to work with. The bill of materials for the bracket was:</p>
+<ul>
+<li>1x Aluminium right-angle profile (10mm x 10mm x 1,25mm, length of at least 330mm)</li>
+<li>1x Aluminium flat profile (10mm x 2mm, length of at least 400mm)</li>
+<li>1x Threaded rod (M4, length of around 200mm)</li>
+<li>4x Motherboard standoffs</li>
+<li>4x Hex screws (M4, length of 10mm)</li>
+<li>4x Motherboard mounting screws</li>
+<li>8x Washers (M4)</li>
+<li>12x Nuts (M4)</li>
+</ul>
+<p>I cut and drilled two pieces of flat profile and two pieces of right-angle profile with the dimensions as seen in the pictures below.</p>
+<p><div class="text-center"><figure class="figure">
+    <a href="https://www.serializing.me/uploads/2021/03/flat-profile.png" title="Flat profile dimensions and holes.">
+      <img class="figure-img img-fluid rounded" alt="Flat Profile" src="https://www.serializing.me/uploads/2021/03/flat-profile.png" />
+    </a><figcaption class="figure-caption text-center">Flat profile dimensions and holes.</figcaption></figure></div>
+
+<div class="text-center"><figure class="figure">
+    <a href="https://www.serializing.me/uploads/2021/03/right-angle-profile.png" title="Right-angle profile dimensions and holes.">
+      <img class="figure-img img-fluid rounded" alt="Right-Angle Profile" src="https://www.serializing.me/uploads/2021/03/right-angle-profile.png" />
+    </a><figcaption class="figure-caption text-center">Right-angle profile dimensions and holes.</figcaption></figure></div>
+</p>
+<p><div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>Drawings aren&rsquo;t completely to scale and the measurements shown are in millimetres.</div>
+<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>When drilling the two right angle profiles, make sure the standing edge on one profile is in the opposite position on the other.</div></p>
+<p>After cutting the metal profiles, I removed the e-GPU enclosure exhaust fan screws. Cut the threaded rod so it would have enough length to go through the fan, one flat profile, two washers, and screw the nuts into. Once that was done, I started getting the bracket together.</p>
+<div class="text-center"><figure class="figure">
+    <a href="https://www.serializing.me/uploads/2021/03/bracket-all-together.png" title="Bracket assembled all together.">
+      <img class="figure-img img-fluid rounded" alt="Bracket Assembled" src="https://www.serializing.me/uploads/2021/03/bracket-all-together.png" />
+    </a><figcaption class="figure-caption text-center">Bracket assembled all together.</figcaption></figure></div>
+
+<p>To do that, one has to get the profiles together using the M4 hex screws and M4 nuts (position 2), screw in the motherboard standoffs (position 1), install the PCI-e extender card, and get everything installed in the e-GPU using the threaded rod pieces (position 3).</p>
+<div class="alert alert-danger"><span><i class="fas fa-minus-circle"></i>&nbsp;</span>The nuts on the side of the exhaust mesh grill need to be as flush as possible with the rod. Otherwise one will risk damaging the inner side of the enclosure cover while putting it back together.</div>
+<h3 id="final-installation">Final Installation</h3>
+<p>So how does it look like? See for yourself in the photos below :D</p>
+<p><div class="text-center"><figure class="figure">
+    <a href="https://www.serializing.me/uploads/2021/03/riser-plus-bracket.png" title="Extender connected to the daughter board slot.">
+      <img class="figure-img img-fluid rounded" alt="Extender Connected" src="https://www.serializing.me/uploads/2021/03/riser-plus-bracket-500x375.png" />
+    </a><figcaption class="figure-caption text-center">Extender connected to the daughter board slot.</figcaption></figure></div>
+
+<div class="text-center"><figure class="figure">
+    <a href="https://www.serializing.me/uploads/2021/03/final-installation.png" title="Extender and GPU, both connected.">
+      <img class="figure-img img-fluid rounded" alt="Extender Connected" src="https://www.serializing.me/uploads/2021/03/final-installation-500x375.png" />
+    </a><figcaption class="figure-caption text-center">Extender and GPU, both connected.</figcaption></figure></div>
+</p>
+<p>The only thing missing was to add extra support for the PCI-e card so that it won&rsquo;t sag (hence the bigger overhang in the left side). Something that isn&rsquo;t covered here, left as an exercise to anyone doing this hack ;)</p>
+<p>Cheers!</p></div>
+      </div>
+      <div class="card-footer">
+<span><i class="fas fa-calendar-alt"></i>&nbsp;</span>March 14, 2021&nbsp;&nbsp;<br/>
+<span><i class="fas fa-folder-open"></i>&nbsp;</span><a href="https://www.serializing.me/categories/hardware-hacking/">Hardware Hacking</a>&nbsp;&nbsp;<br/>
+<span><i class="fas fa-tag"></i>&nbsp;</span><a href="https://www.serializing.me/tags/razer/">Razer</a>,&nbsp;<a href="https://www.serializing.me/tags/e-gpu/">e-GPU</a>
+      </div>
+    </div>
+    <ul class="pagination justify-content-center mb-4"><li class="page-item disabled">
+        <a href="/" class="page-link"><span><i class="fas fa-chevron-left"></i>&nbsp;</span>Newer</a>
+      </li><li class="page-item">
+    <a href="https://www.serializing.me/2020/03/29/bypass-all-the-gpos/" title="Bypass All The GPOs" class="page-link">Older<span>&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;</span></a>
+  </li></ul>
+  </div>
+  
+  <div class="col-md-4">
+    
+    <div class="card my-4">
+      <h5 class="card-header">Categories</h5>
+      <div class="card-body">
+        <div class="cloud">
+<a style="font-size: 1.1538461538461537em" href="https://www.serializing.me/categories/bug-bounty/" title="3 posts">bug-bounty</a>
+<a style="font-size: 1.2307692307692308em" href="https://www.serializing.me/categories/case-study/" title="4 posts">case-study</a>
+<a style="font-size: 1.4615384615384617em" href="https://www.serializing.me/categories/configuration/" title="7 posts">configuration</a>
+<a style="font-size: 1.0769230769230769em" href="https://www.serializing.me/categories/cve/" title="2 posts">cve</a>
+<a style="font-size: 1.1538461538461537em" href="https://www.serializing.me/categories/education/" title="3 posts">education</a>
+<a style="font-size: 1em" href="https://www.serializing.me/categories/encryption/" title="1 posts">encryption</a>
+<a style="font-size: 1.3076923076923077em" href="https://www.serializing.me/categories/exploit/" title="5 posts">exploit</a>
+<a style="font-size: 1em" href="https://www.serializing.me/categories/hardware-hacking/" title="1 posts">hardware-hacking</a>
+<a style="font-size: 1.1538461538461537em" href="https://www.serializing.me/categories/incident-response/" title="3 posts">incident-response</a>
+<a style="font-size: 1.7692307692307692em" href="https://www.serializing.me/categories/linux/" title="11 posts">linux</a>
+<a style="font-size: 1.3076923076923077em" href="https://www.serializing.me/categories/malware/" title="5 posts">malware</a>
+<a style="font-size: 1em" href="https://www.serializing.me/categories/memory-forensics/" title="1 posts">memory-forensics</a>
+<a style="font-size: 1.6923076923076923em" href="https://www.serializing.me/categories/network/" title="10 posts">network</a>
+<a style="font-size: 1.1538461538461537em" href="https://www.serializing.me/categories/reconnaissance/" title="3 posts">reconnaissance</a>
+<a style="font-size: 1.8461538461538463em" href="https://www.serializing.me/categories/reverse-engineering/" title="12 posts">reverse-engineering</a>
+<a style="font-size: 1.2307692307692308em" href="https://www.serializing.me/categories/virtualization/" title="4 posts">virtualization</a>
+<a style="font-size: 2em" href="https://www.serializing.me/categories/windows/" title="14 posts">windows</a>
+
+
+        </div>
+      </div>
+    </div>
+    
+    <div class="card my-4">
+      <h5 class="card-header">Tags</h5>
+      <div class="card-body">
+        <div class="cloud">
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/active-directory/" title="3 posts">active-directory</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/activobank/" title="1 posts">activobank</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/acunetix-wvs/" title="1 posts">acunetix-wvs</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/android/" title="1 posts">android</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/applocker/" title="2 posts">applocker</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/aruba-networks/" title="2 posts">aruba-networks</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/attck/" title="1 posts">attck</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/banco-popular/" title="1 posts">banco-popular</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/banco-portugues-de-investimento/" title="1 posts">banco-portugues-de-investimento</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/banking/" title="1 posts">banking</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/barclays/" title="1 posts">barclays</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/bios/" title="1 posts">bios</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/brute-force/" title="1 posts">brute-force</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/bugcrowd/" title="3 posts">bugcrowd</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/caixa-geral-de-depositos/" title="1 posts">caixa-geral-de-depositos</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/caixadirecta/" title="1 posts">caixadirecta</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/cheat/" title="1 posts">cheat</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/cisco-anyconnect/" title="2 posts">cisco-anyconnect</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/code-injection/" title="1 posts">code-injection</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/csharp/" title="1 posts">csharp</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/cuckoo-sandbox/" title="2 posts">cuckoo-sandbox</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/e-gpu/" title="1 posts">e-gpu</a>
+<a style="font-size: 1.75em" href="https://www.serializing.me/tags/emofishes/" title="4 posts">emofishes</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/emotions/" title="2 posts">emotions</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/fireeye/" title="3 posts">fireeye</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/gpo-bypass/" title="1 posts">gpo-bypass</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/group-policy-objects/" title="1 posts">group-policy-objects</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/honeypot/" title="1 posts">honeypot</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/hook-functions/" title="1 posts">hook-functions</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/hp/" title="1 posts">hp</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/hpqpswdd/" title="1 posts">hpqpswdd</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/hugo/" title="1 posts">hugo</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/ivre/" title="1 posts">ivre</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/lemp/" title="2 posts">lemp</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/metasploit/" title="1 posts">metasploit</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/millennium/" title="1 posts">millennium</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/novo-banco/" title="1 posts">novo-banco</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/paranoid-fish/" title="3 posts">paranoid-fish</a>
+<a style="font-size: 1.75em" href="https://www.serializing.me/tags/passwords/" title="4 posts">passwords</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/portuguese/" title="1 posts">portuguese</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/powascripts/" title="3 posts">powascripts</a>
+<a style="font-size: 1.75em" href="https://www.serializing.me/tags/powershell/" title="4 posts">powershell</a>
+<a style="font-size: 2em" href="https://www.serializing.me/tags/qemu/" title="5 posts">qemu</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/razer/" title="1 posts">razer</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/red-team/" title="1 posts">red-team</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/soho/" title="3 posts">soho</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/ssh/" title="1 posts">ssh</a>
+<a style="font-size: 2em" href="https://www.serializing.me/tags/suricata/" title="5 posts">suricata</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/technicolor/" title="3 posts">technicolor</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/titan-quest/" title="1 posts">titan-quest</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/tls/" title="3 posts">tls</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/tq-invincible/" title="1 posts">tq-invincible</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/virtualbox/" title="3 posts">virtualbox</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/volatility/" title="1 posts">volatility</a>
+<a style="font-size: 1.25em" href="https://www.serializing.me/tags/vpn/" title="2 posts">vpn</a>
+<a style="font-size: 1.5em" href="https://www.serializing.me/tags/wordpress/" title="3 posts">wordpress</a>
+<a style="font-size: 1em" href="https://www.serializing.me/tags/yara/" title="1 posts">yara</a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    </section>
+    <footer class="mt-4 bg-dark">
+<div class="container">
+  <div class="row text-center">
+  <div class="col-12 col-md my-4">
+    <ul class="list-inline">
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://twitter.com/serializingme" title="Twitter">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-twitter fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://www.twitch.tv/serializingme" title="Twitch">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-twitch fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://discord.gg/NS5qHT4" title="Discord">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-discord fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://www.youtube.com/c/serializingme" title="YouTube">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-youtube fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://github.com/serializingme" title="GitHub">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-github fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="https://bugcrowd.com/serializingme" title="Bugcrowd">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fas fa-bug fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a class="footer-link text-light" href="/feeds/" title="RSS">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fas fa-rss fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+    </ul>
+      <ul class="list-inline">
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-copyright"></i>&nbsp;</span><a class="footer-link text-light" href="/licensing/" title="Licensing">Licensing</a>
+    </li>
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-eye"></i>&nbsp;</span><a class="footer-link text-light" href="/privacy/" title="Privacy">Privacy</a>
+    </li>
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-shield-alt"></i>&nbsp;</span><a class="footer-link text-light" href="/security/" title="Security">Security</a>
+    </li>
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-envelope"></i>&nbsp;</span><a class="footer-link text-light" href="/contacts/" title="Contacts">Contacts</a>
+    </li>
+
+  </ul>
+  <small class="d-block mb-3 text-muted">&copy;&nbsp;2021&nbsp;Duarte Silva</small>
+  </div>
+</div>
+</div>
+
+    </footer>
+<script src="https://www.serializing.me/js/jquery.min.js"></script>
+<script src="https://www.serializing.me/js/bootstrap.min.js"></script>
+<script src="https://www.serializing.me/js/fontawesome-solid.min.js"></script>
+<script src="https://www.serializing.me/js/fontawesome-brands.min.js"></script>
+<script src="https://www.serializing.me/js/fontawesome.min.js"></script><script src="https://www.serializing.me/js/serializingme.min.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=UA-37334123-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-37334123-2');
+</script>
+  </body>
+</html>
