@@ -6,11 +6,7 @@
     <description>Recent content in AppLocker on SerializingMe</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Fri, 23 Sep 2016 20:33:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://www.serializing.me/tags/applocker/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 23 Sep 2016 20:33:00 +0000</lastBuildDate><atom:link href="https://www.serializing.me/tags/applocker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Updated AppLocker Dump Script</title>
       <link>https://www.serializing.me/2016/09/23/updated-applocker-dump-script/</link>
