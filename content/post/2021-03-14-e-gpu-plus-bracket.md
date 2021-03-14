@@ -1,7 +1,7 @@
 +++
 banner = "/uploads/2021/03/e-gpu-plus-bracket.png"
 categories = [ "Hardware Hacking" ]
-date = "2021-03-14T21:20:00+00:00"
+date = "2021-03-14T19:10:00+00:00"
 excerpt = "How I went about adding a bracket and a PCI-e extender to a e-GPU..."
 format = "post"
 tags = [ "Razer", "e-GPU" ]
