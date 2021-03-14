@@ -1,6 +1,6 @@
 +++
 banner = "/uploads/2018/08/technicolor-loves-linux.png"
-categories = [ "Linux", "Network", "Reverse Engineering" ]
+categories = [ "Linux", "Hardware Hacking", "Reverse Engineering" ]
 date = "2018-09-30T15:00:00+00:00"
 excerpt = "How to reverse the TC7210 Linux firmware and how to run extracted executables in QEMU..."
 format = "post"

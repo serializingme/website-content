@@ -1,6 +1,6 @@
 +++
 banner = "/uploads/2018/06/technicolor-got-root.png"
-categories = [ "Exploit", "Linux", "Network", "Reverse Engineering" ]
+categories = [ "Exploit", "Linux", "Hardware Hacking", "Reverse Engineering" ]
 date = "2018-06-03T11:20:00+00:00"
 excerpt = "In this article, I will explain how to partially gained root access in a Technicolor 7210..."
 format = "post"

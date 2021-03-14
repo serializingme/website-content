@@ -1,6 +1,6 @@
 +++
 banner = "/uploads/2018/10/technicolor-frontdoor.png"
-categories = [ "Exploit", "Linux", "Network", "Reverse Engineering" ]
+categories = [ "Exploit", "Linux", "Hardware Hacking", "Reverse Engineering" ]
 date = "2018-10-23T00:40:00+00:00"
 excerpt = "How to use hidden functionality in the Technicolor 7210 to gain root access to it..."
 format = "post"
