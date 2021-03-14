@@ -4,7 +4,7 @@ categories = [ "Case Study", "Education" ]
 date = "2016-03-17T22:14:13+00:00"
 excerpt = "Caso de estudo basead em três listas de senhas de acesso de sítios portugueses..."
 format = "post"
-tags = [ "Passwords", "Portuguese", "Portugueses", "Senhas" ]
+tags = [ "Passwords", "Portuguese" ]
 title = "Portugueses e Senhas de Acesso, Um Caso de Estudo"
 
 +++
