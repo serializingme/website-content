@@ -6,7 +6,25 @@
     <description>Recent content in Categories on SerializingMe</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Sun, 14 Mar 2021 19:10:00 +0000</lastBuildDate><atom:link href="https://www.serializing.me/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Nov 2022 07:35:00 +0000</lastBuildDate><atom:link href="https://www.serializing.me/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configuration</title>
+      <link>https://www.serializing.me/categories/configuration/</link>
+      <pubDate>Sun, 06 Nov 2022 07:35:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/configuration/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://www.serializing.me/categories/linux/</link>
+      <pubDate>Sun, 06 Nov 2022 07:35:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/categories/linux/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Hardware Hacking</title>
       <link>https://www.serializing.me/categories/hardware-hacking/</link>
@@ -40,24 +58,6 @@
       <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
       
       <guid>https://www.serializing.me/categories/windows/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Configuration</title>
-      <link>https://www.serializing.me/categories/configuration/</link>
-      <pubDate>Mon, 29 Apr 2019 20:30:00 +0000</pubDate>
-      
-      <guid>https://www.serializing.me/categories/configuration/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://www.serializing.me/categories/linux/</link>
-      <pubDate>Mon, 29 Apr 2019 20:30:00 +0000</pubDate>
-      
-      <guid>https://www.serializing.me/categories/linux/</guid>
       <description></description>
     </item>
     

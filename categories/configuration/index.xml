@@ -6,7 +6,16 @@
     <description>Recent content in Configuration on SerializingMe</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Mon, 29 Apr 2019 20:30:00 +0000</lastBuildDate><atom:link href="https://www.serializing.me/categories/configuration/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Nov 2022 07:35:00 +0000</lastBuildDate><atom:link href="https://www.serializing.me/categories/configuration/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Raspberry Pi Custom Fedora Kernel</title>
+      <link>https://www.serializing.me/2022/11/06/raspberry-pi-custom-fedora-kernel/</link>
+      <pubDate>Sun, 06 Nov 2022 07:35:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2022/11/06/raspberry-pi-custom-fedora-kernel/</guid>
+      <description>&lt;p&gt;Over the years I have gotten very used to Red Hat Enterprise Linux (RHEL) type distributions, and have for a long time now selected Fedora as my default goto Linux distribution. However, I needed a specific driver that comes out of the box with Raspbian (Raspberry Pi&amp;rsquo;s Debian based distribution), but does not come with Fedora. This post elaborates how to go about compiling a custom kernel on a Pi running Fedora.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Simulating APTs For Fun</title>
       <link>https://www.serializing.me/2019/04/29/simulating-apts-for-fun/</link>
