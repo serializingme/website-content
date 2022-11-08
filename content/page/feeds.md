@@ -3,6 +3,11 @@ date = "2016-08-15T16:11:16+00:00"
 excerpt = "List of RSS feeds that can be subscribed to receive the latest updates."
 title = "Feeds"
 
+[menu.footer]
+name = "Feeds"
+pre = "fas fa-rss"
+url = "/feeds/"
+weight = 5
 +++
 
 List of RSS feeds of this site that can be subscribed.

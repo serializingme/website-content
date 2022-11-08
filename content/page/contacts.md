@@ -10,7 +10,7 @@ url = "/contacts/"
 weight = 4
 +++
 
-Follow me on [Twitter][1] and subscribe to my [YouTube][2] and [Twitch][5] channel, or check my profile at [GitHub][3] and [Bugcrowd][4]. You can also drop me a line at my [E-mail][6]. If you want to keep any communications content private, feel free to use GPG/PGP to do so.
+One can follow me on [Mastodon][1] (or [Twitter][7]) and subscribe to my [YouTube][2] and [Twitch][5] channel, or check my profile at [GitHub][3] and [Bugcrowd][4]. You can also drop me a line at my [E-mail][6]. If you want to keep any communications content private, feel free to use GPG/PGP to do so.
 
 ```
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -67,9 +67,10 @@ YWzoR4W+lcMEjw==
 -----END PGP PUBLIC KEY BLOCK-----
 ```
 
-[1]: https://twitter.com/serializingme "Twitter Profile"
-[2]: https://www.youtube.com/c/serializingme "YouTube Channel"
+[1]: https://infosec.exchange/@serializingme "Mastodon Profile"
+[2]: https://www.youtube.com/serializingme "YouTube Channel"
 [3]: https://github.com/serializingme "GitHub Profile"
 [4]: https://bugcrowd.com/serializingme "Bugcrowd Profile"
 [5]: https://twitch.com/serializingme "Twitch Channel"
 [6]: mailto:duartepontosilvaarrobaserializingpontome "Email Address"
+[7]: https://twitter.com/serializingme "Twitter Profile"
