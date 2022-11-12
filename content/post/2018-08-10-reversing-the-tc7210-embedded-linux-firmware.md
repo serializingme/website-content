@@ -13,7 +13,7 @@ In this article I will explain how to reverse the firmware of the embedded Linux
 
 <!--more-->
 
-{{< youtube class="embed-responsive embed-responsive-16by9 mb-3" id="1GAb1iIEseg" >}}
+{{< youtube class="ratio ratio-16x9 mb-3" id="1GAb1iIEseg" >}}
 
 In a previous [article][1], I explained how to get `root` on the embedded Linux part of the TC7210 router by leveraging a remote code execution (RCE). With that level of access, I was able to image the various flash partitions of the router. The first thing I tried was to use `binwalk` to identify what files may be contained in the images.
 

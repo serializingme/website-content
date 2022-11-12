@@ -13,7 +13,7 @@ Razer Core X Chroma is an excellent device, but its functionalities didn't fully
 
 <!--more-->
 
-{{< youtube class="embed-responsive embed-responsive-16by9 mb-3" id="vx_32s0up88" >}}
+{{< youtube class="ratio ratio-16x9 mb-3" id="vx_32s0up88" >}}
 
 {{< alert class="information">}}I started writing this blog post in late November 2020. Since then, I have found a cleaner (software only) way to fulfill my use case and as such, I no longer make use of this hack. It did do serve me well and without any performance issues while it was in place.{{< /alert >}}
 

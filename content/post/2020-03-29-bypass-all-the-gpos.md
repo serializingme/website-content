@@ -13,7 +13,7 @@ During a red team engagement, one has landed on a machine with the need to make 
 
 <!--more-->
 
-{{< youtube class="embed-responsive embed-responsive-16by9 mb-3" id="1cvCmF-YnZo" >}}
+{{< youtube class="ratio ratio-16x9 mb-3" id="1cvCmF-YnZo" >}}
 
 ### Introduction
 

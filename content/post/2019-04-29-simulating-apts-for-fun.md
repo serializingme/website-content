@@ -13,7 +13,7 @@ In the post I will explain how one could simulate an Advanced Persistent Threat 
 
 <!--more-->
 
-{{< youtube class="embed-responsive embed-responsive-16by9 mb-3" id="REMVMfoeJWE" >}}
+{{< youtube class="ratio ratio-16x9 mb-3" id="REMVMfoeJWE" >}}
 
 ### Introduction
 

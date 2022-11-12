@@ -85,7 +85,7 @@ In a previous [article][1], I explained how to get `root` on the embedded Linux 
 
 <!--more-->
 
-{{< youtube class="embed-responsive embed-responsive-16by9 mb-3" id="zPmzcbA--A8" >}}
+{{< youtube class="ratio ratio-16x9 mb-3" id="zPmzcbA--A8" >}}
 
 {{< alert >}}This blog post was originally written in 23 of June, 2018. The vulnerability disclosed in this blog post, as far as I know is yet to be fixed. I haven't requested a CVE, neither am I aware if Technicolor did so. Disclosure timeline can be found at the end of the blog post.{{< /alert >}}
 
