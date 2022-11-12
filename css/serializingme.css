@@ -23,3 +23,7 @@ div.vis-item.vis-background.bg-third {
 div.vis-item.vis-background.bg-forth {
   background-color: rgba(253, 106, 2, 0.2);
 }
+
+a {
+  text-decoration:none;
+}
