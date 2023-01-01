@@ -9,7 +9,7 @@ title = "Freedom and Solitude"
 
 +++
 
-{{< quote cite="Silva, Duarte. 2022" >}}The freedom of not having to account for someone else's needs and wants, has a cost, and that cost is solitude.{{< /quote >}}
+{{< quote cite="Silva, Duarte. 2022" >}}The freedom of not having to account for someone else's needs, wants and feelings, has the cost of solitude.{{< /quote >}}
 
 *[Image][1] via Pexels @ Pixabay*
 
