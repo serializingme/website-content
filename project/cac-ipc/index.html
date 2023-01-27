@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#" class="bg-dark">
+  <head>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#ffffff" />
+
+
+<meta property="title" content="CAC IPC - SerializingMe" />
+
+
+  
+<meta name="description" content="Cisco AnyConnect (CAC) Inter-Process Communication (IPC) is a project providing a Wireshark dissector and a tool to generate packets..." />
+  
+  
+
+
+<meta name="author" content="Duarte Silva" />
+
+
+
+<meta itemprop="title" content="CAC IPC - SerializingMe" />
+
+
+  
+<meta itemprop="description" content="Cisco AnyConnect (CAC) Inter-Process Communication (IPC) is a project providing a Wireshark dissector and a tool to generate packets..." />
+  
+  
+<meta itemprop="image" content="https://www.serializing.me/uploads/2023/01/cac-ipc-wireshark.png" />
+  
+  
+  
+<meta itemprop="wordCount" content="256" />
+  
+
+
+
+<meta property="og:title" content="CAC IPC - SerializingMe" />
+
+
+  
+<meta property="og:type" content="article" />
+  
+  
+<meta property="og:description" content="Cisco AnyConnect (CAC) Inter-Process Communication (IPC) is a project providing a Wireshark dissector and a tool to generate packets..." />
+  
+  
+<meta property="og:image" content="https://www.serializing.me/uploads/2023/01/cac-ipc-wireshark.png" />
+  
+
+
+<meta property="og:url" content="https://www.serializing.me/project/cac-ipc/" />
+
+
+<meta property="og:site_name" content="SerializingMe" />
+
+
+
+  
+<meta name="twitter:card" content="summary_large_image" />
+  
+
+
+
+<meta name="twitter:title" content="CAC IPC - SerializingMe" />
+
+
+<meta name="twitter:url" content="https://www.serializing.me/project/cac-ipc/" />
+
+
+  
+<meta name="twitter:description" content="Cisco AnyConnect (CAC) Inter-Process Communication (IPC) is a project providing a Wireshark dissector and a tool to generate packets..." />
+  
+  
+<meta name="twitter:image" content="https://www.serializing.me/uploads/2023/01/cac-ipc-wireshark.png" />
+  
+
+
+<title>CAC IPC - SerializingMe</title>
+<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="https://www.serializing.me/manifest.json">
+<link rel="mask-icon" href="https://www.serializing.me/safari-pinned-tab.svg" color="#5bbad5">
+
+<link href="https://www.serializing.me/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Combined Feed" />
+<link href="https://www.serializing.me/page/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Pages Feed" />
+<link href="https://www.serializing.me/post/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Posts Feed" />
+<link href="https://www.serializing.me/project/index.xml" rel="alternate" type="application/rss+xml" title="SerializingMe Projects Feed" />
+
+<link href="https://www.serializing.me/css/bootstrap-reboot.min.css" rel="stylesheet" />
+<link href="https://www.serializing.me/css/bootstrap.min.css" rel="stylesheet" /><link href="https://www.serializing.me/css/serializingme.min.css" rel="stylesheet" />
+
+  </head>
+  <body>
+    <header>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="https://www.serializing.me/">
+      <img src="/brand.png" width="30" height="30" class="d-inline-block align-top" /> SerializingMe
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav ml-auto">
+
+
+        <li class="nav-item "><a class="nav-link" title="Blog" href="https://www.serializing.me/post/">Blog</a></li>
+
+        <li class="nav-item "><a class="nav-link" title="Projects" href="https://www.serializing.me/project/">Projects</a></li>
+
+        <li class="nav-item "><a class="nav-link" title="Contributions" href="https://www.serializing.me/contributions/">Contributions</a></li>
+
+        <li class="nav-item "><a class="nav-link" title="About" href="https://www.serializing.me/about/">About</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<noscript>
+  <div class="container mt-2 mb-0">
+    <div class="alert alert-danger">JavaScript is disabled, this site will not work properly without it.</div>
+  </div>
+</noscript>
+
+    </header>
+    <section class="container">
+
+
+
+  <div class="row">
+  
+  <div class="col-md-8 offset-md-2">
+    
+    <div class="card mb-4 my-4"><img class="card-img-top" src="/uploads/2023/01/cac-ipc-wireshark.png" alt="CAC IPC" /><div class="card-body">
+        <h2 class="card-title">
+CAC IPC
+        </h2>
+        <div class="text-justify">
+<p>Cisco AnyConnect (CAC) makes use of Inter-Process Communication (IPC) protocol. This project provides a Wireshark dissector and a tool to generate syntactically valid packets.</p>
+<h2 id="introduction">Introduction</h2>
+<p>This utility allows one to generate the various Cisco AnyConnect (CAC) Inter-Process Communication (IPC) messages. This is useful in the understanding of the IPC protocol as used by CAC and to validate the Wireshark dissector. This utility only supports 32 bit versions as CAC is 32 bits only.</p>
+<h3 id="base">Base</h3>
+<p>Static library containing common code used by generator component.</p>
+<h3 id="ipc">IPC</h3>
+<p>Static library containing the various IPC wrapper classes that can be used to generate the various messages. This code is used by generator component.</p>
+<h3 id="generator">Generator</h3>
+<p>Executable that generates the various messages, it starts a UDP listener at <code>127.0.0.2:62522</code>, and then it connects with a UDP client to the the listener and sends the various IPC messages.</p>
+<h3 id="dissector">Dissector</h3>
+<p>The Wireshark dissector, <code>cacipc.lua</code>, can be installed in the plugins directory and is ready to use. There is also a sample packet capture (PCAP) called <code>cacipc.pcapng</code> that can be used to test the dissector.</p>
+<h2 id="requirements">Requirements</h2>
+<p>To use the IPC message generator, one needs to have CAC installed as the utility makes use of the <code>vpncommon.dll</code> library to generate the messages. This DLL (or any other that may be needed) is not distributed in the repository for obvious reasons.</p>
+<h2 id="build-it-yourself">Build it Yourself</h2>
+<p>All code is written in C++ and can be compiled in Windows using Visual Studio 2022. The project makes use of CMake so it is conceivable that it can be (cross-)compiled using other tools.</p>
+        </div>
+      </div>
+      <div class="card-footer">
+<span><i class="fas fa-calendar-alt"></i>&nbsp;</span>January 27, 2023&nbsp;&nbsp;<br/>
+<span><i class="fas fa-tag"></i>&nbsp;</span><a href="https://www.serializing.me/tags/cac-ipc/">Related Posts</a>&nbsp;&nbsp;<br/>
+<span><i class="fas fa-code"></i>&nbsp;</span><a href="https://github.com/serializingme/cac-ipc">Repository</a>
+      </div>
+    </div>
+    <ul class="pagination justify-content-center mb-4"><li class="page-item disabled">
+        <a href="/" class="page-link"><span><i class="fas fa-chevron-left"></i>&nbsp;</span>Newer</a>
+      </li><li class="page-item">
+    <a href="https://www.serializing.me/project/gpo-bypass/" title="GPO Bypass" class="page-link">Older<span>&nbsp;<i class="fas fa-chevron-right"></i>&nbsp;</span></a>
+  </li></ul>
+  </div>
+</div>
+
+
+    </section>
+    <footer class="mt-4 bg-dark">
+<div class="container">
+  <div class="row text-center">
+  <div class="col-12 col-md my-4">
+    <ul class="list-inline">
+
+      <li class="list-inline-item">
+        <a rel="me" class="footer-link text-light" href="https://infosec.exchange/@serializingme" title="Mastodon">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-mastodon fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a rel="me" class="footer-link text-light" href="https://www.twitch.tv/serializingme" title="Twitch">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-twitch fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a rel="me" class="footer-link text-light" href="https://discord.gg/NS5qHT4" title="Discord">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-discord fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a rel="me" class="footer-link text-light" href="https://www.youtube.com/serializingme" title="YouTube">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-youtube fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a rel="me" class="footer-link text-light" href="https://github.com/serializingme" title="GitHub">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-github fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a rel="me" class="footer-link text-light" href="https://bugcrowd.com/serializingme" title="Bugcrowd">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fas fa-bug fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+      <li class="list-inline-item">
+        <a rel="me" class="footer-link text-light" href="https://twitter.com/serializingme" title="Twitter">
+          <span class="fa-stack fa-lg">
+            <i class="fas fa-square fa-stack-2x text-light"></i>
+            <i class="fab fa-twitter fa-stack-1x text-secondary"></i>
+          </span>
+        </a>
+      </li>
+
+    </ul>
+      <ul class="list-inline">
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-copyright"></i>&nbsp;</span><a class="footer-link text-light" href="/licensing/" title="Licensing">Licensing</a>
+    </li>
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-eye"></i>&nbsp;</span><a class="footer-link text-light" href="/privacy/" title="Privacy">Privacy</a>
+    </li>
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-shield-alt"></i>&nbsp;</span><a class="footer-link text-light" href="/security/" title="Security">Security</a>
+    </li>
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-envelope"></i>&nbsp;</span><a class="footer-link text-light" href="/contacts/" title="Contacts">Contacts</a>
+    </li>
+
+    <li class="list-inline-item">
+      <span class="fa-lg text-secondary"><i class="fas fa-rss"></i>&nbsp;</span><a class="footer-link text-light" href="/feeds/" title="Feeds">Feeds</a>
+    </li>
+
+  </ul>
+  <small class="d-block mb-3 text-muted">&copy;&nbsp;2023&nbsp;Duarte Silva</small>
+  </div>
+</div>
+</div>
+
+    </footer>
+<script src="https://www.serializing.me/js/jquery.min.js"></script>
+<script src="https://www.serializing.me/js/bootstrap.min.js"></script>
+<script src="https://www.serializing.me/js/fontawesome-solid.min.js"></script>
+<script src="https://www.serializing.me/js/fontawesome-brands.min.js"></script>
+<script src="https://www.serializing.me/js/fontawesome.min.js"></script><script src="https://www.serializing.me/js/serializingme.min.js"></script>
+  </body>
+</html>

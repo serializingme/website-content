@@ -6,13 +6,22 @@
     <description>Recent content in Projects on SerializingMe</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Sun, 29 Mar 2020 14:50:00 +0000</lastBuildDate><atom:link href="https://www.serializing.me/project/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Jan 2023 00:19:00 +0000</lastBuildDate><atom:link href="https://www.serializing.me/project/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CAC IPC</title>
+      <link>https://www.serializing.me/project/cac-ipc/</link>
+      <pubDate>Fri, 27 Jan 2023 00:19:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/project/cac-ipc/</guid>
+      <description>&lt;p&gt;Cisco AnyConnect (CAC) makes use of Inter-Process Communication (IPC) protocol. This project provides a Wireshark dissector and a tool to generate syntactically valid packets.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>GPO Bypass</title>
-      <link>https://www.serializing.me/project/gpo-bypass-tool/</link>
+      <link>https://www.serializing.me/project/gpo-bypass/</link>
       <pubDate>Sun, 29 Mar 2020 14:50:00 +0000</pubDate>
       
-      <guid>https://www.serializing.me/project/gpo-bypass-tool/</guid>
+      <guid>https://www.serializing.me/project/gpo-bypass/</guid>
       <description>&lt;p&gt;This utility allows you to bypass Group Policy enforced controls on Firefox (as an example), especifically, it allows you to still install add-ons even if disabled through GPOs. This tool only supports 64 bit versions of Firefox.&lt;/p&gt;</description>
     </item>
     

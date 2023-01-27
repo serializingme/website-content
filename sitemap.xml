@@ -3,13 +3,58 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.serializing.me/categories/</loc>
-    <lastmod>2022-11-16T19:06:00+00:00</lastmod>
+    <loc>https://www.serializing.me/2023/01/27/anyconnect-inter-process-communication/</loc>
+    <lastmod>2023-01-27T19:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.serializing.me/categories/education/</loc>
-    <lastmod>2022-11-16T19:06:00+00:00</lastmod>
+    <loc>https://www.serializing.me/tags/cac-ipc/</loc>
+    <lastmod>2023-01-27T19:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.serializing.me/categories/</loc>
+    <lastmod>2023-01-27T19:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.serializing.me/tags/cisco-anyconnect/</loc>
+    <lastmod>2023-01-27T19:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.serializing.me/categories/network/</loc>
+    <lastmod>2023-01-27T19:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.serializing.me/post/</loc>
+    <lastmod>2023-01-27T19:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.serializing.me/categories/reverse-engineering/</loc>
+    <lastmod>2023-01-27T19:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.serializing.me/</loc>
+    <lastmod>2023-01-27T19:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.serializing.me/tags/</loc>
+    <lastmod>2023-01-27T19:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.serializing.me/project/cac-ipc/</loc>
+    <lastmod>2023-01-27T00:19:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.serializing.me/project/</loc>
+    <lastmod>2023-01-27T00:19:00+00:00</lastmod>
   </url>
   
   <url>
@@ -23,17 +68,7 @@
   </url>
   
   <url>
-    <loc>https://www.serializing.me/post/</loc>
-    <lastmod>2022-11-16T19:06:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.serializing.me/</loc>
-    <lastmod>2022-11-16T19:06:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.serializing.me/tags/</loc>
+    <loc>https://www.serializing.me/categories/learning/</loc>
     <lastmod>2022-11-16T19:06:00+00:00</lastmod>
   </url>
   
@@ -108,7 +143,7 @@
   </url>
   
   <url>
-    <loc>https://www.serializing.me/project/gpo-bypass-tool/</loc>
+    <loc>https://www.serializing.me/project/gpo-bypass/</loc>
     <lastmod>2020-03-29T14:50:00+00:00</lastmod>
   </url>
   
@@ -119,16 +154,6 @@
   
   <url>
     <loc>https://www.serializing.me/tags/hook-functions/</loc>
-    <lastmod>2020-03-29T14:50:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.serializing.me/project/</loc>
-    <lastmod>2020-03-29T14:50:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.serializing.me/categories/reverse-engineering/</loc>
     <lastmod>2020-03-29T14:50:00+00:00</lastmod>
   </url>
   
@@ -199,11 +224,6 @@
   
   <url>
     <loc>https://www.serializing.me/tags/ivre/</loc>
-    <lastmod>2019-01-27T11:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.serializing.me/categories/network/</loc>
     <lastmod>2019-01-27T11:30:00+00:00</lastmod>
   </url>
   
@@ -283,22 +303,7 @@
   </url>
   
   <url>
-    <loc>https://www.serializing.me/tags/cisco-anyconnect/</loc>
-    <lastmod>2016-12-20T18:28:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.serializing.me/categories/cve/</loc>
-    <lastmod>2016-12-20T18:28:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.serializing.me/tags/tls/</loc>
-    <lastmod>2016-12-20T18:28:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.serializing.me/tags/vpn/</loc>
     <lastmod>2016-12-20T18:28:00+00:00</lastmod>
   </url>
   
@@ -528,22 +533,7 @@
   </url>
   
   <url>
-    <loc>https://www.serializing.me/tags/activobank/</loc>
-    <lastmod>2015-06-03T20:46:43+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.serializing.me/tags/android/</loc>
-    <lastmod>2015-06-03T20:46:43+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.serializing.me/tags/banco-popular/</loc>
-    <lastmod>2015-06-03T20:46:43+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.serializing.me/tags/banco-portugues-de-investimento/</loc>
     <lastmod>2015-06-03T20:46:43+00:00</lastmod>
   </url>
   
@@ -553,32 +543,12 @@
   </url>
   
   <url>
-    <loc>https://www.serializing.me/tags/barclays/</loc>
-    <lastmod>2015-06-03T20:46:43+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.serializing.me/tags/caixa-geral-de-depositos/</loc>
-    <lastmod>2015-06-03T20:46:43+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.serializing.me/tags/caixadirecta/</loc>
-    <lastmod>2015-06-03T20:46:43+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.serializing.me/tags/millennium/</loc>
-    <lastmod>2015-06-03T20:46:43+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.serializing.me/tags/novo-banco/</loc>
-    <lastmod>2015-06-03T20:46:43+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.serializing.me/2015/06/03/portuguese-banking-apps-yay-or-nay/</loc>
+    <lastmod>2015-06-03T20:46:43+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.serializing.me/tags/tls/</loc>
     <lastmod>2015-06-03T20:46:43+00:00</lastmod>
   </url>
   

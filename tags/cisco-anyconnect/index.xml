@@ -6,7 +6,16 @@
     <description>Recent content in Cisco AnyConnect on SerializingMe</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Tue, 20 Dec 2016 18:28:00 +0000</lastBuildDate><atom:link href="https://www.serializing.me/tags/cisco-anyconnect/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 27 Jan 2023 19:00:00 +0000</lastBuildDate><atom:link href="https://www.serializing.me/tags/cisco-anyconnect/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AnyConnect Inter-Process Communication</title>
+      <link>https://www.serializing.me/2023/01/27/anyconnect-inter-process-communication/</link>
+      <pubDate>Fri, 27 Jan 2023 19:00:00 +0000</pubDate>
+      
+      <guid>https://www.serializing.me/2023/01/27/anyconnect-inter-process-communication/</guid>
+      <description>&lt;p&gt;In my first deep dive into Cisco AnyConnect (CAC) Secure Mobility Client (see &lt;a href=&#34;https://www.serializing.me/2016/12/14/anyconnect-elevation-of-privileges-part-1/&#34; title=&#34;AnyConnect Elevation of Privileges, Part 1&#34;&gt;AnyConnect Elevation of Privileges Part 1&lt;/a&gt; and &lt;a href=&#34;https://www.serializing.me/2016/12/20/anyconnect-elevation-of-privileges-part-2/&#34; title=&#34;AnyConnect Elevation of Privileges, Part 2&#34;&gt;Part 2&lt;/a&gt;), I reversed engineered how CAC made use of a TCP based Inter-Process Communication (IPC) protocol. Based on that research, I found a Local Privilege Escalation (LPE) vulnerability (see &lt;a href=&#34;https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20161207-anyconnect1&#34; title=&#34;CVE-2016-9192&#34;&gt;CVE-2016-9192&lt;/a&gt; and the &lt;a href=&#34;https://github.com/serializingme/cve-2016-9192&#34; title=&#34;CVE-2016-9192 Proof of Concept Repository&#34;&gt;proof-of-concept&lt;/a&gt; code). Yorick Koster and Antoine Goichot followed suit, and using that research also found other vulnerabilities (see &lt;a href=&#34;https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ac-win-path-traverse-qO4HWBsj&#34; title=&#34;CVE-2020-3153&#34;&gt;CVE-2020-3153&lt;/a&gt;, &lt;a href=&#34;https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-anyconnect-dll-F26WwJW&#34; title=&#34;CVE-2020-3433&#34;&gt;CVE-2020-3433&lt;/a&gt;, &lt;a href=&#34;https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-anyconnect-dos-feXq4tAV&#34; title=&#34;CVE-2020-3434&#34;&gt;CVE-2020-3434&lt;/a&gt;, and &lt;a href=&#34;https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-anyconnect-profile-7u3PERKF&#34; title=&#34;CVE-2020-3435&#34;&gt;CVE-2020-3435&lt;/a&gt;). This post presents the results of my second deep dive, correcting some wrong conclusions about the protocol, further reverse engineering the various IPC messages, and providing some tools that can potentially aid further research.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>AnyConnect Elevation of Privileges, Part 2</title>
       <link>https://www.serializing.me/2016/12/20/anyconnect-elevation-of-privileges-part-2/</link>
