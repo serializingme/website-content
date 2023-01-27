@@ -1,6 +1,6 @@
 +++
 banner = "/uploads/2016/03/wordcloud.png"
-categories = [ "Case Study", "Education" ]
+categories = [ "Case Study" ]
 date = "2016-03-17T22:14:13+00:00"
 excerpt = "Caso de estudo basead em três listas de senhas de acesso de sítios portugueses..."
 format = "post"

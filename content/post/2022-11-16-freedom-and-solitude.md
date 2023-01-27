@@ -1,6 +1,6 @@
 +++
 banner = "/uploads/2022/11/beach.png"
-categories = [ "Education" ]
+categories = [ "Learning" ]
 date = "2022-11-16T19:06:00+00:00"
 excerpt = "Freedom and solitude, is there ever a balance..."
 format = "quote"

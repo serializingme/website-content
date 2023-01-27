@@ -1,6 +1,6 @@
 +++
 banner = "/uploads/2018/07/dark-night-light.jpg"
-categories = [ "Education" ]
+categories = [ "Learning" ]
 date = "2018-07-21T08:40:00+00:00"
 excerpt = "Fact checking as a light in a dark universe of alternative realities that enclose you in a existence of self-feeding bigotry..."
 format = "quote"
