@@ -4,7 +4,7 @@ categories = [ "Case Study", "Reverse Engineering" ]
 date = "2015-06-03T20:46:43+00:00"
 excerpt = "This is an account of my findings on seven online banking apps available in the Portuguese market..."
 format = "post"
-tags = [ "ActivoBank", "Android", "Banco Popular", "Banco Português de Investimento", "Banking", "Barclays", "Caixa Geral de Depósitos", "Caixadirecta", "Millennium", "Novo Banco", "TLS" ]
+tags = [ "Android", "Banking", "Portuguese", "TLS" ]
 title = "Portuguese Banking Apps, Yay or Nay?"
 
 +++
