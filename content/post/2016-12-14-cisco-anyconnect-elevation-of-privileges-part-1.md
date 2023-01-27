@@ -4,7 +4,7 @@ categories = [ "Exploit", "Network", "Reverse Engineering", "Windows", "CVE" ]
 date = "2016-12-14T18:56:17+00:00"
 excerpt = "How I discovered a Cisco AnyConnect elevation of privileges vulnerability part one..."
 format = "post"
-tags = [ "Cisco AnyConnect", "VPN", "TLS" ]
+tags = [ "Cisco AnyConnect", "CAC IPC" ]
 title = "AnyConnect Elevation of Privileges, Part 1"
 
 +++
