@@ -25,7 +25,7 @@ Static library containing the various IPC wrapper classes that can be used to ge
 
 ### Generator
 
-Executable that generates the various messages, it starts a UDP listener at `127.0.0.2:62522`, and then it connects with a UDP client to the the listener and sends the various IPC messages.
+Executable that generates the various messages, it starts a TCP listener at `127.0.0.2:62522`, and then it connects with a TCP client to the the listener and sends the various IPC messages.
 
 ### Dissector
 
