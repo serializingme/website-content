@@ -161,7 +161,7 @@ CAC IPC
 <h3 id="ipc">IPC</h3>
 <p>Static library containing the various IPC wrapper classes that can be used to generate the various messages. This code is used by generator component.</p>
 <h3 id="generator">Generator</h3>
-<p>Executable that generates the various messages, it starts a UDP listener at <code>127.0.0.2:62522</code>, and then it connects with a UDP client to the the listener and sends the various IPC messages.</p>
+<p>Executable that generates the various messages, it starts a TCP listener at <code>127.0.0.2:62522</code>, and then it connects with a TCP client to the the listener and sends the various IPC messages.</p>
 <h3 id="dissector">Dissector</h3>
 <p>The Wireshark dissector, <code>cacipc.lua</code>, can be installed in the plugins directory and is ready to use. There is also a sample packet capture (PCAP) called <code>cacipc.pcapng</code> that can be used to test the dissector.</p>
 <h2 id="requirements">Requirements</h2>
