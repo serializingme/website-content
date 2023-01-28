@@ -15,15 +15,15 @@ In my first deep dive into Cisco AnyConnect (CAC) Secure Mobility Client (see [A
 
 ### A Primer and Two Corrections
 
-First a small primer on how CAC communicates in between processes, namely `vpnagent.exe`, `vpndownloader.exe`, `vpnui.exe`, `vpncli.exe`, and potentially others. For example, the `vpnagent.exe` executable, when running starts listening at `127.0.0.1` on TCP port `62522`. It's on this port that it receives the various IPC messages sent by the other executables, for example `vpnui.exe`. The messages are based on a Type, Length and Value (TLV) structure and have the following format:
+First, a small primer on how CAC communicates in between processes, namely `vpnagent.exe`, `vpndownloader.exe`, `vpnui.exe`, `vpncli.exe`, and potentially others. For example, the `vpnagent.exe` executable, when running starts listening at `127.0.0.1` on TCP port `62522`. It's on this port that it receives the various IPC messages sent by the other executables. The messages are based on a Type, Length and Value (TLV) structure and have the following format:
 
 {{< gist serializingme 4206372a06b0bdbc9235eade959d72b7 "cac-ipc-header.h" >}}
 
-This lead me to the conclusion that I wrongly reached at the time. The body part of the IPC messages is basically a list of TLVs (if any). My assumption was that the Type part of each TLV (the first 2 bytes), was composed of a native type, like string, integer, etc. (first byte) and an index (second byte). However that is not the case, the full 2 bytes simply refer to the type in the context of the IPC message being sent, for example a file path, or an IP address, and there is no index. This means that the Type value is reused in various messages even if having a different native type. As such a TLV is composed of:
+This leads me to the wrong conclusion that I reached at the time. The body part of the IPC messages is basically a list of TLVs (if any). My assumption was that the Type part of each TLV, was composed of a native type (first byte), like string, integer, etc. and an index (second byte). However that is not the case, the full 2 bytes simply refer to the type in the context of the IPC message being sent, for example a file path, or an IP address. This means that the Type value may (and is) reused in various messages even if having a different native type. As such a TLV is composed of:
 
 {{< gist serializingme 4206372a06b0bdbc9235eade959d72b7 "cac-ipc-tlv.h" >}}
 
-As seen above, there is another detail that I didn't fully understand properly at the time and that contributed to the type/index confusion. The TLV type can have a modifier, if the `type & 0x8000 == 0x8000` condition is true, then the entry in the body is no longer a TLV, but a Type and Value (TV) where the value always has 2 bytes length. The only usage I have seen for it, was for unsigned 2 bytes long integers, and boolean values as seen below.
+As seen above, there is another detail that I didn't fully understand properly at the time and that contributed to the type/index confusion. The TLV type can have a modifier, if the `type & 0x8000 == 0x8000` condition is true, then the entry in the body is no longer a TLV, but a Type and Value (TV) where the value always has 2 bytes length. The only usage I have seen for it, was for 2 bytes unsigned long integers, and boolean values as seen in the example below.
 
 {{< figure image="/uploads/2023/01/cac-ipc-use-installed.png" alternative="Type and Value entry example" caption="Use Installed of CLaunchClientAppTlv.">}}
 
@@ -33,13 +33,13 @@ As part of this new deep dive, I have decided to create a Wireshark dissector th
 
 {{< figure image="/uploads/2023/01/cac-ipc-full-example.png" alternative="IPC message example" caption="Wireshark dissecting the CStateTlv message." thumbnail="/uploads/2023/01/cac-ipc-full-example-600x256.png">}}
 
-The various fields can be used to filter the traffic. Follows some example fields:
+The various fields can be used to filter the traffic. Follows some examples:
 - `cacipc.message_type`
 - `cacipc.state.tunnel_state`
 - `cacipc.certificateinfo.cert_auth_signature_base64`
 - `cacipc.userauthentication.user_accepted_banner_result`
 
-The dissector tries to match all the TCP packets sent on port `62522`, but also has a heuristic to find potential IPC messages not sent on that port. For example, `vpndownloader.exe` is sometimes launched listening for IPC messages on a random TCP port. In such cases, the dissector should detect any messages exchanged them and dissect the traffic as CAC's IPC.
+The dissector tries to match all the TCP packets sent on port `62522`, and it makes use of an heuristic to find potential IPC messages not exchanged on that port. For example, `vpndownloader.exe` is sometimes launched listening for IPC messages on a random TCP port. In such cases, the dissector should detect any messages exchanged and dissect the traffic as CAC's IPC.
 
 ### Packet Generator
 
@@ -49,7 +49,7 @@ The hard part was creating headers for each class, where the virtual address tab
 
 {{< figure image="/uploads/2023/01/cac-ipc-generator.png" alternative="Generator code" caption="Screenshot of a part of the packet generator code." thumbnail="/uploads/2023/01/cac-ipc-generator-600x362.png">}}
 
-There are some caveats though. To use the IPC packet generator, one needs to have CAC installed as the utility requires the `vpncommon.dll` library to generate the messages. I cannot, or better, should not distribute this DLL (or any other that may be needed) as it would most likely violate the license agreement (yes, that one that everyone, including me, just scrolls through). The other is that the packets generated are syntactically correct, but for sure not are semantically correct. For example, there might be TLV entries, that cannot be present with other TLV entries even if the message supports them, or the TLV values themselves, like an integer that has a limited set of possible values, etc.
+There are some caveats though. To use the IPC packet generator, one needs to have CAC installed as the utility requires the `vpncommon.dll` library to generate the messages. I cannot, or better, should not distribute this DLL (or any other that may be needed) as it would most likely violate the license agreement (yes, that one that everyone, including me, just scrolls through). The other is that the packets generated are syntactically correct, but for sure aren't semantically correct. For example, there might be TLV entries, that cannot be present in the same message with other TLV entries even if the message supports them, etc.
 
 ### Closing Thoughts
 
