@@ -29,20 +29,18 @@ Later on, I started branching into other areas of CIS security. After finishing 
 
 ### Disclaimer and Support
 
-Even though some of the content I create may relate to something I have been dealing or have dealt in the past in my work environment, my views are my own and not of my current or past employer. There is no support (i.e. financial or otherwise) from them, the development of this site and the creation of content that is published on it and in other platforms (e.g., YouTube, Twitch, etc.), is done on my own time. While I take a completely independent approach at any subject, I do accept donations. As such, if you want to help supporting the creation of new content, don’t be afraid to donate by [contacting me][1], drop a [tip][2] (if done while I'm streaming your donation will be highlighted and tanked for), or if you prefer cryptocurrencies use the QR-codes bellow :)
+Even though some of the content I create may relate to something I have been dealing or have dealt in the past in my work environment, my views are my own and not of my current or past employer. There is no support (i.e. financial or otherwise) from them, the development of this site and the creation of content that is published on it and in other platforms (e.g., YouTube, Twitch, etc.), is done on my own time. While I take a completely independent approach at any subject, I do accept donations. As such, if you want to help supporting the creation of new content, don’t be afraid to donate by [contacting me][1], or if you prefer cryptocurrencies use the QR-codes bellow :)
 
 {{< html >}}
 <div class="row">
-  <div class="col-md-6 col-sm-12">
+  <div class="col-md-4 col-sm-12">
   {{< figure image="/images/bitcoin.png" alternative="38VZd5rg4DziZ2S2rkKyExtXs338UypfGJ" caption="Bitcoin Address">}}
   </div>
-  <div class="col-md-6 col-sm-12">
-  {{< figure image="/images/bitcoin.png" alternative="LcsxdEkmByfeNYBechiiKZXhyCfobkwwfw" caption="Litecoin Address">}}
+  <div class="col-md-4 col-sm-12">
+  {{< figure image="/images/litecoin.png" alternative="LcXizY3wKrZkauFbxmniV1uiUXxAtq8wkZ" caption="Litecoin Address">}}
   </div>
-</div>
-<div class="row">
-  <div class="col-md-12 col-sm-12">
-  {{< figure image="/images/bitcoin.png" alternative="4GdoN7NCTi8a5gZug7PrwZNKjvHFmKeV11L6pNJPgj5QNEHsN6eeX3DaAQFwZ1ufD4LYCZKArktt113W7QjWvQ7CW8VM8nR6La96Fdr1xf" caption="Monero Address">}}
+  <div class="col-md-4 col-sm-12">
+  {{< figure image="/images/monero.png" alternative="86eRDKaY7gMXWrVnZuJmYQJJx5xHwW5yFP1rEXcqG79NUbLPeL3pHRz4fdLddec41MGLDxT3YBems36EifpdVAaoUXsZ9f1" caption="Monero Address">}}
   </div>
 </div>
 {{< /html >}}
@@ -50,4 +48,3 @@ Even though some of the content I create may relate to something I have been dea
 {{< alert class="warning" >}}Note that when donating, you are certifying that you own the funds and acknowledge that all donations are non-refundable.{{< /alert >}}
 
 [1]: /contacts/ "Contact Page"
-[2]: https://streamlabs.com/serializingme/tip "StreamLabs Donation Page"
