@@ -57,7 +57,7 @@ Combined  An aggregated feed of all the content which includes, pages, posts and
       
       <guid>https://www.serializing.me/contributions/</guid>
       <description>Over time, I have contributed to some Open Source Software projects. What follows a list of such contributions. The list of contributions is grouped by project and sorted in chronological order.
-IVRE  Minor fixes to IVRE&amp;rsquo;s web interface (#601). NSE script sslv2-drown causes import error (#631). Added the display:vulnerability search filter directive (#634). Fixed an issue with the calculation of the top CPEs (#635).  stoQ Framework  Integration between stoQ Framework and LIEF (#22).</description>
+Metasploit  Fixed AnyConnect IPC message format (#17564).  IVRE  Minor fixes to IVRE&amp;rsquo;s web interface (#601). NSE script sslv2-drown causes import error (#631). Added the display:vulnerability search filter directive (#634). Fixed an issue with the calculation of the top CPEs (#635).</description>
     </item>
     
     <item>
