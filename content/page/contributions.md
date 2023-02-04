@@ -10,6 +10,10 @@ weight = 3
 
 Over time, I have contributed to some Open Source Software projects. What follows a list of such contributions. The list of contributions is grouped by project and sorted in chronological order.
 
+### Metasploit
+
+1. Fixed AnyConnect IPC message format ([#17564][26]).
+
 ### IVRE
 
 1. Minor fixes to IVRE's web interface ([#601][19]).
@@ -96,3 +100,4 @@ Change log can be found [here][17].
 [23]: https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/44 "GitHub Pull Request"
 [24]: https://github.com/PUNCH-Cyber/stoq-plugins-public/pull/107 "GitHub Pull Request"
 [25]: https://github.com/astryzia/bash-portscanner/pull/1 "GitHub Pull Request"
+[26]: https://github.com/rapid7/metasploit-framework/pull/17564 "GitHub Pull Request"
