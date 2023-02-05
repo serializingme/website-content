@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="458" />
+<meta itemprop="wordCount" content="486" />
   
 
 
@@ -180,9 +180,12 @@ Titan Quest Invincibility Cheat
 </div>
 
     
-<script type="application/javascript" src="https://gist.github.com/serializingme/6986630b7b2f8bbb0fc8.js?file=GameEngine.cpp"></script>
-
-
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span><span style="color:#6ab825;font-weight:bold">namespace</span> GAME {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span>    <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">GameEngine</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span>        Player <span style="color:#447fcf">GetMainPlayer</span>();
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5</span>}
+</code></pre></div>
 <div class="row">
   <div class="col-md-7 col-sm-6">
     <p>This made things easier since now I had a way of getting the memory address where the <code>Player</code> instance of my character is stored. The next step was to put my character in a combat situation and add a 4 bytes hardware read/write breakpoint in that address.</p>
@@ -199,9 +202,12 @@ Titan Quest Invincibility Cheat
 
     
 <p>Following the flow of execution (i.e., single stepping through the code), I found another interesting function called <code>?IsInvincible@Character@GAME@@QBE_NX</code>. Decoding the C++ name mangling reveals the following code.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/6986630b7b2f8bbb0fc8.js?file=Character.cpp"></script>
-
-
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span><span style="color:#6ab825;font-weight:bold">namespace</span> GAME {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span>    <span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">Character</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span>        <span style="color:#6ab825;font-weight:bold">bool</span> <span style="color:#447fcf">IsInvincible</span>();
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4</span>    }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5</span>}
+</code></pre></div>
 <div class="row">
   <div class="col-md-7 col-sm-6">
     <p>At this point, I now had the offset at which the invincibility flag is stored in instances of the <code>Player</code> class. Using API Monitor memory editor, I changed the value from zero, to one. From this point onwards, my character became invulnerable to attack.</p>
@@ -223,7 +229,7 @@ Titan Quest Invincibility Cheat
   <iframe src="https://www.youtube.com/embed/tluOw6sOkl4" allowfullscreen title="YouTube Video"></iframe>
 </div>
 
-<p>The library can be injected multiple times, as it will return the unsuccessful load status, leading Windows to unload it from the process memory (this will only happen if the library is injected using the <code>LoadLibrary/CreateRemoteThread</code> method).</p>
+<p>The library can be injected multiple times, as it will return the unsuccessful load status, leading Windows to unload it from the process memory (this will only happen if the library is injected using the <code>CreateRemoteThread</code> on <code>LoadLibrary</code> method).</p>
 <p>Cheers x)</p></div>
       </div>
       <div class="card-footer">

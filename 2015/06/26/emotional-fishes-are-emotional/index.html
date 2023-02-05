@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="151" />
+<meta itemprop="wordCount" content="194" />
   
 
 
@@ -165,9 +165,16 @@ Emotional Fishes are Emotional
 <p>Following my research with <a href="/2015/05/28/a-paranoid-fish-and-silver-bullets/" title="Blog Post">Pafish</a> and subsequent development of <a href="/2015/06/12/curious-fish-is-curious/" title="Blog Post">Cufish</a>, I decided to create the <a href="/project/emofishes/" title="Project Page">Emofishes</a> (Emotional Fishes) project.</p>
 <p>I had created a pull request seeking to integrate Cufish into Pafish, but after a short exchange of ideas with Alberto (Pafish maintainer), it was decided that Cufish was better fit in its own project. Since I&rsquo;m still doing research in virtualized malware execution environments, it is likely that other tools and proof concepts will be published so I decided to create this new project that will contain all the code of tools and proof of concepts I will develop over time.</p>
 <p>All code is licensed under GPLv3 and can be easily compiled with MinGW. As an example to compile Cufish:</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/f127fbad352aeb023b29.js?file=compile-instructions.sh"></script>
-
-<p>Under the <code>dist</code> directory there are compiled versions ready to be executed. All art present on the project (fishes images) and in the post banner image is courtesy of <a href="http://fasticon.com/" title="Fasticon Design">Fasticon Design</a>.</p></div>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># If compiling in Windows systems</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span>make -f Makefile.win
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5</span><span style="color:#999;font-style:italic"># If cross-compiling in Linux systems for a 32 bits Windows</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">6</span>make -f Makefile.linux-32
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">8</span><span style="color:#999;font-style:italic"># If cross-compiling in Linux systems for a 64 bits Windows, not always available</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">9</span>make -f Makefile.linux-64
+</code></pre></div><p>Under the <code>dist</code> directory there are compiled versions ready to be executed. All art present on the project (fishes images) and in the post banner image is courtesy of <a href="http://fasticon.com/" title="Fasticon Design">Fasticon Design</a>.</p></div>
       </div>
       <div class="card-footer">
 <span><i class="fas fa-calendar-alt"></i>&nbsp;</span>June 26, 2015&nbsp;&nbsp;<br/>

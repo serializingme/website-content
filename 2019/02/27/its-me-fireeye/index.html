@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="477" />
+<meta itemprop="wordCount" content="527" />
   
 
 
@@ -192,9 +192,24 @@ It&#39;s Me, FireEye!
 
 <p>The second was that the driver was indeed responsible for monitoring the system for activity (e.g., opening files, deleting files, etc.) as it implements a file system filter driver and injects a DLL in all processes (with some exceptions) using the APC method.</p>
 <p>That got me thinking, how could I check if the file existed without triggering such alerts? After some experimentation I decided to give the <code>FindFirstFile</code> Windows API a try. If it didn&rsquo;t make use of system calls, it would most likely be stealth in such a way the sandbox won&rsquo;t tag it as malicious.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/add1c6e6e24cb775785800c22b8f14d9.js?file=fetest.c"></script>
-
-<p>With this idea in mind, I developed another small utility that did just that. Suffice to say it was successful! The driver could be detected and not a single alert was triggered :D</p><h3 id="disclosure-timeline">Disclosure Timeline</h3>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cc" data-lang="cc"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;windows.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold">#include</span> <span style="color:#cd2828;font-weight:bold">&lt;stdio.h&gt;</span><span style="color:#cd2828;font-weight:bold">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#cd2828;font-weight:bold"></span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#6ab825;font-weight:bold">void</span> <span style="color:#447fcf">main</span>(<span style="color:#6ab825;font-weight:bold">int</span> argc, <span style="color:#6ab825;font-weight:bold">char</span> *argv[]) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>  WIN32_FIND_DATA FindFileData;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>  HANDLE hFind;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>  hFind = FindFirstFile(<span style="color:#ed9d13">&#34;C:</span><span style="color:#ed9d13">\\</span><span style="color:#ed9d13">WINDOWS</span><span style="color:#ed9d13">\\</span><span style="color:#ed9d13">system32</span><span style="color:#ed9d13">\\</span><span style="color:#ed9d13">drivers</span><span style="color:#ed9d13">\\</span><span style="color:#ed9d13">firemon.sys&#34;</span>, &amp;FindFileData);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>  <span style="color:#6ab825;font-weight:bold">if</span> (hFind == INVALID_HANDLE_VALUE) {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span>      printf(<span style="color:#ed9d13">&#34;Failed to find the driver (%d)</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>, GetLastError());
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span>   }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span>   <span style="color:#6ab825;font-weight:bold">else</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span>      printf(<span style="color:#ed9d13">&#34;Found the driver!</span><span style="color:#ed9d13">\n</span><span style="color:#ed9d13">&#34;</span>);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span>      FindClose(hFind);
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span>   }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span>}
+</code></pre></div><p>With this idea in mind, I developed another small utility that did just that. Suffice to say it was successful! The driver could be detected and not a single alert was triggered :D</p><h3 id="disclosure-timeline">Disclosure Timeline</h3>
           <ul><li>
         2018-11-23:&nbsp;Reported to FireEye</li><li>
         2018-11-26:&nbsp;FireEye acknowledged the report and deployed a content update to fix it. I asked if it was ok to publish the post.</li><li>

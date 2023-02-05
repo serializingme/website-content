@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="356" />
+<meta itemprop="wordCount" content="625" />
   
 
 
@@ -165,21 +165,42 @@ HPQPswd Encrypted Passwords Decryption
 <p>Ever wondered how to decrypt HPQPswd encrypted passwords? So did I when, for the first time, I came across a strange file called <code>password.bin</code> with a magic value of <code>_HPPW12_</code>.</p>
 <p>It was easy to establish a link between this strange file and <code>HpqPswd.exe</code> as the <code>password.bin</code> file was accompanied by <code>BIOSConfigUtility64.exe</code> (an HP BIOS/UEFI configuration utility part of the HP System Software Manager). HP describes the HPQPswd utility as a utility that accepts a user entered password, encrypts the password and then stores it in a file for use by the BIOS.</p>
 <p>After looking at the HPQPswd import table, it was clear that it was leveraging the Windows cryptographic API. By using <a href="https://www.rohitab.com/apimonitor" title="API Monitor">API Monitor</a> it was possible to trace how the utility uses the API (tested with &ldquo;thispassword&rdquo; as the password).</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/c091d63170c0fe80b82379c66f5c7ff8.js?file=api-monitor-trace.txt"></script>
-
-<p>Using the API Monitor memory editor on address <code>0x064f0918</code> (more information at <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa380207%28v=vs.85%29.aspx" title="CryptImportKey Function Documentation">CryptImportKey</a> documentation) it was possible to obtain the byte array that contains the <code>PUBLICKEYSTRUC</code> blob header followed by the encryption key (in this case the key is in plaintext, but even if it wasn&rsquo;t, it could be used as is).</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/c091d63170c0fe80b82379c66f5c7ff8.js?file=publickeystruct-dump.txt"></script>
-
-<p>Mapping the above hexadecimal dump to the structure results in the following.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/c091d63170c0fe80b82379c66f5c7ff8.js?file=publickeystruct-mapping.txt"></script>
-
-<p>This structure is followed by the length of the key <code>0x00000020</code> (starting at byte 9 of the hexadecimal dump) and the key itself (starting at byte 13). Now that the encryption key was obtained, the next step was to understand the format for the file that will store the encrypted password. Once again by using the API Monitor memory editor on address <code>0x0654be20</code> (more information at <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa379924%28v=vs.85%29.aspx" title="CryptEncrypt Function Documentation">CryptEncrypt</a> documentation) it was possible to obtain the test password in encrypted form. Follows the hexadecimal dump.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/c091d63170c0fe80b82379c66f5c7ff8.js?file=encrypted-dump.txt"></script>
-
-<p>Looking at the resulting file hexadecimal dump.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/c091d63170c0fe80b82379c66f5c7ff8.js?file=file-dump.txt"></script>
-
-<p>It was then possible to understand the file format:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span>CreateFileW ( <span style="color:#ed9d13">&#34;.</span><span style="color:#ed9d13">\t</span><span style="color:#ed9d13">est.bin&#34;</span>, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, <span style="color:#3677a9">0x003eed68</span>, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, <span style="color:#24909d">NULL</span> )
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span>CryptAcquireContextW ( <span style="color:#3677a9">0x003eefc4</span>, <span style="color:#ed9d13">&#34;HPQPswd2012&#34;</span>, <span style="color:#ed9d13">&#34;Microsoft Enhanced RSA and AES Cryptographic Provider&#34;</span>, PROV_RSA_AES, CRYPT_DELETEKEYSET )
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>CryptAcquireContextW ( <span style="color:#3677a9">0x003eefc4</span>, <span style="color:#ed9d13">&#34;HPQPswd2012&#34;</span>, <span style="color:#ed9d13">&#34;Microsoft Enhanced RSA and AES Cryptographic Provider&#34;</span>, PROV_RSA_AES, CRYPT_NEWKEYSET )
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>CryptImportKey ( <span style="color:#3677a9">0x064f28a8</span>, <span style="color:#3677a9">0x064f0918</span>, <span style="color:#3677a9">44</span>, <span style="color:#24909d">NULL</span>, <span style="color:#3677a9">0</span>, <span style="color:#3677a9">0x003eeeec</span> )
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>CryptEncrypt ( <span style="color:#3677a9">0x0652d648</span>, <span style="color:#24909d">NULL</span>, TRUE, <span style="color:#3677a9">64</span>, <span style="color:#24909d">NULL</span>, <span style="color:#3677a9">0x003eeef0</span>, <span style="color:#3677a9">24</span> )
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>CryptEncrypt ( <span style="color:#3677a9">0x0652d648</span>, <span style="color:#24909d">NULL</span>, TRUE, <span style="color:#3677a9">64</span>, <span style="color:#3677a9">0x0654be20</span>, <span style="color:#3677a9">0x003eeef0</span>, <span style="color:#3677a9">32</span> )
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>CryptDestroyKey ( <span style="color:#3677a9">0x0652d648</span> )
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>WriteFile ( <span style="color:#3677a9">0x000004d0</span>, <span style="color:#3677a9">0x0645abd0</span>, <span style="color:#3677a9">42</span>, <span style="color:#3677a9">0x003ed360</span>, <span style="color:#24909d">NULL</span> )
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>CloseHandle ( <span style="color:#3677a9">0x000004d0</span> )
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>CryptReleaseContext ( <span style="color:#3677a9">0x064f28a8</span>, <span style="color:#3677a9">0</span> )
+</code></pre></div><p>Using the API Monitor memory editor on address <code>0x064f0918</code> (more information at <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa380207%28v=vs.85%29.aspx" title="CryptImportKey Function Documentation">CryptImportKey</a> documentation) it was possible to obtain the byte array that contains the <code>PUBLICKEYSTRUC</code> blob header followed by the encryption key (in this case the key is in plaintext, but even if it wasn&rsquo;t, it could be used as is).</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span>0000  08 02 00 00 10 66 00 00  .....f..
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span>0009  20 00 00 00 4a 14 b6 96   ...J...
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span>0011  32 ff 83 6b 42 88 da 79  2..kB..y
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4</span>0018  1c 0b d3 77 a5 49 ed 9d  .I.....w
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5</span>0020  83 9f e2 d6 52 54 71 0c  ....RTq.
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">6</span>0024  3e bd 1e 33              &gt;..3
+</code></pre></div><p>Mapping the above hexadecimal dump to the structure results in the following.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span><span style="color:#6ab825;font-weight:bold">typedef</span> <span style="color:#6ab825;font-weight:bold">struct</span> _PUBLICKEYSTRUC {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span>  BYTE   bType;    <span style="color:#999;font-style:italic">// 0x08, PLAINTEXTKEYBLOB
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span><span style="color:#999;font-style:italic"></span>  BYTE   bVersion; <span style="color:#999;font-style:italic">// 0x02, CUR_BLOB_VERSION
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4</span><span style="color:#999;font-style:italic"></span>  WORD   reserved; <span style="color:#999;font-style:italic">// 0x0000
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5</span><span style="color:#999;font-style:italic"></span>  ALG_ID aiKeyAlg; <span style="color:#999;font-style:italic">// 0x00006610, CALG_AES_256
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">6</span><span style="color:#999;font-style:italic"></span>} BLOBHEADER, PUBLICKEYSTRUC;
+</code></pre></div><p>This structure is followed by the length of the key <code>0x00000020</code> (starting at byte 9 of the hexadecimal dump) and the key itself (starting at byte 13). Now that the encryption key was obtained, the next step was to understand the format for the file that will store the encrypted password. Once again by using the API Monitor memory editor on address <code>0x0654be20</code> (more information at <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa379924%28v=vs.85%29.aspx" title="CryptEncrypt Function Documentation">CryptEncrypt</a> documentation) it was possible to obtain the test password in encrypted form. Follows the hexadecimal dump.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span>0000  b8 c2 ba e2 2f c8 3a c1  ..../.:.
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span>0009  0d ba 00 57 5a a9 e7 59  ...WZ..Y
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span>0011  c9 f6 01 b3 e7 84 24 66  ......$f
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4</span>0014  8c 22 b8 b0 74 d9 ff fe  .&#34;..t...
+</code></pre></div><p>Looking at the resulting file hexadecimal dump.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span>0000  5f 48 50 50 57 31 32 5f 20 00  _HPPW12_ .
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span>000B  b8 c2 ba e2 2f c8 3a c1 0d ba  ..../.:...
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span>0014  00 57 5a a9 e7 59 c9 f6 01 b3  .WZ..Y....
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4</span>001E  e7 84 24 66 8c 22 b8 b0 74 d9  ..$f.&#34;..t.
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5</span>0028  ff fe                          ..
+</code></pre></div><p>It was then possible to understand the file format:</p>
 <ul>
 <li>Magic value <code>_HPPW12_</code> (8 bytes)</li>
 <li>Length of the encrypted password 0x0020 (32 bytes)</li>

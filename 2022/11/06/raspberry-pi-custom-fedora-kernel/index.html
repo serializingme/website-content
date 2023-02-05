@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="371" />
+<meta itemprop="wordCount" content="631" />
   
 
 
@@ -171,9 +171,53 @@ Raspberry Pi Custom Fedora Kernel
 <p><div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>The instructions that follow below assume one already has Fedora installed and running on the Pi, as well as Secure Shell (SSH) access to the Pi.</div>
 <div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>Compiling the Linux kernel and creating the Red Hat Package Management files (RPMs) does take quite a lot of space, do recommend making use of an Secure Digital (SD) card of at least 32GB. Also note that the compilation in the Pi does take quite a while, Cross-Compiling may be an option if one is in a rush.</div></p>
 <p>Most of the instruction below are based on the excelent article in the Fedora&rsquo;s <a href="https://fedoraproject.org/wiki/Building_a_custom_kernel" title="Building a Custom Kernel">Wiki</a>.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/acf64c1f329910f33bf80e01264ba57e.js?file=build.sh"></script>
-
-<h3 id="closing-words">Closing Words</h3>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#999;font-style:italic"># Install dependencies.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span>dnf install kernel-devel fedpkg fedora-packager rpmdevtools kernel-rpm-macros ncurses-devel pesign grubby
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># Get the source code.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>fedpkg clone -a kernel
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># Cloning into &#39;kernel&#39;...</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># remote: Enumerating objects: 8242, done.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic"># remote: Counting objects: 100% (8242/8242), done.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># remote: Compressing objects: 100% (6150/6150), done.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic"># remote: Total 92789 (delta 7507), reused 2091 (delta 2091), pack-reused 84547</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># Receiving objects: 100% (92789/92789), 127.62 MiB | 2.46 MiB/s, done.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic"># Resolving deltas: 100% (59705/59705), done.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic"># Change to the newly created directory.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#24909d">cd</span> kernel
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic"># Change to the release of Fedora that is currently installed in the Pi. In this case it was Fedora 36.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span>git checkout f36
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic"># Switched to a new branch &#39;origin/f36&#39;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span><span style="color:#999;font-style:italic"># Change the build identifier to avoid conflits with the upstream packages.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span>sed -i <span style="color:#ed9d13">&#39;s/# define buildid \.local/%define buildid \.srlzng/g&#39;</span> kernel.spec
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span><span style="color:#999;font-style:italic"># Enable the driver USB RNDIS driver in the Kernel configuration.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span>sed -i <span style="color:#ed9d13">&#39;s/# CONFIG_USB_CONFIGFS_RNDIS is not set/CONFIG_USB_CONFIGFS_RNDIS=y/g&#39;</span> kernel-aarch64-fedora.config
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span><span style="color:#999;font-style:italic"># Compile the new RPMs.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span>fedpkg <span style="color:#24909d">local</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">29</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">30</span><span style="color:#999;font-style:italic"># Create a new branch to commit the changes that will be done.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">31</span>git checkout -b f36-srlzng
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">32</span><span style="color:#999;font-style:italic"># Switched to a new branch &#39;f36-srlzng&#39;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">33</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">34</span><span style="color:#999;font-style:italic"># Add the changed files.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">35</span>git add kernel.spec kernel-aarch64-fedora.config
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">36</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">37</span><span style="color:#999;font-style:italic"># Save the code changes to the created branch.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">38</span>git commit -m <span style="color:#ed9d13">&#34;Added support for RNDIS on USB ConfigFS.&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">39</span><span style="color:#999;font-style:italic"># [f36-srlzng 2e793a56c] Added support for RNDIS on USB ConfigFS.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">40</span><span style="color:#999;font-style:italic">#  2 files changed, 2 insertions(+), 2 deletions(-)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">41</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">42</span><span style="color:#999;font-style:italic"># Install the new Kernel.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">43</span>sudo dnf install --nogpgcheck ./aarch64/kernel-core-&lt;version&gt;.rpm ./aarch64/kernel-modules-&lt;version&gt;.rpm ./aarch64/kernel-&lt;version&gt;.rpm
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">44</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">45</span><span style="color:#999;font-style:italic"># Reboot the Pi</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">46</span>reboot
+</code></pre></div><h3 id="closing-words">Closing Words</h3>
 <p>From this point onwards the Pi should be running the custom Kernel with the added driver. Happy customizing!</p></div>
       </div>
       <div class="card-footer">

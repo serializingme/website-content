@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="310" />
+<meta itemprop="wordCount" content="1462" />
   
 
 
@@ -168,24 +168,193 @@ Reversing the TC7210 Embedded Linux Firmware
 </div>
 
 <p>In a previous <a href="/2018/06/03/rooting-the-technicolor-7210/" title="Rooting the Technicolor 7210">article</a>, I explained how to get <code>root</code> on the embedded Linux part of the TC7210 router by leveraging a remote code execution (RCE). With that level of access, I was able to image the various flash partitions of the router. The first thing I tried was to use <code>binwalk</code> to identify what files may be contained in the images.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/97ac2fe9f8f5b54b399202581f240095.js?file=binwalk.sh"></script>
-
-<p>The partitions <code>mtd8.img</code> and <code>mtd10.img</code> appear to have a valid UBIFS file system on them. Using <a href="https://github.com/nlitsme/ubidump">ubidump</a> it is possible to extract the file system. First, we download the tool repository and then setup a virtual Python environment to where the tool dependencies are installed.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/97ac2fe9f8f5b54b399202581f240095.js?file=virtualenv.sh"></script>
-
-<p>The next step is to extract the file system of both images.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/97ac2fe9f8f5b54b399202581f240095.js?file=ubidump.sh"></script>
-
-<p>This creates two directories, <code>rootfs</code> and <code>linuxapps</code>. The first contains the root file system and the second ancillary applications and files. From this point onwards, it is possible to read configuration files, reverse engineer executables, libraries, etc.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/97ac2fe9f8f5b54b399202581f240095.js?file=rootfs-linuxapps.sh"></script>
-
-<p>After this, I wanted to see if I could run the executables using QEMU (similar to what I did when reversing the <a href="/2015/06/02/reversing-arubaos-firmware/" title="Reversing ArubaOS Firmware">ArubaOS</a>). To do that, I needed to confirm the processor architecture of the executables, copy the respective statically linked QEMU executable to the <code>rootfs</code> directory and then use the <code>chroot</code> command.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/97ac2fe9f8f5b54b399202581f240095.js?file=chroot.sh"></script>
-
-<p>Next, I tried to run the <code>smbapp</code> (the executable that was <a href="/2018/06/03/rooting-the-technicolor-7210/" title="Rooting the Technicolor 7210">previously</a> identified as the one responsible for managing the NAS file sharing functionality). After fixing some of the errors, I was also successful :D</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/97ac2fe9f8f5b54b399202581f240095.js?file=smbapp.sh"></script>
-
-<p>The ability to run the executables makes the reverse engineering and vulnerability finding process a lot easier. In upcoming posts, I will detail how I found and exploited some yet to be released vulnerabilities. Cheers :)</p></div>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>ls -l
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic"># total 132416</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout    65536 Jul 25  2017 mtd0.img</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout 33423360 Jul 25  2017 mtd10.img</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout   131072 Jul 25  2017 mtd1.img</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout   262144 Jul 25  2017 mtd2.img</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout  1048576 Jul 25  2017 mtd3.img</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout   393216 Jul 25  2017 mtd4.img</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout 16777216 Jul 25  2017 mtd5.img</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout 16777216 Jul 25  2017 mtd6.img</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout  8257536 Jul 25  2017 mtd7.img</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout 46006272 Jul 25  2017 mtd8.img</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout 12451840 Jul 25  2017 mtd9.img</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span>binwalk mtd8.img mtd10.img
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic"># Scan Time:     2018-08-09 14:52:38</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic"># Target File:   /mnt/hgfs/Temporary/tc7210/mtd8.img</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic"># MD5 Checksum:  09a51282fcc93a2f0fd02736e0e0f313</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span><span style="color:#999;font-style:italic"># Signatures:    344</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span><span style="color:#999;font-style:italic"># DECIMAL       HEXADECIMAL     DESCRIPTION</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span><span style="color:#999;font-style:italic"># --------------------------------------------------------------------------------</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span><span style="color:#999;font-style:italic"># 0             0x0             UBI erase count header, version: 1, EC: 0x2, VID header offset: 0x800, data offset: 0x1000</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span><span style="color:#999;font-style:italic"># Scan Time:     2018-08-09 14:52:42</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">29</span><span style="color:#999;font-style:italic"># Target File:   /mnt/hgfs/Temporary/tc7210/mtd10.img</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">30</span><span style="color:#999;font-style:italic"># MD5 Checksum:  b78fa525eba4d388a9aeb74db578b189</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">31</span><span style="color:#999;font-style:italic"># Signatures:    344</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">32</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">33</span><span style="color:#999;font-style:italic"># DECIMAL       HEXADECIMAL     DESCRIPTION</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">34</span><span style="color:#999;font-style:italic"># --------------------------------------------------------------------------------</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">35</span><span style="color:#999;font-style:italic"># 0             0x0             UBI erase count header, version: 1, EC: 0x2, VID header offset: 0x800, data offset: 0x1000</span>
+</code></pre></div><p>The partitions <code>mtd8.img</code> and <code>mtd10.img</code> appear to have a valid UBIFS file system on them. Using <a href="https://github.com/nlitsme/ubidump">ubidump</a> it is possible to extract the file system. First, we download the tool repository and then setup a virtual Python environment to where the tool dependencies are installed.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>git clone https://github.com/nlitsme/ubidump.git
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic"># Cloning into &#39;ubidump&#39;...</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># remote: Counting objects: 53, done.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># remote: Total 53 (delta 0), reused 0 (delta 0), pack-reused 53</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># Unpacking objects: 100% (53/53), done.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>virtualenv .tc7210-env
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># Running virtualenv with interpreter /usr/bin/python2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic"># New python executable in /mnt/hgfs/Temporary/tc7210/.tc7210-env/bin/python2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># Also creating executable in /mnt/hgfs/Temporary/tc7210/.tc7210-env/bin/python</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic"># Installing setuptools, pkg_resources, pip, wheel...done.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span>. .tc7210-env/bin/activate
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span>pip install -r ubidump/requirements.txt
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic"># Collecting python-lzo&gt;=1.11 (from -r ubidump/requirements.txt (line 1))</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic"># Collecting crcmod&gt;=1.7 (from -r ubidump/requirements.txt (line 2))</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic"># Installing collected packages: python-lzo, crcmod</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic"># Successfully installed crcmod-1.7 python-lzo-1.12</span>
+</code></pre></div><p>The next step is to extract the file system of both images.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>python ubidump/ubidump.py -s . mtd8.img mtd10.img
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic"># ==&gt; mtd8.img &lt;==</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># 1 named volumes found, 2 physical volumes, blocksize=0x20000</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># == volume linuxapps ==</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># saved 75 files</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># ==&gt; mtd10.img &lt;==</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic"># 1 named volumes found, 2 physical volumes, blocksize=0x20000</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># == volume rootfs ==</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic"># saved 173 files</span>
+</code></pre></div><p>This creates two directories, <code>rootfs</code> and <code>linuxapps</code>. The first contains the root file system and the second ancillary applications and files. From this point onwards, it is possible to read configuration files, reverse engineer executables, libraries, etc.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>ls -l linuxapps/ rootfs/
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic"># linuxapps/:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># total 2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># drwxr-xr-x 1 501 dialout 256 Aug  9 17:16 CVS</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout 306 Aug  9 17:16 readme.txt</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># drwxr-xr-x 1 501 dialout 128 Aug  9 17:16 usr</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout 184 Aug  9 17:16 version.txt</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic"># rootfs/:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># total 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic"># drwxr-xr-x 1 501 dialout  768 Aug  9 17:16 bin</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic"># drwxr-xr-x 1 501 dialout  256 Aug  9 17:16 CVS</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic"># drwxr-xr-x 1 501 dialout  960 Aug  9 17:16 etc</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic"># drwxr-xr-x 1 501 dialout 1568 Aug  9 17:16 lib</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic"># drwxr-xr-x 1 501 dialout  224 Aug  9 17:16 sbin</span>
+</code></pre></div><p>After this, I wanted to see if I could run the executables using QEMU (similar to what I did when reversing the <a href="/2015/06/02/reversing-arubaos-firmware/" title="Reversing ArubaOS Firmware">ArubaOS</a>). To do that, I needed to confirm the processor architecture of the executables, copy the respective statically linked QEMU executable to the <code>rootfs</code> directory and then use the <code>chroot</code> command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>file rootfs/bin/busybox
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic"># rootfs/bin/busybox: ELF 32-bit MSB executable, MIPS, MIPS32 version 1 (SYSV), dynamically linked, interpreter /lib/ld-uClibc.so.0, stripped</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>which qemu-mips-static
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># /usr/bin/qemu-mips-static</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>cp /usr/bin/qemu-mips-static rootfs/
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>sudo chroot rootfs/ ./qemu-mips-static /bin/busybox
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># Error while loading /bin/busybox: Permission denied</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span>ls -l rootfs/bin/
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic"># total 8684</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout   39964 Aug  9 17:16 brctl</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout  526180 Aug  9 17:16 busybox</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout   61640 Aug  9 17:16 ebtables</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout  210764 Aug  9 17:16 ip</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout    7808 Aug  9 17:16 lxginit</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout   14876 Aug  9 17:16 mscapp</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout 1219244 Aug  9 17:16 nmbd</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout  154140 Aug  9 17:16 ntfs-3g</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout   24200 Aug  9 17:16 ntfslabel</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout   14204 Aug  9 17:16 portmap</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout   18988 Aug  9 17:16 remoteapi</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout    4612 Aug  9 17:16 rmtshutdown</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout    4924 Aug  9 17:16 rpc_test_client</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout    5408 Aug  9 17:16 rpc_test_service</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">29</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout    4444 Aug  9 17:16 setappsver</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">30</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout  114004 Aug  9 17:16 smbapp</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">31</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout 3900616 Aug  9 17:16 smbd</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">32</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout 2203476 Aug  9 17:16 smbpasswd</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">33</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout  242844 Aug  9 17:16 tc</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">34</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout   37716 Aug  9 17:16 ubimkvol</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">35</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout   39748 Aug  9 17:16 ubinfo</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">36</span><span style="color:#999;font-style:italic"># -rw-r--r-- 1 501 dialout   35344 Aug  9 17:16 ubirmvol</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">37</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">38</span>chmod +x rootfs/bin/*
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">39</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">40</span>sudo chroot rootfs/ ./qemu-mips-static /bin/busybox
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">41</span><span style="color:#999;font-style:italic"># BusyBox v1.19.3 (2015-03-04 13:37:03 CST) multi-call binary.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">42</span><span style="color:#999;font-style:italic"># Copyright (C) 1998-2011 Erik Andersen, Rob Landley, Denys Vlasenko</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">43</span><span style="color:#999;font-style:italic"># and others. Licensed under GPLv2.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">44</span><span style="color:#999;font-style:italic"># See source distribution for full notice.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">45</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">46</span><span style="color:#999;font-style:italic"># Usage: busybox [function] [arguments]...</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">47</span><span style="color:#999;font-style:italic">#    or: busybox --list[-full]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">48</span><span style="color:#999;font-style:italic">#    or: function [arguments]...</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">49</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">50</span><span style="color:#999;font-style:italic"># 	BusyBox is a multi-call binary that combines many common Unix</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">51</span><span style="color:#999;font-style:italic">#	utilities into a single executable.  Most people will create a</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">52</span><span style="color:#999;font-style:italic">#	link to busybox for each function they wish to use and BusyBox</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">53</span><span style="color:#999;font-style:italic">#	will act like whatever it was invoked as.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">54</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">55</span><span style="color:#999;font-style:italic"># Currently defined functions:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">56</span><span style="color:#999;font-style:italic">#	[, [[, arp, arping, ash, awk, basename, cat, chgrp, chmod, chown,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">57</span><span style="color:#999;font-style:italic">#	chroot, cp, cttyhack, cut, date, dd, deluser, df, dmesg, echo, egrep,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">58</span><span style="color:#999;font-style:italic">#	expr, false, fgrep, find, flash_eraseall, free, fsync, ftpd, ftpget,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">59</span><span style="color:#999;font-style:italic">#	getty, grep, halt, hexdump, httpd, ifconfig, inetd, init, insmod, ip,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">60</span><span style="color:#999;font-style:italic">#	kill, killall, klogd, less, linuxrc, ln, logger, login, ls, lsmod,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">61</span><span style="color:#999;font-style:italic">#	lsusb, mkdir, mknod, mount, mv, netstat, od, passwd, pidof, ping,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">62</span><span style="color:#999;font-style:italic">#	ping6, poweroff, ps, pwd, reboot, rm, rmdir, rmmod, route, sed, sh,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">63</span><span style="color:#999;font-style:italic">#	sleep, start-stop-daemon, sync, sysctl, syslogd, tail, tar, tcpsvd,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">64</span><span style="color:#999;font-style:italic">#	telnetd, test, tftp, time, top, true, tty, udhcpc, umount, uname,</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">65</span><span style="color:#999;font-style:italic">#	uptime, vconfig, vi, which, whoami, xargs, zcip</span>
+</code></pre></div><p>Next, I tried to run the <code>smbapp</code> (the executable that was <a href="/2018/06/03/rooting-the-technicolor-7210/" title="Rooting the Technicolor 7210">previously</a> identified as the one responsible for managing the NAS file sharing functionality). After fixing some of the errors, I was also successful :D</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>sudo chroot rootfs/ ./qemu-mips-static /bin/smbapp
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic"># NAS: Network Attached Storage Control Application [Version 1.3 Build Mar  4 2015 13:42:04]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># found 0 USB devices</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># NAS: Will retry bind in 15 seconds</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># Launching mscapp</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># MSC: Media Server Control Application [Version 1.2 Build Mar  4 2015 13:42:04]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic"># MSC: waiting for data on port UDP 49181</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># Fatal Error: unable to open /var/tmp/smbapp_hotplug_fifo</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span>sudo chroot rootfs/ ./qemu-mips-static /bin/busybox mkdir -p /var/tmp
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span>sudo chroot rootfs/ ./qemu-mips-static /bin/busybox sh
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic"># BusyBox v1.19.3 (2015-03-04 13:37:03 CST) built-in shell (ash)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic"># Enter &#39;help&#39; for a list of built-in commands.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic"># ${debian_chroot:+($debian_chroot)}:/# busybox echo &#34;&#34;&gt; /var/tmp/smbapp_hotplug_fifo</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic"># ${debian_chroot:+($debian_chroot)}:/# exit</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span>sudo chroot rootfs/ ./qemu-mips-static /bin/smbapp
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span><span style="color:#999;font-style:italic"># NAS: Network Attached Storage Control Application [Version 1.3 Build Mar  4 2015 13:42:04]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span><span style="color:#999;font-style:italic"># found 0 USB devices</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span><span style="color:#999;font-style:italic"># NAS: Will retry bind in 15 seconds</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span><span style="color:#999;font-style:italic"># Launching mscapp</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span><span style="color:#999;font-style:italic"># SmbApp: waiting on port 49182 to recvfrom...</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span><span style="color:#999;font-style:italic"># MSC: Media Server Control Application [Version 1.2 Build Mar  4 2015 13:42:04]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">29</span><span style="color:#999;font-style:italic"># MSC: waiting for data on port UDP 49181</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">30</span><span style="color:#999;font-style:italic"># smbapp: sigterm_handler(): Caught signal(2)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">31</span><span style="color:#999;font-style:italic"># smbapp: shuting down child processes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">32</span><span style="color:#999;font-style:italic"># umounting all USB devices</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">33</span><span style="color:#999;font-style:italic"># pid 3756 terminated by a signal 2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">34</span><span style="color:#999;font-style:italic"># smbapp: mscapp pid 3756 exit status 0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">35</span><span style="color:#999;font-style:italic"># smbapp: closing the socket to ecos</span>
+</code></pre></div><p>The ability to run the executables makes the reverse engineering and vulnerability finding process a lot easier. In upcoming posts, I will detail how I found and exploited some yet to be released vulnerabilities. Cheers :)</p></div>
       </div>
       <div class="card-footer">
 <span><i class="fas fa-calendar-alt"></i>&nbsp;</span>September 30, 2018&nbsp;&nbsp;<br/>

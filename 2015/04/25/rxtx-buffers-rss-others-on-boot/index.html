@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="255" />
+<meta itemprop="wordCount" content="840" />
   
 
 
@@ -171,17 +171,137 @@ RX/TX Buffers, Flow Hash and Others on Boot
 <li>Turn off offloading features (only if using PF_RING, AF_PACKET or similar)</li>
 </ul>
 <p>The kernel network stack can also be tuned using the <code>/sbin/ifup-local</code> script, however the recommended approach is to use a file under the <code>/etc/sysctl.d/</code> directory instead. The <code>ifup-local</code> file doesn&rsquo;t usually exist, so it needs to be created and made executable.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/26fb76f39b475465398f.js?file=create-ifup-local.sh"></script>
-
-<p>Follows the contents of the script that I use.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Create the file</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span>touch /sbin/ifup-local
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5</span><span style="color:#999;font-style:italic"># Make it executable</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">6</span>chmod +x /sbin/ifup-local
+</code></pre></div><p>Follows the contents of the script that I use.</p>
 <div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The name of the interrupts for the network card may vary, and it may support more or less offloading features, adjust accordingly.</div>
-<script type="application/javascript" src="https://gist.github.com/serializingme/26fb76f39b475465398f.js?file=ifup-local"></script>
-
-<p>After a reboot, to verify if the configurations have been applied correctly (the system used in this example as 8 CPU&rsquo;s) issue the following commands.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>set_buffers() {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>    <span style="color:#999;font-style:italic"># Get the hardware RX/TX maximum and current</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>    <span style="color:#40ffff">PRESET</span>=<span style="color:#6ab825;font-weight:bold">$(</span>ethtool -g <span style="color:#40ffff">$1</span> | tr <span style="color:#ed9d13">&#39;\n&#39;</span> <span style="color:#ed9d13">&#39; &#39;</span> | sed <span style="color:#ed9d13">&#39;s/.*RX:\s\+\([0-9]\+\).*TX:\s\+\([0-9]\+\).*RX:\s\+\([0-9]\+\).*TX:\s\+\([0-9]\+\).*/\1 \2 \3 \4/g&#39;</span><span style="color:#6ab825;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>    <span style="color:#999;font-style:italic"># Set receive and trasmit buffers to the hardware maximum</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>    ethtool -G <span style="color:#40ffff">$1</span> rx <span style="color:#6ab825;font-weight:bold">$(</span><span style="color:#24909d">echo</span> <span style="color:#40ffff">$PRESET</span> | cut -f <span style="color:#3677a9">1</span> -d <span style="color:#ed9d13">&#34; &#34;</span><span style="color:#6ab825;font-weight:bold">)</span> tx <span style="color:#6ab825;font-weight:bold">$(</span><span style="color:#24909d">echo</span> <span style="color:#40ffff">$PRESET</span> | cut -f <span style="color:#3677a9">2</span> -d <span style="color:#ed9d13">&#34; &#34;</span><span style="color:#6ab825;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>balance_flowhash() {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span>    <span style="color:#999;font-style:italic"># Balance evenly per CPU</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span>    ethtool -X <span style="color:#40ffff">$1</span> equal <span style="color:#6ab825;font-weight:bold">$(</span>cat /proc/cpuinfo | grep processor | wc -l<span style="color:#6ab825;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span>set_affinity() {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span>    <span style="color:#40ffff">MAX</span>=<span style="color:#6ab825;font-weight:bold">$(</span>cat /proc/cpuinfo | grep processor | wc -l<span style="color:#6ab825;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span>    <span style="color:#999;font-style:italic"># Since the receive/transmit interrupts name index starts at 0, subtract 1 from the maximum</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span>    <span style="color:#24909d">let</span> <span style="color:#ed9d13">&#34;MAX=</span><span style="color:#40ffff">$MAX</span><span style="color:#ed9d13">-1&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span>    <span style="color:#999;font-style:italic"># The mask that will define the affinity</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span>    <span style="color:#40ffff">MASK</span>=<span style="color:#3677a9">1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span>    <span style="color:#6ab825;font-weight:bold">for</span> INDEX in <span style="color:#6ab825;font-weight:bold">$(</span>seq <span style="color:#3677a9">0</span> <span style="color:#3677a9">1</span> <span style="color:#40ffff">$MAX</span><span style="color:#6ab825;font-weight:bold">)</span>; <span style="color:#6ab825;font-weight:bold">do</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span>        <span style="color:#40ffff">IRQ</span>=<span style="color:#6ab825;font-weight:bold">$(</span>cat /proc/interrupts | grep <span style="color:#40ffff">$1</span>-rxtx-<span style="color:#40ffff">$INDEX</span><span style="color:#ed9d13">&#34;</span>$<span style="color:#ed9d13">&#34;</span> | sed <span style="color:#ed9d13">&#39;s/\s\([0-9]\+\)\(.*\)/\1/g&#39;</span><span style="color:#6ab825;font-weight:bold">)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span>        <span style="color:#999;font-style:italic"># Apply the mask to the current IRQ</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span>        <span style="color:#24909d">printf</span> <span style="color:#ed9d13">&#34;%X&#34;</span> <span style="color:#40ffff">$MASK</span> &gt; /proc/irq/<span style="color:#40ffff">$IRQ</span>/smp_affinity
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">29</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">30</span>        <span style="color:#999;font-style:italic"># Duplicate the next mask value</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">31</span>        <span style="color:#24909d">let</span> <span style="color:#ed9d13">&#34;MASK=</span><span style="color:#40ffff">$MASK</span><span style="color:#ed9d13">+</span><span style="color:#40ffff">$MASK</span><span style="color:#ed9d13">&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">32</span>    <span style="color:#6ab825;font-weight:bold">done</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">33</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">34</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">35</span>turnoff_offloading() {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">36</span>    ethtool -K <span style="color:#40ffff">$1</span> rx off
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">37</span>    ethtool -K <span style="color:#40ffff">$1</span> tx off
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">38</span>    ethtool -K <span style="color:#40ffff">$1</span> sg off
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">39</span>    ethtool -K <span style="color:#40ffff">$1</span> tso off
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">40</span>    ethtool -K <span style="color:#40ffff">$1</span> gso off
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">41</span>    ethtool -K <span style="color:#40ffff">$1</span> gro off
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">42</span>    ethtool -K <span style="color:#40ffff">$1</span> lro off
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">43</span>    ethtool -K <span style="color:#40ffff">$1</span> rxvlan off
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">44</span>    ethtool -K <span style="color:#40ffff">$1</span> txvlan off
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">45</span>    ethtool -K <span style="color:#40ffff">$1</span> rxhash off
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">46</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">47</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">48</span><span style="color:#6ab825;font-weight:bold">case</span> <span style="color:#ed9d13">&#34;</span><span style="color:#40ffff">$1</span><span style="color:#ed9d13">&#34;</span> in
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">49</span>eth1)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">50</span>    <span style="color:#999;font-style:italic"># Update the receive and transmit buffers</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">51</span>    set_buffers <span style="color:#40ffff">$1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">52</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">53</span>    <span style="color:#999;font-style:italic"># Balance receive flow hash indirection table</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">54</span>    balance_flowhash <span style="color:#40ffff">$1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">55</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">56</span>    <span style="color:#999;font-style:italic"># Set CPU affinity for the interrupts</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">57</span>    set_affinity <span style="color:#40ffff">$1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">58</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">59</span>    <span style="color:#999;font-style:italic"># Offloading features</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">60</span>    turnoff_offloading <span style="color:#40ffff">$1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">61</span>;;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">62</span><span style="color:#6ab825;font-weight:bold">esac</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">63</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">64</span><span style="color:#24909d">exit</span> <span style="color:#3677a9">0</span>
+</code></pre></div><p>After a reboot, to verify if the configurations have been applied correctly (the system used in this example as 8 CPU&rsquo;s) issue the following commands.</p>
 <div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The network interface used in the commands bellow is <strong>eth1</strong>, change accordingly.</div>
-<script type="application/javascript" src="https://gist.github.com/serializingme/26fb76f39b475465398f.js?file=verify-results.sh"></script>
-
-<p>Happy tuning!</p></div>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Verify the send and receive buffers, note how the current hardware values are the same as the pre-set maximum values</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>ethtool -g eth1
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># Ring parameters for eth1:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># Pre-set maximums:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># RX:             4096</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># RX Mini:        0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic"># RX Jumbo:       0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># TX:             4096</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic"># Current hardware settings:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># RX:             4096</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic"># RX Mini:        0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic"># RX Jumbo:       0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic"># TX:             4096</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic"># Verify the flow hash indirection table</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span>ethtool -x eth1
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic"># RX flow hash indirection table for eth1 with 8 RX ring(s):</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic">#     0:      0     1     2     3     4     5     6     7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic">#     8:      0     1     2     3     4     5     6     7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span><span style="color:#999;font-style:italic">#    16:      0     1     2     3     4     5     6     7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span><span style="color:#999;font-style:italic">#    24:      0     1     2     3     4     5     6     7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span><span style="color:#999;font-style:italic"># Verify that the IRQ affinity is set correctly, the output bellow shows only the first 4 CPU&#39;s</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span>cat /proc/interrupts | grep <span style="color:#ed9d13">&#39;CPU\|eth1&#39;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span><span style="color:#999;font-style:italic">#            CPU0       CPU1       CPU2       CPU3   (...)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span><span style="color:#999;font-style:italic">#  65:  107325835          0          3          0         eth1-rxtx-0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span><span style="color:#999;font-style:italic">#  66:          0  150380495          0          2         eth1-rxtx-1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">29</span><span style="color:#999;font-style:italic">#  67:          0          0  107109972          0         eth1-rxtx-2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">30</span><span style="color:#999;font-style:italic">#  68:          0          0          0   91046195         eth1-rxtx-3</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">31</span><span style="color:#999;font-style:italic"># (...)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">32</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">33</span><span style="color:#999;font-style:italic"># Verify that the offloading features are off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">34</span>ethtool -k eth1
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">35</span><span style="color:#999;font-style:italic"># Features for eth1:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">36</span><span style="color:#999;font-style:italic"># rx-checksumming: off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">37</span><span style="color:#999;font-style:italic"># tx-checksumming: off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">38</span><span style="color:#999;font-style:italic">#         tx-checksum-ipv4: off [fixed]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">39</span><span style="color:#999;font-style:italic">#         tx-checksum-ip-generic: off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">40</span><span style="color:#999;font-style:italic">#         tx-checksum-ipv6: off [fixed]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">41</span><span style="color:#999;font-style:italic">#         tx-checksum-fcoe-crc: off [fixed]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">42</span><span style="color:#999;font-style:italic">#         tx-checksum-sctp: off [fixed]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">43</span><span style="color:#999;font-style:italic"># scatter-gather: off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">44</span><span style="color:#999;font-style:italic">#         tx-scatter-gather: off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">45</span><span style="color:#999;font-style:italic">#         tx-scatter-gather-fraglist: off [fixed]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">46</span><span style="color:#999;font-style:italic"># tcp-segmentation-offload: off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">47</span><span style="color:#999;font-style:italic">#         tx-tcp-segmentation: off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">48</span><span style="color:#999;font-style:italic">#         tx-tcp-ecn-segmentation: off [fixed]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">49</span><span style="color:#999;font-style:italic">#         tx-tcp6-segmentation: off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">50</span><span style="color:#999;font-style:italic"># udp-fragmentation-offload: off [fixed]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">51</span><span style="color:#999;font-style:italic"># generic-segmentation-offload: off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">52</span><span style="color:#999;font-style:italic"># generic-receive-offload: off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">53</span><span style="color:#999;font-style:italic"># large-receive-offload: off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">54</span><span style="color:#999;font-style:italic"># rx-vlan-offload: off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">55</span><span style="color:#999;font-style:italic"># tx-vlan-offload: off</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">56</span><span style="color:#999;font-style:italic"># (...)</span>
+</code></pre></div><p>Happy tuning!</p></div>
       </div>
       <div class="card-footer">
 <span><i class="fas fa-calendar-alt"></i>&nbsp;</span>April 25, 2015&nbsp;&nbsp;<br/>

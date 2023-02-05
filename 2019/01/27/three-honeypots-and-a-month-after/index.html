@@ -215,21 +215,21 @@ Three Honeypots and a Month After
     
 <p>Analysing the captured packets with Suricata (<a href="https://rules.emergingthreats.net" title="EmergingThreats Rules Repository">ET Open</a> ruleset) it was possible to get an insight to the malicious visitors intentions. Follows a sorted list by number of occurrences of the signatures triggered by the captured traffic.</p>
 <ol>
-<li>ZmEu scanner User-Agent Inbound</li>
-<li>ThinkPHP RCE exploitation Attempt</li>
-<li>Microsoft IIS Remote Code Execution (CVE-2017-7269)</li>
-<li>MS Terminal Server Traffic on Non-standard Port</li>
-<li>Nmap Scripting Engine User-Agent Detected (Nmap Scripting Engine)</li>
-<li>DFind w00tw00t GET-Requests</li>
-<li>Incoming Masscan detected</li>
-<li>Suspicious Chmod Usage in URI</li>
-<li>Incoming Basic Auth Base64 HTTP Password detected unencrypted</li>
-<li>D-Link DSL-2750B - OS Command Injection</li>
-<li>Possible Apache Struts OGNL Expression Injection (CVE-2017-5638)</li>
-<li>AVTECH Unauthenticated Command Injection in DVR Devices</li>
-<li>Microhard Systems 3G/4G Cellular Ethernet and Serial Gateway - Default Credentials</li>
-<li>Suspected PHP Injection Attack (cmd=)</li>
-<li>ColdFusion administrator access</li>
+<li><code>ZmEu scanner User-Agent Inbound</code></li>
+<li><code>ThinkPHP RCE exploitation Attempt</code></li>
+<li><code>Microsoft IIS Remote Code Execution (CVE-2017-7269)</code></li>
+<li><code>MS Terminal Server Traffic on Non-standard Port</code></li>
+<li><code>Nmap Scripting Engine User-Agent Detected (Nmap Scripting Engine)</code></li>
+<li><code>DFind w00tw00t GET-Requests</code></li>
+<li><code>Incoming Masscan detected</code></li>
+<li><code>Suspicious Chmod Usage in URI</code></li>
+<li><code>Incoming Basic Auth Base64 HTTP Password detected unencrypted</code></li>
+<li><code>D-Link DSL-2750B - OS Command Injection</code></li>
+<li><code>Possible Apache Struts OGNL Expression Injection (CVE-2017-5638)</code></li>
+<li><code>AVTECH Unauthenticated Command Injection in DVR Devices</code></li>
+<li><code>Microhard Systems 3G/4G Cellular Ethernet and Serial Gateway - Default Credentials</code></li>
+<li><code>Suspected PHP Injection Attack (cmd=)</code></li>
+<li><code>ColdFusion administrator access</code></li>
 </ol>
 <div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>To be noted that requests triggering the ZmEu scanner user-agent signature are related with phpMyAdmin exploitation attempts and I have purposely excluded SSH brute force attacks.</div>
 <p>There isn&rsquo;t anything new in the type of attacks being launched. All revolve around the same: Remote Code Execution (RCE) and credentials brute force. It&rsquo;s interesting to see that Apache Struts RCE&rsquo;s are being used quite a lot. There is a high probability that some of those non-router / IP camera systems where compromised by using such exploits.</p>

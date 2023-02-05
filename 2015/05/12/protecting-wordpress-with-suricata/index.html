@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="668" />
+<meta itemprop="wordCount" content="1061" />
   
 
 
@@ -176,55 +176,165 @@ Protecting WordPress with Suricata
 </ul>
 <div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>There are some VPS&rsquo;s, mostly those based on OpenVZ, that will not allow for Kernel changes. Check with the current or future VPS provider before hand.</div>
 <p>The first step is to replace the location section of the server block that listens to HTTPS and passes the requests to PHP, in order to reverse proxy them instead.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/53526694f2876948d1af.js?file=reverse-proxy.conf"></script>
-
-<div class="alert alert-danger"><span><i class="fas fa-minus-circle"></i>&nbsp;</span>Do not use the <code>$host</code> variable in the header <code>X-Forwarded-Host</code> since its client/attacker controlled, possibly making your WordPress installation susceptible to host header poisoning. Use the <code>$server_name</code> variable instead.</div>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span># Replace the following
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span>location ~ \.php$ {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>  (...)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span># With
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>location / {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>  proxy_set_header X-Real-IP $remote_addr;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>  proxy_set_header X-Forwarded-Host $server_name;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span>  proxy_set_header X-Forwarded-Proto $scheme;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span>  proxy_pass http://localhost;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span>}
+</code></pre></div><div class="alert alert-danger"><span><i class="fas fa-minus-circle"></i>&nbsp;</span>Do not use the <code>$host</code> variable in the header <code>X-Forwarded-Host</code> since its client/attacker controlled, possibly making your WordPress installation susceptible to host header poisoning. Use the <code>$server_name</code> variable instead.</div>
 <p>Next we need to configure Nginx to listen locally for the decrypted traffic and to pass it to PHP.</p>
 <div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The WordPress installation will need to be configured for a reverse proxy environment and paths may need to be adjusted depending on the reader specific WordPress installation.</div>
-<script type="application/javascript" src="https://gist.github.com/serializingme/53526694f2876948d1af.js?file=internal-server.conf"></script>
-
-<p>After checking that the configuration is correct, restart Nginx. From this point onwards, there should be plain text HTTP traffic flowing to the socket listening locally (generate some traffic if needed). You can confirm this, by using <code>tcpdump</code>.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/53526694f2876948d1af.js?file=confirm-traffic.sh"></script>
-
-<p>The next step is to configure Netfilter using Nftables, in order for it to send traffic to Suricata. To do that, create a file with the <code>rules</code> extension under <code>/etc/nftables/</code> directory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span>server {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span>  listen localhost:80 default_server;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>  # WordPress installation root directory
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>  root /usr/share/nginx/html;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>  # Index files
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>  index index.php;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>  # Make nginx play nice with WordPress permanent links
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span>  location / {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span>    try_files $uri $uri/ /index.php?$args;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span>  }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span>  # Pass the requests to PHP
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span>  location ~ \.php$ {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span>    (...)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span>  }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span>}
+</code></pre></div><p>After checking that the configuration is correct, restart Nginx. From this point onwards, there should be plain text HTTP traffic flowing to the socket listening locally (generate some traffic if needed). You can confirm this, by using <code>tcpdump</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span><span style="color:#cd2828;font-weight:bold"></span>tcpdump -i lo <span style="color:#ed9d13">&#34;port 80&#34;</span>
+</code></pre></div><p>The next step is to configure Netfilter using Nftables, in order for it to send traffic to Suricata. To do that, create a file with the <code>rules</code> extension under <code>/etc/nftables/</code> directory.</p>
 <div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>If Nftables is already configured in the system, edit the existing rules by adding the IPS related chains with a priority lower than the ones used for the firewall (the higher the number the lower the priority).</div>
 <div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The following configuration only takes into account IPv4, for IPv6 extra configurations will be needed.</div>
-<script type="application/javascript" src="https://gist.github.com/serializingme/53526694f2876948d1af.js?file=nftables.rules"></script>
-
-<div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>Make sure <code>firewalld</code> is disabled.</div>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span>#!/usr/sbin/nft -f
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span>table ip filter {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>  # Firewall
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>  chain firewall-input {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>    type filter hook input priority 0;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>    (...)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>  }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>  chain firewall-output {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>    type filter hook output priority 0;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>    (...)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span>  }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span>  # IPS
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span>  chain ips-input {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span>    type filter hook input priority 10;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span>    # Queue input packets to Suricata
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span>    counter queue num 0-1 fanout, bypass
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span>  }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span>  chain ips-output {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span>    type filter hook output priority 10;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span>    # Queue output packets to Suricata
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span>    counter queue num 0-1 fanout, bypass
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span>  }
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span>}
+</code></pre></div><div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>Make sure <code>firewalld</code> is disabled.</div>
 <p>After starting the Nftables service, the next step is to configure Suricata. First edit the main Suricata configuration file (<code>/etc/suricata/suricata.yaml</code>).</p>
 <p><div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>The Netfilter queue fail open setting may have performance impacts, be sure to read Suricata documentation on it.</div>
 <div class="alert alert-warning"><span><i class="fas fa-exclamation-triangle"></i>&nbsp;</span>The Suricata configurations, are for a host with two CPU&rsquo;s, as such, affinity settings and the number of queues that Suricata listens to may need to be adjusted.</div></p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/53526694f2876948d1af.js?file=suricata.yaml"></script>
-
-<p>Second, edit the system Suricata configuration file (<code>/etc/sysconfig/suricata</code>).</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/53526694f2876948d1af.js?file=suricata.conf"></script>
-
-<p>After starting Suricata, check that everything worked out without errors and that packets are being received (check the <code>/var/log/suricata/stats.log</code> file). To test the installation, use the following SQLi vector.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/53526694f2876948d1af.js?file=sql-injection.txt"></script>
-
-<p>If everything worked as planned, Suricata should have created an entry in the EVE log (<code>/var/log/suricata/eve.json</code>) reporting the attack.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#999;font-style:italic"># Activate workers run mode</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#666"></span><span style="color:#6ab825;font-weight:bold">runmode</span>:<span style="color:#666"> </span>workers<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#666"></span><span style="color:#999;font-style:italic"># Enable EVE logging with X-Forward-For support</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#666"></span>- <span style="color:#6ab825;font-weight:bold">eve-log</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#666">    </span><span style="color:#6ab825;font-weight:bold">enabled</span>:<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">yes</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#666">    </span><span style="color:#999;font-style:italic"># ...</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#666">    </span><span style="color:#6ab825;font-weight:bold">types</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#666">      </span>- <span style="color:#6ab825;font-weight:bold">alert</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#666">          </span><span style="color:#999;font-style:italic"># ...</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#666">          </span><span style="color:#6ab825;font-weight:bold">xff</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#666">            </span><span style="color:#6ab825;font-weight:bold">enabled</span>:<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">yes</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#666">            </span><span style="color:#999;font-style:italic"># Two operation modes are available, &#34;extra-data&#34; and &#34;overwrite&#34;.</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#666">            </span><span style="color:#6ab825;font-weight:bold">mode</span>:<span style="color:#666"> </span>overwrite<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#666">            </span><span style="color:#999;font-style:italic"># Two proxy deployments are supported, &#34;reverse&#34; and &#34;forward&#34;. In</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#666">            </span><span style="color:#999;font-style:italic"># a &#34;reverse&#34; deployment the IP address used is the last one, in a</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#666">            </span><span style="color:#999;font-style:italic"># &#34;forward&#34; deployment the first IP address is used.</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#666">            </span><span style="color:#6ab825;font-weight:bold">deployment</span>:<span style="color:#666"> </span>reverse<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#666">            </span><span style="color:#999;font-style:italic"># Header name where the actual IP address will be reported, if more</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#666">            </span><span style="color:#999;font-style:italic"># than one IP address is present, the last IP address will be the</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span><span style="color:#666">            </span><span style="color:#999;font-style:italic"># one taken into consideration.</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span><span style="color:#666">            </span><span style="color:#6ab825;font-weight:bold">header</span>:<span style="color:#666"> </span>X-Forwarded-For<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span><span style="color:#666"></span><span style="color:#999;font-style:italic"># Disable Netfilter queue fail open</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span><span style="color:#666"></span><span style="color:#6ab825;font-weight:bold">nfq</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span><span style="color:#666">  </span><span style="color:#6ab825;font-weight:bold">fail-open</span>:<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">no</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span><span style="color:#666"></span><span style="color:#999;font-style:italic"># Configure CPU affinity</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">29</span><span style="color:#666"></span><span style="color:#6ab825;font-weight:bold">threading</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">30</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># ...</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">31</span><span style="color:#666">  </span><span style="color:#6ab825;font-weight:bold">set-cpu-affinity</span>:<span style="color:#666"> </span><span style="color:#6ab825;font-weight:bold">yes</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">32</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># Tune cpu affinity of suricata threads. Each family of threads can be bound</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">33</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># on specific CPUs.</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">34</span><span style="color:#666">  </span><span style="color:#6ab825;font-weight:bold">cpu-affinity</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">35</span><span style="color:#666">    </span>- <span style="color:#6ab825;font-weight:bold">management-cpu-set</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">36</span><span style="color:#666">        </span><span style="color:#6ab825;font-weight:bold">cpu</span>:<span style="color:#666"> </span>[<span style="color:#666"> </span><span style="color:#3677a9">0</span>,<span style="color:#666"> </span><span style="color:#3677a9">1</span><span style="color:#666"> </span>]<span style="color:#666">  </span><span style="color:#999;font-style:italic"># include only these cpus in affinity settings</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">37</span><span style="color:#666">        </span><span style="color:#6ab825;font-weight:bold">mode</span>:<span style="color:#666"> </span><span style="color:#ed9d13">&#34;balanced&#34;</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">38</span><span style="color:#666">        </span><span style="color:#6ab825;font-weight:bold">prio</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">39</span><span style="color:#666">          </span><span style="color:#6ab825;font-weight:bold">default</span>:<span style="color:#666"> </span><span style="color:#ed9d13">&#34;high&#34;</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">40</span><span style="color:#666">    </span><span style="color:#999;font-style:italic"># ...</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">41</span><span style="color:#666">    </span>- <span style="color:#6ab825;font-weight:bold">detect-cpu-set</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">42</span><span style="color:#666">        </span><span style="color:#6ab825;font-weight:bold">cpu</span>:<span style="color:#666"> </span>[<span style="color:#666"> </span><span style="color:#3677a9">0</span>,<span style="color:#666"> </span><span style="color:#3677a9">1</span><span style="color:#666"> </span>]<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">43</span><span style="color:#666">        </span><span style="color:#6ab825;font-weight:bold">mode</span>:<span style="color:#666"> </span><span style="color:#ed9d13">&#34;exclusive&#34;</span><span style="color:#666"> </span><span style="color:#999;font-style:italic"># run detect threads in these cpus</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">44</span><span style="color:#666">        </span><span style="color:#999;font-style:italic"># Use explicitely 3 threads and don&#39;t compute number by using</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">45</span><span style="color:#666">        </span><span style="color:#999;font-style:italic"># detect-thread-ratio variable:</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">46</span><span style="color:#666">        </span><span style="color:#999;font-style:italic"># threads: 3</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">47</span><span style="color:#666">        </span><span style="color:#6ab825;font-weight:bold">prio</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">48</span><span style="color:#666">          </span><span style="color:#999;font-style:italic"># low: [ 0 ]</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">49</span><span style="color:#666">          </span><span style="color:#999;font-style:italic"># medium: [ &#34;1-2&#34; ]</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">50</span><span style="color:#666">          </span><span style="color:#999;font-style:italic"># high: [ 3 ]</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">51</span><span style="color:#666">          </span><span style="color:#6ab825;font-weight:bold">default</span>:<span style="color:#666"> </span><span style="color:#ed9d13">&#34;high&#34;</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">52</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">53</span><span style="color:#666"></span><span style="color:#999;font-style:italic"># Edit the HOME_NET to contain the localhost address</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">54</span><span style="color:#666"></span><span style="color:#6ab825;font-weight:bold">vars</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">55</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># ...</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">56</span><span style="color:#666">  </span><span style="color:#6ab825;font-weight:bold">address-groups</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">57</span><span style="color:#666">    </span><span style="color:#6ab825;font-weight:bold">HOME_NET</span>:<span style="color:#666"> </span><span style="color:#ed9d13">&#34;[127.0.0.1,(...)]&#34;</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">58</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">59</span><span style="color:#666"></span><span style="color:#999;font-style:italic"># Edit the host OS policy to contain the localhost address</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">60</span><span style="color:#666"></span><span style="color:#6ab825;font-weight:bold">host-os-policy</span>:<span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">61</span><span style="color:#666">  </span><span style="color:#999;font-style:italic"># ...</span><span style="color:#666">
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">62</span><span style="color:#666">  </span><span style="color:#6ab825;font-weight:bold">linux</span>:<span style="color:#666"> </span>[<span style="color:#3677a9">127.0.0.1</span>]<span style="color:#666">
+</span></code></pre></div><p>Second, edit the system Suricata configuration file (<code>/etc/sysconfig/suricata</code>).</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span><span style="color:#999;font-style:italic"># Make Suricata listen for packets in the Netfilter queues</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span><span style="color:#40ffff">OPTIONS</span>=<span style="color:#ed9d13">&#34;-q 0 -q 1 &#34;</span>
+</code></pre></div><p>After starting Suricata, check that everything worked out without errors and that packets are being received (check the <code>/var/log/suricata/stats.log</code> file). To test the installation, use the following SQLi vector.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span>https://external.domain/?p=&#39;)) UNION SELECT 1--
+</code></pre></div><p>If everything worked as planned, Suricata should have created an entry in the EVE log (<code>/var/log/suricata/eve.json</code>) reporting the attack.</p>
 <div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>Configuring the ETOpen rule set can be easily done using <em>Oinkmaster</em>.</div>
 <p>The next step is to configure the rules to disable false positives:</p>
 <ul>
-<li>2003508 - ET WEB_SPECIFIC_APPS WordPress wp-login.php redirect_to credentials stealing attempt</li>
-<li>2012843 - ET POLICY Cleartext WordPress Login</li>
-<li>2012998 - ET WEB_SERVER PHP Possible https Local File Inclusion Attempt</li>
-<li>2013505 - ET POLICY GNU\Linux YUM User-Agent Outbound likely related to package management</li>
+<li><code>2003508</code> - <code>ET WEB_SPECIFIC_APPS WordPress wp-login.php redirect_to credentials stealing attempt</code></li>
+<li><code>2012843</code> - <code>ET POLICY Cleartext WordPress Login</code></li>
+<li><code>2012998</code> - <code>ET WEB_SERVER PHP Possible https Local File Inclusion Attempt</code></li>
+<li><code>2013505</code> - <code>ET POLICY GNU\Linux YUM User-Agent Outbound likely related to package management</code></li>
 </ul>
 <p>And change some useful rules from <code>alert</code> to <code>drop</code>:</p>
 <ul>
-<li>2001219 - ET SCAN Potential SSH Scan</li>
-<li>2006546 - ET SCAN LibSSH Based Frequent SSH Connections Likely BruteForce Attack</li>
-<li>2019876 - ET SCAN SSH BruteForce Tool with fake PUTTY version</li>
+<li><code>2001219</code> - <code>ET SCAN Potential SSH Scan</code></li>
+<li><code>2006546</code> - <code>ET SCAN LibSSH Based Frequent SSH Connections Likely BruteForce Attack</code></li>
+<li><code>2019876</code> - <code>ET SCAN SSH BruteForce Tool with fake PUTTY version</code></li>
 <li>Every rule from:
 <ul>
-<li>ciarmy.rules</li>
-<li>compromised.rules</li>
-<li>drop.rules</li>
-<li>dshield.rules</li>
-<li>emerging-web_server.rules</li>
-<li>emerging-web_specific_apps.rules</li>
+<li><code>ciarmy.rules</code></li>
+<li><code>compromised.rules</code></li>
+<li><code>drop.rules</code></li>
+<li><code>dshield.rules</code></li>
+<li><code>emerging-web_server.rules</code></li>
+<li><code>emerging-web_specific_apps.rules</code></li>
 </ul>
 </li>
 </ul>

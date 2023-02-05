@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="301" />
+<meta itemprop="wordCount" content="814" />
   
 
 
@@ -166,30 +166,117 @@ Reversing Aruba Instant Firmware
 <p>What follows is the full process to extract all the files recreating the Aruba Instant firmware file system.</p>
 <div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba&rsquo;s Bugcrowd bug bounty. Once <a href="https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/">again</a>, thanks to Aruba Networks for their open approach to security researchers work.</div>
 <p>As usual, the initial step is to check what the firmware image contains, <code>binwalk</code> was used for that.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/050cc30b187d6bf05afd.js?file=initial-binwalk.sh"></script>
-
-<p>This firmware image looks like a standard U-Boot image. The next step is to extract the header and then the body of the image.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/050cc30b187d6bf05afd.js?file=extract-first-doll.sh"></script>
-
-<p>Checking the previously extracted image body reveals a matryoshka doll. Same process is followed as for the initial image file, extract the image header and afterwards, the body.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/050cc30b187d6bf05afd.js?file=extract-second-doll.sh"></script>
-
-<p>Checking the new U-Boot image body with <code>file</code> and <code>binwalk</code>, reveals that the extracted file is the bootable image. This image contains another interesting and compressed file.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/050cc30b187d6bf05afd.js?file=another-doll.sh"></script>
-
-<p>When this file is extracted and decompressed, the final matryoshka doll is revealed (the one containing the file system).</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/050cc30b187d6bf05afd.js?file=extract-third-doll.sh"></script>
-
-<p>The final matryoshka doll is a <em>LZMA</em> compressed <em>cpio</em> file.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/050cc30b187d6bf05afd.js?file=final-doll.sh"></script>
-
-<p>Extract the file and decompress it with <em>7-Zip</em>.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/050cc30b187d6bf05afd.js?file=extract-forth-doll.sh"></script>
-
-<p>The last step, is to assemble everything in order to mimic the appliance running file system layout.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/050cc30b187d6bf05afd.js?file=recreate-rootfs.sh"></script>
-
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>There will be some errors reproducing the <code>/dev</code>, <code>/proc</code> and <code>/sys</code> directories but those can be ignored.</div>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span><span style="color:#cd2828;font-weight:bold"></span>binwalk image.bin
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4</span><span style="color:#999;font-style:italic">#DECIMAL       HEXADECIMAL     DESCRIPTION</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5</span><span style="color:#999;font-style:italic">#--------------------------------------------------------------------------------</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">6</span><span style="color:#999;font-style:italic">#514           0x202           uImage header, header size: 64 bytes, header CRC: 0x26175460, created: Wed May 27 14:22:39 2015, image size: 10090700 bytes, Data Address: 0x80008000, Entry Point: 0x80008000, data CRC: 0x63E746B1, OS: Linux, CPU: ARM, image type: OS Kernel Image, compression type: none, image name: &#34;Linux-2.6.35&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">7</span><span style="color:#999;font-style:italic">#7706          0x1E1A          LZMA compressed data, properties: 0x5D, dictionary size: 33554432 bytes, uncompressed size: -1 bytes</span>
+</code></pre></div><p>This firmware image looks like a standard U-Boot image. The next step is to extract the header and then the body of the image.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Extract the header</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span>dd <span style="color:#6ab825;font-weight:bold">if</span>=image.bin <span style="color:#40ffff">bs</span>=<span style="color:#3677a9">514</span> <span style="color:#40ffff">count</span>=<span style="color:#3677a9">1</span> <span style="color:#40ffff">of</span>=image.header
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4</span><span style="color:#999;font-style:italic">#1+0 records in</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5</span><span style="color:#999;font-style:italic">#1+0 records out</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">6</span><span style="color:#999;font-style:italic">#514 bytes (514 B) copied, 0.000580873 s, 885 kB/s</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">8</span><span style="color:#999;font-style:italic"># Extract the body</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">9</span>tail -c+515 &lt; image.bin &gt; image.uimage
+</code></pre></div><p>Checking the previously extracted image body reveals a matryoshka doll. Same process is followed as for the initial image file, extract the image header and afterwards, the body.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Verify the extracted file contents</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>binwalk image.uimage
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic">#DECIMAL       HEXADECIMAL     DESCRIPTION</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic">#--------------------------------------------------------------------------------</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic">#0             0x0             uImage header, header size: 64 bytes, header CRC: 0x26175460, created: Wed May 27 14:22:39 2015, image size: 10090700 bytes, Data Address: 0x80008000, Entry Point: 0x80008000, data CRC: 0x63E746B1, OS: Linux, CPU: ARM, image type: OS Kernel Image, compression type: none, image name: &#34;Linux-2.6.35&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic">#7192          0x1C18          LZMA compressed data, properties: 0x5D, dictionary size: 33554432 bytes, uncompressed size: -1 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># Extract the header of the new U-Boot image</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>dd <span style="color:#6ab825;font-weight:bold">if</span>=image.uimage <span style="color:#40ffff">bs</span>=<span style="color:#3677a9">64</span> <span style="color:#40ffff">count</span>=<span style="color:#3677a9">1</span> <span style="color:#40ffff">of</span>=image.uimage.header
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#1+0 records in</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#1+0 records out</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic">#64 bytes (64 B) copied, 0.00699276 s, 9.2 kB/s</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic"># Extract the body of the new U-Boot image</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span>tail -c+65 &lt; image.uimage &gt; image.uimage.data
+</code></pre></div><p>Checking the new U-Boot image body with <code>file</code> and <code>binwalk</code>, reveals that the extracted file is the bootable image. This image contains another interesting and compressed file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>file image.uimage.data
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic">#image.uimage.data: Linux kernel ARM boot executable zImage (little-endian)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># Yet another compressed file is revealed</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>binwalk image.uimage.data
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic">#DECIMAL       HEXADECIMAL     DESCRIPTION</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#--------------------------------------------------------------------------------</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#7128          0x1BD8          LZMA compressed data, properties: 0x5D, dictionary size: 33554432 bytes, uncompressed size: -1 bytes</span>
+</code></pre></div><p>When this file is extracted and decompressed, the final matryoshka doll is revealed (the one containing the file system).</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#999;font-style:italic"># Extract the header</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span>dd <span style="color:#6ab825;font-weight:bold">if</span>=image.uimage.data <span style="color:#40ffff">bs</span>=<span style="color:#3677a9">1</span> <span style="color:#40ffff">count</span>=<span style="color:#3677a9">7128</span> <span style="color:#40ffff">of</span>=image.uimage.data.header
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># Extract the compressed file</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>tail -c+7129 &lt; image.uimage.data &gt; image.uimage.data.compressed.lzma
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># Decompress it</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>7z x image.uimage.data.compressed.lzma
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#7-Zip 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#p7zip Version 9.20 (locale=en_GB.UTF-8,Utf16=on,HugeFiles=on,2 CPUs)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic">#Processing archive: image.uimage.data.compressed.lzma</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic">#Extracting  image.uimage.data.compressed</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic">#Everything is Ok</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic">#Size:       12220288</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic">#Compressed: 10085616</span>
+</code></pre></div><p>The final matryoshka doll is a <em>LZMA</em> compressed <em>cpio</em> file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>binwalk image.uimage.data.compressed
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic">#DECIMAL       HEXADECIMAL     DESCRIPTION</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic">#--------------------------------------------------------------------------------</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic">#94208         0x17000         LZMA compressed data, properties: 0x5D, dictionary size: 33554432 bytes, uncompressed size: 34330624 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic">#11455148      0xAECAAC        Copyright string: &#34; (c) 2002-2015, Aruba Networks, Inc. Inc.&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic">#11455868      0xAECD7C        ASCII cpio archive (SVR4 with no CRC), file name: &#34;cate dir_entry buffer&#34;, file name length: &#34;0xR!!!&#34;, file size: &#34;0x&gt;Initram&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#11462204      0xAEE63C        Unix home path string: &#34;/home/p4build/depot/margot/IAP4.1.1.7_50209/aos-cmn/platform/os&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#12206595      0xBA4203        LZMA compressed data, properties: 0xC0, dictionary size: 524288 bytes, uncompressed size: 720896 bytes</span>
+</code></pre></div><p>Extract the file and decompress it with <em>7-Zip</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Extract the file</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>tail -c+94209 &lt; image.uimage.data.compressed &gt; image.uimage.data.compressed.cpio.lzma
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># Decompress it</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>7z x image.uimage.data.compressed.cpio.lzma
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic">#7-Zip 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#p7zip Version 9.20 (locale=en_GB.UTF-8,Utf16=on,HugeFiles=on,2 CPUs)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#Processing archive: image.uimage.data.compressed.cpio.lzma</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic">#Extracting  image.uimage.data.compressed.cpio</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic">#Everything is Ok</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic">#Size:       34330624</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic">#Compressed: 12126080</span>
+</code></pre></div><p>The last step, is to assemble everything in order to mimic the appliance running file system layout.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Create a new directory to hold the root file system</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>mkdir rootfs
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># Extract the files</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#24909d">cd</span> rootfs/
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>cpio --quiet -i --make-directories --preserve-modification-time --no-absolute-filenames -F ../image.uimage.data.compressed.cpio
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic">#cpio: Removing leading `/&#39; from member names</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#cpio: dev/console: Cannot mknod: Operation not permitted</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#cpio: dev/mem: Cannot mknod: Operation not permitted</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#cpio: dev/ptmx: Cannot mknod: Operation not permitted</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#cpio: dev/null: Cannot mknod: Operation not permitted</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic"># (...)</span>
+</code></pre></div><div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>There will be some errors reproducing the <code>/dev</code>, <code>/proc</code> and <code>/sys</code> directories but those can be ignored.</div>
 <p>And that&rsquo;s it, the running access point file system is ready to go under the microscope :)</p></div>
       </div>
       <div class="card-footer">

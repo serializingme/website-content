@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="668" />
+<meta itemprop="wordCount" content="1304" />
   
 
 
@@ -204,13 +204,73 @@ AnyConnect Elevation of Privileges, Part 2
 <li>A <code>CProcessApi</code> class is instantiated to launch the application.</li>
 </ul>
 <p>Mapping the received packet header to the <code>CIpcMessage</code> fields results in the following.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/774a9be6223ddbef621a19508e696750.js?file=CIpcMessage-mapped.h"></script>
-
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>Notice how the <code>headerLength</code> value (26 bytes) matches the received header data length and how the <code>dataLength</code> value (430 bytes) matches the received body length.</div>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#6ab825;font-weight:bold">class</span> <span style="color:#447fcf;text-decoration:underline">CIpcMessage</span> {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#6ab825;font-weight:bold">public</span>:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>    <span style="color:#999;font-style:italic">/* Offset 0x00 */</span> <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> idTag;              <span style="color:#999;font-style:italic">// 0x4F, 0x43, 0x53, 0x43
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">/* Offset 0x04 */</span> <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">short</span> headerLength;      <span style="color:#999;font-style:italic">// 0x1A, 0x00
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">/* Offset 0x06 */</span> <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">short</span> dataLength;        <span style="color:#999;font-style:italic">// 0xB3, 0x01
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">/* Offset 0x08 */</span> IIpcResponseCB * ipcResponseCB;   <span style="color:#999;font-style:italic">// 0xFF, 0xFF, 0xFF, 0xFF
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">/* Offset 0x0c */</span> <span style="color:#6ab825;font-weight:bold">void</span> * msgUserContext;            <span style="color:#999;font-style:italic">// 0x00, 0x00, 0x00, 0x00
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">/* Offset 0x10 */</span> <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">long</span> requestMsgId;       <span style="color:#999;font-style:italic">// 0x02, 0x00, 0x00, 0x00
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">/* Offset 0x14 */</span> <span style="color:#6ab825;font-weight:bold">void</span> * returnIpcObject;           <span style="color:#999;font-style:italic">// 0x00, 0x00, 0x00, 0x00
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">/* Offset 0x18 */</span> <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">char</span> messageType;        <span style="color:#999;font-style:italic">// 0x01
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"></span>    <span style="color:#999;font-style:italic">/* Offset 0x19 */</span> <span style="color:#6ab825;font-weight:bold">unsigned</span> <span style="color:#6ab825;font-weight:bold">char</span> messageId;          <span style="color:#999;font-style:italic">// 0x02
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic"></span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span>    <span style="color:#999;font-style:italic">// (...)
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic"></span>}
+</code></pre></div><div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>Notice how the <code>headerLength</code> value (26 bytes) matches the received header data length and how the <code>dataLength</code> value (430 bytes) matches the received body length.</div>
 <p>Taking into consideration the fact that the packet body is  of a Type, Length, Value (TLV) format and using as an example a packet generated by the Google POC, it is easy to extract the various entries. However, the second to last entry doesn&rsquo;t seem to follow the same format as the others and is missing from the packet generated by Google POC.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/774a9be6223ddbef621a19508e696750.js?file=message-body-dump.txt"></script>
-
-<p>Going back to the functions call trace, and inspecting the disassembly of the called <code>CLaunchClientAppTlv</code> class member functions, it was possible to understand what each function maps to:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span>// Type 0 (string), index 1
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span>00 01
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>// Length (87 bytes)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>00 57
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>// Value (C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpndownloader.exe)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>43 3a 5c 50 72 6f 67 72 61 6d 20 46 69 6c 65 73
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>20 28 78 38 36 29 5c 43 69 73 63 6f 5c 43 69 73
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>63 6f 20 41 6e 79 43 6f 6e 6e 65 63 74 20 53 65
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>63 75 72 65 20 4d 6f 62 69 6c 69 74 79 20 43 6c
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>69 65 6e 74 5c 76 70 6e 64 6f 77 6e 6c 6f 61 64
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span>65 72 2e 65 78 65 00
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span>// Type 0 (string), index 2
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span>00 02
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span>// Length (240 bytes)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span>00 f0
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span>// Value (&#34;CAC-move.C:\Users\Reverse\AppData\Local\Temp\20602.tmp\configuration.xml.C:\ProgramData\Cisco\Cisco AnyConnect Secure Mobility Client\Network Access Manager\newConfigFiles\configuration.xml.76F3A9141D1B4D2B1063953372AC720F0069F036.sha1.0&#34;)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span>22 43 41 43 2d 6d 6f 76 65 09 43 3a 5c 55 73 65
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span>72 73 5c 52 65 76 65 72 73 65 5c 41 70 70 44 61
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span>74 61 5c 4c 6f 63 61 6c 5c 54 65 6d 70 5c 32 30
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span>36 30 32 2e 74 6d 70 5c 63 6f 6e 66 69 67 75 72
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span>61 74 69 6f 6e 2e 78 6d 6c 09 43 3a 5c 50 72 6f
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span>67 72 61 6d 44 61 74 61 5c 43 69 73 63 6f 5c 43
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span>69 73 63 6f 20 41 6e 79 43 6f 6e 6e 65 63 74 20
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span>53 65 63 75 72 65 20 4d 6f 62 69 6c 69 74 79 20
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span>43 6c 69 65 6e 74 5c 4e 65 74 77 6f 72 6b 20 41
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span>63 63 65 73 73 20 4d 61 6e 61 67 65 72 5c 6e 65
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span>77 43 6f 6e 66 69 67 46 69 6c 65 73 5c 63 6f 6e
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">29</span>66 69 67 75 72 61 74 69 6f 6e 2e 78 6d 6c 2e 37
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">30</span>36 46 33 41 39 31 34 31 44 31 42 34 44 32 42 31
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">31</span>30 36 33 39 35 33 33 37 32 41 43 37 32 30 46 30
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">32</span>30 36 39 46 30 33 36 09 73 68 61 31 09 30 22 00
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">33</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">34</span>// Type 80 (?), index 5
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">35</span>80 05
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">36</span>// Length (1 bytes ?)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">37</span>00 01
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">38</span>// Value (?)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">39</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">40</span>// Type 0 (string), index 6
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">41</span>00 06
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">42</span>// Length (87 bytes)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">43</span>00 57
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">44</span>// Value (C:\Program Files (x86)\Cisco\Cisco AnyConnect Secure Mobility Client\vpndownloader.exe)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">45</span>43 3a 5c 50 72 6f 67 72 61 6d 20 46 69 6c 65 73
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">46</span>20 28 78 38 36 29 5c 43 69 73 63 6f 5c 43 69 73
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">47</span>63 6f 20 41 6e 79 43 6f 6e 6e 65 63 74 20 53 65
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">48</span>63 75 72 65 20 4d 6f 62 69 6c 69 74 79 20 43 6c
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">49</span>69 65 6e 74 5c 76 70 6e 64 6f 77 6e 6c 6f 61 64
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">50</span>65 72 2e 65 78 65 00
+</code></pre></div><p>Going back to the functions call trace, and inspecting the disassembly of the called <code>CLaunchClientAppTlv</code> class member functions, it was possible to understand what each function maps to:</p>
 <ul>
 <li><code>CLaunchClientAppTlv::GetRelocatableFilePath</code> maps to entry at index 6.</li>
 <li><code>CLaunchClientAppTlv::GetCmdLine</code> maps to entry at index  2.</li>
@@ -223,9 +283,11 @@ AnyConnect Elevation of Privileges, Part 2
     </a><figcaption class="figure-caption text-center">Details of the GetUseInstalled disassembly.</figcaption></figure></div>
 
 <p>Taking all of this into account, it was possible to understand the format of the entry at index 5.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/774a9be6223ddbef621a19508e696750.js?file=message-use-installed.txt"></script>
-
-<p>This entry got me thinking: what if the value was zero? To answer this question, I added a after-call breakpoint on the <code>WSARecv</code> function so that when it was triggered, I could change this entry value to zero directly on the data received. This made the <code>vpnagent.exe</code> launch the <code>vpndownloader.exe</code> from the <code>C:\ProgramData\Cisco\Cisco AnyConnect Secure Mobility Client\Temp\Downloader</code> directory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span>// Type 80 (boolean or short), index 5
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span>80 05
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span>// Value (1, true)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4</span>00 01
+</code></pre></div><p>This entry got me thinking: what if the value was zero? To answer this question, I added a after-call breakpoint on the <code>WSARecv</code> function so that when it was triggered, I could change this entry value to zero directly on the data received. This made the <code>vpnagent.exe</code> launch the <code>vpndownloader.exe</code> from the <code>C:\ProgramData\Cisco\Cisco AnyConnect Secure Mobility Client\Temp\Downloader</code> directory.</p>
 <div class="text-center"><figure class="figure">
     <a href="https://www.serializing.me/uploads/2016/12/cac-exploit-run.png" title="Exploit example runs.">
       <img class="figure-img img-fluid rounded" alt="Exploit example runs" src="https://www.serializing.me/uploads/2016/12/cac-exploit-run-600x292.png" />

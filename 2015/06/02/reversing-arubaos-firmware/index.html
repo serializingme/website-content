@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="524" />
+<meta itemprop="wordCount" content="989" />
   
 
 
@@ -165,25 +165,88 @@ Reversing ArubaOS Firmware
 <p>Some time ago, I had the chance to get my hands on a ArubaOS firmware, what follows is the full process to extract all the files recreating the appliance running file system. This had the objective of fuzzing the extracted binaries in QEMU (ArubaOS management console is CGI based).</p>
 <div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>This article was authorized by Aruba Networks and is based in the work done in the scope of Aruba&rsquo;s Bugcrowd bug bounty. There is not enough praise that can be given to Aruba Networks for their open approach to security researchers work.</div>
 <p>One of the best tools to start the reversing process is <code>binwalk</code>.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/faa288550922d0a2c9e1.js?file=initial-binwalk.sh"></script>
-
-<p>After obtaining the list of possible files contained in the firmware and doing some analysis (trial and error) to find what files where valid, I started extracting the files from the end toward the beginning. To do that, first I got the firmware size in bytes using <code>du</code>.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/faa288550922d0a2c9e1.js?file=check-size.sh"></script>
-
-<p>The first file to be extracted is a <em>7-zip</em> file that contains a <code>tar</code> archive using <em>LZMA</em> as the compression algorithm. This file contains the OS ancillary files. These files are always extracted during the boot process, this means that they are always restored from the active boot partition when the appliance starts, reverting any change they might have suffered. It&rsquo;s not clear to me why Aruba decided to do this, since the main OS files are loaded from the active boot partition to a <em>tmpfs</em>, meaning, that any change done to them will also be lost when the appliance shut downs. Maybe it makes it easier to update the firmware. To ensure persistence the only place one can write to is the <em>flash</em> partition or <em>nvram</em>. Using <code>dd</code> with a block size (<code>bs</code> parameter) of 512 bytes to accelerate the extraction and using the firmware size to calculate the <code>count</code> parameter.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/faa288550922d0a2c9e1.js?file=extract-7zip.sh"></script>
-
-<p>Next, using the same block size as before with the difference that the <code>count</code> parameter is calculated based on the start offset of the previously extracted <em>7-zip</em> instead of the file size. The root file system is a <em>cpio</em> archive compressed with <em>LZMA</em>. Note that this is one of the few <em>LZMA</em> file entries reported by <code>binwalk</code> that make sense (the properties and uncompressed size of the file).</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>binwalk sda1
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic">#DECIMAL       HEXADECIMAL     DESCRIPTION</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic">#--------------------------------------------------------------------------------</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic">#512           0x200           ELF 64-bit MSB MIPS32 rel2 executable, MIPS, version 1 (SYSV)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic">#753977        0xB8139         LZMA compressed data, properties: 0xA2, dictionary size: 1048576 bytes, uncompressed size: 60671 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic">#883225        0xD7A19         LZMA compressed data, properties: 0xA2, dictionary size: 1048576 bytes, uncompressed size: 48383 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#1074729       0x106629        LZMA compressed data, properties: 0xA3, dictionary size: 1048576 bytes, uncompressed size: 11519 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#1301281       0x13DB21        LZMA compressed data, properties: 0x64, dictionary size: 1048576 bytes, uncompressed size: 62719 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#1502945       0x16EEE1        LZMA compressed data, properties: 0xA2, dictionary size: 1048576 bytes, uncompressed size: 43519 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#2253521       0x2262D1        LZMA compressed data, properties: 0xA2, dictionary size: 1048576 bytes, uncompressed size: 49407 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic">#3623569       0x374A91        LZMA compressed data, properties: 0xA2, dictionary size: 1048576 bytes, uncompressed size: 56063 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic">#3633073       0x376FB1        LZMA compressed data, properties: 0xA2, dictionary size: 1048576 bytes, uncompressed size: 39935 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic">#3706097       0x388CF1        LZMA compressed data, properties: 0xA2, dictionary size: 1048576 bytes, uncompressed size: 62719 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic">#4456249       0x43FF39        LZMA compressed data, properties: 0xA2, dictionary size: 1048576 bytes, uncompressed size: 62719 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic">#4580088       0x45E2F8        gzip compressed data, maximum compression, from Unix, last modified: Fri Mar 13 09:29:47 2015</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic">#5149344       0x4E92A0        Copyright string: &#34; (c) 2002-2015, Aruba Networks, Inc. Inc.&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic">#5168431       0x4EDD2F        LBR archive data</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic">#5176800       0x4EFDE0        Unix home path string: &#34;/home/p4build/depot/margot/FCS6.4.X.0_49043/platform/os/linux-2&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span><span style="color:#999;font-style:italic">#6233231       0x5F1C8F        LZMA compressed data, properties: 0x90, dictionary size: 16777216 bytes, uncompressed size: -1 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span><span style="color:#999;font-style:italic">#6310215       0x604947        LZMA compressed data, properties: 0xC0, dictionary size: 16777216 bytes, uncompressed size: 536870912 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span><span style="color:#999;font-style:italic">#6560019       0x641913        LZMA compressed data, properties: 0x66, dictionary size: 16777216 bytes, uncompressed size: -1 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span><span style="color:#999;font-style:italic">#6560051       0x641933        LZMA compressed data, properties: 0x66, dictionary size: 33554432 bytes, uncompressed size: -1 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span><span style="color:#999;font-style:italic">#6963712       0x6A4200        LZMA compressed data, properties: 0x5D, dictionary size: 33554432 bytes, uncompressed size: 63705600 bytes</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span><span style="color:#999;font-style:italic">#17338880      0x1089200       7-zip archive data, version 0.3</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span><span style="color:#999;font-style:italic">#78562685      0x4AEC57D       LZMA compressed data, properties: 0x5D, dictionary size: 33554432 bytes, missing uncompressed size</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span><span style="color:#999;font-style:italic">#83111829      0x4F42F95       POSIX tar archive (GNU), owner user name: &#34;p4build&#34;, owner group name: &#34;users&#34;</span>
+</code></pre></div><p>After obtaining the list of possible files contained in the firmware and doing some analysis (trial and error) to find what files where valid, I started extracting the files from the end toward the beginning. To do that, first I got the firmware size in bytes using <code>du</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span><span style="color:#cd2828;font-weight:bold"></span>du sda1
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span><span style="color:#999;font-style:italic">#203288576 sda1</span>
+</code></pre></div><p>The first file to be extracted is a <em>7-zip</em> file that contains a <code>tar</code> archive using <em>LZMA</em> as the compression algorithm. This file contains the OS ancillary files. These files are always extracted during the boot process, this means that they are always restored from the active boot partition when the appliance starts, reverting any change they might have suffered. It&rsquo;s not clear to me why Aruba decided to do this, since the main OS files are loaded from the active boot partition to a <em>tmpfs</em>, meaning, that any change done to them will also be lost when the appliance shut downs. Maybe it makes it easier to update the firmware. To ensure persistence the only place one can write to is the <em>flash</em> partition or <em>nvram</em>. Using <code>dd</code> with a block size (<code>bs</code> parameter) of 512 bytes to accelerate the extraction and using the firmware size to calculate the <code>count</code> parameter.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span><span style="color:#cd2828;font-weight:bold"></span>dd <span style="color:#6ab825;font-weight:bold">if</span>=sda1 <span style="color:#40ffff">bs</span>=<span style="color:#3677a9">512</span> <span style="color:#40ffff">skip</span>=<span style="color:#3677a9">33865</span> <span style="color:#40ffff">count</span>=<span style="color:#3677a9">363183</span> <span style="color:#40ffff">of</span>=extracted.7z
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span><span style="color:#999;font-style:italic">#363183+0 records in</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4</span><span style="color:#999;font-style:italic">#363183+0 records out</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5</span><span style="color:#999;font-style:italic">#185949696 bytes (186 MB) copied, 2.13289 s, 87.2 MB/s</span>
+</code></pre></div><p>Next, using the same block size as before with the difference that the <code>count</code> parameter is calculated based on the start offset of the previously extracted <em>7-zip</em> instead of the file size. The root file system is a <em>cpio</em> archive compressed with <em>LZMA</em>. Note that this is one of the few <em>LZMA</em> file entries reported by <code>binwalk</code> that make sense (the properties and uncompressed size of the file).</p>
 <p>Next in line is the Linux Kernel and the ArubaOS firmware header (you can also obtain the Kernel configuration, by extracting the <em>Gzip</em> file at offset <code>4580088</code>).</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/faa288550922d0a2c9e1.js?file=extract-kernel.sh"></script>
-
-<p>Now that the image has been broken down in all of its components, the next step is to extract and uncompress the files to mimic the root file system of a running appliance. Started with the ancillary files.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/faa288550922d0a2c9e1.js?file=extract-ancillary.sh"></script>
-
-<p>Next is the root file system.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/faa288550922d0a2c9e1.js?file=decompress-cpio.sh"></script>
-
-<p>Now is time to assemble everything in order to mimic the appliance running file system layout.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#999;font-style:italic"># Kernel</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span>dd <span style="color:#6ab825;font-weight:bold">if</span>=sda1 <span style="color:#40ffff">bs</span>=<span style="color:#3677a9">512</span> <span style="color:#40ffff">skip</span>=<span style="color:#3677a9">1</span> <span style="color:#40ffff">count</span>=<span style="color:#3677a9">13600</span> <span style="color:#40ffff">of</span>=extracted.img
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic">#13600+0 records in</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic">#13600+0 records out</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic">#6963200 bytes (7.0 MB) copied, 0.0625107 s, 111 MB/s</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># Firmware header</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>dd <span style="color:#6ab825;font-weight:bold">if</span>=sda1 <span style="color:#40ffff">bs</span>=<span style="color:#3677a9">512</span> <span style="color:#40ffff">count</span>=<span style="color:#3677a9">1</span> <span style="color:#40ffff">of</span>=extracted.header
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#1+0 records in</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#1+0 records out</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#512 bytes (512 B) copied, 0.000256114 s, 2.0 MB/s</span>
+</code></pre></div><p>Now that the image has been broken down in all of its components, the next step is to extract and uncompress the files to mimic the root file system of a running appliance. Started with the ancillary files.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>p7zip -d extracted.7z
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic">#7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic">#p7zip Version 9.20 (locale=en_GB.utf8,Utf16=on,HugeFiles=on,4 CPUs)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic">#Processing archive: extracted.7z</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#Extracting  arubaos_corefs_files.tar</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#Everything is Ok</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic">#Size:       346839040</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic">#Compressed: 185949696</span>
+</code></pre></div><p>Next is the root file system.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>p7zip -d rootfs.cpio.7z
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic">#7-Zip (A) [64] 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic">#p7zip Version 9.20 (locale=en_GB.utf8,Utf16=on,HugeFiles=on,4 CPUs)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic">#Processing archive: rootfs.cpio.7z</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#Extracting  rootfs.cpio</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#Everything is Ok</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic">#Size:       63705600</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic">#Compressed: 10375168</span>
+</code></pre></div><p>Now is time to assemble everything in order to mimic the appliance running file system layout.</p>
 <div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>There will be some errors reproducing the <code>/dev</code>, <code>/proc</code> and <code>/sys</code> directories but those can be ignored.</div>
 <p>And that&rsquo;s it. The firmware that I was investigating had binaries compiled for the NetLogic XLP processor, which is currently unsupported by QEMU. I had a look at QEMU in order to try and implement the missing instructions and, unfortunately, realized that I was out of my depth :D</p></div>
       </div>

@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="505" />
+<meta itemprop="wordCount" content="1252" />
   
 
 
@@ -164,18 +164,78 @@
         <div class="text-justify">
 <p>Recently, one e-Mail that was sent to one of my colleagues caught my attention. The message was quite believable but there were some little subtleties that gave it away. First step was to get the attachment out of the message and do an initial analysis.</p>
 <p>From Microsoft Office 2007 onwards, the Word document is in its essence a <em>Zip</em> file.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/16465f042c0d287542e4.js?file=word-file.sh"></script>
-
-<p>Right away one thing pops out, the file <code>word/vbaProject.bin</code>. This means that this Microsoft Word document contains Visual Basic for Applications (VBA) macros.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/16465f042c0d287542e4.js?file=macro-strings.sh"></script>
-
-<p>Those strings are a very good indicator that the file is malicious and that upon opening (reference to <code>Document_Open</code>), it will try to download an executable (reference to a URL, <code>http://xxx.xxx.xxx.xxx:888/troll.e</code>) and execute it (reference to the Windows API <code>SheellExecuteA</code> and the DLL that exports it, <code>shell32.dll</code>).</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/16465f042c0d287542e4.js?file=download-malware.sh"></script>
-
-<p>After submitting the file to <a href="https://malwr.com/analysis/YmE4NmFiOTQyZWFmNDM4MTgwNmQ4YzAwNWQ1ZTU5YTg/" title="Mawlr analysis">Mawlr</a>, I was surprised that the executable came so clean from the analysis and only three anti-virus have detect it as malicious (at the time of writing). The next step was to run the malware on a disposable virtual machine and observe it&rsquo;s behaviour.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/16465f042c0d287542e4.js?file=prepare-analysis.sh"></script>
-
-
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Decode the e-Mail attachment</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>base64 -w <span style="color:#3677a9">0</span> -d email-attachment-b64.txt &gt; CV_8888.doc
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># Check the file type</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>file CV_8888.doc
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic">#CV_8888.doc: Microsoft Word 2007+</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># Checked the contents of Word document</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>unzip -l CV_8888.doc
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#Archive:  CV_8888.doc</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#  Length      Date    Time    Name</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic">#---------  ---------- -----   ----</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic">#     2088  01-01-1980 00:00   [Content_Types].xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic">#      590  01-01-1980 00:00   _rels/.rels</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic">#     1602  01-01-1980 00:00   word/_rels/document.xml.rels</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic">#     3711  01-01-1980 00:00   word/document.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic">#     1525  01-01-1980 00:00   word/footer1.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic">#     1568  01-01-1980 00:00   word/endnotes.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic">#     1574  01-01-1980 00:00   word/footnotes.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span><span style="color:#999;font-style:italic">#    10240  01-01-1980 00:00   word/vbaProject.bin</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span><span style="color:#999;font-style:italic">#     6804  01-01-1980 00:00   word/theme/theme1.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span><span style="color:#999;font-style:italic">#      277  01-01-1980 00:00   word/_rels/vbaProject.bin.rels</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span><span style="color:#999;font-style:italic">#     2651  01-01-1980 00:00   word/settings.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span><span style="color:#999;font-style:italic">#     1358  01-01-1980 00:00   word/vbaData.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span><span style="color:#999;font-style:italic">#    17578  01-01-1980 00:00   word/styles.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span><span style="color:#999;font-style:italic">#     3256  01-01-1980 00:00   word/numbering.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span><span style="color:#999;font-style:italic">#     1486  01-01-1980 00:00   word/fontTable.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">29</span><span style="color:#999;font-style:italic">#      740  01-01-1980 00:00   docProps/core.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">30</span><span style="color:#999;font-style:italic">#      428  01-01-1980 00:00   word/webSettings.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">31</span><span style="color:#999;font-style:italic">#    18331  01-01-1980 00:00   word/stylesWithEffects.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">32</span><span style="color:#999;font-style:italic">#      987  01-01-1980 00:00   docProps/app.xml</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">33</span><span style="color:#999;font-style:italic">#---------                     -------</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">34</span><span style="color:#999;font-style:italic">#    76794                     19 files</span>
+</code></pre></div><p>Right away one thing pops out, the file <code>word/vbaProject.bin</code>. This means that this Microsoft Word document contains Visual Basic for Applications (VBA) macros.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Extract the file from the Word document</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>unzip CV_8888.doc word/vbaProject.bin
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic">#Archive:  CV_8888.doc</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic">#  inflating: word/vbaProject.bin</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># Extract the strings from the file and do a quick analysis</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>strings -a word/vbaProject.bin
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#ShellExecuteA</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#(...)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#http://xxx.xxx.xxx.xxx:888/troll.e</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#(...)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic">#shell32.dll+</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic">#(...)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic">#Document_Open</span>
+</code></pre></div><p>Those strings are a very good indicator that the file is malicious and that upon opening (reference to <code>Document_Open</code>), it will try to download an executable (reference to a URL, <code>http://xxx.xxx.xxx.xxx:888/troll.e</code>) and execute it (reference to the Windows API <code>SheellExecuteA</code> and the DLL that exports it, <code>shell32.dll</code>).</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Download the malware</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>wget http://xxx.xxx.xxx.xxx:888/troll.exe
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic">#--2015-05-02 16:40:45--  http://xxx.xxx.xxx.xxx:888/troll.exe</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic">#Connecting to xxx.xxx.xxx.xxx:888... connected.</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic">#HTTP request sent, awaiting response... 200 OK</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic">#Length: 200704 (196K) [application/x-msdownload]</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic">#Saving to: &#39;troll.exe&#39;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#troll.exe                                    100%[============================================</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># ====================================================&gt;] 196.00K   342KB/s   in 0.6s</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic">#2015-05-02 16:40:45 (342 KB/s) - &#39;troll.exe&#39; saved [200704/200704]</span>
+</code></pre></div><p>After submitting the file to <a href="https://malwr.com/analysis/YmE4NmFiOTQyZWFmNDM4MTgwNmQ4YzAwNWQ1ZTU5YTg/" title="Mawlr analysis">Mawlr</a>, I was surprised that the executable came so clean from the analysis and only three anti-virus have detect it as malicious (at the time of writing). The next step was to run the malware on a disposable virtual machine and observe it&rsquo;s behaviour.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Create the analysis directories</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">3</span>mkdir -p /tmp/malware/memory
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5</span><span style="color:#999;font-style:italic"># Start a packet capture</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">6</span>tcpdump -i br0 -s <span style="color:#3677a9">1514</span> -w /tmp/malware/network.pcap
+</code></pre></div>
 <div class="row">
   <div class="col-md-6">
   <p>One thing that wasn't reported by the Malwr sandbox (among others), was that the malware created and executed a file in the <code>%temp%</code> folder to delete the dropped malware. The file deleted the malware, but failed to delete itself (as seen in the image). The failure from the Malwr sandbox to detect this behaviour, leads me to believe that the malware employs anti-virtualization techniques. Interestingly enough, it didn't seem to have detected my environment as such, maybe it is using specific checks for the Malwr sandbox.</p>
@@ -191,24 +251,135 @@
 
     
 <p>After the execution had finished, I dumped the virtual machine memory (Virtual Box) into a directory mounted in RAM to make the Volatility analysis run a little faster.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/16465f042c0d287542e4.js?file=after-execution.sh"></script>
-
-<p>The next step was to check for the processes running in the virtual machine using the Volatility process cross-view plug-in.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/16465f042c0d287542e4.js?file=volatility-psxview.sh"></script>
-
-<p>Once again I was surprised, there was no trace of the malware process. From what I have observed in ProcessHacker, there should have been two entries (or a minimum of one) in the processes list (both named <code>lf.exe</code>), one for the original dropped and packed malware, and another one for the malware already unpacked.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/16465f042c0d287542e4.js?file=malware-strings.sh"></script>
-
-<p>With those two strings, I used the strings plug-in in Volatility in order to try and find the process(es) in memory.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/16465f042c0d287542e4.js?file=volatility-strings.sh"></script>
-
-<p>There are reference to both strings in Microsoft Word and in the Kernel. This means the malware didn&rsquo;t just disappear, but instead of continuing the hunt for it with Volatility, it became easier to dump the process of the unpacked version using <em>ProcessHacker</em>.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/16465f042c0d287542e4.js?file=unpacked-malware-strings.sh"></script>
-
-<p>From the strings it was possible to confirm that the malware is indeed using anti-virtualization techniques (reference to the function <code>wine_get_unix_file_name</code>). It is also possible that it has password stealing and key logging capabilities. With all this information, it is easy to create YARA rules.</p>
-<script type="application/javascript" src="https://gist.github.com/serializingme/16465f042c0d287542e4.js?file=check-my-cv.yara"></script>
-
-<p>The received message with the attachment is available <a href="/uploads/2015/05/email-message.zip" title="e-Mail message">here</a> (password without quotes is &ldquo;Original message received with the malicious document.&quot;), happy YARA&rsquo;ing!<!-- raw HTML omitted --></p></div>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Dump the Virtual Machine memory</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>VBoxManage debugvm sandbox dumpguestcore --filename /tmp/malware/sandbox.dmp
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># Mount a directory in memory with enough space to contain the memory dump</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>mount -t tmpfs -o <span style="color:#40ffff">size</span>=2560m tmpfs /tmp/malware/memory/
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic"># Convert the memory dump to a raw format</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>volatility imagecopy --filename /tmp/malware/sandbox.dmp -O /tmp/malware/memory/sandbox-raw.dmp
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic"># Writing data (5.00 MB chunks): |.............................................................</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># .............................................................................................</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#..............................................................................................</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic">#..............................................................................................</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic">#....................................................................................|</span>
+</code></pre></div><p>The next step was to check for the processes running in the virtual machine using the Volatility process cross-view plug-in.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Get a cross-view of the processes running using the various methods</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>volatility --filename /tmp/malware/memory/sandbox-raw.dmp --profile Win7SP1x64 psxview
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic">#Volatility Foundation Volatility Framework 2.4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic">#Offset(P)          Name                    PID pslist psscan thrdproc pspcid csrss session deskthrd ExitTime</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic">#------------------ -------------------- ------ ------ ------ -------- ------ ----- ------- -------- --------</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic">#(...)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic">#0x000000007e3d6740 WINWORD.EXE            2104 True   True   False    True   True  True    True</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#(...)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#0x000000007de9bb30 svchost.exe             708 True   True   False    True   True  True    True</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#(...)</span>
+</code></pre></div><p>Once again I was surprised, there was no trace of the malware process. From what I have observed in ProcessHacker, there should have been two entries (or a minimum of one) in the processes list (both named <code>lf.exe</code>), one for the original dropped and packed malware, and another one for the malware already unpacked.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Extract the strings from the dropped malware</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>strings -a -td /tmp/malware/troll.exe &gt; /tmp/malware/troll-strings.txt
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>strings -a -td -el /tmp/malware/troll.exe &gt;&gt; /tmp/malware/troll-strings.txt
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># Only noticed two interesting strings</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>cat /tmp/malware/troll-strings.txt
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic">#(...)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># 133776 C:\Dachshunds4\Urged7\Vasoganglion0\VB6.OLB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#(...)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># 135280 C:\Dachshunds4\Urged7\Vasoganglion0\MSCOMCTL.oca</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#(...)</span>
+</code></pre></div><p>With those two strings, I used the strings plug-in in Volatility in order to try and find the process(es) in memory.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Extract the strings from the sandbox memory dump</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>strings -a -td /tmp/malware/memory/sandbox-raw.dmp &gt; /tmp/malware/sandbox-strings.txt
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>strings -a -td -el /tmp/malware/memory/sandbox-raw.dmp &gt;&gt; /tmp/malware/sandbox-strings.txt
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># Will only search for those two strings</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>grep <span style="color:#ed9d13">&#34;Dachshunds4&#34;</span> /tmp/malware/sandbox-strings.txt | sed <span style="color:#ed9d13">&#39;s/\([0-9]\+\)\s\(.*\)/\1:\2/g&#39;</span> &gt; /tmp/malware/strings-search.txt
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># Search for the strings in the memory dump</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>volatility --filename /tmp/malware/memory/sandbox-raw.dmp --profile Win7SP1x64 strings -s /tmp/malware/strings-search.txt
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#Volatility Foundation Volatility Framework 2.4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#1499365488 [FREE MEMORY] C:\Dachshunds4\Urged7\Vasoganglion0\MSCOMCTL.oca</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic">#1503558288 [FREE MEMORY] C:\Dachshunds4\Urged7\Vasoganglion0\VB6.OLB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic">#1514606896 [2104:08812130] C:\Dachshunds4\Urged7\Vasoganglion0\MSCOMCTL.oca</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic">#1515916112 [2104:08811b50] C:\Dachshunds4\Urged7\Vasoganglion0\VB6.OLB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic">#1524592928 [2104:087e1120] C:\Dachshunds4\Urged7\Vasoganglion0\MSCOMCTL.oca</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic">#1526186640 [2104:07b68290] C:\Dachshunds4\Urged7\Vasoganglion0\VB6.OLB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic">#1526188144 [2104:07b68870] C:\Dachshunds4\Urged7\Vasoganglion0\MSCOMCTL.oca</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic">#1527212864 [2104:087e0b40] C:\Dachshunds4\Urged7\Vasoganglion0\VB6.OLB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic">#2123231803 [kernel:fa8002edf23b] C:\Dachshunds4\Urged7\Vasoganglion0\VB6.OLB</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span><span style="color:#999;font-style:italic">#2123244143 [kernel:fa8002ee226f] C:\Dachshunds4\Urged7\Vasoganglion0\MSCOMCTL.oca</span>
+</code></pre></div><p>There are reference to both strings in Microsoft Word and in the Kernel. This means the malware didn&rsquo;t just disappear, but instead of continuing the hunt for it with Volatility, it became easier to dump the process of the unpacked version using <em>ProcessHacker</em>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Getting the strings from the unpacked malware</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>strings -a -td /tmp/malware/lf.exe.dmp &gt; /tmp/malware/lf-strings.txt
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>strings -a -td -el /tmp/malware/lf.exe.dmp &gt;&gt; /tmp/malware/lf-strings.txt
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic"># Noticed a bunch of interesting strings</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>cat /tmp/malware/lf-strings.txt
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic">#(...)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic"># 647259 GET %s HTTP/1.1</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic"># 647276 Host: %s</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic"># 647286 User-Agent: %s</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic"># 647302 Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic"># 647375 Accept-Language: en-us,en;q=0.5</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic"># 647408 Keep-Alive: 300</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic"># 647425 Connection: keep-alive</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic">#(...)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic"># 652799 IMAP Password</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic"># 652871 POP3 Password</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic"># 652943 HTTP Password</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic"># 653015 SMTP Password</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span><span style="color:#999;font-style:italic"># 653103 wine_get_unix_file_name</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span><span style="color:#999;font-style:italic"># 654359 IsWow64Process</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span><span style="color:#999;font-style:italic"># 654595 cmd.exe /c ping 127.0.0.1 -n 4&amp;del &#34;%s&#34;</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span><span style="color:#999;font-style:italic">#(...)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span><span style="color:#999;font-style:italic"># 656611 RegQueryValueExA</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span><span style="color:#999;font-style:italic"># 656631 RegOpenKeyA</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span><span style="color:#999;font-style:italic"># 656643 RegCloseKey</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span><span style="color:#999;font-style:italic"># 656655 Software\N3NNetwork\</span>
+</code></pre></div><p>From the strings it was possible to confirm that the malware is indeed using anti-virtualization techniques (reference to the function <code>wine_get_unix_file_name</code>). It is also possible that it has password stealing and key logging capabilities. With all this information, it is easy to create YARA rules.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plaintext" data-lang="plaintext"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span>rule cv_malware_packed {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span>meta:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>    version=&#34;1.1&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>    filetype=&#34;PE&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>    author=&#34;Duarte Silva&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>    license=&#34;GPLv3&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>    reference=&#34;https://www.serializing.me/2015/05/03/check-my-cv-generating-yara-rules/&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>    date=&#34;2015-04-03&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>    description=&#34;Detection for the packed version of the malware downloaded using a rigged Word document&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span>strings:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span>    $a1=&#34;C:\\Dachshunds4\\Urged7\\Vasoganglion0\\VB6.OLB&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span>    $a2=&#34;C:\\Dachshunds4\\Urged7\\Vasoganglion0\\MSCOMCTL.oca&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span>condition:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span>    (all of ($a*))
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span>}
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span>rule cv_malware_unpacked {
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span>meta:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span>    version=&#34;1.1&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span>    filetype=&#34;PE&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span>    author=&#34;Duarte Silva&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">22</span>    license=&#34;GPLv3&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">23</span>    reference=&#34;https://www.serializing.me/2015/05/03/check-my-cv-generating-yara-rules/&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">24</span>    date=&#34;2015-04-03&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">25</span>    description=&#34;Detection for the unpacked version of the malware downloaded using a rigged Word document&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">26</span>strings:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">27</span>    $cmd=&#34;cmd.exe /c ping 127.0.0.1 -n 4&amp;del \&#34;%s\&#34;&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">28</span>    $regkey=&#34;Software\\N3NNetwork\\&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">29</span>    $a1=&#34;C:\\Dachshunds4\\Urged7\\Vasoganglion0\\VB6.OLB&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">30</span>    $a2=&#34;C:\\Dachshunds4\\Urged7\\Vasoganglion0\\MSCOMCTL.oca&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">31</span>    $b1=&#34;IMAP Password&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">32</span>    $b2=&#34;POP3 Password&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">33</span>    $b3=&#34;HTTP Password&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">34</span>    $b4=&#34;SMTP Password&#34;
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">35</span>condition:
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">36</span>    $cmd and $regkey and (all of ($a*)) and (any of ($b*))
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">37</span>}
+</code></pre></div><p>The received message with the attachment is available <a href="/uploads/2015/05/email-message.zip" title="e-Mail message">here</a> (password without quotes is &ldquo;Original message received with the malicious document.&quot;), happy YARA&rsquo;ing!<!-- raw HTML omitted --></p></div>
       </div>
       <div class="card-footer">
 <span><i class="fas fa-calendar-alt"></i>&nbsp;</span>May 3, 2015&nbsp;&nbsp;<br/>
