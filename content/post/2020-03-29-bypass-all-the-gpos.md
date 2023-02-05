@@ -21,7 +21,7 @@ Active Directory (AD) Group Policy Objects (GPOs) is the standard way of managin
 
 {{< figure image="/uploads/2020/03/group-policy-management.png" alternative="Group Policy Management" caption="The Group Policy Management editor." thumbnail="/uploads/2020/03/group-policy-management-500x285.png" >}}
 
-GPOs are disseminated to devices through AD's Lightweight Directory Access Protocol (LDAP) and Server Message Block (SMB) shares. 
+GPOs are disseminated to devices through AD's Lightweight Directory Access Protocol (LDAP) and Server Message Block (SMB) shares.
 
 ### Registry, Library Injection, and Function Hooks
 

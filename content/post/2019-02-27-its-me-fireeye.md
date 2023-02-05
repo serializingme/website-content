@@ -116,7 +116,25 @@ The second was that the driver was indeed responsible for monitoring the system 
 
 That got me thinking, how could I check if the file existed without triggering such alerts? After some experimentation I decided to give the `FindFirstFile` Windows API a try. If it didn't make use of system calls, it would most likely be stealth in such a way the sandbox won't tag it as malicious.
 
-{{< gist serializingme add1c6e6e24cb775785800c22b8f14d9 "fetest.c" >}}
+```cc {linenos=inline}
+#include <windows.h>
+#include <stdio.h>
+
+void main(int argc, char *argv[]) {
+  WIN32_FIND_DATA FindFileData;
+  HANDLE hFind;
+
+  hFind = FindFirstFile("C:\\WINDOWS\\system32\\drivers\\firemon.sys", &FindFileData);
+
+  if (hFind == INVALID_HANDLE_VALUE) {
+      printf("Failed to find the driver (%d)\n", GetLastError());
+   }
+   else {
+      printf("Found the driver!\n");
+      FindClose(hFind);
+   }
+}
+```
 
 With this idea in mind, I developed another small utility that did just that. Suffice to say it was successful! The driver could be detected and not a single alert was triggered :D
 

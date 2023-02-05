@@ -22,7 +22,22 @@ To answer this question, one has to account for the quality of both the rules an
 
 In all scenarios, the Acunetix scan was configured with the default scanning profile targeting a Enterprise Linux based host with PHP installed. The WordPress version is 4.2.2 and no plug-ins are installed. The rule files used from the Open Ruleset were the same as with the Pro Ruleset. There is only a difference in the filename, in the Open Ruleset it starts with `emerging-*` but in the Pro Ruleset it does not.
 
-{{< gist serializingme cfc11f624c05bf5518e6 "suricata.yaml" >}}
+```yaml {linenos=inline}
+rule-files:
+ - emerging-attack_response.rules
+ - emerging-current_events.rules
+ - emerging-dns.rules
+ - emerging-dos.rules
+ - emerging-exploit.rules
+ - emerging-policy.rules
+ - emerging-rpc.rules
+ - emerging-scan.rules
+ - emerging-shellcode.rules
+ - emerging-sql.rules
+ - emerging-user_agents.rules
+ - emerging-web_server.rules
+ - emerging-web_specific_apps.rules
+```
 
 {{< alert >}}Even though the only noticeable difference is in the names of the files, the Pro Ruleset contains rules that the Open Ruleset does not. Hence the usage of both sets for the tests.{{< /alert >}}
 
@@ -47,8 +62,8 @@ Acunetix reported 1 high, 2 medium and 27 low risk vulnerabilities. Out of those
 
 All of them would have been mitigated by Suricata (independently of the rule set used) by the following rules.
 
-* ET WEB_SERVER WordPress Login Bruteforcing Detected
-* ET SCAN Possible WordPress xmlrpc.php BruteForce in Progress
+* `ET WEB_SERVER WordPress Login Bruteforcing Detected`
+* `ET SCAN Possible WordPress xmlrpc.php BruteForce in Progress`
 
 In conclusion, Suricata faired extremely well in terms of performance and security/protection alerting to attacks that ranged from SQL injection to known vulnerabilities in WordPress plugins.
 

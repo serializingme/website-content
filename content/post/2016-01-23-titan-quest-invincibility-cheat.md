@@ -27,7 +27,13 @@ After fighting against it one time, it was clear that it was going to be an hard
 </div>
 {{< /html >}}
 
-{{< gist serializingme 6986630b7b2f8bbb0fc8 "GameEngine.cpp" >}}
+```cpp {linenos=inline}
+namespace GAME {
+    class GameEngine {
+        Player GetMainPlayer();
+    }
+}
+```
 
 {{< html >}}
 <div class="row">
@@ -43,7 +49,13 @@ After fighting against it one time, it was clear that it was going to be an hard
 
 Following the flow of execution (i.e., single stepping through the code), I found another interesting function called `?IsInvincible@Character@GAME@@QBE_NX`. Decoding the C++ name mangling reveals the following code.
 
-{{< gist serializingme 6986630b7b2f8bbb0fc8 "Character.cpp" >}}
+```cpp {linenos=inline}
+namespace GAME {
+    class Character {
+        bool IsInvincible();
+    }
+}
+```
 
 {{< html >}}
 <div class="row">
@@ -61,7 +73,7 @@ To make things easier, I have created a [library][1], that when injected into Ti
 
 {{< youtube class="ratio ratio-16x9 mb-3" id="tluOw6sOkl4" >}}
 
-The library can be injected multiple times, as it will return the unsuccessful load status, leading Windows to unload it from the process memory (this will only happen if the library is injected using the `LoadLibrary/CreateRemoteThread` method).
+The library can be injected multiple times, as it will return the unsuccessful load status, leading Windows to unload it from the process memory (this will only happen if the library is injected using the `CreateRemoteThread` on `LoadLibrary` method).
 
 Cheers x)
 

@@ -39,7 +39,137 @@ It seemed that this command is the one that was being used to exploit the vulner
 
 Reconstructing the class from the exported symbols undecorated name and by looking at the disassembled code of the get methods of the class, I was able to understand how the class fields are organized and the type of each field.
 
-{{< gist serializingme 774a9be6223ddbef621a19508e696750 "CIpcMessage.h" >}}
+```cpp {linenos=inline}
+class CIpcMessage {
+private:
+    /* Offset 0x00 */ unsigned long idTag;
+    /* Offset 0x04 */ unsigned short headerLength;
+    /* Offset 0x06 */ unsigned short dataLength;
+    /* Offset 0x08 */ IIpcResponseCB * ipcResponseCB;
+    /* Offset 0x0c */ void * msgUserContext;
+    /* Offset 0x10 */ unsigned long requestMsgId;
+    /* Offset 0x14 */ void * returnIpcObject;
+    /* Offset 0x18 */ unsigned char messageType;
+    /* Offset 0x19 */ unsigned char messageId;
+
+public:
+    /**
+     * 702d8a52:    mov eax, ecx
+     * 702d8a54:    ret
+     */
+    unsigned char * getBuffer() {
+        return (unsigned char *)this;
+    }
+
+    /**
+     * 702db2c5:    xor eax, eax
+     * 702db2c7:    cmp dword [ecx], 0x4353434f
+     * 702db2cd:    setz al
+     * 702db2d0:    ret
+     */
+    bool isIdTagValid() {
+        return (this->idTag == 0x4353434f);
+    }
+
+    /**
+     * 702db2d1:    movzx eax, word [ecx+0x6]
+     * 702db2d5:    ret
+     */
+    unsigned int getDataLength() {
+        return this->dataLength;
+    }
+
+    /**
+     * 702db2d6:    movzx eax, byte [ecx+0x19]
+     * 702db2da:    ret
+     */
+    unsigned char /*enum IPC_MESSAGE_ID*/ getMessageID() {
+        return this->messageId;
+    }
+
+    /**
+     * 702db2db:    movzx eax, byte [ecx+0x18]
+     * 702db2df:    and eax, 0x1f
+     * 702db2e2:    ret
+     */
+    unsigned char /*enum IPC_MESSAGE_TYPE*/ getMessageType() {
+        return (this->messageType & 0x1F);
+    }
+
+    /**
+     * 702db2e3:    xor eax, eax
+     * 702db2e5:    test byte [ecx+0x18], 0x80
+     * 702db2e9:    jnz 0x702db2f1
+     * 702db2eb:    cmp [ecx+0x8], eax
+     * 702db2ee:    jz 0x702db2f1
+     * 702db2f0:    inc eax
+     * 702db2f1:    ret
+     */
+    bool isRequestMessage() {
+        return (!(this->messageType & 0x80) && this->ipcResponseCB != 0x00000000);
+    }
+
+    /**
+     * 702db2f2:    movzx eax, byte [ecx+0x18]
+     * 702db2f6:    shr eax, 0x7
+     * 702db2f9:    ret
+     */
+    bool isResponseMessage() {
+        return (this->messageType >> 7);
+    }
+
+    /**
+     * 702db2fa:    mov eax, [ecx+0x8]
+     * 702db2fd:    ret
+     */
+    IIpcResponseCB * getIpcResponseCB() {
+        return this->ipcResponseCB;
+    }
+
+    /**
+     * 702db2fe:    mov eax, [ecx+0xc]
+     * 702db301:    ret
+     */
+    void * getMsgUserContext() {
+        return this->msgUserContext;
+    }
+
+    /**
+     * 702db302:    mov eax, [ecx+0x10]
+     * 702db305:    ret
+     */
+    unsigned int getRequestMsgId() {
+        return requestMsgId;
+    }
+
+    /**
+     * 702db313:    mov eax, [ecx+0x14]
+     * 702db316:    ret
+     */
+    void * getReturnIpcObject() {
+        return this->returnIpcObject;
+    }
+
+    /**
+     * 702db324:    movzx eax, word [ecx+0x4]
+     * 702db328:    add eax, ecx
+     * 702db32a:    ret
+     */
+    unsigned char * getDataBuffer() {
+        return (unsigned char *)(this->headerLength + (unsigned long)this);
+    }
+
+    /**
+     * 702db32b:    movzx eax, word [ecx+0x6]
+     * 702db32f:    movzx ecx, word [ecx+0x4]
+     * 702db333:    add eax, ecx
+     * 702db335:    ret
+     */
+    unsigned int getLength() {
+        return (this->dataLength + this->headerLength);
+    }
+}
+```
 
 Taking the network packet created by the Google POC into consideration, it was clear that these fields map one-to-one with the data sent to the socket.
 

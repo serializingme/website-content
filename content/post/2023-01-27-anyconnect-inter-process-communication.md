@@ -17,11 +17,33 @@ In my first deep dive into Cisco AnyConnect (CAC) Secure Mobility Client (see [A
 
 First, a small primer on how CAC communicates in between processes, namely `vpnagent.exe`, `vpndownloader.exe`, `vpnui.exe`, `vpncli.exe`, and potentially others. For example, the `vpnagent.exe` executable, when running starts listening at `127.0.0.1` on TCP port `62522`. It's on this port that it receives the various IPC messages sent by the other executables. The messages are based on a Type, Length and Value (TLV) structure and have the following format:
 
-{{< gist serializingme 4206372a06b0bdbc9235eade959d72b7 "cac-ipc-header.h" >}}
+```yaml {linenos=inline}
+Header:
+    Identifier Tag: 0x4353434f      # Fixed value of "CSCO".
+    Header Length: 0x001a           # Header length, always 0x1A.
+    Data Length: 0x0000             # Varies depending on the body length.
+    IPC Response CB: 0x00000000     # Some messages require this value not to be null.
+    User Context: 0x00000000
+    Request Identifier: 0x00000000
+    Return IPC Index: 0x00000000
+    Message Type: 0x00              # Defines the type of message, this is in part how CAC distinguishes between messages.
+    Message Identifer: 0x00         # Defines the identifier of the message, this is the other part CAC uses to distinguish messages.
+Body:
+    # A list of TLVs...
+```
 
 This leads me to the wrong conclusion that I reached at the time. The body part of the IPC messages is basically a list of TLVs (if any). My assumption was that the Type part of each TLV, was composed of a native type (first byte), like string, integer, etc. and an index (second byte). However that is not the case, the full 2 bytes simply refer to the type in the context of the IPC message being sent, for example a file path, or an IP address. This means that the Type value may (and is) reused in various messages even if having a different native type. As such a TLV is composed of:
 
-{{< gist serializingme 4206372a06b0bdbc9235eade959d72b7 "cac-ipc-tlv.h" >}}
+```yaml {linenos=inline}
+A TLV:
+  Type: 0x0000    # Big endian 2 bytes unsigned integer
+  Length: 0x0000  # Big endian 2 bytes unsigned integer
+  Value: ...      # Variable length
+
+A TV:
+  Type: 0x8000    # Big endian 2 bytes unsigned integer
+  Value: 0x0000   # 2 bytes long value
+```
 
 As seen above, there is another detail that I didn't fully understand properly at the time and that contributed to the type/index confusion. The TLV type can have a modifier, if the `type & 0x8000 == 0x8000` condition is true, then the entry in the body is no longer a TLV, but a Type and Value (TV) where the value always has 2 bytes length. The only usage I have seen for it, was for 2 bytes unsigned long integers, and boolean values as seen in the example below.
 
@@ -43,7 +65,7 @@ The dissector tries to match all the TCP packets sent on port `62522`, and it ma
 
 ### Packet Generator
 
-While developing the dissector, I started to wonder how I could validate the various messages dissection. No packet capture I could create by just using CAC would have all the possible messages. As such, I decided to develop a packet generator. My first approach was to create a library (as in a `.lib` file) for the `vpncommon.dll`. That was the easy part, just a bit of `dumpbin` magic and that's it, well mostly it. 
+While developing the dissector, I started to wonder how I could validate the various messages dissection. No packet capture I could create by just using CAC would have all the possible messages. As such, I decided to develop a packet generator. My first approach was to create a library (as in a `.lib` file) for the `vpncommon.dll`. That was the easy part, just a bit of `dumpbin` magic and that's it, well mostly it.
 
 The hard part was creating headers for each class, where the virtual address table properly matched the compiled version. After some failed attempts, I decided it was best to dynamically link against `vpncommon.dll` instead of statically linking. After many wrapper classes and same basic networking code had been developed, I had a shiny new packet generator that could generate all the IPC messages.
 

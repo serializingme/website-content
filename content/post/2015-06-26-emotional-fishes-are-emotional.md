@@ -17,7 +17,17 @@ I had created a pull request seeking to integrate Cufish into Pafish, but after 
 
 All code is licensed under GPLv3 and can be easily compiled with MinGW. As an example to compile Cufish:
 
-{{< gist serializingme f127fbad352aeb023b29 "compile-instructions.sh" >}}
+```shell {linenos=inline}
+#!/bin/bash
+# If compiling in Windows systems
+make -f Makefile.win
+
+# If cross-compiling in Linux systems for a 32 bits Windows
+make -f Makefile.linux-32
+
+# If cross-compiling in Linux systems for a 64 bits Windows, not always available
+make -f Makefile.linux-64
+```
 
 Under the `dist` directory there are compiled versions ready to be executed. All art present on the project (fishes images) and in the post banner image is courtesy of [Fasticon Design][4].
 

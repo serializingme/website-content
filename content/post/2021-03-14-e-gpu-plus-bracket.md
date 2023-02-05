@@ -43,7 +43,7 @@ This means, that one cannot use that PCI-e slot to expand / change the e-GPU enc
 
 ### Experimenting
 
-Once the hardware arrived, both the PCI-e extender and PCI-e network card, the next obvious step was to experiment if this was actually going to work. I proceeded to open the e-GPU enclosure, remove both the GPU and the daughter board connect the extender, reconnect the GPU, and connect the new network card to the extender's board. 
+Once the hardware arrived, both the PCI-e extender and PCI-e network card, the next obvious step was to experiment if this was actually going to work. I proceeded to open the e-GPU enclosure, remove both the GPU and the daughter board connect the extender, reconnect the GPU, and connect the new network card to the extender's board.
 
 {{< figure image="/uploads/2021/03/riser-connected.png" alternative="PCI-e Extender Connected" caption="PCI-e extender connected to the daughter board slot." thumbnail="/uploads/2021/03/riser-connected-500x375.png" >}}
 

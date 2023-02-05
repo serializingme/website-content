@@ -56,21 +56,21 @@ The other 1230 attackers, with some exceptions (e.g., Ubuntu / Debian servers), 
 
 Analysing the captured packets with Suricata ([ET Open][3] ruleset) it was possible to get an insight to the malicious visitors intentions. Follows a sorted list by number of occurrences of the signatures triggered by the captured traffic.
 
-1. ZmEu scanner User-Agent Inbound
-1. ThinkPHP RCE exploitation Attempt
-1. Microsoft IIS Remote Code Execution (CVE-2017-7269)
-1. MS Terminal Server Traffic on Non-standard Port
-1. Nmap Scripting Engine User-Agent Detected (Nmap Scripting Engine)
-1. DFind w00tw00t GET-Requests
-1. Incoming Masscan detected
-1. Suspicious Chmod Usage in URI
-1. Incoming Basic Auth Base64 HTTP Password detected unencrypted
-1. D-Link DSL-2750B - OS Command Injection
-1. Possible Apache Struts OGNL Expression Injection (CVE-2017-5638)
-1. AVTECH Unauthenticated Command Injection in DVR Devices
-1. Microhard Systems 3G/4G Cellular Ethernet and Serial Gateway - Default Credentials
-1. Suspected PHP Injection Attack (cmd=)
-1. ColdFusion administrator access
+1. `ZmEu scanner User-Agent Inbound`
+1. `ThinkPHP RCE exploitation Attempt`
+1. `Microsoft IIS Remote Code Execution (CVE-2017-7269)`
+1. `MS Terminal Server Traffic on Non-standard Port`
+1. `Nmap Scripting Engine User-Agent Detected (Nmap Scripting Engine)`
+1. `DFind w00tw00t GET-Requests`
+1. `Incoming Masscan detected`
+1. `Suspicious Chmod Usage in URI`
+1. `Incoming Basic Auth Base64 HTTP Password detected unencrypted`
+1. `D-Link DSL-2750B - OS Command Injection`
+1. `Possible Apache Struts OGNL Expression Injection (CVE-2017-5638)`
+1. `AVTECH Unauthenticated Command Injection in DVR Devices`
+1. `Microhard Systems 3G/4G Cellular Ethernet and Serial Gateway - Default Credentials`
+1. `Suspected PHP Injection Attack (cmd=)`
+1. `ColdFusion administrator access`
 
 {{< alert >}}To be noted that requests triggering the ZmEu scanner user-agent signature are related with phpMyAdmin exploitation attempts and I have purposely excluded SSH brute force attacks.{{< /alert >}}
 

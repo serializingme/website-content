@@ -12,6 +12,9 @@ page = "/:slug/"
 tag = "tags"
 category = "categories"
 
+[markup.highlight]
+style = 'native'
+
 [params]
 description = "Yet another blog about personal projects and research, thoughts and ideas."
 #analytics = ""

@@ -26,7 +26,54 @@ In my use case, I needed to make use of [Ethernet over USB][1]. While in Fedora,
 
 Most of the instruction below are based on the excelent article in the Fedora's [Wiki][2].
 
-{{< gist serializingme acf64c1f329910f33bf80e01264ba57e "build.sh" >}}
+```shell {linenos=inline}
+# Install dependencies.
+dnf install kernel-devel fedpkg fedora-packager rpmdevtools kernel-rpm-macros ncurses-devel pesign grubby
+
+# Get the source code.
+fedpkg clone -a kernel
+# Cloning into 'kernel'...
+# remote: Enumerating objects: 8242, done.
+# remote: Counting objects: 100% (8242/8242), done.
+# remote: Compressing objects: 100% (6150/6150), done.
+# remote: Total 92789 (delta 7507), reused 2091 (delta 2091), pack-reused 84547
+# Receiving objects: 100% (92789/92789), 127.62 MiB | 2.46 MiB/s, done.
+# Resolving deltas: 100% (59705/59705), done.
+
+# Change to the newly created directory.
+cd kernel
+
+# Change to the release of Fedora that is currently installed in the Pi. In this case it was Fedora 36.
+git checkout f36
+# Switched to a new branch 'origin/f36'
+
+# Change the build identifier to avoid conflits with the upstream packages.
+sed -i 's/# define buildid \.local/%define buildid \.srlzng/g' kernel.spec
+
+# Enable the driver USB RNDIS driver in the Kernel configuration.
+sed -i 's/# CONFIG_USB_CONFIGFS_RNDIS is not set/CONFIG_USB_CONFIGFS_RNDIS=y/g' kernel-aarch64-fedora.config
+
+# Compile the new RPMs.
+fedpkg local
+
+# Create a new branch to commit the changes that will be done.
+git checkout -b f36-srlzng
+# Switched to a new branch 'f36-srlzng'
+
+# Add the changed files.
+git add kernel.spec kernel-aarch64-fedora.config
+
+# Save the code changes to the created branch.
+git commit -m "Added support for RNDIS on USB ConfigFS."
+# [f36-srlzng 2e793a56c] Added support for RNDIS on USB ConfigFS.
+#  2 files changed, 2 insertions(+), 2 deletions(-)
+
+# Install the new Kernel.
+sudo dnf install --nogpgcheck ./aarch64/kernel-core-<version>.rpm ./aarch64/kernel-modules-<version>.rpm ./aarch64/kernel-<version>.rpm
+
+# Reboot the Pi
+reboot
+```
 
 ### Closing Words
 

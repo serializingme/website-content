@@ -17,7 +17,25 @@ While I can't post the results from the "in the wild" domain, I can say that one
 
 In any case, follows an example result file from my test environment where I have disabled the Kerberos pre-authentication for the domain administrator.
 
-{{< gist serializingme 646765360b36093af7350b4a547a0f56 "dump-users-example.xml" >}}
+```xml {linenos=inline}
+<?xml version="1.0" encoding="utf-8"?>
+<Domains>
+  <Start Time="2017-01-19T11:46:06.4762121Z" />
+  <Domain Name="SERIALIZINGLOCAL" DNS="serializing.local">
+    <User Name="Administrator" Identifier="S-1-5-21-815321168-1961664571-58983674-500" Description="Built-in account for administering the computer/domain" DN="CN=Administrator,OU=Domain Administration,OU=Users,DC=SERIALIZING,DC=LOCAL" Locked="False" Disabled="False" NoPasswordRequired="False" CanChangePassword="True" PasswordDoesntExpire="True" ExpiredPassword="False" PreAuthNotRequired="True" Created="2016-10-02T12:07:28.0000000Z" Changed="2016-09-02T14:09:58.0000000Z">
+      <MemberOf DN="CN=Administrators,CN=Builtin,DC=SERIALIZING,DC=LOCAL" />
+      <MemberOf DN="CN=Domain Admins,OU=Administrative,OU=Groups,DC=SERIALIZING,DC=LOCAL" />
+      <MemberOf DN="CN=Enterprise Admins,OU=Administrative,OU=Groups,DC=SERIALIZING,DC=LOCAL" />
+      <MemberOf DN="CN=Group Policy Creator Owners,CN=Users,DC=SERIALIZING,DC=LOCAL" />
+      <MemberOf DN="CN=Schema Admins,OU=Administrative,OU=Groups,DC=SERIALIZING,DC=LOCAL" />
+    </User>
+    <User Identifier="S-1-5-21-815321168-1961664571-812641168-501" Description="Built-in account for guest access to the computer/domain" DN="CN=Guest,CN=Users,DC=SERIALIZING,DC=LOCAL" Locked="False" Disabled="True" NoPasswordRequired="True" CanChangePassword="True" PasswordDoesntExpire="True" ExpiredPassword="False" Created="2016-10-02T12:07:28.0000000Z" Changed="2016-09-02T12:52:13.0000000Z">
+      <MemberOf DN="CN=Guests,CN=Builtin,DC=SERIALIZING,DC=LOCAL" />
+    </User>
+  </Domain>
+  <End Time="2017-01-19T11:46:07.2092854Z" />
+</Domains>
+```
 
 The scripts can be found in the [project page][4]. Cheers ;)
 
