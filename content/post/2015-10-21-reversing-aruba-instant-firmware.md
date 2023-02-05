@@ -82,6 +82,7 @@ binwalk image.uimage.data
 When this file is extracted and decompressed, the final matryoshka doll is revealed (the one containing the file system).
 
 ```shell {linenos=inline}
+#!/bin/bash
 # Extract the header
 dd if=image.uimage.data bs=1 count=7128 of=image.uimage.data.header
 

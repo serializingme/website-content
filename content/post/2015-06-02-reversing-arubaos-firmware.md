@@ -71,6 +71,7 @@ Next, using the same block size as before with the difference that the `count` p
 Next in line is the Linux Kernel and the ArubaOS firmware header (you can also obtain the Kernel configuration, by extracting the *Gzip* file at offset `4580088`).
 
 ```shell {linenos=inline}
+#!/bin/bash
 # Kernel
 dd if=sda1 bs=512 skip=1 count=13600 of=extracted.img
 #13600+0 records in

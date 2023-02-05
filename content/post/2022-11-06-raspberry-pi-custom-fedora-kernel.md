@@ -27,6 +27,7 @@ In my use case, I needed to make use of [Ethernet over USB][1]. While in Fedora,
 Most of the instruction below are based on the excelent article in the Fedora's [Wiki][2].
 
 ```shell {linenos=inline}
+#!/bin/bash
 # Install dependencies.
 dnf install kernel-devel fedpkg fedora-packager rpmdevtools kernel-rpm-macros ncurses-devel pesign grubby
 
