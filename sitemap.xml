@@ -1,620 +1,374 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://www.serializing.me/2023/01/27/anyconnect-inter-process-communication/</loc>
     <lastmod>2023-01-27T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/cac-ipc/</loc>
     <lastmod>2023-01-27T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/</loc>
     <lastmod>2023-01-27T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/cisco-anyconnect/</loc>
     <lastmod>2023-01-27T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/network/</loc>
     <lastmod>2023-01-27T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/post/</loc>
     <lastmod>2023-01-27T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/reverse-engineering/</loc>
     <lastmod>2023-01-27T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/</loc>
     <lastmod>2023-01-27T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/</loc>
     <lastmod>2023-01-27T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/project/cac-ipc/</loc>
     <lastmod>2023-01-27T00:19:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/project/</loc>
     <lastmod>2023-01-27T00:19:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/emotions/</loc>
     <lastmod>2022-11-16T19:06:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2022/11/16/freedom-and-solitude/</loc>
     <lastmod>2022-11-16T19:06:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/learning/</loc>
     <lastmod>2022-11-16T19:06:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/configuration/</loc>
     <lastmod>2022-11-06T07:35:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/linux/</loc>
     <lastmod>2022-11-06T07:35:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/raspberry-pi/</loc>
     <lastmod>2022-11-06T07:35:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2022/11/06/raspberry-pi-custom-fedora-kernel/</loc>
     <lastmod>2022-11-06T07:35:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/usb/</loc>
     <lastmod>2022-11-06T07:35:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/e-gpu/</loc>
     <lastmod>2021-03-14T19:10:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2021/03/14/e-gpu-plus-bracket/</loc>
     <lastmod>2021-03-14T19:10:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/hardware-hacking/</loc>
     <lastmod>2021-03-14T19:10:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/razer/</loc>
     <lastmod>2021-03-14T19:10:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/active-directory/</loc>
     <lastmod>2020-03-29T14:50:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2020/03/29/bypass-all-the-gpos/</loc>
     <lastmod>2020-03-29T14:50:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/code-injection/</loc>
     <lastmod>2020-03-29T14:50:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/exploit/</loc>
     <lastmod>2020-03-29T14:50:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/gpo-bypass/</loc>
     <lastmod>2020-03-29T14:50:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/project/gpo-bypass/</loc>
     <lastmod>2020-03-29T14:50:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/group-policy-objects/</loc>
     <lastmod>2020-03-29T14:50:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/hook-functions/</loc>
     <lastmod>2020-03-29T14:50:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/windows/</loc>
     <lastmod>2020-03-29T14:50:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/attck/</loc>
     <lastmod>2019-04-29T20:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/metasploit/</loc>
     <lastmod>2019-04-29T20:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/red-team/</loc>
     <lastmod>2019-04-29T20:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2019/04/29/simulating-apts-for-fun/</loc>
     <lastmod>2019-04-29T20:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/project/malware-classification/</loc>
     <lastmod>2019-03-01T15:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/emofishes/</loc>
     <lastmod>2019-02-27T12:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/fireeye/</loc>
     <lastmod>2019-02-27T12:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2019/02/27/its-me-fireeye/</loc>
     <lastmod>2019-02-27T12:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/malware/</loc>
     <lastmod>2019-02-27T12:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/virtualization/</loc>
     <lastmod>2019-02-27T12:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/case-study/</loc>
     <lastmod>2019-01-27T11:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/honeypot/</loc>
     <lastmod>2019-01-27T11:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/ivre/</loc>
     <lastmod>2019-01-27T11:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/reconnaissance/</loc>
     <lastmod>2019-01-27T11:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/suricata/</loc>
     <lastmod>2019-01-27T11:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2019/01/27/three-honeypots-and-a-month-after/</loc>
     <lastmod>2019-01-27T11:30:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2018/10/23/frontdoor-to-the-technicolor-7210/</loc>
     <lastmod>2018-10-23T00:40:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/passwords/</loc>
     <lastmod>2018-10-23T00:40:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/qemu/</loc>
     <lastmod>2018-10-23T00:40:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/soho/</loc>
     <lastmod>2018-10-23T00:40:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/technicolor/</loc>
     <lastmod>2018-10-23T00:40:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2018/09/30/reversing-the-tc7210-embedded-linux-firmware/</loc>
     <lastmod>2018-09-30T15:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2018/07/21/facts-and-alternative-realities/</loc>
     <lastmod>2018-07-21T08:40:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2018/06/03/rooting-the-technicolor-7210/</loc>
     <lastmod>2018-06-03T11:20:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/powascripts/</loc>
     <lastmod>2017-01-22T09:55:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2017/01/22/powascripts-update-kerberos-pre-authentication/</loc>
     <lastmod>2017-01-22T09:55:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/powershell/</loc>
     <lastmod>2017-01-22T09:55:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2016/12/20/anyconnect-elevation-of-privileges-part-2/</loc>
     <lastmod>2016-12-20T18:28:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/cve/</loc>
     <lastmod>2016-12-20T18:28:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2016/12/14/anyconnect-elevation-of-privileges-part-1/</loc>
     <lastmod>2016-12-14T18:56:17+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/bios/</loc>
     <lastmod>2016-10-15T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/csharp/</loc>
     <lastmod>2016-10-15T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/encryption/</loc>
     <lastmod>2016-10-15T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/hp/</loc>
     <lastmod>2016-10-15T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2016/10/15/hpqpswd-encrypted-passwords-decryption/</loc>
     <lastmod>2016-10-15T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/hpqpswdd/</loc>
     <lastmod>2016-10-15T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/project/hpqpswdd/</loc>
     <lastmod>2016-10-15T19:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2016/10/07/active-directory-dump/</loc>
     <lastmod>2016-10-07T18:05:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/applocker/</loc>
     <lastmod>2016-09-23T20:33:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/incident-response/</loc>
     <lastmod>2016-09-23T20:33:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2016/09/23/updated-applocker-dump-script/</loc>
     <lastmod>2016-09-23T20:33:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/project/powascripts/</loc>
     <lastmod>2016-09-23T20:16:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/hugo/</loc>
     <lastmod>2016-09-14T19:14:28+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/lemp/</loc>
     <lastmod>2016-09-14T19:14:28+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2016/09/14/migrated-from-wordpress-to-hugo/</loc>
     <lastmod>2016-09-14T19:14:28+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/wordpress/</loc>
     <lastmod>2016-09-14T19:14:28+02:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/page/</loc>
     <lastmod>2016-09-08T19:54:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/security/</loc>
     <lastmod>2016-09-08T19:54:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/privacy/</loc>
     <lastmod>2016-09-01T23:05:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/feeds/</loc>
     <lastmod>2016-08-15T16:11:16+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/portuguese/</loc>
     <lastmod>2016-03-17T22:14:13+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2016/03/17/portugueses-e-senhas-de-acesso-um-caso-de-estudo/</loc>
     <lastmod>2016-03-17T22:14:13+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/project/tq-invincible/</loc>
     <lastmod>2016-01-24T00:43:08+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/cheat/</loc>
     <lastmod>2016-01-23T22:19:09+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/titan-quest/</loc>
     <lastmod>2016-01-23T22:19:09+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2016/01/23/titan-quest-invincibility-cheat/</loc>
     <lastmod>2016-01-23T22:19:09+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/tq-invincible/</loc>
     <lastmod>2016-01-23T22:19:09+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/bug-bounty/</loc>
     <lastmod>2015-11-12T17:47:33+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/11/12/bug-bounty-serious-rewards/</loc>
     <lastmod>2015-11-12T17:47:33+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/bugcrowd/</loc>
     <lastmod>2015-11-12T17:47:33+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/11/01/inspecting-applocker-policy/</loc>
     <lastmod>2015-11-01T15:16:50+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/aruba-networks/</loc>
     <lastmod>2015-10-21T19:54:28+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/10/21/reversing-aruba-instant-firmware/</loc>
     <lastmod>2015-10-21T19:54:28+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/brute-force/</loc>
     <lastmod>2015-08-12T18:24:28+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/ssh/</loc>
     <lastmod>2015-08-12T18:24:28+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/08/12/ssh-brute-force-and-suricata/</loc>
     <lastmod>2015-08-12T18:24:28+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/acunetix-wvs/</loc>
     <lastmod>2015-07-07T19:00:51+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/07/07/wordpress-and-suricata-the-test/</loc>
     <lastmod>2015-07-07T19:00:51+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/06/26/emotional-fishes-are-emotional/</loc>
     <lastmod>2015-06-26T10:44:13+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/paranoid-fish/</loc>
     <lastmod>2015-06-26T10:44:13+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/project/emofishes/</loc>
     <lastmod>2015-06-26T09:48:54+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/cuckoo-sandbox/</loc>
     <lastmod>2015-06-12T11:02:16+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/06/12/curious-fish-is-curious/</loc>
     <lastmod>2015-06-12T11:02:16+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/virtualbox/</loc>
     <lastmod>2015-06-12T11:02:16+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/android/</loc>
     <lastmod>2015-06-03T20:46:43+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/banking/</loc>
     <lastmod>2015-06-03T20:46:43+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/06/03/portuguese-banking-apps-yay-or-nay/</loc>
     <lastmod>2015-06-03T20:46:43+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/tls/</loc>
     <lastmod>2015-06-03T20:46:43+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/06/02/reversing-arubaos-firmware/</loc>
     <lastmod>2015-06-02T20:09:29+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/05/28/a-paranoid-fish-and-silver-bullets/</loc>
     <lastmod>2015-05-28T22:24:56+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/05/12/protecting-wordpress-with-suricata/</loc>
     <lastmod>2015-05-12T20:59:57+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/05/03/check-my-cv-generating-yara-rules/</loc>
     <lastmod>2015-05-03T12:19:48+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/categories/memory-forensics/</loc>
     <lastmod>2015-05-03T12:19:48+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/volatility/</loc>
     <lastmod>2015-05-03T12:19:48+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/tags/yara/</loc>
     <lastmod>2015-05-03T12:19:48+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/contacts/</loc>
     <lastmod>2015-05-03T11:24:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/04/25/rxtx-buffers-rss-others-on-boot/</loc>
     <lastmod>2015-04-25T16:00:30+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/2015/04/25/hello-world/</loc>
     <lastmod>2015-04-25T11:14:03+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/contributions/</loc>
     <lastmod>2015-04-20T16:18:20+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/licensing/</loc>
     <lastmod>2015-04-20T16:16:28+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://www.serializing.me/about/</loc>
     <lastmod>2015-04-16T14:45:52+00:00</lastmod>
   </url>
-  
 </urlset>
