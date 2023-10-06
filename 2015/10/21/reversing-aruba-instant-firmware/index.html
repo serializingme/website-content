@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="814" />
+<meta itemprop="wordCount" content="815" />
   
 
 
@@ -212,26 +212,27 @@ Reversing Aruba Instant Firmware
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#--------------------------------------------------------------------------------</span>
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#7128          0x1BD8          LZMA compressed data, properties: 0x5D, dictionary size: 33554432 bytes, uncompressed size: -1 bytes</span>
 </code></pre></div><p>When this file is extracted and decompressed, the final matryoshka doll is revealed (the one containing the file system).</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#999;font-style:italic"># Extract the header</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span>dd <span style="color:#6ab825;font-weight:bold">if</span>=image.uimage.data <span style="color:#40ffff">bs</span>=<span style="color:#3677a9">1</span> <span style="color:#40ffff">count</span>=<span style="color:#3677a9">7128</span> <span style="color:#40ffff">of</span>=image.uimage.data.header
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic"># Extract the compressed file</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span>tail -c+7129 &lt; image.uimage.data &gt; image.uimage.data.compressed.lzma
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># Decompress it</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>7z x image.uimage.data.compressed.lzma
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#7-Zip 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#p7zip Version 9.20 (locale=en_GB.UTF-8,Utf16=on,HugeFiles=on,2 CPUs)</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic">#Processing archive: image.uimage.data.compressed.lzma</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic">#</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic">#Extracting  image.uimage.data.compressed</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic">#</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic">#Everything is Ok</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic">#</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic">#Size:       12220288</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic">#Compressed: 10085616</span>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Extract the header</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>dd <span style="color:#6ab825;font-weight:bold">if</span>=image.uimage.data <span style="color:#40ffff">bs</span>=<span style="color:#3677a9">1</span> <span style="color:#40ffff">count</span>=<span style="color:#3677a9">7128</span> <span style="color:#40ffff">of</span>=image.uimage.data.header
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic"># Extract the compressed file</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>tail -c+7129 &lt; image.uimage.data &gt; image.uimage.data.compressed.lzma
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic"># Decompress it</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>7z x image.uimage.data.compressed.lzma
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#7-Zip 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#p7zip Version 9.20 (locale=en_GB.UTF-8,Utf16=on,HugeFiles=on,2 CPUs)</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">13</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">14</span><span style="color:#999;font-style:italic">#Processing archive: image.uimage.data.compressed.lzma</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">15</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">16</span><span style="color:#999;font-style:italic">#Extracting  image.uimage.data.compressed</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">17</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">18</span><span style="color:#999;font-style:italic">#Everything is Ok</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">19</span><span style="color:#999;font-style:italic">#</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">20</span><span style="color:#999;font-style:italic">#Size:       12220288</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">21</span><span style="color:#999;font-style:italic">#Compressed: 10085616</span>
 </code></pre></div><p>The final matryoshka doll is a <em>LZMA</em> compressed <em>cpio</em> file.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>binwalk image.uimage.data.compressed

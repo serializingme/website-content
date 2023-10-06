@@ -41,7 +41,7 @@
     
   
   
-<meta itemprop="wordCount" content="989" />
+<meta itemprop="wordCount" content="990" />
   
 
 
@@ -205,17 +205,18 @@ Reversing ArubaOS Firmware
 <span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">5</span><span style="color:#999;font-style:italic">#185949696 bytes (186 MB) copied, 2.13289 s, 87.2 MB/s</span>
 </code></pre></div><p>Next, using the same block size as before with the difference that the <code>count</code> parameter is calculated based on the start offset of the previously extracted <em>7-zip</em> instead of the file size. The root file system is a <em>cpio</em> archive compressed with <em>LZMA</em>. Note that this is one of the few <em>LZMA</em> file entries reported by <code>binwalk</code> that make sense (the properties and uncompressed size of the file).</p>
 <p>Next in line is the Linux Kernel and the ArubaOS firmware header (you can also obtain the Kernel configuration, by extracting the <em>Gzip</em> file at offset <code>4580088</code>).</p>
-<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#999;font-style:italic"># Kernel</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span>dd <span style="color:#6ab825;font-weight:bold">if</span>=sda1 <span style="color:#40ffff">bs</span>=<span style="color:#3677a9">512</span> <span style="color:#40ffff">skip</span>=<span style="color:#3677a9">1</span> <span style="color:#40ffff">count</span>=<span style="color:#3677a9">13600</span> <span style="color:#40ffff">of</span>=extracted.img
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span><span style="color:#999;font-style:italic">#13600+0 records in</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic">#13600+0 records out</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic">#6963200 bytes (7.0 MB) copied, 0.0625107 s, 111 MB/s</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span><span style="color:#999;font-style:italic"># Firmware header</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span>dd <span style="color:#6ab825;font-weight:bold">if</span>=sda1 <span style="color:#40ffff">bs</span>=<span style="color:#3677a9">512</span> <span style="color:#40ffff">count</span>=<span style="color:#3677a9">1</span> <span style="color:#40ffff">of</span>=extracted.header
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span><span style="color:#999;font-style:italic">#1+0 records in</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#1+0 records out</span>
-<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#512 bytes (512 B) copied, 0.000256114 s, 2.0 MB/s</span>
+<div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span><span style="color:#999;font-style:italic"># Kernel</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 3</span>dd <span style="color:#6ab825;font-weight:bold">if</span>=sda1 <span style="color:#40ffff">bs</span>=<span style="color:#3677a9">512</span> <span style="color:#40ffff">skip</span>=<span style="color:#3677a9">1</span> <span style="color:#40ffff">count</span>=<span style="color:#3677a9">13600</span> <span style="color:#40ffff">of</span>=extracted.img
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 4</span><span style="color:#999;font-style:italic">#13600+0 records in</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 5</span><span style="color:#999;font-style:italic">#13600+0 records out</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 6</span><span style="color:#999;font-style:italic">#6963200 bytes (7.0 MB) copied, 0.0625107 s, 111 MB/s</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 7</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 8</span><span style="color:#999;font-style:italic"># Firmware header</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 9</span>dd <span style="color:#6ab825;font-weight:bold">if</span>=sda1 <span style="color:#40ffff">bs</span>=<span style="color:#3677a9">512</span> <span style="color:#40ffff">count</span>=<span style="color:#3677a9">1</span> <span style="color:#40ffff">of</span>=extracted.header
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">10</span><span style="color:#999;font-style:italic">#1+0 records in</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">11</span><span style="color:#999;font-style:italic">#1+0 records out</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">12</span><span style="color:#999;font-style:italic">#512 bytes (512 B) copied, 0.000256114 s, 2.0 MB/s</span>
 </code></pre></div><p>Now that the image has been broken down in all of its components, the next step is to extract and uncompress the files to mimic the root file system of a running appliance. Started with the ancillary files.</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 1</span><span style="color:#cd2828;font-weight:bold">#!/bin/bash
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868"> 2</span><span style="color:#cd2828;font-weight:bold"></span>p7zip -d extracted.7z
