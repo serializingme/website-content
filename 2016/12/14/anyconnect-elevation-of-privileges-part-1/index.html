@@ -161,7 +161,7 @@
         <h2 class="card-title">
 AnyConnect Elevation of Privileges, Part 1
         </h2>
-        <div class="text-justify">
+        <div>
 <p>The Cisco AnyConnect (CAC) Secure Mobility Client doesn&rsquo;t have the brightest security track record. <a href="https://tools.cisco.com/security/center/viewAlert.x?alertId=39466" title="CVE-2015-4211">CVE-2015-4211</a> and <a href="https://tools.cisco.com/security/center/viewAlert.x?alertId=41136" title="CVE-2015-6305">CVE-2015-6305</a> are only two out of the fourteen CVEs that have been assigned to it just in 2015. This spiked my curiosity and prompted me to confirm if Cisco had properly fixed the underlying issue of these vulnerabilities.</p>
 <p>In this multi-part article, I will explain how I reverse engineered CAC (one of its binaries and a network protocol used by it) to understand how the vulnerable functionality worked and how it could be further exploited. From Google Project Zero <a href="https://bugs.chromium.org/p/project-zero/issues/detail?id=460" title="Cisco AnyConnect Secure Mobility Client v3.1.08009 Elevation of Privilege">advisory</a> and respective proof of concept (POC) code, I learned that:</p>
 <ul>

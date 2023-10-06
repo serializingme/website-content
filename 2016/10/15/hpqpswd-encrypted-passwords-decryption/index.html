@@ -161,7 +161,7 @@
         <h2 class="card-title">
 HPQPswd Encrypted Passwords Decryption
         </h2>
-        <div class="text-justify">
+        <div>
 <p>Ever wondered how to decrypt HPQPswd encrypted passwords? So did I when, for the first time, I came across a strange file called <code>password.bin</code> with a magic value of <code>_HPPW12_</code>.</p>
 <p>It was easy to establish a link between this strange file and <code>HpqPswd.exe</code> as the <code>password.bin</code> file was accompanied by <code>BIOSConfigUtility64.exe</code> (an HP BIOS/UEFI configuration utility part of the HP System Software Manager). HP describes the HPQPswd utility as a utility that accepts a user entered password, encrypts the password and then stores it in a file for use by the BIOS.</p>
 <p>After looking at the HPQPswd import table, it was clear that it was leveraging the Windows cryptographic API. By using <a href="https://www.rohitab.com/apimonitor" title="API Monitor">API Monitor</a> it was possible to trace how the utility uses the API (tested with &ldquo;thispassword&rdquo; as the password).</p>

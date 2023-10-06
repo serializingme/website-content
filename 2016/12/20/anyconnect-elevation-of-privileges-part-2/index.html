@@ -161,7 +161,7 @@
         <h2 class="card-title">
 AnyConnect Elevation of Privileges, Part 2
         </h2>
-        <div class="text-justify">
+        <div>
 <p>In the <a href="/2016/12/14/anyconnect-elevation-of-privileges-part-1/" title="AnyConnect Elevation of Privileges, Part 1">previous</a> part of this multi-part article, I explained how I reversed engineered one of the binaries of the Cisco AnyConnect (CAC) Secure Mobility Client. This allowed me to understand the header format of the network packets used in the Inter-Process Communication (IPC) mechanism. In this part, I will focus on doing a more dynamic analysis in order to understand what goes in the packet body.</p>
 <p>To understand the packet body content (i.e. the data returned by the <code>getDataBuffer</code> function in the <code>CIpcMessage</code> class), instead of continuing with the reverse engineering effort (by focusing on the <code>CLaunchClientAppTlv</code> class), I decided to do a dynamic analysis.</p>
 <p>Instead of capturing the network traffic in a traditional manner, I decided to use <a href="https://www.rohitab.com/apimonitor" title="API Monitor">API Monitor</a>. This allows for the interception of the network traffic but also the calls to the various functions that could be involved in the IPC mechanism. To do that, I enabled the interception of:</p>

@@ -139,7 +139,7 @@
 <div class="card my-4"><a href="https://www.serializing.me/2023/01/27/anyconnect-inter-process-communication/"><img class="card-img-top" src="/uploads/2023/01/cac-ipc-wireshark.png" alt="AnyConnect Inter-Process Communication"></a><div class="card-body">
     <h2 class="card-title">
         AnyConnect Inter-Process Communication
-    </h2><div class="text-justify">
+    </h2><div>
   <p>In my first deep dive into Cisco AnyConnect (CAC) Secure Mobility Client (see <a href="/2016/12/14/anyconnect-elevation-of-privileges-part-1/" title="AnyConnect Elevation of Privileges, Part 1">AnyConnect Elevation of Privileges Part 1</a> and <a href="/2016/12/20/anyconnect-elevation-of-privileges-part-2/" title="AnyConnect Elevation of Privileges, Part 2">Part 2</a>), I reversed engineered how CAC made use of a TCP based Inter-Process Communication (IPC) protocol. Based on that research, I found a Local Privilege Escalation (LPE) vulnerability (see <a href="https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-20161207-anyconnect1" title="CVE-2016-9192">CVE-2016-9192</a> and the <a href="https://github.com/serializingme/cve-2016-9192" title="CVE-2016-9192 Proof of Concept Repository">proof-of-concept</a> code). Yorick Koster and Antoine Goichot followed suit, and using that research also found other vulnerabilities (see <a href="https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-ac-win-path-traverse-qO4HWBsj" title="CVE-2020-3153">CVE-2020-3153</a>, <a href="https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-anyconnect-dll-F26WwJW" title="CVE-2020-3433">CVE-2020-3433</a>, <a href="https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-anyconnect-dos-feXq4tAV" title="CVE-2020-3434">CVE-2020-3434</a>, and <a href="https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-anyconnect-profile-7u3PERKF" title="CVE-2020-3435">CVE-2020-3435</a>). This post presents the results of my second deep dive, correcting a wrong conclusion about the protocol, further reverse engineering the various IPC messages, and providing some tools that can potentially aid further research.</p><a class="btn btn-primary" href="https://www.serializing.me/2023/01/27/anyconnect-inter-process-communication/">Read More<span>&nbsp;<i class="fas fa-chevron-right"></i></span></a></div></div>
   <div class="card-footer">
 <span><i class="fas fa-calendar-alt"></i>&nbsp;</span>January 27, 2023&nbsp;&nbsp;<br/>
@@ -151,7 +151,7 @@
 <div class="card my-4"><a href="https://www.serializing.me/2016/12/20/anyconnect-elevation-of-privileges-part-2/"><img class="card-img-top" src="/uploads/2016/12/cisco-anyconnect.png" alt="AnyConnect Elevation of Privileges, Part 2"></a><div class="card-body">
     <h2 class="card-title">
         AnyConnect Elevation of Privileges, Part 2
-    </h2><div class="text-justify">
+    </h2><div>
   <p>In the <a href="/2016/12/14/anyconnect-elevation-of-privileges-part-1/" title="AnyConnect Elevation of Privileges, Part 1">previous</a> part of this multi-part article, I explained how I reversed engineered one of the binaries of the Cisco AnyConnect (CAC) Secure Mobility Client. This allowed me to understand the header format of the network packets used in the Inter-Process Communication (IPC) mechanism. In this part, I will focus on doing a more dynamic analysis in order to understand what goes in the packet body.</p><a class="btn btn-primary" href="https://www.serializing.me/2016/12/20/anyconnect-elevation-of-privileges-part-2/">Read More<span>&nbsp;<i class="fas fa-chevron-right"></i></span></a></div></div>
   <div class="card-footer">
 <span><i class="fas fa-calendar-alt"></i>&nbsp;</span>December 20, 2016&nbsp;&nbsp;<br/>
@@ -163,7 +163,7 @@
 <div class="card my-4"><a href="https://www.serializing.me/2016/12/14/anyconnect-elevation-of-privileges-part-1/"><img class="card-img-top" src="/uploads/2016/12/cisco-anyconnect.png" alt="AnyConnect Elevation of Privileges, Part 1"></a><div class="card-body">
     <h2 class="card-title">
         AnyConnect Elevation of Privileges, Part 1
-    </h2><div class="text-justify">
+    </h2><div>
   <p>The Cisco AnyConnect (CAC) Secure Mobility Client doesn&rsquo;t have the brightest security track record. <a href="https://tools.cisco.com/security/center/viewAlert.x?alertId=39466" title="CVE-2015-4211">CVE-2015-4211</a> and <a href="https://tools.cisco.com/security/center/viewAlert.x?alertId=41136" title="CVE-2015-6305">CVE-2015-6305</a> are only two out of the fourteen CVEs that have been assigned to it just in 2015. This spiked my curiosity and prompted me to confirm if Cisco had properly fixed the underlying issue of these vulnerabilities.</p><a class="btn btn-primary" href="https://www.serializing.me/2016/12/14/anyconnect-elevation-of-privileges-part-1/">Read More<span>&nbsp;<i class="fas fa-chevron-right"></i></span></a></div></div>
   <div class="card-footer">
 <span><i class="fas fa-calendar-alt"></i>&nbsp;</span>December 14, 2016&nbsp;&nbsp;<br/>

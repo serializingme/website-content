@@ -161,7 +161,7 @@
         <h2 class="card-title">
 Active Directory Dump
         </h2>
-        <div class="text-justify">
+        <div>
 <p>During many penetration tests (or red versus blue team exercises), I have found myself with the need to investigate users, groups, computers and policies of a Windows domain. To do that, I have developed a series of PowerShell scripts that dump all that information from Active Directory into XML files.</p>
 <div class="alert alert-info"><span><i class="fas fa-info-circle"></i>&nbsp;</span>Note that these cmdlets, when paired with a code versioning system like Git, are also very useful when performing periodic Active Directory change audits.</div>
 <p>The first thing I usually do when I get access to a computer registered in a Windows domain of the target network, is to see if there is any other domains available. The <code>Dump-Domains</code> cmdlet will dump all domains and all trust relationships that can be found. To run the cmdlet just provide the file to where the information is to be dumped as exemplified bellow.</p>

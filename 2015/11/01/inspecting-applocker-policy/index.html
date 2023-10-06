@@ -161,7 +161,7 @@
         <h2 class="card-title">
 Inspecting AppLocker Policy
         </h2>
-        <div class="text-justify">
+        <div>
 <p>While doing incident response, if AppLocker is being used but the computer still got infected by a malicious executable, it is useful to know exactly what AppLocker policy is currently applied.</p>
 <p>Leveraging PowerShell is the right choice to achieve this. The following cmdlet will dump the current AppLocker policy to a XML file. It will do that by reading the registry without the need for special permissions (i.e. administrator).</p>
 <div class="highlight"><pre tabindex="0" style="color:#d0d0d0;background-color:#202020;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#686868">1</span><span style="color:#24909d">AppLocker-Dump</span> -PolicyFile policy.xml

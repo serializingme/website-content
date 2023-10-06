@@ -161,7 +161,7 @@
         <h2 class="card-title">
 PowaScripts Update: Kerberos Pre-authentication
         </h2>
-        <div class="text-justify">
+        <div>
 <p>After reading <a href="https://twitter.com/harmj0y" title="harmj0y Twiter Profile">harmj0y</a> blog post about <a href="http://www.harmj0y.net/blog/activedirectory/roasting-as-reps/" title="harmj0y Blog Post">&ldquo;Roasting AS-REPs&rdquo;</a>, I have decided to update the <code>Dump-User.ps1</code> script in order for it to report on users that don&rsquo;t have Kerberos pre-authentication enabled. Running the updated version against a &ldquo;in the wild&rdquo; target yielded interesting results to say the least.</p>
 <p>While I can&rsquo;t post the results from the &ldquo;in the wild&rdquo; domain, I can say that one domain administrator account was vulnerable and it was possible to successfully retrieve the hash for cracking using <a href="https://github.com/adaptivethreat/ASREPRoast" title="ASREPRoast GitHub Repository">harmj0y</a> script.</p>
 <p>In any case, follows an example result file from my test environment where I have disabled the Kerberos pre-authentication for the domain administrator.</p>
